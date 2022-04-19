@@ -16,7 +16,7 @@ import './App.css';
 //|                     opporunities                          |
 //-------------------------------------------------------------
 
-
+//mamamamadsadasadsadasda
 
 //<h2 class = 'aboutmepic'>ABOUT US</h2>
 function App() {
