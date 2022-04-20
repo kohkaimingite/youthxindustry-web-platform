@@ -36,6 +36,3 @@ function App() {
 
 export default App;
 
-//Boo u suck newbie doo doo
-
-//Boo u suck again
