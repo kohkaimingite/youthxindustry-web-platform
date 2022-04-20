@@ -19,7 +19,9 @@ import AboutPage from './AboutPage/AboutPage';
 //-------------------------------------------------------------
 
 //mamamamadsadasadsadasda
-
+ //<switch>
+   //           <Route exact path="/aboutus" component={AboutPage} />
+    //          </switch>
 //<h2 class = 'aboutmepic'>ABOUT US</h2>
 function App() {
   return (
@@ -31,9 +33,7 @@ function App() {
           <h2>Picure of logo with "contact us" button</h2>
           <h2>Picure of logo with "login" button</h2>
 
-          <switch>
-              <Route exact path="/aboutus" component={AboutPage} />
-              </switch>
+         
     </div>
   );
 }
