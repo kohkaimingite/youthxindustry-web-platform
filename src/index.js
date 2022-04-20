@@ -4,13 +4,21 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import AboutPage from './AboutPage/AboutPage';
+import OppoPage from './OppoPage/OppoPage';
+import ContactPage from './ContactPage/ContactPage';
+import LoginPage from './LoginPage/LoginPage';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
         
         <Router>
         <Routes>
-            <Route path='/' element={<App/>}/>
+                <Route path='/' element={<App />} />
+                <Route path='/AboutUs' element={<AboutPage />} />
+                <Route path='/Opportunities' element={<OppoPage />} />
+                <Route path='/ContactUs' element={<ContactPage />} />
+                <Route path='/Login' element={<LoginPage />} />
         </Routes>
     </Router>
     </React.StrictMode>
