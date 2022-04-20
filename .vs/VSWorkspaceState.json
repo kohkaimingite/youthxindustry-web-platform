@@ -3,7 +3,13 @@
     "",
     "\\public",
     "\\src",
-    "\\src\\HomePage"
+    "\\src\\AboutPage",
+    "\\src\\components",
+    "\\src\\ContactPage",
+    "\\src\\HomePage",
+    "\\src\\LoginPage",
+    "\\src\\OppoPage"
   ],
+  "SelectedNode": "\\src\\HomePage\\AboutmeSet.js",
   "PreviewInSolutionExplorer": false
 }
