@@ -1,5 +1,6 @@
 // JavaScript source code
 import { Route, Link } from 'react-router-dom';
+import React, { Component } from 'react';
 // <Link to="/AboutPage"><button>About Us</button> </Link>
 //
 const NavBar  = () => {
@@ -19,4 +20,4 @@ const brandName = {
     color: "white",
     backgroundColor: 'red'
 }
-export default NavBar
+export default NavBar 

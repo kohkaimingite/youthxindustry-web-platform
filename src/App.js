@@ -31,7 +31,9 @@ function App() {
           <h2>Picure of logo with "contact us" button</h2>
           <h2>Picure of logo with "login" button</h2>
 
-          <Route exact path="/aboutus" component={ AboutPage}/>
+          <switch>
+              <Route exact path="/aboutus" component={AboutPage} />
+              </switch>
     </div>
   );
 }
