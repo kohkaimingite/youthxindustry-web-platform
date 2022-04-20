@@ -1,6 +1,8 @@
 import NavBar from './components/NavBar'
 import AboutmeSet from './HomePage/AboutmeSet'
+import {Route, Link } from 'react-router-dom';
 import './App.css';
+import AboutPage from './AboutPage/AboutPage';
 // Idea:
 //top will be buttons "About" - "opportunities(have sub)" - "contact us" - "login"
 // below will be pictures with a text in the center and the button to the page
@@ -29,7 +31,7 @@ function App() {
           <h2>Picure of logo with "contact us" button</h2>
           <h2>Picure of logo with "login" button</h2>
 
-
+          <Route exact path="/aboutus" component={ AboutPage}/>
     </div>
   );
 }
