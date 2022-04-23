@@ -2,13 +2,13 @@
 const AboutmeSet = () => {
     return (
         <header class='aboutmepic'>
-            <h1 style={brandName}>Testing nav bar</h1>
-            <button>About Us</button>
+            <h1 style={aboutus}>Testing nav bar</h1>
+            
         </header>
     )
 }
-
-const brandName = {
+//<button>About Us</button>
+const aboutus = {
     
 }
 export default AboutmeSet
