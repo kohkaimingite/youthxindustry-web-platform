@@ -19,16 +19,19 @@ code {
     margin-bottom: 20px;
 }
 
-.aboutmepic {
-    color: green;
-    background-image: url(aboutmeTEST.jpg);
-    height: 400px;
-    align-items: center;
-    text-align: center;
-    vertical-align: middle;
-}
+
 
 .aboutmeword{
 
 }
 
+.container {
+  position: relative;
+  text-align: center;
+}
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
