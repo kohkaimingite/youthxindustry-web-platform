@@ -1,14 +1,15 @@
 {
   "ExpandedNodes": [
     "",
+    "\\public",
     "\\src",
     "\\src\\AboutPage",
     "\\src\\components",
     "\\src\\ContactPage",
     "\\src\\HomePage",
     "\\src\\LoginPage",
-    "\\src\\OppoPage"
+    "\\src\\OppoPage",
+    "\\src\\Pictures"
   ],
-  "SelectedNode": "\\src\\OppoPage\\OppoPage.js",
   "PreviewInSolutionExplorer": false
 }
