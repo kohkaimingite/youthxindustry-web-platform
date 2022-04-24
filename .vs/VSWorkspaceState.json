@@ -2,13 +2,13 @@
   "ExpandedNodes": [
     "",
     "\\src",
+    "\\src\\AboutPage",
     "\\src\\components",
     "\\src\\ContactPage",
     "\\src\\HomePage",
     "\\src\\LoginPage",
-    "\\src\\OppoPage",
-    "\\src\\Server"
+    "\\src\\OppoPage"
   ],
-  "SelectedNode": "\\src\\HomePage\\AboutmeSet.js",
+  "SelectedNode": "\\src\\OppoPage\\OppoPage.js",
   "PreviewInSolutionExplorer": false
 }
