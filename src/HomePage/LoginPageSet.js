@@ -1,14 +1,15 @@
+// JavaScript source code
 // JavaScript source code class='aboutmepic'
 import logo from '../Pictures/aboutmeTEST.jpg';
 import React, { Component } from 'react';
 console.log(logo);
-const AboutmeSet = () => {
+const LoginPageSet = () => {
     return (
-        
+
         <div class="container">
-            <img src={logo} alt="Snow"  />
-            <h2 class="centered">About us description</h2>
-            <button class="centeredButton">About Us</button>
+            <img src={logo} alt="Snow" />
+            <h2 class="centered">Login Description</h2>
+            <button class="centeredButton">Login</button>
 
         </div>
 
@@ -19,6 +20,6 @@ const AboutmeSet = () => {
 //style={aboutus}
 //
 const aboutus = {
-    
+
 }
-export default AboutmeSet
+export default LoginPageSet

@@ -1,9 +1,13 @@
 import NavBar from './components/NavBar'
 import AboutmeSet from './HomePage/AboutmeSet'
+import LoginPageSet from './HomePage/LoginPageSet'
+import OppoPageSet from './HomePage/OppoPageSet'
+import ContactPageSet from './HomePage/ContactPageSet'
 import {Route, Link } from 'react-router-dom';
 import './App.css';
 import AboutPage from './AboutPage/AboutPage';
 import React, { Component } from 'react';
+import LoginPage from './LoginPage/LoginPage';
 // Idea:
 //top will be buttons "About" - "opportunities(have sub)" - "contact us" - "login"
 // below will be pictures with a text in the center and the button to the page
@@ -28,11 +32,14 @@ function App() {
   return (
       <div className="App">
           <NavBar />
-          <h2>Picure of logo with "hello" button</h2>
+          
           <AboutmeSet/>
-          <h2>Picure of logo with "opportunities" button</h2>
-          <h2>Picure of logo with "contact us" button</h2>
-          <h2>Picure of logo with "login" button</h2>
+          
+          <OppoPageSet />
+          
+          <ContactPageSet />
+          
+          <LoginPageSet/>
 
          
     </div>
@@ -41,3 +48,4 @@ function App() {
 
 export default App;
 
+//<h2>Picure of logo with "login" button</h2>
