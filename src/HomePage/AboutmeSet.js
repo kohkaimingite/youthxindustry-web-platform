@@ -1,13 +1,18 @@
-// JavaScript source code
+// JavaScript source code class='aboutmepic'
+import logo from '../Pictures/aboutmeTEST.jpg';
+console.log(logo);
 const AboutmeSet = () => {
     return (
-        <header class='aboutmepic'>
-            <h1 style={aboutus}>Testing nav bar</h1>
-            
-        </header>
+        
+        <div class="container">
+            <img src={logo} alt="Snow"  />
+            <div class="centered">Centered</div>
+        </div>
     )
 }
 //<button>About Us</button>
+//style={aboutus}
+//
 const aboutus = {
     
 }
