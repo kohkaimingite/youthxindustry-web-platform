@@ -17,15 +17,13 @@ function AboutPage() {
 
             <p>We are a group of students doing a prototype</p>
 
-            <h2>Our Mission</h2>
+            <div className="category">
+                <h2>Our Mission</h2>
 
+                <h2>Our Vision</h2>
 
-
-            <h2>Our Vision</h2>
-
-
-
-            <h2>Our Values</h2>
+                <h2>Our Values</h2>
+            </div>
 
         </div>
     );
