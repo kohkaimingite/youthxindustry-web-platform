@@ -7,6 +7,7 @@ const AboutmeSet = () => {
         <div class="container">
             <img src={logo} alt="Snow"  />
             <div class="centered">Centered</div>
+
         </div>
     )
 }
