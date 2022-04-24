@@ -1,7 +1,6 @@
 {
   "ExpandedNodes": [
     "",
-    "\\public",
     "\\src",
     "\\src\\AboutPage",
     "\\src\\components",
@@ -10,6 +9,6 @@
     "\\src\\LoginPage",
     "\\src\\OppoPage"
   ],
-  "SelectedNode": "\\src\\App.js",
+  "SelectedNode": "\\src\\OppoPage\\OppoPage.js",
   "PreviewInSolutionExplorer": false
 }
