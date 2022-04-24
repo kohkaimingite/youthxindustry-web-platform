@@ -8,11 +8,12 @@ const AboutmeSet = () => {
         <div class="container">
             <img src={logo} alt="Snow"  />
             <div class="centered">Centered</div>
+            <button class="centeredButton">About Us</button>
 
         </div>
     )
 }
-//<button>About Us</button>
+//
 //style={aboutus}
 //
 const aboutus = {
