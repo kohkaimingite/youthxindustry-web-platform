@@ -13,16 +13,24 @@ function AboutPage() {
     return (
         <div className="App">
             <NavBar />
-            <h1>ABOUT US</h1>
+            <div style={{ backgroundColor: 'lightblue', width: '1920px', minHeight: '1080px' }}>
+                <div style={{ padding: '10px 20px', textAlign: 'center' }}>
+                    <h1>ABOUT US</h1>
 
-            <p>We are a group of students doing a prototype</p>
+                    <p>We are a group of students doing a prototype</p>
+                </div>
 
-            <div className="categories">
-                <h2>Our Mission</h2>
+                <div style={{padding: '10px 20px', textAlign: 'left'}}>
+                    <h2>Our Mission</h2>
+                </div>
 
-                <h2>Our Vision</h2>
+                <div style={{ padding: '20px', textAlign: 'center' }}>
+                    <h2>Our Vision</h2>
+                </div>
 
-                <h2>Our Values</h2>
+                <div style={{ padding: '10px 20px', textAlign: 'right' }}>
+                    <h2>Our Values</h2>
+                </div>
             </div>
 
         </div>
