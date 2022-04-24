@@ -3,6 +3,7 @@ import AboutmeSet from './HomePage/AboutmeSet'
 import {Route, Link } from 'react-router-dom';
 import './App.css';
 import AboutPage from './AboutPage/AboutPage';
+import React, { Component } from 'react';
 // Idea:
 //top will be buttons "About" - "opportunities(have sub)" - "contact us" - "login"
 // below will be pictures with a text in the center and the button to the page

@@ -1,5 +1,6 @@
 // JavaScript source code class='aboutmepic'
 import logo from '../Pictures/aboutmeTEST.jpg';
+import React, { Component } from 'react';
 console.log(logo);
 const AboutmeSet = () => {
     return (
