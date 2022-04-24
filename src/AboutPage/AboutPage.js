@@ -17,7 +17,7 @@ function AboutPage() {
 
             <p>We are a group of students doing a prototype</p>
 
-            <div className="category">
+            <div className="categories">
                 <h2>Our Mission</h2>
 
                 <h2>Our Vision</h2>
