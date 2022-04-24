@@ -1,4 +1,4 @@
-
+import { Route, Link } from 'react-router-dom';
 import logo from '../Pictures/aboutmeTEST.jpg';
 import React, { Component } from 'react';
 console.log(logo);
@@ -8,7 +8,7 @@ const OppoPageSet = () => {
         <div class="container">
             <img src={logo} alt="Snow" />
             <h2 class="centered">Oppotunities Description</h2>
-            <button class="centeredButton">Oppo page</button>
+            <Link to="/Opportunities"><button class="centeredButton">Oppo page</button></Link>
 
         </div>
 
