@@ -9,15 +9,19 @@ function LoginPage() {
         <div className="App">
             <NavBar />
             <h1>Login With Username and Password</h1>
-            <label>
-            Username: 
-                <input type='text' id='username'/>
-                {'\n'}
-            </label>
-            <label>
-            Password: 
-            <input type='text' id='password'/>
-            </label>
+            <div className="App">
+                <label>
+                Username: 
+                    <input type='text' id='username'/>
+                    {'\n'}
+                </label>
+            </div>
+            <div className="App">
+                <label>
+                Password: 
+                <input type='text' id='password'/>
+                </label>
+            </div>
             <input type='submit' value='Login' />
             
 
