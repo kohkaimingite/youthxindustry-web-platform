@@ -4,7 +4,7 @@ function LoginPage() {
     return (
         <div className="App">
             <NavBar />
-            <h1>ur mo sucks</h1>
+            <h1>Login With Username and Password</h1>
 
 
         </div>
