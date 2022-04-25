@@ -8,10 +8,20 @@ const NavBar  = () => {
             <header class = 'header'>
                 <h1 style={brandName}>Testing nav bar</h1>
                 <Link to="/AboutUs"><button>About Us</button> </Link>
-                <Link to="/Opportunities"><button>Opportunities</button> </Link>
+                <div class="dropdown">
+
+                    <Link to="/Opportunities"><button>Opportunities</button> </Link>
+
+                    <div class="dropdown-content">
+
+                        <Link to="/Sub">SubPage</Link>
+                    </div>
+                </div>
+                
                 <Link to="/ContactUs"><button>Contact us</button> </Link>
                 <Link to="/Login"><button>Login</button> </Link>
-                
+
+
             </header>
              
             )
