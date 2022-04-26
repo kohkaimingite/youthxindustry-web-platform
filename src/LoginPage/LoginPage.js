@@ -16,7 +16,9 @@ function LoginPage() {
             </label>
             <label>
             Password: 
-            <input type='text' id='password'/>
+                <input type='password' id='password' />
+                <input type='checkbox' onClick='toggleP' />
+
             </label>
             <input type='submit' value='Login' />
             
@@ -24,6 +26,18 @@ function LoginPage() {
 
         </div>
     );
+}
+function toggleP() 
+{
+    var x = document.getElementById("password")
+    if (x.type === "password")
+    {
+        x.type = "text";
+    }
+    else
+    {
+        x.type = "password";
+    }
 }
 
 export default LoginPage;
