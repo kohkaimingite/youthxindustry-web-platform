@@ -8,6 +8,7 @@ import AboutPage from './AboutPage/AboutPage';
 import OppoPage from './OppoPage/OppoPage';
 import ContactPage from './ContactPage/ContactPage';
 import LoginPage from './LoginPage/LoginPage';
+import SubPage from './OppoPage/SubPage';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
@@ -19,6 +20,9 @@ root.render(
                 <Route path='/Opportunities' element={<OppoPage />} />
                 <Route path='/ContactUs' element={<ContactPage />} />
                 <Route path='/Login' element={<LoginPage />} />
+                <Route path='/Sub' element={<SubPage />} />
+
+
         </Routes>
     </Router>
     </React.StrictMode>
