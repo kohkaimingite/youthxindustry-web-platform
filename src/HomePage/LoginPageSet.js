@@ -2,13 +2,13 @@ import { Route, Link } from 'react-router-dom';
 import logo from '../Pictures/aboutmeTEST.jpg';
 import React, { Component } from 'react';
 console.log(logo);
-const AboutmeSet = () => {
+const LoginPageSet = () => {
     return (
-        
+
         <div class="container">
-            <img src={logo} alt="Snow"  />
-            <h2 class="centered">About us description</h2>
-            <Link to="/AboutUs"><button class="centeredButton">About Us</button></Link>
+            <img src={logo} alt="Snow" />
+            <h2 class="centered">Login Description</h2>
+            <Link to="/Login"><button class="centeredButton">Login</button></Link>
 
         </div>
 
@@ -19,6 +19,6 @@ const AboutmeSet = () => {
 //style={aboutus}
 //
 const aboutus = {
-    
+
 }
-export default AboutmeSet
+export default LoginPageSet

@@ -1,14 +1,16 @@
 {
   "ExpandedNodes": [
     "",
+    "\\public",
     "\\src",
+    "\\src\\AboutPage",
     "\\src\\components",
     "\\src\\ContactPage",
     "\\src\\HomePage",
     "\\src\\LoginPage",
     "\\src\\OppoPage",
-    "\\src\\Server"
+    "\\src\\Pictures"
   ],
-  "SelectedNode": "\\src\\ContactPage\\ContactPage.js",
+  "SelectedNode": "\\src\\AboutPage\\AboutPage.js",
   "PreviewInSolutionExplorer": false
 }

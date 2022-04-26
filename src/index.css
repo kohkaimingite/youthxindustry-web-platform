@@ -30,15 +30,21 @@ code {
   text-align: center;
 }
 .centered {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    outline-color: white;
+    outline-style: solid;
+    outline-width: 12px;
+    outline-offset: -1px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .centeredButton {
     position: absolute;
-    top: 60%;
+    top: 70%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
