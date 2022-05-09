@@ -7,8 +7,8 @@ const RegisterSet = () => {
 
         <div class="container">
             <img src={logo} alt="Snow" />
-            <h2 class="centered">Oppotunities Description</h2>
-            <Link to="/Register"><button class="centeredButton">Oppo page</button></Link>
+            <h2 class="centered">Register</h2>
+            <Link to="/Register"><button class="centeredButton">Register page</button></Link>
 
         </div>
 
