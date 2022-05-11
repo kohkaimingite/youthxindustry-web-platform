@@ -7,7 +7,8 @@ import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import AboutPage from './AboutPage/AboutPage';
 import OppoPage from './OppoPage/OppoPage';
 import ContactPage from './ContactPage/ContactPage';
-import LoginPage from './LoginPage/LoginPage';
+import SignInSide from './LoginPage/SignInSide';
+import SignUp from './Register/SignUp';
 import SubPage from './OppoPage/SubPage';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -19,9 +20,9 @@ root.render(
                 <Route path='/AboutUs' element={<AboutPage />} />
                 <Route path='/Opportunities' element={<OppoPage />} />
                 <Route path='/ContactUs' element={<ContactPage />} />
-                <Route path='/Login' element={<LoginPage />} />
+                <Route path='/Login' element={<SignInSide />} />
                 <Route path='/Sub' element={<SubPage />} />
-
+                <Route path='/Register' element={<SignUp />} />
 
         </Routes>
     </Router>
