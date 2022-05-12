@@ -15,7 +15,7 @@ const NavBar  = () => {
 
                             <div class="dropdown-content">
 
-                                <Link to="/Sub">SubPage</Link>
+                                <Link to="/Sub"><button class= "button oppoButton">SubPage</button></Link>
                             </div>
 
                         </div>
