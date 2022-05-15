@@ -5,6 +5,7 @@ function AdminPanel() {
     return (
         <div className="App" >
             <NavBar />
+            <AdminNavBar />
             <h1>yeet</h1>
 
 

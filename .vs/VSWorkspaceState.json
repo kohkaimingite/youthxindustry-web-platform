@@ -1,7 +1,6 @@
 {
   "ExpandedNodes": [
     "",
-    "\\public",
     "\\src",
     "\\src\\AboutPage",
     "\\src\\components",
@@ -9,7 +8,9 @@
     "\\src\\HomePage",
     "\\src\\LoginPage",
     "\\src\\OppoPage",
-    "\\src\\Pictures"
+    "\\src\\Pictures",
+    "\\src\\Register"
   ],
+  "SelectedNode": "\\src\\Register\\SignUp.js",
   "PreviewInSolutionExplorer": false
 }
