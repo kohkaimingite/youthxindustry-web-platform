@@ -1,6 +1,4 @@
 // JavaScript source code
-import { Route, Link } from 'react-router-dom';
-import React, { Component } from 'react';
 import classes from './AdminNavBar.module.css'
 
 const AdminNavBar = () => {

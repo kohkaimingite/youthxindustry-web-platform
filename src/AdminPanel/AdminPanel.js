@@ -1,18 +1,17 @@
 // JavaScript source code
 import React, { Component } from 'react';
-import AdminNavBar from '../components/AdminNavBar';
 import NavBar from '../components/NavBar'
-function AdminPanel() {
+import AdminNavBar from '../components/AdminNavBar';
+import classes from './AdminPanel.module.css'
+
+const AdminPanel = () => {
     return (
-        <div className={classes.AdminPanel}>
+        <div className={classes.AdminPanel} id="AdminPanel">
             <NavBar/>
             <AdminNavBar/>
-            <div className={classes.Container}>
-                <h1 className={classes.Hello}>Hello, world.</h1>
-                <h1>Welcome to my website</h1>
-            </div>
+            <h1>admin</h1>
         </div>
-    );
+        );
 }
 
 export default AdminPanel;
