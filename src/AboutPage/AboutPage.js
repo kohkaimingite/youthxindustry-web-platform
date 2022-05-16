@@ -9,10 +9,12 @@
             //<h2>Picure of logo with "login" button</h2>
 import React, { Component } from 'react';
 import NavBar from '../components/NavBar'
+import AdminNavBar from '../components/AdminNavBar'
 function AboutPage() {
     return (
         <div className="App">
-            <NavBar/>
+            <NavBar />
+            <AdminNavBar /> {/* admin nav bar added for testing no touchy */}
             <div style={{ backgroundColor: 'lightblue', width: '1920px', minHeight: '1080px' }}>
                 <div style={{ padding: '129x 30px', textAlign: 'center' }}>
                     <h1>ABOUT US</h1>
