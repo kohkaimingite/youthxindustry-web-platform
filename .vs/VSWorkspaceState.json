@@ -3,13 +3,14 @@
     "",
     "\\public",
     "\\src",
-    "\\src\\AboutPage",
-    "\\src\\components",
+    "\\src\\AdminPanel",
     "\\src\\ContactPage",
     "\\src\\HomePage",
     "\\src\\LoginPage",
     "\\src\\OppoPage",
-    "\\src\\Pictures"
+    "\\src\\Pictures",
+    "\\src\\Register"
   ],
+  "SelectedNode": "\\src\\components\\AdminNavBar.module.css",
   "PreviewInSolutionExplorer": false
 }

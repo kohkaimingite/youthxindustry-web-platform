@@ -2,16 +2,15 @@
 import React, { Component } from 'react';
 import NavBar from '../components/NavBar'
 import AdminNavBar from '../components/AdminNavBar';
-import classes from './AdminPanel.module.css'
 
-const AdminPanel = () => {
+const EditOppo = () => {
     return (
-        <div className={classes.AdminPanel} id="AdminPanel">
+        <div className={classes.EditOppo} id="EditOppo">
             <NavBar/>
             <AdminNavBar/>
-            <h1>admin</h1>
+            <h1>edit oppo</h1>
         </div>
-        );
+    );
 }
 
-export default AdminPanel;
+export default EditOppo;

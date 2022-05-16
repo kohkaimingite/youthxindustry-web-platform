@@ -1,0 +1,31 @@
+﻿.AdminNavBar {
+    background: #1a1a1a;
+    height: 80px;
+    width: 100%;
+    position: sticky;
+    z-index: 999;
+    opacity: 0.9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.AdminNavBar nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.AdminNavBar nav ul li {
+    display: inline-block;
+    margin: 20px;
+}
+
+.AdminNavBar nav ul li a {
+    text-decoration: none;
+    color: white;
+}
+
+.AdminNavBar a:hover {
+    border-bottom: 5px dotted #995BD5;
+}
