@@ -158,3 +158,28 @@ ul li {
         background-color: #b8950d;
         color: white;
     }
+
+.oppoTable {
+    width: 100%;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+.oppoTableRow {
+    width: 100%;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+.oppoTableRow:hover {
+    background-color: #D6EEEE;
+}
+tr:hover {
+    background-color: #D6EEEE;
+}
+
+th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #04AA6D;
+    color: white;
+}

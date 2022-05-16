@@ -3,6 +3,8 @@ import NavBar from '../components/NavBar'
 import { React, useState } from "react";
 import TextField from "@mui/material/TextField";
 import List from "../Some test data/List";
+import Button from 'react-bootstrap/Button';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function OppoPage() {
     const [inputText, setInputText] = useState("");
@@ -12,22 +14,44 @@ function OppoPage() {
         setInputText(lowerCase);
     };
     return (
-
-        <div className="main">
+        
+        
+        <div className="App">
             <NavBar />
+            <div className="main">
             <h1>Search Function</h1>
-            <div className="search">
-                <TextField
-                    id="outlined-basic"
-                    onChange={inputHandler}
-                    variant="outlined"
-                    fullWidth
-                    label="Search"
-                />
-            </div>
-            <List input={inputText} />
+            <table class="oppoTable table-hover">
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>City</th>
+                    <th>Period</th>
+                    
+                </tr>
+
+
+                <tr>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                
+
+                </table>
+                </div>
         </div>
+
+
     );
 }
+
+
 
 export default OppoPage;
