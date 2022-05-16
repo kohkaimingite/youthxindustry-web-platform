@@ -1,9 +1,9 @@
 {
   "ExpandedNodes": [
     "",
+    "\\public",
     "\\src",
-    "\\src\\AboutPage",
-    "\\src\\components",
+    "\\src\\AdminPanel",
     "\\src\\ContactPage",
     "\\src\\HomePage",
     "\\src\\LoginPage",
@@ -11,6 +11,6 @@
     "\\src\\Pictures",
     "\\src\\Register"
   ],
-  "SelectedNode": "\\src\\Register\\SignUp.js",
+  "SelectedNode": "\\src\\components\\AdminNavBar.module.css",
   "PreviewInSolutionExplorer": false
 }

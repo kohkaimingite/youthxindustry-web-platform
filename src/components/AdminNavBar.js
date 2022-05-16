@@ -9,7 +9,7 @@ const AdminNavBar = () => {
             <nav>
                 <ul>
                     <li>
-                        <a href="/">Admin Panel</a>
+                        <a href="/AdminPanel">Admin Panel</a>
                     </li>
 
                     <li>
