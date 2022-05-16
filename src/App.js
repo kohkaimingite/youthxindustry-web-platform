@@ -7,7 +7,6 @@ import {Route, Link } from 'react-router-dom';
 import './App.css';
 import AboutPage from './AboutPage/AboutPage';
 import React, { Component } from 'react';
-import LoginPage from './LoginPage/LoginPage';
 import RegisterSet from './HomePage/RegisterSet';
 // Idea:
 //top will be buttons "About" - "opportunities(have sub)" - "contact us" - "login"
