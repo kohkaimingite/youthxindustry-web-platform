@@ -60,10 +60,10 @@ function OppoPage() {
                 
             <table class="oppoTable">
                 <tr>
-                    <th>ID</th>
-                    <th>Title</th>
-                    <th>City</th>
-                    <th>Period</th>
+                    <th>Job Name</th>
+                    <th>Company</th>
+                    <th>Pay?</th>
+                    <th>Location</th>
                     
                 </tr>
 
