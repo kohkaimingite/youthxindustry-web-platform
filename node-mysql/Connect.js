@@ -1,24 +1,32 @@
 const express = require("express");
 const mysql = require("mysql");
-
-const db = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "sql_pass123^*",
-    database: "fyp_db"
-});
-
-db.connect((err) => {
-    if (err) {
-        throw err;
-    }
-    console.log("MySQL Connected!");
-});
+const cors = require("cors");
 
 const app = express();
 
+app.use(express.json());
+app.use(cors());
 
-app.listen('8080', () => {
-    console.log('Server started on port 8080')
-})
+const db = mysql.createConnection({
+    user: "root",
+    host: "localhost",
+    password: "sql_pass123^*",
+    database: "fyp_db",
+});
 
+app.post("/register", (req, res) => {
+    const username = req.body.username
+    const password = req.body.password
+
+    db.query(
+        "INSERT INTO user (username, password) VALUES (?, ?)",
+        [username, password],
+        (err, result) => {
+            console.log(err);
+        }
+    );
+});
+
+app.listen(3001, () => {
+    console.log("running server");
+});
