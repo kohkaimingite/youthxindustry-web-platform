@@ -3,11 +3,12 @@ import Axios from 'axios';
 import NavBar from '../components/NavBar';
 
 export default function SignUp() {
-    const [nameReg, setNameReg] = useState('')
-    const [passwordReg, setPasswordReg] = useState('')
-    const [emailReg, setEmailReg] = useState('')
-    const [ageReg, setAgeReg] = useState('')
-    const [genderReg, setGenderReg] = useState('')
+    const [nameReg, setNameReg] = useState('');
+    const [passwordReg, setPasswordReg] = useState('');
+    const [emailReg, setEmailReg] = useState('');
+    const [ageReg, setAgeReg] = useState('');
+    const [genderReg, setGenderReg] = useState('');
+    const [regStatus, setRegStatus] = useState('');
 
     const register = () => {
         Axios.post("http://localhost:3001/register", {
@@ -17,7 +18,12 @@ export default function SignUp() {
             age: ageReg,
             gender: genderReg,
         }).then((response) => {
-            console.log(response);
+            if (response.data.message) {
+                setRegStatus(response.data.message)
+
+            } else {
+                setRegStatus(response.data[0].name)
+            }
         });
     };
     return (
@@ -52,6 +58,7 @@ export default function SignUp() {
                 />
                 <button onClick={register}>Register</button>
             </div>
+            <h1>{regStatus}</h1>
         </div>
     
   );

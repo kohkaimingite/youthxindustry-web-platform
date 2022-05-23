@@ -25,10 +25,43 @@ app.post("/register", (req, res) => {
         "INSERT INTO users (Name, Password, Email, Age, Gender) VALUES (?, ?, ?, ?, ?)",
         [name, password, email, age, gender],
         (err, result) => {
-            console.log(err);
+            if (err) {
+                res.send({ err: err })
+            }
+
+            if (result.length > 0) {
+                res.send({ message: "Not inserted"})
+            } else {
+                res.send({ message: "Inserted" })
+            }
         }
     );
 });
+
+app.post("/login", (req, res) => {
+    const name = req.body.name
+    const password = req.body.password
+
+
+    db.query(
+        "SELECT * FROM users WHERE name = ? AND password = ?",
+        [name, password],
+        (err, result) => {
+            if (err) {
+                res.send({err : err})
+            }
+
+                if (result.length > 0) {
+                    res.send(result)
+                } else {
+                    res.send({ message: "Wrong name or password"})
+                }
+            
+            
+        }
+    );
+});
+
 
 app.listen(3001, () => {
     console.log("running server");
