@@ -10,6 +10,7 @@ import ContactPage from './ContactPage/ContactPage';
 import Login from './LoginPage/Login';
 import SignUp from './Register/SignUp';
 import SubPage from './OppoPage/SubPage';
+import ProfilePage from './Manage/UserProfile';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
@@ -23,6 +24,7 @@ root.render(
                 <Route path='/Login' element={<Login />} />
                 <Route path='/Sub' element={<SubPage />} />
                 <Route path='/Register' element={<SignUp />} />
+                <Route path='/Profile' element={<ProfilePage />} />
 
         </Routes>
     </Router>

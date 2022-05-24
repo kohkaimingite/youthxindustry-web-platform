@@ -198,3 +198,18 @@ th {
     overflow-x: hidden;
     padding: 8px 0;
 }
+
+.AlignLeft {
+    left: 2%;
+    z-index: 1;
+    position: fixed;
+    align-items:flex-start;
+    top: 164px;
+
+}
+
+.AlignMiddle {
+    z-index: 1;
+    align-items: center;
+    top: 164px;
+}
