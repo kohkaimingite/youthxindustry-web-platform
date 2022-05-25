@@ -198,3 +198,95 @@ th {
     overflow-x: hidden;
     padding: 8px 0;
 }
+
+parent {
+    width: 100%;
+    height: 90px;
+    white-space: nowrap;
+    overflow-x: auto;
+}
+.child {
+    display: inline-block;
+    width: 50%;
+    height: 100%;
+    
+}
+.bar-container {
+    background-color: #f1f1f1;
+    color: white;
+    display: inline-block;
+}
+
+/* Individual bars */
+.bar-5 {
+    
+    height: 18px;
+    background-color: #04AA6D;
+    display: inline-block;
+
+}
+.middlee {
+    margin-top: 10px;
+    float: left;
+    width: 20%;
+
+}
+.containerBack {
+    width: 50%;
+    background-color: #f1f1f1;
+    text-align: center;
+    color: white;
+}
+
+.bar5 {
+    width: 90%;
+    height: 18px;
+    background-color: #04AA6D;
+}
+.bar4 {
+    width: 60%;
+    height: 18px;
+    background-color: #2196F3;
+}
+.bar3 {
+    width: 50%;
+    height: 18px;
+    background-color: #00bcd4;
+}
+.bar2 {
+    width: 20%;
+    height: 18px;
+    background-color: #ff9800;
+}
+.bar1 {
+    width: 80%;
+    height: 18px;
+    background-color: #f44336;
+}
+
+
+
+.right {
+    text-align: right;
+    padding-right:10px;
+}
+.side {
+    float: left;
+    width: 15%;
+    margin-top: 10px;
+}
+@media (max-width: 400px) {
+    .side, .middle {
+        width: 100%;
+    }
+
+    .right {
+        display: none;
+    }
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
