@@ -11,7 +11,6 @@ import Login from './LoginPage/Login';
 import SignUp from './Register/SignUp';
 import Favourites from './OppoPage/Favourites';
 import OneJob from './OppoPage/OneJob';
-import SubPage from './OppoPage/SubPage';
 import ProfilePage from './Manage/UserProfile';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
