@@ -290,3 +290,11 @@ parent {
     display: table;
     clear: both;
 }
+
+.AlignLeft {
+    left: 2%;
+    z-index: 1;
+    position: fixed;
+    align-items: flex-start;
+    top: 164px;
+}

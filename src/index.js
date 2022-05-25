@@ -11,6 +11,8 @@ import Login from './LoginPage/Login';
 import SignUp from './Register/SignUp';
 import Favourites from './OppoPage/Favourites';
 import OneJob from './OppoPage/OneJob';
+import SubPage from './OppoPage/SubPage';
+import ProfilePage from './Manage/UserProfile';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
@@ -25,6 +27,7 @@ root.render(
                 <Route path='/Favourites' element={<Favourites />} />
                 <Route path='/Register' element={<SignUp />} />
                 <Route path='/job' element={<OneJob />} />
+                <Route path='/Profile' element={<ProfilePage />} />
 
         </Routes>
     </Router>
