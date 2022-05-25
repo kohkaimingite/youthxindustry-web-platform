@@ -24,11 +24,11 @@ function UserProfile() {
                     <form action="/action_page.php" method="post">
                         <h3>Testing</h3>
                         <label>New Company Name:</label>
-                        <input type="text" placeholder="Enter A Name...">
+                        <input type="text" placeholder="Enter A Name..."></input>
                         <label>New Email:</label>
                         <textarea name="Email" form="manageform"></textarea>
                         <label>New Contact Number:</label><br />
-                        <textarea ></textarea>
+                        <textarea></textarea>
                     </form>
                 </div>
             </div>
