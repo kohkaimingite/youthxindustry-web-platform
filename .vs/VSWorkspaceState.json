@@ -3,13 +3,10 @@
     "",
     "\\public",
     "\\src",
-    "\\src\\AboutPage",
     "\\src\\components",
-    "\\src\\ContactPage",
-    "\\src\\HomePage",
-    "\\src\\LoginPage",
-    "\\src\\OppoPage",
-    "\\src\\Pictures"
+    "\\src\\components\\PageHeader",
+    "\\src\\OppoPage"
   ],
+  "SelectedNode": "\\src\\components\\Collapsible.js",
   "PreviewInSolutionExplorer": false
 }

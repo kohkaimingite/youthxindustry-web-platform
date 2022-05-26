@@ -1,0 +1,8 @@
+﻿.AdminPanel {
+    display: flex;
+    padding-top: 80px;
+}
+
+.AdminPanel .Container h1 {
+    margin: 0;
+}

@@ -7,9 +7,13 @@ import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import AboutPage from './AboutPage/AboutPage';
 import OppoPage from './OppoPage/OppoPage';
 import ContactPage from './ContactPage/ContactPage';
-import SignInSide from './LoginPage/SignInSide';
+import Login from './LoginPage/Login';
 import SignUp from './Register/SignUp';
-import SubPage from './OppoPage/SubPage';
+import Favourites from './OppoPage/Favourites';
+import OneJob from './OppoPage/OneJob';
+import ProfilePage from './Manage/UserProfile';
+import CompanyPage from './Manage/CompanyProfile';
+import EditProfile from './Manage/EditProfile';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
@@ -20,9 +24,13 @@ root.render(
                 <Route path='/AboutUs' element={<AboutPage />} />
                 <Route path='/Opportunities' element={<OppoPage />} />
                 <Route path='/ContactUs' element={<ContactPage />} />
-                <Route path='/Login' element={<SignInSide />} />
-                <Route path='/Sub' element={<SubPage />} />
+                <Route path='/Login' element={<Login />} />
+                <Route path='/Favourites' element={<Favourites />} />
                 <Route path='/Register' element={<SignUp />} />
+                <Route path='/job' element={<OneJob />} />
+                <Route path='/Profile' element={<ProfilePage />} />
+                <Route path='/Company' element={<CompanyPage />} />
+                <Route path='/EditProfile' element={<EditProfile />} />
 
         </Routes>
     </Router>

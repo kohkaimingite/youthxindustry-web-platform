@@ -15,7 +15,7 @@ const NavBar  = () => {
 
                             <div class="dropdown-content">
 
-                                <Link to="/Sub"><button class= "button oppoButton">SubPage</button></Link>
+                        <Link to="/Favourites"><button class="button oppoButton">Favourites</button></Link>
                             </div>
 
                         </div>
