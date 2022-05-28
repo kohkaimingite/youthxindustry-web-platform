@@ -5,7 +5,9 @@ import TextField from "@mui/material/TextField";
 import List from "../Some test data/List";
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Collapsible from '../components/Collapsible'
+import Collapsible from '../components/Collapsible';
+import axios from 'axios';
+
 
 
 function OppoPage() {
@@ -15,6 +17,26 @@ function OppoPage() {
         var lowerCase = e.target.value.toLowerCase();
         setInputText(lowerCase);
     };
+    const [data, setData] = useState([]);
+    const [OppoList, setOppoList] = useState([]);
+    const [q, setQ] = useState("");
+    const [OppoID, setOppoID] = useState(0);
+    const [Name, setName] = useState("");
+    const [Description, setDescription] = useState("");
+    const [Location, setLocation] = useState("");
+
+    
+
+    const getOppo = () => {
+        axios.get("http://localhost:3001/Oppo").then((response) => {
+
+            console.log(response);
+            setOppoList(response.data);
+
+        });
+    };
+
+    
 
     return (
         
@@ -84,7 +106,44 @@ function OppoPage() {
                 
 
                 </table>
-                </div>
+                <button onClick={getOppo}>Show Employees</button>
+                {OppoList.map((val, key) => {
+                    return <div>{val.Name}</div>;
+                })}
+
+                <table class="oppoTable">
+                    <tr>
+                        <th>{OppoList.map((val, key) => {
+                            return <div>{val.Name}</div>;
+                        })}</th>
+
+                        <th>{OppoList.map((val, key) => {
+                            return <div>{val.Description}</div>;
+                        })}</th>
+
+                        <th>{OppoList.map((val, key) => {
+                            return <div>{val.Location}</div>;
+                        })}?</th>
+
+                        <th>{OppoList.map((val, key) => {
+                            return <div>{val.OppoID}</div>;
+                        })}</th>
+
+                    </tr>
+
+
+                    <tr>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                    </tr>
+
+                </table>
+            </div>
+            
+            
+            
         </div>
 
 

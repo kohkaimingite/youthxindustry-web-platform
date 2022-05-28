@@ -1,12 +1,14 @@
 {
   "ExpandedNodes": [
     "",
+    "\\node-mysql",
     "\\public",
     "\\src",
     "\\src\\components",
     "\\src\\components\\PageHeader",
+    "\\src\\LoginPage",
     "\\src\\OppoPage"
   ],
-  "SelectedNode": "\\src\\components\\Collapsible.js",
+  "SelectedNode": "\\src\\index.js",
   "PreviewInSolutionExplorer": false
 }
