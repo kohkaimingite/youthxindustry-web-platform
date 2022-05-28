@@ -20,7 +20,6 @@ function AboutPage() {
                     <h1>ABOUT US</h1>
 
                     <p>We are a group of students doing a prototype</p>
-                    <p>Hello</p>
                 </div>
 
 
