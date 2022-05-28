@@ -30,4 +30,8 @@ function UserProfile() {
 
 
 }
+
+    //SQL statement = "SELECT name, email, ContactNumber FROM partners WHERE PartnerID = "id";
+    //SQL Update Statement ="UPDATE partners SET name = newname, email = newEmail, ContactNumber = newNumber WHERE PartnerID = "id";
+
 export default UserProfile;
