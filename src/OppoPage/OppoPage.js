@@ -118,7 +118,7 @@ function OppoPage() {
                                         
                     {OppoList.map(row => <tr>
                         {
-                            columns.map(column => <td>{row[column]}</td>)
+                            columns.map(column => <td style={{textAlign: 'left' }}>{row[column]}</td>)
                         }
 
                     </tr>)}
