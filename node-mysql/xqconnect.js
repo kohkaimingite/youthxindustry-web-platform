@@ -30,8 +30,8 @@ const db = mysql.createConnection({
     database: "fyp_db",
 });
 
-app.get('/Oppo', (req, res) => {
-    db.query("SELECT*FROM opportunities", (err, result) => {
+app.get('/Profile', (req, res) => {
+    db.query("SELECT name, email, MobileNumber FROM users WHERE UserID = '1'", (err, result) => {
         if (err) {
             console.log(err);
         } else { res.send(result) };
