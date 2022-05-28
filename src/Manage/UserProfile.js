@@ -27,6 +27,8 @@ function UserProfile() {
         </div>
     )
 
+    //SQL statement = "SELECT name, email, MobileNumber FROM users WHERE UserID = "id";
+    //SQL Update Statement ="UPDATE user SET name = newname, email = newEmail, MobileNumber = newNumber WHERE UserID = "id";
 
 }
 export default UserProfile;
