@@ -25,15 +25,15 @@ function OppoPage() {
     const [Description, setDescription] = useState("");
     const [Location, setLocation] = useState("");
 
-    
-
+    const columns = OppoList[0] && Object.keys(OppoList[0]);
+    const countOppoList = OppoList.entries();
     const getOppo = () => {
         axios.get("http://localhost:3001/Oppo").then((response) => {
 
             console.log(response);
             setOppoList(response.data);
 
-        });
+        }); 
     };
 
     
@@ -106,38 +106,23 @@ function OppoPage() {
                 
 
                 </table>
-                <button onClick={getOppo}>Show Employees</button>
-                {OppoList.map((val, key) => {
-                    return <div>{val.Name}</div>;
-                })}
-
+                
                 <table class="oppoTable">
                     <tr>
-                        <th>{OppoList.map((val, key) => {
-                            return <div>{val.Name}</div>;
-                        })}</th>
-
-                        <th>{OppoList.map((val, key) => {
-                            return <div>{val.Description}</div>;
-                        })}</th>
-
-                        <th>{OppoList.map((val, key) => {
-                            return <div>{val.Location}</div>;
-                        })}?</th>
-
-                        <th>{OppoList.map((val, key) => {
-                            return <div>{val.OppoID}</div>;
-                        })}</th>
+                        <th>Job Code</th>
+                        <th>Company</th>
+                        <th>Pay?</th>
+                        <th>Location</th>
 
                     </tr>
+                                        
+                    {OppoList.map(row => <tr>
+                        {
+                            columns.map(column => <td>{row[column]}</td>)
+                        }
 
+                    </tr>)}
 
-                    <tr>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                    </tr>
 
                 </table>
             </div>
