@@ -1,5 +1,5 @@
 import NavBar from '../components/NavBar'
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import TextField from "@mui/material/TextField";
 import List from "../Some test data/List";
 import Button from 'react-bootstrap/Button';
@@ -9,22 +9,28 @@ import axios from 'axios';
 
 
 function UserProfile() {
+    
     const [ProfList, setProfList] = useState([]);
     const getProfile = () => {
+
+    };
+    useEffect(() => {
         axios.get("http://localhost:3001/Profile").then((response) => {
 
             console.log(response);
             setProfList(response.data);
-            
+
         });
-    };
-    const [Email, setEmail] = useState(ProfList[0]);
-    const [Name, setName] = useState(ProfList[1]);
-    const [Number, setNumber] = useState(ProfList[2]);
+    });
     
+    const [Email, setEmail] = useState(ProfList.Email);
+    const [Name, setName] = useState(ProfList.Name);
+    const [Number, setNumber] = useState(ProfList.MobileNumber);
     
     
     return (
+
+
         <div className="App">
             <NavBar />
                 <div className="main">
@@ -35,17 +41,16 @@ function UserProfile() {
                         <text>Full Name:</text><br />
                         <text>Email:</text><br />
                         <text>Mobile Number:</text>
-                        <button type="button" onClick={() => setName(ProfList[0]) && setEmail(ProfList[1]) && setNumber(ProfList[2])}>Load Deatils</button>
                     </form>
                     
                     </div>
                     <div className="AlignMiddle">
                     <form action="/action_page.php" method="post">
                         <h3>Testing</h3>
-                        
                         <text align="Left">{Name}</text><br />
-                        <text align="Left">timmy@xqc.com</text><br />
-                        <text align="Left">12345678</text><br />
+                        <text align="Left">{Email}</text><br />
+                        <text align="Left">{Number}</text><br />
+
                     </form>
                     </div>
                 </div>
