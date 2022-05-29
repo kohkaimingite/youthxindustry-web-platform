@@ -24,8 +24,12 @@ const NavBar  = () => {
                     <Link to="/Login"><button class= "button loginButton">Login</button> </Link>
                 <Link to="/Register"><button class="button registerButton">Register</button></Link>
                 <Link to="/makingReview"><button class="button registerButton">review</button></Link>
-                 
-
+                <div class="dropdown">
+                    <Link to="/Profile"><button class="button ProfileButton">Profile</button></Link>
+                    <div class="dropdown-content">
+                        <Link to="/EditProfile"><button class="button ProfileButton">Edit Profile</button></Link>
+                        </div>
+                </div>
             </header>
              
             )
