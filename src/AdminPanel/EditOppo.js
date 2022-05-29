@@ -9,7 +9,7 @@ const EditOppo = () => {
         <div className={classes.EditOppo} id="EditOppo">
             <NavBar/>
             <AdminNavBar/>
-            <h1>edit oppo</h1>
+            <h1 className="page-header text-center">Edit Opportunities</h1>
         </div>
     );
 }
