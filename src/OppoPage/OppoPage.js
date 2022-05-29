@@ -39,16 +39,24 @@ function OppoPage() {
     const [searchColumns, setSearchColumns] = useState([
         'Name'
     ]);
+    
+    
     function search(rows) {
-        
         return rows.filter((row) =>
-                searchColumns.some((column)=>row[column].toString().toLowerCase().indexOf(q.toLowerCase()) > -1,)
+            searchColumns.some(
+                (column) =>
+                    row[column]
+                        .toString()
+                        .toLowerCase()
+                        .indexOf(q.toLowerCase()) > -1,
+            ),
         );
     }
-
+    //searchColumns.some((column)=>row[column].toString().toLowerCase().indexOf(q.toLowerCase()) > -1,)
     function typeBox(rows) {
         //return rows.filter((row) => row.type.indexOf(t) > -1
-        return rows.filter((row) => row.type.indexOf("IT") > -1
+        //return rows.filter((row) => row.type.indexOf("IT") > -1
+        return rows.filter((row) => row.Type.toLowerCase().indexOf(q.toLowerCase())>-1
         );
     }
 
@@ -106,7 +114,8 @@ function OppoPage() {
                 </div>
                 <input type="text" value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search.." />
             
-                <Datatable data={search(OppoList)}/>
+                <Datatable data={typeBox(OppoList)} />
+
             </div>
             
             
@@ -117,6 +126,7 @@ function OppoPage() {
     );
 }
 
-
+//<Datatable data={search(OppoList)} />
+//<Datatable data={typeBox(search(OppoList))} />
 
 export default OppoPage;

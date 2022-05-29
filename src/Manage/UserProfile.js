@@ -26,7 +26,7 @@ function UserProfile() {
     const [Email, setEmail] = useState(ProfList.Email);
     const [Name, setName] = useState(ProfList.Name);
     const [Number, setNumber] = useState(ProfList.MobileNumber);
-    
+    const columns = ProfList[0] && Object.keys(ProfList[0]);
     
     return (
 
@@ -52,6 +52,25 @@ function UserProfile() {
                         <text align="Left">{Number}</text><br />
 
                     </form>
+                    <table class="oppoTable">
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Number</th>
+                            
+
+                        </tr>
+                        {ProfList.map(row => <tr>
+                            {
+                                columns.map(column => <td style={{ textAlign: 'left' }}>{row[column]}</td>)
+                            }
+
+                        </tr>)}
+                    </table>
+                    {ProfList.map((val, key) => {
+                        return <h2>{val.Name}</h2>;
+                    })}
+
                     </div>
                 </div>
         </div>

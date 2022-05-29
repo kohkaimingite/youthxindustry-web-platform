@@ -54,6 +54,16 @@ app.put('/update', (req, res) => {
     );
 
 });
+
+app.get('/Profile', (req, res) => {
+    db.query("SELECT Name, Email, MobileNumber FROM users WHERE UserID =1", (err, result) => {
+        if (err) {
+            console.log(err);
+        } else { res.send(result) };
+
+    });
+});
+
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}.`);
