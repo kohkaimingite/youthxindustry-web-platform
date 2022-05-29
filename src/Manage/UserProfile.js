@@ -51,26 +51,18 @@ function UserProfile() {
                         {ProfList.map((val, key) => {
                             return <h2>{val.Name}</h2>;
                         })}
+                        {ProfList.map((val, key) => {
+                            return <h2>{val.Email}</h2>;
+                        })}
+                        {ProfList.map((val, key) => {
+                            return <h2>{val.MobileNumber}</h2>;
+                        })}
                         <text align="Left">{ProfList[1]}</text><br />
                         <text align="Left">{ProfList[2]}</text><br />
                         <text align="Left">{ProfList[3]}</text><br />
                         <Link to="/EditProfile"><button class = "Button">Edit Profile</button></Link>
                     </form>
-                    <table class="oppoTable">
-                        <tr>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Number</th>
-                            
-
-                        </tr>
-                        {ProfList.map(row => <tr>
-                            {
-                                columns.map(column => <td style={{ textAlign: 'left' }}>{row[column]}</td>)
-                            }
-
-                        </tr>)}
-                    </table>
+                    
                     {ProfList.map((val, key) => {
                         return <h2>{val.Name}</h2>;
                     })}
