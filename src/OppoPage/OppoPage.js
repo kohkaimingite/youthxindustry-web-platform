@@ -22,21 +22,36 @@ function OppoPage() {
     const [data, setData] = useState([]);
     const [OppoList, setOppoList] = useState([]);
     const [q, setQ] = useState("");
+    
     const [OppoID, setOppoID] = useState(0);
     const [Name, setName] = useState("");
     const [Description, setDescription] = useState("");
     const [Location, setLocation] = useState("");
 
-    const columns = OppoList[0] && Object.keys(OppoList[0]);
+    
     const countOppoList = OppoList.entries();
     const getOppo = () => {
         
     };
     
-
+    const columns = data[0] && Object.keys(data[0]);
+    const [t, setT] = useState("");
+    const [searchColumns, setSearchColumns] = useState([
+        'Name'
+    ]);
     function search(rows) {
-        return rows.filter((row) => row.Name.toLowerCase().indexOf(q) > -1);
+        
+        return rows.filter((row) =>
+                searchColumns.some((column)=>row[column].toString().toLowerCase().indexOf(q.toLowerCase()) > -1,)
+        );
     }
+
+    function typeBox(rows) {
+        //return rows.filter((row) => row.type.indexOf(t) > -1
+        return rows.filter((row) => row.type.indexOf("IT") > -1
+        );
+    }
+
     useEffect(() => {
         axios.get("http://localhost:3001/Oppo").then((response) => {
 
@@ -61,8 +76,8 @@ function OppoPage() {
                     <h4>Filter for Job</h4>
                     <div>
                         <form action="/action_page.php">
-                            <input type="checkbox" id="IT" name="IT" value="IT" />
-                            <label for="IT"> IT</label><br />
+                            <input type="checkbox" id="IT" name="IT" value={t} onChange={(e) => setT('IT')} />
+                            <label for="IT">IT</label><br/>
                             <input type="checkbox" id="Finance" name="Finance" value="Finance" />
                             <label for="Finance"> Finance</label><br />
                             <input type="checkbox" id="Healthcare" name="Healthcare" value="Healthcare" />

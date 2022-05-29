@@ -63,6 +63,61 @@ app.post("/login", (req, res) => {
 });
 
 
+app.post("/addlisting", (req, res) => {
+    const name = req.body.name
+    const description = req.body.description
+    const location = req.body.location
+    const address = req.body.Address
+    const type = req.body.Type
+
+    db.query(
+        "INSERT INTO opportunities (Name, Description, Location, Address, Type) VALUES (?, ?, ?, ?, ?)",
+        [name, description, location, address, type],
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else { res.send(result) };
+
+        });
+});
+
+app.post("/updatelisting", (req, res) => {
+    const name = req.body.name
+    const description = req.body.description
+    const location = req.body.location
+    const address = req.body.Address
+    const type = req.body.Type
+    const oppID = req.body.oppID
+
+    db.query(
+        "UPDATE opportunities SET Name = ?, Description = ?, Location = ?, Address = ?, Type = ? WHERE OppID = ? ",
+        [name, description, location, address, type, oppID],
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else { res.send(result) };
+
+        });
+});
+
+app.post("/deletelisting", (req, res) => {
+    const oppID = req.body.oppID
+
+    db.query(
+        "DELETE FROM opportunities WHERE OppID = ?",
+        [OppID],
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else { res.send(result) };
+
+        });
+});
+
+
+
+
+
 app.listen(3001, () => {
     console.log("running server");
 });

@@ -22,7 +22,8 @@ const NavBar  = () => {
                 
                     <Link to="/ContactUs"><button class= "button contactButton">Contact us</button> </Link>
                     <Link to="/Login"><button class= "button loginButton">Login</button> </Link>
-                    <Link to="/Register"><button class= "button registerButton">Register</button></Link>
+                <Link to="/Register"><button class="button registerButton">Register</button></Link>
+                <Link to="/makingReview"><button class="button registerButton">review</button></Link>
                  
 
             </header>

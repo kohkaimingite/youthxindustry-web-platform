@@ -21,7 +21,9 @@ export default function Datatable({ data }) {
                 <th>Job Code</th>
                 <th>Company</th>
                 <th>Description</th>
+                <th>Location</th>
                 <th>Address</th>
+                <th>Job scope</th>
 
             </tr>
             {data.map(row => <tr>

@@ -7,7 +7,9 @@
     "\\src\\components",
     "\\src\\components\\PageHeader",
     "\\src\\LoginPage",
+    "\\src\\Manage",
     "\\src\\OppoPage"
   ],
+  "SelectedNode": "\\src\\Manage\\UserProfile.js",
   "PreviewInSolutionExplorer": false
 }
