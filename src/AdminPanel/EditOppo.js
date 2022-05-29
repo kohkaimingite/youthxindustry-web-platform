@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import NavBar from '../components/NavBar'
-import AdminNavBar from '../components/AdminNavBar';
+import AdminNavBar from './AdminNavBar';
 
 const EditOppo = () => {
     return (
