@@ -2,14 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\node-mysql",
-    "\\public",
     "\\src",
     "\\src\\components",
-    "\\src\\components\\PageHeader",
-    "\\src\\LoginPage",
     "\\src\\Manage",
     "\\src\\OppoPage"
   ],
-  "SelectedNode": "\\src\\OppoPage\\makingReview.js",
   "PreviewInSolutionExplorer": false
 }
