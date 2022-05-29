@@ -37,6 +37,23 @@ app.get('/Oppo', (req, res) => {
 
     });
 });
+
+app.put('/update', (req, res) => {
+    const oppoID = req.body.oppoID
+    const userID = req.body.userID
+    const review = req.body.review
+    db.query('UPDATE SET users_have_opp review = ? WHERE oppoID = ? AND userID = ?',
+        [review, oppoID, userID],
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send(result);
+            }
+        }
+    );
+
+});
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}.`);
