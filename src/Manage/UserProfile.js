@@ -10,10 +10,11 @@ import axios from 'axios';
 
 
 function UserProfile() {
-    const [Email1, setEmail] = useState("test1");
+    const [Email, setEmail] = useState("test1");
     const [Name1, setName] = useState("test2");
-    const [Number1, setNumber] = useState("test3");
+    const [Number, setNumber] = useState("test3");
     const [ProfList, setProfList] = useState([]);
+    const columns = ProfList[0] && Object.keys(ProfList[0]);
     const getProfile = () => {
 
     };
@@ -27,10 +28,6 @@ function UserProfile() {
             setNumber(ProfList[1]);
         });
     });
-    
-    const [Email, setEmail] = useState(ProfList.Email);
-    const [Name, setName] = useState(ProfList.Name);
-    const [Number, setNumber] = useState(ProfList.MobileNumber);
     
     return (
 
