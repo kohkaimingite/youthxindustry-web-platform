@@ -24,6 +24,7 @@
     "react": "^18.0.0",
     "react-bootstrap": "^2.4.0",
     "react-dom": "^18.0.0",
+    "react-icon": "^1.0.0",
     "react-scripts": "^5.0.1",
     "react-table": "^7.8.0",
     "sequelize": "^6.19.0",
