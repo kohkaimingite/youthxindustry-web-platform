@@ -159,6 +159,12 @@ ul li {
         color: white;
     }
 
+.ProfileButton {
+    background-color: white;
+    color: black;
+    border: 2px solid #FFF700;
+}
+
 .oppoTable {
     width: 79%;
     border: 1px solid black;

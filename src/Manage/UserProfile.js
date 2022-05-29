@@ -5,27 +5,30 @@ import List from "../Some test data/List";
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Collapsible from '../components/Collapsible';
+import { Route, Link } from 'react-router-dom';
 import axios from 'axios';
 
 
 function UserProfile() {
-    
+    const [Email1, setEmail] = useState("test1");
+    const [Name1, setName] = useState("test2");
+    const [Number1, setNumber] = useState("test3");
     const [ProfList, setProfList] = useState([]);
     const getProfile = () => {
 
     };
     useEffect(() => {
-        axios.get("http://localhost:3001/Profile").then((response) => {
+        axios.get("http://localhost:3001/profile").then((response) => {
 
             console.log(response);
             setProfList(response.data);
-
+            setEmail(ProfList[1]);
+            setName(ProfList[1]);
+            setNumber(ProfList[1]);
         });
     });
     
-    const [Email, setEmail] = useState(ProfList.Email);
-    const [Name, setName] = useState(ProfList.Name);
-    const [Number, setNumber] = useState(ProfList.MobileNumber);
+    
     
     
     return (
@@ -47,10 +50,13 @@ function UserProfile() {
                     <div className="AlignMiddle">
                     <form action="/action_page.php" method="post">
                         <h3>Testing</h3>
-                        <text align="Left">{Name}</text><br />
-                        <text align="Left">{Email}</text><br />
-                        <text align="Left">{Number}</text><br />
-
+                        {ProfList.map((val, key) => {
+                            return <h2>{val.Name}</h2>;
+                        })}
+                        <text align="Left">{ProfList[1]}</text><br />
+                        <text align="Left">{ProfList[2]}</text><br />
+                        <text align="Left">{ProfList[3]}</text><br />
+                        <Link to="/EditProfile"><button class = "Button">Edit Profile</button></Link>
                     </form>
                     </div>
                 </div>
