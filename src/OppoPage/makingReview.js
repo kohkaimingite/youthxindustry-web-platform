@@ -29,28 +29,30 @@ function MakingReview() {
     return (
         <div className="App">
             <NavBar />
-            <FontAwesomeIcon icon={faStar }></FontAwesomeIcon>
-            <div style={styles.stars}>
-                {stars.map((_, index) => {
-                    return (
-                        <FontAwesomeIcon icon={faStar }key={index}
-                            size={24}
-                            onClick={() => handleClick(index + 1)}
-                            onMouseOver={() => handleMouseOver(index + 1)}
-                            onMouseLeave={handleMouseLeave}
-                            color={(hoverValue || currentValue) > index ? colors.orange : colors.grey}
-                            style={{
-                                marginRight: 10,
-                                cursor: "pointer"
-                            }}></FontAwesomeIcon>
-                       
-                            
-                        
-                    )
-                })}
-            </div>
+            
+            
             <div className="main">
+                
                 <h2>Star rating and review</h2>
+                <div style={styles.stars}>
+                    {stars.map((_, index) => {
+                        return (
+                            <FontAwesomeIcon icon={faStar} key={index}
+                                size={24}
+                                onClick={() => handleClick(index + 1)}
+                                onMouseOver={() => handleMouseOver(index + 1)}
+                                onMouseLeave={handleMouseLeave}
+                                color={(hoverValue || currentValue) > index ? colors.orange : colors.grey}
+                                style={{
+                                    marginRight: 10,
+                                    cursor: "pointer"
+                                }}></FontAwesomeIcon>
+
+
+
+                        )
+                    })}
+                </div>
                 <textarea
                     placeholder="What's your experience?"
                    
@@ -75,7 +77,7 @@ const styles = {
     },
     stars: {
         display: "flex",
-        flexDirection: "row",
+        flexDirection: "row"
     },
     textarea: {
         border: "1px solid #a9a9a9",
