@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import NavBar from '../components/NavBar'
 import AdminNavBar from '../components/AdminNavBar';
+import Datatable from './Datatable';
 
 const EditOppo = () => {
     return (
