@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import NavBar from '../components/NavBar'
 import AdminNavBar from '../components/AdminNavBar';
-import classes from './AdminPanel.module.css'
+import classes from '../components/AdminPanel.module.css'
 
 const AdminPanel = () => {
     return (
