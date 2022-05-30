@@ -30,7 +30,7 @@ const StepTwo = ({ nextStep, handleFormData, prevStep, values }) => {
                 defaultValue={values.age}
                 type="number"
                 min="1"
-                placeholder="Age..."
+                placeholder="Only positive numbers are allowed"
                 onChange={handleFormData("age")}
               />
               {error ? (
@@ -47,7 +47,10 @@ const StepTwo = ({ nextStep, handleFormData, prevStep, values }) => {
               style={{ border: error ? "2px solid red" : "" }}
                 defaultValue={values.gender}
                 type="text"
-                placeholder="Gender..."
+                id="gender"
+                name="gender"
+                pattern="(M|F)"
+                placeholder="M or F"
                 onChange={handleFormData("gender")}
               />
               {error ? (

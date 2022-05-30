@@ -56,7 +56,7 @@ const StepOne = ({ nextStep, handleFormData, values }) => {
                                 id="password"
                                 name="password"
                                 pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
-                                placeholder="Password..."
+                                placeholder="Minimum eight characters, at least one letter and one number"
                                 onChange={handleFormData("password")}
                             />
                             {error ? (
@@ -74,7 +74,7 @@ const StepOne = ({ nextStep, handleFormData, values }) => {
                                 style={{ border: error ? "2px solid red" : "" }}
                                 defaultValue={values.email}
                                 type="email"
-                                placeholder="Email..."
+                                placeholder="E.g: newuser@gmail.com"
                                 onChange={handleFormData("email")}
                             />
                             {error ? (
