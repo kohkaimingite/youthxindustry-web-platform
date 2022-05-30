@@ -10,7 +10,7 @@ function UserProfile() {
                 <div className="AlignLeft">
                     <h3>Details:</h3>
                     <form action="/action_page.php" method="post">
-                        <label>Company Name:</label><br />
+                        <label>Name:</label><br />
                         <text align="Left">timmy@xqc.com</text><br />
                         <text align="Left">12345678</text><br />
                     </form>
@@ -23,11 +23,11 @@ function UserProfile() {
                     </form>
                     <form action="/action_page.php" method="post">
                         <h3>Testing</h3>
-                        <label>New Company Name:</label>
+                        <label>New Name:</label>
                         <input type="text" placeholder="Enter A Name..."></input>
                         <label>New Email:</label>
                         <textarea name="Email" form="manageform"></textarea>
-                        <label>New Contact Number:</label><br />
+                        <label>New Mobile Number:</label><br />
                         <textarea></textarea>
                     </form>
                 </div>

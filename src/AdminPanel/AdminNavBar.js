@@ -1,5 +1,5 @@
 // JavaScript source code
-import classes from './AdminNavBar.module.css'
+import classes from '../components/AdminNavBar.module.css'
 
 const AdminNavBar = () => {
     return (

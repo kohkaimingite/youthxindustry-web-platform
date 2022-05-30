@@ -1,16 +1,26 @@
 {
   "name": "mysql",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "lol",
+  "main": "andreaconnect.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "mysql": "^2.18.1"
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "mysql": "^2.18.1",
+    "body-parser": "1.18.3"
+
   },
+  "keywords": [
+    "nodejs",
+    "express",
+    "mysql",
+    "restapi"
+  ],
   "devDependencies": {
     "cors": "^2.8.5",
     "express": "^4.18.1"

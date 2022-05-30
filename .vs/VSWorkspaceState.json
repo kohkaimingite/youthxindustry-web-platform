@@ -1,10 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\public",
+    "\\node-mysql",
     "\\src",
     "\\src\\components",
-    "\\src\\components\\PageHeader",
+    "\\src\\Manage",
     "\\src\\OppoPage"
   ],
   "PreviewInSolutionExplorer": false
