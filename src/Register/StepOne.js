@@ -51,7 +51,11 @@ const StepOne = ({ nextStep, handleFormData, values }) => {
                             <Form.Label>Password</Form.Label>
                             <Form.Control
                                 style={{ border: error ? "2px solid red" : "" }}
+                                defaultValue={values.password}
                                 type="password"
+                                id="password"
+                                name="password"
+                                pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
                                 placeholder="Password..."
                                 onChange={handleFormData("password")}
                             />
@@ -68,6 +72,7 @@ const StepOne = ({ nextStep, handleFormData, values }) => {
                             <Form.Label>Email</Form.Label>
                             <Form.Control
                                 style={{ border: error ? "2px solid red" : "" }}
+                                defaultValue={values.email}
                                 type="email"
                                 placeholder="Email..."
                                 onChange={handleFormData("email")}

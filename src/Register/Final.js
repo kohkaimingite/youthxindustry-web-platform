@@ -7,6 +7,8 @@ const Final = ({ values }) => {
     //destructuring the object from values
     const { name, password, age, email, gender, mobileNumber } = values;
 
+    const [status, setStatus] = useState('');
+
     const register = () => {
         Axios.post("http://localhost:3001/register", {
             name: name,
@@ -16,7 +18,14 @@ const Final = ({ values }) => {
             gender: gender,
             mobileNumber: mobileNumber
         })
+            .then(() => {
+                setStatus({ type: 'success' });
+            })
+            .catch((error) => {
+                setStatus({ type: 'error', error });
+            });
     };
+
 
     return (
         <>
@@ -45,7 +54,15 @@ const Final = ({ values }) => {
                     <p>
                         <strong>Mobile Number :</strong> {mobileNumber}{" "}
                     </p>
-                    <button onClick={register}>Register</button>
+
+                    <p>
+                        <button onClick={register}>Register</button>
+                    </p>
+
+                    <>
+                        {status?.type === 'success' && <a href="/AboutUs"> Account Created! Back to Homepage?</a>}
+                        {status?.type === 'error' && <p>Account creation failed</p>}
+                    </>
                 </Card.Body>
             </Card>
         </>
