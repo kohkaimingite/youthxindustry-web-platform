@@ -20,23 +20,19 @@ app.post("/register", (req, res) => {
     const email = req.body.email
     const age = req.body.age
     const gender = req.body.gender
+    const mobileNumber = req.body.mobileNumber
 
     db.query(
-        "INSERT INTO users (Name, Password, Email, Age, Gender) VALUES (?, ?, ?, ?, ?)",
-        [name, password, email, age, gender],
+        "INSERT INTO users (Name, Password, Email, Age, Gender, MobileNumber) VALUES (?, ?, ?, ?, ?, ?)",
+        [name, password, email, age, gender, mobileNumber],
         (err, result) => {
             if (err) {
-                res.send({ err: err })
-            }
+                console.log(err);
+            } else { res.send(result) };
 
-            if (result.length > 0) {
-                res.send({ message: "Not inserted"})
-            } else {
-                res.send({ message: "Inserted" })
-            }
-        }
-    );
+        });
 });
+
 
 app.post("/login", (req, res) => {
     const name = req.body.name
@@ -48,16 +44,16 @@ app.post("/login", (req, res) => {
         [name, password],
         (err, result) => {
             if (err) {
-                res.send({err : err})
+                res.send({ err: err })
             }
 
-                if (result.length > 0) {
-                    res.send(result)
-                } else {
-                    res.send({ message: "Wrong name or password"})
-                }
-            
-            
+            if (result.length > 0) {
+                res.send(result)
+            } else {
+                res.send({ message: "Wrong name or password" })
+            }
+
+
         }
     );
 });
