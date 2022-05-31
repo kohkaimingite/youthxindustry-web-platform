@@ -30,7 +30,7 @@ const db = mysql.createConnection({
 });
 
 app.get('/Oppo', (req, res) => {
-    db.query("SELECT*FROM opportunities", (err, result) => {
+    db.query("SELECT*FROM opportunities ORDER BY OppID", (err, result) => {
         if (err) {
             console.log(err);
         } else { res.send(result) };
@@ -38,7 +38,24 @@ app.get('/Oppo', (req, res) => {
     });
 });
 
-app.put('/update', (req, res) => {
+app.get('/FavOppo', (req, res) => {
+    db.query("SELECT opportunities.OppID, Name, Description, Location, Address, Type FROM opportunities INNER JOIN users_have_fav ON opportunities.OppID = users_have_fav.OppID WHERE users_have_fav.UserID = 1 ORDER BY opportunities.OppID;", (err, result) => {
+        if (err) {
+            console.log(err);
+        } else { res.send(result) };
+
+    });
+});
+app.get('/getReview', (req, res) => {
+    db.query("SELECT*FROM users_have_opp WHERE Review IS NULL ORDER BY OppID", (err, result) => {
+        if (err) {
+            console.log(err);
+        } else { res.send(result) };
+
+    });
+});
+
+app.put('/updateReview', (req, res) => {
     const oppoID = req.body.oppoID
     const userID = req.body.userID
     const review = req.body.review

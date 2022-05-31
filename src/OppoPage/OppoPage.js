@@ -8,6 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Collapsible from '../components/Collapsible';
 import axios from 'axios';
 import Datatable from './Datatable';
+import {review} from './MakingReview';
 require('es6-promise').polyfill();
 require('isomorphic-fetch');
 
@@ -22,9 +23,6 @@ function OppoPage() {
     const [data, setData] = useState([]);
     const [OppoList, setOppoList] = useState([]);
     const [q, setQ] = useState("");
-    const [Name, setName] = useState("");
-    const [Description, setDescription] = useState("");
-    const [Location, setLocation] = useState("");
 
     //jobscope
     const [IT, setIT] = useState("");
@@ -36,23 +34,13 @@ function OppoPage() {
     const [South, setSouth] = useState("");
     const [East, setEast] = useState("");
     const [West, setWest] = useState("")
-    const tesing = ["it"];
-    const location = ["Central", "North", "South", "East", "West"];
-    const check = ["central", "north", "south", "east", "west"];
-    const [newOppoList, setNewOppoList] = useState([]);
-    ;
-
     
-    const getOppo = () => {
-        
-    };
     
     const columns = data[0] && Object.keys(data[0]);
     const [t, setT] = useState("");
     const [searchColumns, setSearchColumns] = useState([
         'Name'
     ]);
-    
     
     function search(rows) {
         return rows.filter((row) =>
@@ -65,10 +53,8 @@ function OppoPage() {
             ),
         );
     }
-    //searchColumns.some((column)=>row[column].toString().toLowerCase().indexOf(q.toLowerCase()) > -1,)
+    
     function typeBox(rows) {
-        //return rows.filter((row) => row.type.indexOf(t) > -1
-        //return rows.filter((row) => row.type.indexOf("IT") > -1
         return rows.filter((row) => row.Type.toLowerCase().indexOf(q.toLowerCase())>-1
         );
     }
@@ -81,25 +67,7 @@ function OppoPage() {
         });
 
     });
-    function filterJob(t) {
-        var checkBox = document.getElementById(t);
-        var text = document.getElementById("text");
-        if (checkBox.checked == true) {
-            text.style.display = "block";
-        } else {
-            text.style.display = "none";
-        }
-    }
-
-    function ilterdata(rows) {
-        var checkBox = document.getElementById(t);
-        var text = document.getElementById("text");
-        if (checkBox.checked == true) {
-            text.style.display = "block";
-        } else {
-            text.style.display = "none";
-        }
-    }
+   
     //it, finance, healthcare, north, south, east, west, central
     //IT === "" && Finance === "" && Healthcare === "" && North === "" && South === "" && East === "" && West === "" && Central === ""
     function filterType1(rows) {

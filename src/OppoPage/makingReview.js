@@ -1,8 +1,18 @@
 // JavaScript source code
-import { React, useState, useEffect } from "react";
-import NavBar from '../components/NavBar';
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import NavBar from '../components/NavBar'
+import { React, useState, useEffect } from "react";
+import TextField from "@mui/material/TextField";
+import List from "../Some test data/List";
+import Button from 'react-bootstrap/Button';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Collapsible from '../components/Collapsible';
+import axios from 'axios';
+import Datatable from './Datatable';
+require('es6-promise').polyfill();
+require('isomorphic-fetch');
+
 
 const colors = {
     orange: "#FFBA5A",
@@ -11,12 +21,23 @@ const colors = {
 };
 
 function MakingReview() {
+    
     const [currentValue, setCurrentValue] = useState(0);
     const [hoverValue, setHoverValue] = useState(undefined);
     const stars = Array(5).fill(0)
+    const [reviewList, setReviewList] = useState([]);
+    const [data, setData] = useState([]);
+    const columns = data[0] && Object.keys(data[0]);
 
+    const [rating, setRating] = useState(0);
+    const [review, setReview] = useState("");
+    const [jobChose, setJobChose] = useState("0");
+    
+    const [check, setCheck] = useState(false);
     const handleClick = value => {
         setCurrentValue(value)
+        setRating(value)
+
     }
 
     const handleMouseOver = newHoverValue => {
@@ -26,6 +47,44 @@ function MakingReview() {
     const handleMouseLeave = () => {
         setHoverValue(undefined)
     }
+    const [test, setTest] = useState("");
+    
+    function verify(job) {
+        if (job === "0" && review === "") {
+            setTest("Please select job code and enter review!!!")
+            return setCheck(false);
+
+        } else if (review === "") {
+            setTest("Please enter review!!!")
+            return setCheck(false);
+        } else if (job === "0") {
+            setTest("Please select job code!!!")
+            return setCheck(false);
+        } else {
+            setTest("checked!")
+            return setCheck(true);
+        }
+            
+        
+    }
+
+    function submit(checkStatus) {
+        if (checkStatus === true) {
+
+        } else {
+
+        }
+
+    }
+
+    useEffect(() => {
+        axios.get("http://localhost:3001/getReview").then((response) => {
+
+            console.log(response);
+            setReviewList(response.data);
+        });
+
+    });
     return (
         <div className="App">
             <NavBar />
@@ -53,22 +112,31 @@ function MakingReview() {
                         )
                     })}
                 </div>
-                <textarea
-                    placeholder="What's your experience?"
-                   
-                />
-
-                <button
+                <div >
                     
-                >
-                    Submit
-                </button>
+                    <h4>Chose job code</h4>
+                    <select onChange={(e) => setJobChose(e.target.value)} >
+                        <option value="0">Select Job Code:</option>
+                        {reviewList.map((val, key) => {
+                            return <option value={val.OppID}  >{val.OppID}</option>;
+                        })}
+                        
+                    </select>
+                    <h4>{jobChose}</h4>
+                </div>
+
+                <textarea placeholder="Provide some reviews!" id="review" name="review" value={review} onChange={e => setReview(e.target.value)}> </textarea>
+                <h2>{review}</h2>
+                <button onClick={() => verify(jobChose)}>Submitttttttt</button>
+                <h4>{test}</h4>
+                 
             </div>
             
 
         </div>
     );
 }
+//
 const styles = {
     container: {
         display: "flex",
