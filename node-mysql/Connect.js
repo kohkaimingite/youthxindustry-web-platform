@@ -44,18 +44,10 @@ app.post("/login", (req, res) => {
         [name, password],
         (err, result) => {
             if (err) {
-                res.send({ err: err })
-            }
+                console.log(err);
+            } else { res.send(result) };
 
-            if (result.length > 0) {
-                res.send(result)
-            } else {
-                res.send({ message: "Wrong name or password" })
-            }
-
-
-        }
-    );
+        });
 });
 
 

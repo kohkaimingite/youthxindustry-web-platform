@@ -4,25 +4,24 @@ import NavBar from '../components/NavBar';
 
 export default function Login() {
 
-    const [nameReg, setNameReg] = useState('');
-    const [passwordReg, setPasswordReg] = useState('');
-    const [loginStatus, setLoginStatus] = useState('');
+    const [name, setName] = useState('');
+    const [password, setPassword] = useState('');
+    const [status, setStatus] = useState('');
 
 
     const login = () => {
         Axios.post("http://localhost:3001/login", {
-            name: nameReg,
-            password: passwordReg,
-        }).then((response) => {
-            if (response.data.message) {
-                setLoginStatus(response.data.message)
-
-            } else {
-                setLoginStatus(response.data[0].name)
-            }
-            
-        });
+            name: name,
+            password: password,
+        })
+            .then(() => {
+                setStatus({ type: 'success' });
+            })
+            .catch((error) => {
+                setStatus({ type: 'error', error });
+            });
     };
+
 
     return (
         <div className="App">
@@ -31,22 +30,25 @@ export default function Login() {
                 <h1>Login</h1>
                 <label>Name</label>
                 <input type="text"
-                    placeholder= "Name..."
+                    placeholder="Name..."
                     onChange={(e) => {
-                    setNameReg(e.target.value);
-                }}
+                        setName(e.target.value);
+                    }}
                 />
                 <label>Password</label>
                 <input type="text"
                     placeholder="Password..."
                     onChange={(e) => {
-                    setPasswordReg(e.target.value);
-                }}
+                        setPassword(e.target.value);
+                    }}
                 />
-              
+
                 <button onClick={login}>Login</button>
             </div>
-            <h1>{loginStatus}</h1>
+            <>
+                {status?.type === 'success' && <a href="/AboutUs">Successfully login! Back to  Home Page?</a>}
+                {status?.type === 'error' && <p>Account not found!</p>}
+            </>
         </div>
 
     );
