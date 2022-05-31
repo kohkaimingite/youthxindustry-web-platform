@@ -49,17 +49,16 @@ function UserProfile() {
                     <form action="/action_page.php" method="post">
                         <h3>Testing</h3>
                         {ProfList.map((val, key) => {
-                            return <text align="Left">{val.Name}</text>;
-                        })}
+                            return <text align="Left">{val.name}</text>;
+                        })}<br />
                         {ProfList.map((val, key) => {
-                            return <text align="Left">{val.Email}</text>;
-                        })}
+                            return <text align="Left">{val.email}</text>;
+                        })}<br />
                         {ProfList.map((val, key) => {
                             return <text align="Left">{val.MobileNumber}</text>;
-                        })}
-                        <text align="Left">{ProfList[1]}</text><br />
-                        <text align="Left">{ProfList[2]}</text><br />
-                        <text align="Left">{ProfList[3]}</text><br />
+                        })}<br />
+
+
                         <Link to="/EditProfile"><button class = "Button">Edit Profile</button></Link>
                     </form>
                     
