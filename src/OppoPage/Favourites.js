@@ -63,7 +63,11 @@ function Favourites() {
     }
 
     useEffect(() => {
-        axios.get("http://localhost:3001/FavOppo").then((response) => {
+        axios.get("http://localhost:3001/FavOppo", {
+            
+            UserID: 1,
+            
+        }).then((response) => {
 
             console.log(response);
             setOppoList(response.data);

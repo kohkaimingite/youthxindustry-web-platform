@@ -14,7 +14,9 @@ import OneJob from './OppoPage/OneJob';
 import ProfilePage from './Manage/UserProfile';
 import CompanyPage from './Manage/CompanyProfile';
 import EditProfile from './Manage/EditProfile';
-import MakingReview from './OppoPage/MakingReview';
+import MakingReview from './ReviewPage/MakingReview';
+import ReviewSuccess from './ReviewPage/ReviewSuccess'; 
+import ReviewNoSuccess from './ReviewPage/ReviewNoSuccess';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
@@ -33,6 +35,8 @@ root.render(
                 <Route path='/Company' element={<CompanyPage />} />
                 <Route path='/EditProfile' element={<EditProfile />} />
                 <Route path='/MakingReview' element={<MakingReview />} />
+                <Route path='/ReviewSuccess' element={<ReviewSuccess />} />
+                <Route path='/ReviewNoSuccess' element={<ReviewNoSuccess />} />
 
         </Routes>
     </Router>

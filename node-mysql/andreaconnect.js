@@ -39,7 +39,10 @@ app.get('/Oppo', (req, res) => {
 });
 
 app.get('/FavOppo', (req, res) => {
-    db.query("SELECT opportunities.OppID, Name, Description, Location, Address, Type FROM opportunities INNER JOIN users_have_fav ON opportunities.OppID = users_have_fav.OppID WHERE users_have_fav.UserID = 1 ORDER BY opportunities.OppID;", (err, result) => {
+    const UserID = req.body.UserID;
+    db.query("SELECT opportunities.OppID, Name, Description, Location, Address, Type FROM opportunities INNER JOIN users_have_fav ON opportunities.OppID = users_have_fav.OppID WHERE users_have_fav.UserID = 1 ORDER BY opportunities.OppID;",
+        [UserID],
+        (err, result) => {
         if (err) {
             console.log(err);
         } else { res.send(result) };

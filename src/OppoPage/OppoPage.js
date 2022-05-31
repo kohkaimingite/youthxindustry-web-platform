@@ -8,7 +8,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Collapsible from '../components/Collapsible';
 import axios from 'axios';
 import Datatable from './Datatable';
-import {review} from './MakingReview';
 require('es6-promise').polyfill();
 require('isomorphic-fetch');
 
