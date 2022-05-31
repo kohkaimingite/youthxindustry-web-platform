@@ -40,7 +40,7 @@ app.post("/login", (req, res) => {
 
 
     db.query(
-        "SELECT * FROM users WHERE Email = ? AND password = ?",
+        "SELECT * FROM users WHERE Email = ? AND Password = ?",
         [email, password],
         (err, result) => {
             if (err) {
