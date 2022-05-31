@@ -13,6 +13,7 @@ import axios from 'axios';
 
 function UserProfile() {
     const [Check, setCheck] = useState("");
+    const [Bio, setBio] = useState("");
     const [EmailCheck, setEmailCheck] = useState("");
     const [Number, setNumber] = useState("");
     const [Email, setEmail] = useState("");
@@ -63,6 +64,8 @@ function UserProfile() {
                         <input type="text" id='email' placeholder="Enter A Email" onChange={e =>setEmail(e.target.value)}></input><text color='#FF0000'>{EmailCheck}</text><br />
                         <label>New Mobile Number:</label>
                         <input type="text" id='number' placeholder="Enter A Mobile Number..." onChange={e => setNumber(e.target.value)}></input><text color='#FF0000'>{NumberCheck}</text><br />
+                        <label>New Bio: </label>
+                        <input type="text" id='bio' placeholder="Enter New Bio..." onChange={e => setBio(e.target.value)}></input>
                         <button onClick={submit}> Confirm </button>
                         <text align='left'>{Check}</text>
                     </form>
@@ -92,13 +95,15 @@ function UserProfile() {
     function submit() {
         axios.post("http://localhost:3001/EditProfile", {
             Number: parseInt(Number),
-            Email: Email
+            Email: Email,
+            Bio: Bio
             }).then(() => {
                 console.log("Test");
                 /*setCheck(response.data);*/
+                window.location = "http://localhost:3000/Profile";
             });
     };
-}
+}//ADD IF STATEMENT TO CHECK FOR IF IT IS SUCCESSFUL
 
 
 

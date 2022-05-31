@@ -47,8 +47,9 @@ app.listen(PORT, () => {
 app.post('/EditProfile', (req, res) => {
     const Email = req.body.Email;
     const Number = req.body.Number;
-    db.query('UPDATE users SET email = ?, MobileNumber = ? WHERE userid = 1;',
-    [Email, Number],
+    const Bio = req.body.Bio;
+    db.query('UPDATE users SET email = ?, MobileNumber = ?, Userbio = ? WHERE userid = 1;',
+    [Email, Number, Bio],
         (err, result) => {
             if(err) {
                 console.log(err);
