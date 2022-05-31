@@ -4,7 +4,7 @@ import NavBar from '../components/NavBar'
 import AdminNavBar from './AdminNavBar';
 import classes from '../components/AdminPanel.module.css'
 
-const AdminPanel = () => {
+function AdminPanel() {
     return (
         <div className={classes.AdminPanel} id="AdminPanel">
             <NavBar/>
