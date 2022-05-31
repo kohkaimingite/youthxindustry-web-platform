@@ -75,18 +75,7 @@ app.post('/addReview', (req, res) => {
     );
 
 });
-app.post('/addTest', (req, res) => {
-    db.query('UPDATE users_have_opp SET Review = "very niec", Rating = 5  WHERE OppID = 696969 AND UserID = 1;',
-        (err, result) => {
-            if (err) {
-                console.log(err);
-            } else {
-                res.send("Updateed review!");
-            }
-        }
-    );
 
-});
 app.get('/Profile', (req, res) => {
     db.query("SELECT Name, Email, MobileNumber FROM users WHERE UserID =1", (err, result) => {
         if (err) {
