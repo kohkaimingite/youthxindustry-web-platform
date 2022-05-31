@@ -89,9 +89,9 @@ function MakingReview() {
     function submit(checkStatus) {
         if (checkStatus === true) {
             addTest();
-            window.location = "http://localhost:3000/Opportunities";
+            window.location = "http://localhost:3000/ReviewSucces";
         } else {
-            return;
+            window.location = "http://localhost:3000/ReviewNoSuccess";
         }
 
     }

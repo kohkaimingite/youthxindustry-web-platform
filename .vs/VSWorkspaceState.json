@@ -8,7 +8,9 @@
     "\\src\\components\\PageHeader",
     "\\src\\LoginPage",
     "\\src\\Manage",
-    "\\src\\OppoPage"
+    "\\src\\OppoPage",
+    "\\src\\ReviewPage"
   ],
+  "SelectedNode": "\\src\\ReviewPage\\ReviewNoSuccess.js",
   "PreviewInSolutionExplorer": false
 }
