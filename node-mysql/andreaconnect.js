@@ -55,23 +55,35 @@ app.get('/getReview', (req, res) => {
     });
 });
 
-app.put('/updateReview', (req, res) => {
-    const oppoID = req.body.oppoID
-    const userID = req.body.userID
-    const review = req.body.review
-    db.query('UPDATE SET users_have_opp review = ? WHERE oppoID = ? AND userID = ?',
-        [review, oppoID, userID],
-        (err, result) => {
+app.post('/addReview', (req, res) => {
+    const OppID = req.body.OppID;
+    const UserID = req.body.UserID;
+    const Review = req.body.Review;
+    const Rating = req.body.Rating;
+    db.query('UPDATE users_have_opp SET Review = ?, Rating = ?  WHERE OppID = ? AND UserID = ?;',
+        [ Review, Rating, OppID, UserID],
+        (err,result) => {
             if (err) {
                 console.log(err);
             } else {
-                res.send(result);
+                res.send("Updateed review!");
             }
         }
     );
 
 });
+app.post('/addTest', (req, res) => {
+    db.query('UPDATE users_have_opp SET Review = "very niec", Rating = 5  WHERE OppID = 696969 AND UserID = 1;',
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send("Updateed review!");
+            }
+        }
+    );
 
+});
 app.get('/Profile', (req, res) => {
     db.query("SELECT Name, Email, MobileNumber FROM users WHERE UserID =1", (err, result) => {
         if (err) {
