@@ -10,7 +10,7 @@ const Final = ({ values }) => {
     const [status, setStatus] = useState('');
 
     const register = () => {
-        Axios.post("http://localhost:3001/register", {
+        Axios.post("http://localhost:3001/registerUser", {
             name: name,
             password: password,
             email: email,

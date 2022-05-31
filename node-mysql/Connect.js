@@ -14,7 +14,7 @@ const db = mysql.createConnection({
     database: "fyp_db",
 });
 
-app.post("/register", (req, res) => {
+app.post("/registerUser", (req, res) => {
     const name = req.body.name
     const password = req.body.password
     const email = req.body.email
@@ -35,13 +35,13 @@ app.post("/register", (req, res) => {
 
 
 app.post("/login", (req, res) => {
-    const name = req.body.name
+    const email = req.body.email
     const password = req.body.password
 
 
     db.query(
-        "SELECT * FROM users WHERE name = ? AND password = ?",
-        [name, password],
+        "SELECT * FROM users WHERE Email = ? AND password = ?",
+        [email, password],
         (err, result) => {
             if (err) {
                 console.log(err);
