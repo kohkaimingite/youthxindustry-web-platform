@@ -1,4 +1,5 @@
 // JavaScript source code
+import { Link } from 'react-router-dom'
 import classes from '../components/AdminNavBar.module.css'
 
 const AdminNavBar = () => {
@@ -7,7 +8,7 @@ const AdminNavBar = () => {
             <nav>
                 <ul>
                     <li>
-                        <a href="/AdminPanel">Admin Panel</a>
+                        <Link to="/AdminPanel">Admin Panel</Link>
                     </li>
 
                     <li>
