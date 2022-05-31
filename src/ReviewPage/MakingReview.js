@@ -9,7 +9,6 @@ import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Collapsible from '../components/Collapsible';
 import axios from 'axios';
-import Datatable from './Datatable';
 require('es6-promise').polyfill();
 require('isomorphic-fetch');
 
@@ -90,6 +89,7 @@ function MakingReview() {
     function submit(checkStatus) {
         if (checkStatus === true) {
             addTest();
+            window.location = "http://localhost:3000/Opportunities";
         } else {
             return;
         }
@@ -141,7 +141,7 @@ function MakingReview() {
                         })}
                         
                     </select>
-                    <h4>{jobChose}</h4>
+                    
                 </div>
 
                 <textarea placeholder="Provide some reviews! Maximum 150 characters" id="review" name="review" value={review} onChange={e => { setReview(e.target.value); setCharCount(e.target.value.length) }} style={styles.textArea} maxLength="150"> </textarea>
@@ -150,7 +150,7 @@ function MakingReview() {
                 
                 <h4>{test}</h4>
                 <h2>{review}</h2>
-                 
+                <h4>{jobChose}</h4>
             </div>
             
 
