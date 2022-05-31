@@ -25,9 +25,10 @@ function MakingReview() {
     const [currentValue, setCurrentValue] = useState(0);
     const [hoverValue, setHoverValue] = useState(undefined);
     const stars = Array(5).fill(0)
-    const [reviewList, setReviewList] = useState([]);
+    const [jobList, setJobList] = useState([]);
     const [data, setData] = useState([]);
     const columns = data[0] && Object.keys(data[0]);
+    const [userID,setUserID] = useState(1);
 
     const [rating, setRating] = useState(0);
     const [review, setReview] = useState("");
@@ -35,11 +36,9 @@ function MakingReview() {
     
     const [check, setCheck] = useState(false);
     const handleClick = value => {
-        setCurrentValue(value)
         setRating(value)
 
     }
-
     const handleMouseOver = newHoverValue => {
         setHoverValue(newHoverValue)
     };
@@ -48,31 +47,51 @@ function MakingReview() {
         setHoverValue(undefined)
     }
     const [test, setTest] = useState("");
-    
+    //setCheck(false);
     function verify(job) {
         if (job === "0" && review === "") {
             setTest("Please select job code and enter review!!!")
-            return setCheck(false);
+            return false;
 
         } else if (review === "") {
             setTest("Please enter review!!!")
-            return setCheck(false);
+            return false;
         } else if (job === "0") {
             setTest("Please select job code!!!")
-            return setCheck(false);
+            return false;
         } else {
             setTest("checked!")
-            return setCheck(true);
+            return true;
         }
             
         
     }
-
+    const addReview = () => {
+        axios.post("http://localhost:3001/addReview", {
+            OppID: parseInt(jobChose),
+            UserID: userID,
+            Review: review,
+            Rating: rating
+        }).then(() => {
+            console.log("Added sucessfully!");
+        });
+    };
+     
+    function addTest() {
+        axios.post("http://localhost:3001/addReview", {
+            OppID: parseInt(jobChose),
+            UserID: userID,
+            Review: review,
+            Rating: rating
+        }).then(() => {
+            console.log("Added sucessfully!");
+        });
+    };
     function submit(checkStatus) {
         if (checkStatus === true) {
-
+            addTest();
         } else {
-
+            return;
         }
 
     }
@@ -81,7 +100,7 @@ function MakingReview() {
         axios.get("http://localhost:3001/getReview").then((response) => {
 
             console.log(response);
-            setReviewList(response.data);
+            setJobList(response.data);
         });
 
     });
@@ -101,7 +120,7 @@ function MakingReview() {
                                 onClick={() => handleClick(index + 1)}
                                 onMouseOver={() => handleMouseOver(index + 1)}
                                 onMouseLeave={handleMouseLeave}
-                                color={(hoverValue || currentValue) > index ? colors.orange : colors.grey}
+                                color={(hoverValue || rating) > index ? colors.orange : colors.grey}
                                 style={{
                                     marginRight: 10,
                                     cursor: "pointer"
@@ -117,8 +136,8 @@ function MakingReview() {
                     <h4>Chose job code</h4>
                     <select onChange={(e) => setJobChose(e.target.value)} >
                         <option value="0">Select Job Code:</option>
-                        {reviewList.map((val, key) => {
-                            return <option value={val.OppID}  >{val.OppID}</option>;
+                        {jobList.map((val, key) => {
+                            return <option value={ val.OppID }  >{val.OppID}</option>;
                         })}
                         
                     </select>
@@ -127,7 +146,7 @@ function MakingReview() {
 
                 <textarea placeholder="Provide some reviews!" id="review" name="review" value={review} onChange={e => setReview(e.target.value)}> </textarea>
                 <h2>{review}</h2>
-                <button onClick={() => verify(jobChose)}>Submitttttttt</button>
+                <button onClick={() => submit(verify(jobChose))}>Submitttttttt</button>
                 <h4>{test}</h4>
                  
             </div>
@@ -136,7 +155,11 @@ function MakingReview() {
         </div>
     );
 }
-//
+//{val.OppID}
+//<button onClick={addTest}>Submitttttttt</button>
+//<button onClick={addReview}>Submitttttttt</button>
+//<button onClick={() => submit(verify(jobChose))}>Submitttttttt</button>
+//<button onClick={() => addTest()}>Submitttttttt</button>
 const styles = {
     container: {
         display: "flex",
