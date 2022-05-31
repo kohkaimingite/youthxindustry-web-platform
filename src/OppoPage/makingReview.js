@@ -133,7 +133,7 @@ function MakingReview() {
                 </div>
                 <div >
                     
-                    <h4>Chose job code</h4>
+                    <h4>Choose job code</h4>
                     <select onChange={(e) => setJobChose(e.target.value)} >
                         <option value="0">Select Job Code:</option>
                         {jobList.map((val, key) => {
@@ -145,10 +145,11 @@ function MakingReview() {
                 </div>
 
                 <textarea placeholder="Provide some reviews! Maximum 150 characters" id="review" name="review" value={review} onChange={e => { setReview(e.target.value); setCharCount(e.target.value.length) }} style={styles.textArea} maxLength="150"> </textarea>
-                <h2>{review}</h2>
-                <button onClick={() => submit(verify(jobChose))}>Submitttttttt</button>
-                <h4>{test}</h4>
                 <h4>Characters typed: {charCount}</h4>
+                <button onClick={() => submit(verify(jobChose))}>Submitttttttt</button>
+                
+                <h4>{test}</h4>
+                <h2>{review}</h2>
                  
             </div>
             
