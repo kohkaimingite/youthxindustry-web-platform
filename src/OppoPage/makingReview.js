@@ -33,7 +33,7 @@ function MakingReview() {
     const [rating, setRating] = useState(0);
     const [review, setReview] = useState("");
     const [jobChose, setJobChose] = useState("0");
-    
+    const [charCount, setCharCount] = useState(0);
     const [check, setCheck] = useState(false);
     const handleClick = value => {
         setRating(value)
@@ -144,10 +144,11 @@ function MakingReview() {
                     <h4>{jobChose}</h4>
                 </div>
 
-                <textarea placeholder="Provide some reviews!" id="review" name="review" value={review} onChange={e => setReview(e.target.value)}> </textarea>
+                <textarea placeholder="Provide some reviews! Maximum 150 characters" id="review" name="review" value={review} onChange={e => { setReview(e.target.value); setCharCount(e.target.value.length) }} style={styles.textArea} maxLength="150"> </textarea>
                 <h2>{review}</h2>
                 <button onClick={() => submit(verify(jobChose))}>Submitttttttt</button>
                 <h4>{test}</h4>
+                <h4>Characters typed: {charCount}</h4>
                  
             </div>
             
@@ -160,24 +161,27 @@ function MakingReview() {
 //<button onClick={addReview}>Submitttttttt</button>
 //<button onClick={() => submit(verify(jobChose))}>Submitttttttt</button>
 //<button onClick={() => addTest()}>Submitttttttt</button>
+
 const styles = {
     container: {
         display: "flex",
         flexDirection: "column",
         alignItems: "center"
     },
-    stars: {
-        display: "flex",
-        flexDirection: "row"
-    },
-    textarea: {
+    textArea: {
         border: "1px solid #a9a9a9",
         borderRadius: 5,
         padding: 10,
         margin: "20px 0",
-        minHeight: 100,
+        minHeight: 200,
         width: 300
+
     },
+    stars: {
+        display: "flex",
+        flexDirection: "row"
+    },
+    
     button: {
         border: "1px solid #a9a9a9",
         borderRadius: 5,
