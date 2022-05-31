@@ -1,52 +1,55 @@
 import React, { useState } from "react";
 import Axios from 'axios';
 import NavBar from '../components/NavBar';
+import './Login.css';
 
 export default function Login() {
 
-    const [nameReg, setNameReg] = useState('');
-    const [passwordReg, setPasswordReg] = useState('');
-    const [loginStatus, setLoginStatus] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [status, setStatus] = useState('');
 
 
     const login = () => {
         Axios.post("http://localhost:3001/login", {
-            name: nameReg,
-            password: passwordReg,
-        }).then((response) => {
-            if (response.data.message) {
-                setLoginStatus(response.data.message)
-
-            } else {
-                setLoginStatus(response.data[0].name)
-            }
-            
-        });
+            email: email,
+            password: password,
+        })
+            .then(() => {
+                setStatus({ type: 'success' });
+            })
+            .catch((error) => {
+                setStatus({ type: 'error', error });
+            });
     };
+
 
     return (
         <div className="App">
-            <div className="login">
                 <NavBar />
+                <div className="login">
                 <h1>Login</h1>
-                <label>Name</label>
-                <input type="text"
-                    placeholder= "Name..."
+                <label>Email</label>
+                <input type ="email"
+                    placeholder="Email..."
                     onChange={(e) => {
-                    setNameReg(e.target.value);
-                }}
+                        setEmail(e.target.value);
+                    }}
                 />
                 <label>Password</label>
-                <input type="text"
+                <input type="password"
                     placeholder="Password..."
                     onChange={(e) => {
-                    setPasswordReg(e.target.value);
-                }}
+                        setPassword(e.target.value);
+                    }}
                 />
-              
+
                 <button onClick={login}>Login</button>
             </div>
-            <h1>{loginStatus}</h1>
+            <>
+                {status?.type === 'success' && <a href="/AboutUs">Successfully login! Back to  Home Page?</a>}
+                {status?.type === 'error' && <p>Account not found!</p>}
+            </>
         </div>
 
     );

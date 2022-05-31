@@ -31,7 +31,8 @@ const db = mysql.createConnection({
 });
 
 app.get('/Profile', (req, res) => {
-    db.query("SELECT name, email, MobileNumber FROM users WHERE UserID = '1'", (err, result) => {
+    const emailcheck = req.body.emailcheck;
+    db.query("SELECT userid, name, email, MobileNumber, userbio FROM users WHERE UserID = 1",(err, result) => {
         if (err) {
             console.log(err);
         } else { res.send(result) };
@@ -42,4 +43,19 @@ const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}.`);
 });
+
+app.post('/EditProfile', (req, res) => {
+    const Email = req.body.Email;
+    const Number = req.body.Number;
+    db.query('UPDATE users SET email = ?, MobileNumber = ? WHERE userid = 1;',
+    [Email, Number],
+        (err, result) => {
+            if(err) {
+                console.log(err);
+            } else {
+                res.send("Updated Information!");
+            }
+        }
+    )
+})
 

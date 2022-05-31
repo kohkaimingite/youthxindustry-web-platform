@@ -304,3 +304,7 @@ parent {
     align-items: flex-start;
     top: 164px;
 }
+
+.AlignRight {
+    left: 80%;
+}

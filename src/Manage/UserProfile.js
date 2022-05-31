@@ -10,9 +10,6 @@ import axios from 'axios';
 
 
 function UserProfile() {
-    const [Email, setEmail] = useState("test1");
-    const [Name1, setName] = useState("test2");
-    const [Number, setNumber] = useState("test3");
     const [ProfList, setProfList] = useState([]);
     const columns = ProfList[0] && Object.keys(ProfList[0]);
     const getProfile = () => {
@@ -23,9 +20,7 @@ function UserProfile() {
 
             console.log(response);
             setProfList(response.data);
-            setEmail(ProfList[1]);
-            setName(ProfList[1]);
-            setNumber(ProfList[1]);
+
         });
     });
     
@@ -41,7 +36,10 @@ function UserProfile() {
                     <form action="/action_page.php" method="post">
                         <text>Full Name:</text><br />
                         <text>Email:</text><br />
-                        <text>Mobile Number:</text>
+                        <text>Mobile Number:</text><br />
+                        {ProfList.map((val, key) => {
+                            return <text align="Left">Bio : {val.userbio}</text>;
+                        })}<br />
                     </form>
                     
                     </div>
@@ -57,16 +55,19 @@ function UserProfile() {
                         {ProfList.map((val, key) => {
                             return <text align="Left">{val.MobileNumber}</text>;
                         })}<br />
+                        
 
 
-                        <Link to="/EditProfile"><button class = "Button">Edit Profile</button></Link>
+                        
                     </form>
-                    
-                    {ProfList.map((val, key) => {
-                        return <h2>{val.Name}</h2>;
-                    })}
 
-                    </div>
+
+                </div>
+                <div className="AlignRight">
+                    <form action="/action_page.php" method="post">
+                    <Link to="/EditProfile"><button class="Button">Edit Profile</button></Link>
+                    </form>
+                </div>
                 </div>
         </div>
     )
