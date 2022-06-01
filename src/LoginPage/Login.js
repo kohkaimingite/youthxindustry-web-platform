@@ -15,22 +15,25 @@ export default function Login() {
             email: email,
             password: password,
         })
-            .then(() => {
-                setStatus({ type: 'success' });
-            })
-            .catch((error) => {
-                setStatus({ type: 'error', error });
+            .then((response) => {
+
+                if (response.data.message) {
+                    setStatus(response.data.message)
+                } else {
+                    setStatus(response.data[0].email)
+                }
+
             });
     };
 
 
     return (
         <div className="App">
-                <NavBar />
-                <div className="login">
+            <NavBar />
+            <div className="login">
                 <h1>Login</h1>
                 <label>Email</label>
-                <input type ="email"
+                <input type="email"
                     placeholder="Email..."
                     onChange={(e) => {
                         setEmail(e.target.value);
@@ -46,10 +49,7 @@ export default function Login() {
 
                 <button onClick={login}>Login</button>
             </div>
-            <>
-                {status?.type === 'success' && <a href="/AboutUs">Successfully login! Back to  Home Page?</a>}
-                {status?.type === 'error' && <p>Account not found!</p>}
-            </>
+            <h1>{status}</h1>
         </div>
 
     );

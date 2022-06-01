@@ -15,12 +15,12 @@ const db = mysql.createConnection({
 });
 
 app.post("/registerUser", (req, res) => {
-    const name = req.body.name
-    const password = req.body.password
-    const email = req.body.email
-    const age = req.body.age
-    const gender = req.body.gender
-    const mobileNumber = req.body.mobileNumber
+    const name = req.body.name;
+    const password = req.body.password;
+    const email = req.body.email;
+    const age = req.body.age;
+    const gender = req.body.gender;
+    const mobileNumber = req.body.mobileNumber;
 
     db.query(
         "INSERT INTO users (Name, Password, Email, Age, Gender, MobileNumber) VALUES (?, ?, ?, ?, ?, ?)",
@@ -44,10 +44,18 @@ app.post("/login", (req, res) => {
         [email, password],
         (err, result) => {
             if (err) {
-                console.log(err);
-            } else { res.send(result) };
+                res.send({ err: err })
+            }
 
-        });
+            if (result.length > 0) {
+                res.send(result)
+            } else {
+                res.send({ message: "Wrong name or password" })
+            }
+
+
+        }
+    );
 });
 
 
