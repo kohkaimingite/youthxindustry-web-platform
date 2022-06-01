@@ -64,7 +64,7 @@ app.post('/EditCompany', (req, res) => {
     const Email = req.body.Email;
     const Number = req.body.Number;
     const Bio = req.body.Bio;
-    db.query('UPDATE partners SET Email = ?, ContactNumber = ?, CompanyBio = ? WHERE PartnerID = 1;',
+    db.query('UPDATE partners SET Email = ?, ContactNumber = ?, PartnerBio = ? WHERE PartnerID = 1;',
         [Email, Number, Bio],
         (err, result) => {
             if (err) {
@@ -83,7 +83,7 @@ app.get('/Company', (req, res) => {
             if (err) {
                 console.log(err);
             } else {
-                res.send("Updated Information!");
+                res.send(result);
             }
         }
     )

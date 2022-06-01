@@ -60,7 +60,7 @@ function EditProfile() {
                 <div className="AlignMiddle">
 
                     <form method="post">
-                        <h3>Changes</h3>
+                        <h3>Changes: </h3>
                         <label>New Email:</label>
                         <input type="text" id='email' placeholder="Enter A Email" onChange={e => setEmail(e.target.value)}></input><text color='#FF0000'>{EmailCheck}</text><br />
                         <label>New Mobile Number:</label>

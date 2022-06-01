@@ -37,9 +37,7 @@ function UserProfile() {
                         <text>Full Name:</text><br />
                         <text>Email:</text><br />
                         <text>Mobile Number:</text><br />
-                        {ProfList.map((val, key) => {
-                            return <text align="Left">Bio : {val.userbio}</text>;
-                        })}<br />
+                        <text>Bio: </text><br />
                     </form>
                     
                     </div>
@@ -54,6 +52,9 @@ function UserProfile() {
                         })}<br />
                         {ProfList.map((val, key) => {
                             return <text align="Left">{val.MobileNumber}</text>;
+                        })}<br />
+                        {ProfList.map((val, key) => {
+                            return <text align="Left">{val.userbio}</text>;
                         })}<br />
                         
 
