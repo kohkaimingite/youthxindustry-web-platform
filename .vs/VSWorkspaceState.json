@@ -2,14 +2,13 @@
   "ExpandedNodes": [
     "",
     "\\node-mysql",
-    "\\public",
     "\\src",
-    "\\src\\components",
-    "\\src\\components\\PageHeader",
+    "\\src\\AboutPage",
     "\\src\\LoginPage",
     "\\src\\Manage",
     "\\src\\OppoPage",
     "\\src\\ReviewPage"
   ],
+  "SelectedNode": "\\src\\Manage\\CompanyProfile.js",
   "PreviewInSolutionExplorer": false
 }

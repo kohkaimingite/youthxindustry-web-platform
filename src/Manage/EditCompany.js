@@ -58,7 +58,7 @@ function EditCompany() {
                     <h3> Changes: </h3>
                     <br />
                     <label>New Email</label>
-                    <input type="text" id="email" placeholder="Enter an Email..." onChange={e => setEmail(e.target.value)}></input><br />
+                    <input type="email" id="email" placeholder="Enter an Email..." onChange={e => setEmail(e.target.value)}></input><br />
                     <label>New Contact Number</label>
                     <input type="text" id="number" placeholder="Enter a Contact Number..." onChange={e => setNumber(e.target.value)}></input><br />
                     <label>New Bio</label>
@@ -81,7 +81,7 @@ function EditCompany() {
         }).then(() => {
             console.log("Test");
             /*setCheck(response.data);*/
-            window.location = "http://localhost:3000/Company";
+            window.location = "http://localhost:3000/EditCompany";
         });
 
     };
