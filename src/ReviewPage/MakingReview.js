@@ -148,15 +148,16 @@ function MakingReview() {
                 <h4>Characters typed: {charCount}</h4>
                 <button onClick={() => submit(verify(jobChose))}>Submitttttttt</button>
                 
-                <h4>{test}</h4>
-                <h2>{review}</h2>
-                <h4>{jobChose}</h4>
+                
             </div>
             
 
         </div>
     );
 }
+//<h4>{test}</h4>
+ //<h2>{review}</h2>
+//<h4>{jobChose}</h4>
 //{val.OppID}
 //<button onClick={addTest}>Submitttttttt</button>
 //<button onClick={addReview}>Submitttttttt</button>
