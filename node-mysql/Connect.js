@@ -14,6 +14,8 @@ const db = mysql.createConnection({
     database: "fyp_db",
 });
 
+
+
 app.post("/registerUser", (req, res) => {
     const name = req.body.name;
     const password = req.body.password;
@@ -33,30 +35,57 @@ app.post("/registerUser", (req, res) => {
         });
 });
 
+app.post("/registerPartner", (req, res) => {
+    const name = req.body.name;
+    const password = req.body.password;
+    const email = req.body.email;
+    const contactNumber = req.body.contactNumber;
+
+    db.query(
+        "INSERT INTO partners (Name, Password, Email, ContactNumber) VALUES (?, ?, ?, ?)",
+        [name, password, email, contactNumber],
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else { res.send(result) };
+
+        });
+});
+
 
 app.post("/login", (req, res) => {
     const email = req.body.email
     const password = req.body.password
+    const name = req.body.name
+
+    if (email && password) {
+        db.query(
+            "SELECT * FROM users WHERE Email = ? AND Password = ?",
+            [email, password],
+            (err, result) => {
+                if (err) {
+                    res.send({ err: err })
+                }
+
+                if (result.length > 0) {
+                    res.send({message: "Correct Combination"})
+                    
+                   
+
+                } else {
+                    res.send({ message: "Wrong name or password" })
+                }
 
 
-    db.query(
-        "SELECT * FROM users WHERE Email = ? AND Password = ?",
-        [email, password],
-        (err, result) => {
-            if (err) {
-                res.send({ err: err })
             }
+        )
+    } else {
+        res.send({ message: "Email or password not entered" })
+    }
 
-            if (result.length > 0) {
-                res.send(result)
-            } else {
-                res.send({ message: "Wrong name or password" })
-            }
-
-
-        }
-    );
 });
+
+
 
 
 app.post("/addlisting", (req, res) => {
