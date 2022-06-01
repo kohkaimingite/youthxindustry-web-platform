@@ -8,6 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Collapsible from '../components/Collapsible';
 import axios from 'axios';
 import Datatable from './Datatable';
+import DatatableFav from './DatatableFav';
 require('es6-promise').polyfill();
 require('isomorphic-fetch');
 
@@ -336,7 +337,7 @@ function Favourites() {
                 <div class="sidenav">
 
                     <h2>Filter!</h2>
-                    <h4>Filter for Job</h4>
+                    <h4>Filter for Job Categories</h4>
                     <div>
 
                         <form >
@@ -371,7 +372,7 @@ function Favourites() {
                 </div>
                 <input type="text" value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search.." />
 
-                <Datatable data={filterAll(OppoList)} />
+                <DatatableFav data={filterAll(OppoList)} />
 
             </div>
 

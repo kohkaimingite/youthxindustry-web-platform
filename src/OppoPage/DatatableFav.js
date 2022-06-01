@@ -8,14 +8,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Collapsible from '../components/Collapsible';
 import axios from 'axios';
 
-export default function Datatable({ data }) {
+export default function DatatableFav({ data }) {
     const [OppoList, setOppoList] = useState([]);
     const columns = data[0] && Object.keys(data[0]);
     //const columns = OppoList[0] && Object.keys(OppoList[0]);
-    
-    
+
+
     return (
-        
+
         <table class="oppoTable">
             <tr>
                 <th>Job Code</th>
@@ -24,19 +24,19 @@ export default function Datatable({ data }) {
                 <th>Location</th>
                 <th>Address</th>
                 <th>Job Categories</th>
-                
+                <th>Delete?</th>
 
             </tr>
             {data.map(row => <tr>
                 {
                     columns.map(column => <td style={{ textAlign: 'left' }}>{row[column]}</td>)
-                    
+
                 }
-                
+                <td>delete button</td>
 
             </tr>)}
         </table>
 
-            
-        );
+
+    );
 }

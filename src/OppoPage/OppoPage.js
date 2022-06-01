@@ -328,7 +328,7 @@ function OppoPage() {
                 <div class="sidenav">
 
                     <h2>Filter!</h2>
-                    <h4>Filter for Job</h4>
+                    <h4>Filter for Job Categories</h4>
                     <div>
 
                         <form >
