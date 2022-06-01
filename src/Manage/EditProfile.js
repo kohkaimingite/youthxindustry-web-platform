@@ -11,10 +11,11 @@ import axios from 'axios';
 
 
 
-function UserProfile() {
+function EditProfile() {
+    /*const Regex = new RegExp('*@*.com');*/
     const [Check, setCheck] = useState("");
     const [Bio, setBio] = useState("");
-    const [EmailCheck, setEmailCheck] = useState("");
+    const [EmailCheck, setEmailCheck] = useState("test");
     const [Number, setNumber] = useState("");
     const [Email, setEmail] = useState("");
     const [NumberCheck, setNumberCheck] = useState("");
@@ -59,7 +60,7 @@ function UserProfile() {
                 <div className="AlignMiddle">
 
                     <form method="post">
-                        <h3>Testing</h3>
+                        <h3>Changes</h3>
                         <label>New Email:</label>
                         <input type="text" id='email' placeholder="Enter A Email" onChange={e => setEmail(e.target.value)}></input><text color='#FF0000'>{EmailCheck}</text><br />
                         <label>New Mobile Number:</label>
@@ -75,23 +76,23 @@ function UserProfile() {
         </div>
 
     )
-    function checkInput() {
-    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(Email)) {
-        setEmailCheck("Ok Email")
-    }
-    else {
-        setEmailCheck("Please Enter a Valid Email!")
-    }
-        if ('email' == "") {
-            setEmailCheck("Please Enter an Email!")
-        }
-        else if ('email' != "'*'@'*'.com") {
-            setEmailCheck("Please Enter A Valid Email")
-        }
-        else {
-            setEmailCheck("Ok Email")
-        }
-    }
+    //function checkInput() {
+    //if (Regex.test(Email)) {
+    //    setEmailCheck("Ok Email")
+    //}
+    //else {
+    //    setEmailCheck("Please Enter a Valid Email!")
+    //}
+    //    if ('email' == "") {
+    //        setEmailCheck("Please Enter an Email!")
+    //    }
+    //    else if ('email' != "'*'@'*'.com") {
+    //        setEmailCheck("Please Enter A Valid Email")
+    //    }
+    //    else {
+    //        setEmailCheck("Ok Email")
+    //    }
+    //}
     function submit() {
         axios.post("http://localhost:3001/EditProfile", {
             Number: parseInt(Number),
@@ -105,4 +106,4 @@ function UserProfile() {
     };
 }//ADD IF STATEMENT TO CHECK FOR IF IT IS SUCCESSFUL
 
-export default UserProfile;
+export default EditProfile;

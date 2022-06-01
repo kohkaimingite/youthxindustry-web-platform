@@ -17,6 +17,7 @@ import EditProfile from './Manage/EditProfile';
 import MakingReview from './ReviewPage/MakingReview';
 import ReviewSuccess from './ReviewPage/ReviewSuccess'; 
 import ReviewNoSuccess from './ReviewPage/ReviewNoSuccess';
+import EditCompany from './Manage/EditCompany';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
@@ -37,6 +38,7 @@ root.render(
                 <Route path='/MakingReview' element={<MakingReview />} />
                 <Route path='/ReviewSuccess' element={<ReviewSuccess />} />
                 <Route path='/ReviewNoSuccess' element={<ReviewNoSuccess />} />
+                <Route path='/EditCompany' element={<EditCompany />} />
 
         </Routes>
     </Router>
