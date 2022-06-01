@@ -1,5 +1,6 @@
 // JavaScript source code
-import { Link } from 'react-router-dom'
+import React from "react";
+import { Route, Link } from 'react-router-dom';
 import classes from '../components/AdminNavBar.module.css'
 
 const AdminNavBar = () => {
@@ -12,15 +13,15 @@ const AdminNavBar = () => {
                     </li>
 
                     <li>
-                        <a href="/EditUser">Edit Users</a>
+                        <Link to="/EditUser">Edit Users</Link>
                     </li>
 
                     <li>
-                        <a href="/EditOppo">Edit Opportunities</a>
+                        <Link to="/EditOppo">Edit Opportunities</Link>
                     </li>
 
                     <li>
-                        <a href="/MngPartner">Manage Partners</a>
+                        <Link to="/MngPartner">Manage Partners</Link>
                     </li>
                 </ul>
             </nav>

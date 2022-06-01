@@ -1,10 +1,10 @@
 // JavaScript source code
-import React, { Component } from 'react';
+import React from 'react';
 import axios from 'axios';
 import NavBar from '../components/NavBar'
 import AdminNavBar from './AdminNavBar';
 
-const EditOppo = () => {
+function EditOppo() {
     return (
         <div className={classes.EditOppo} id="EditOppo">
             <NavBar/>

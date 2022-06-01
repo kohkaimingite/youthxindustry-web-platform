@@ -60,3 +60,31 @@ app.post('/EditProfile', (req, res) => {
     )
 })
 
+app.post('/EditCompany', (req, res) => {
+    const Email = req.body.Email;
+    const Number = req.body.Number;
+    const Bio = req.body.Bio;
+    db.query('UPDATE partners SET Email = ?, ContactNumber = ?, PartnerBio = ? WHERE PartnerID = 1;',
+        [Email, Number, Bio],
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send("Updated Information!");
+            }
+        }
+    )
+})
+
+
+app.get('/Company', (req, res) => {
+    db.query("SELECT partnerID, Name, Email, PartnerBio, ContactNumber FROM partners WHERE PartnerID = 1;",
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send(result);
+            }
+        }
+    )
+})
