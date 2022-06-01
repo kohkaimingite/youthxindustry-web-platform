@@ -91,11 +91,11 @@ function MakingReview() {
             addTest();
             window.location = "http://localhost:3000/ReviewSuccess";
         } else {
-            window.location = "http://localhost:3000/ReviewNoSuccess";
+            return;
         }
 
     }
-
+    //window.location = "http://localhost:3000/ReviewNoSuccess"
     useEffect(() => {
         axios.get("http://localhost:3001/getReview").then((response) => {
 
@@ -133,11 +133,11 @@ function MakingReview() {
                 </div>
                 <div >
                     
-                    <h4>Choose job code</h4>
+                    <h4>Choose job</h4>
                     <select onChange={(e) => setJobChose(e.target.value)} >
-                        <option value="0">Select Job Code:</option>
+                        <option value="0">Select Job:</option>
                         {jobList.map((val, key) => {
-                            return <option value={ val.OppID }  >{val.OppID}</option>;
+                            return <option value={val.OppID}  >{val.OppID} - {val.Name}</option>;
                         })}
                         
                     </select>
@@ -147,7 +147,7 @@ function MakingReview() {
                 <textarea placeholder="Provide some reviews! Maximum 150 characters" id="review" name="review" value={review} onChange={e => { setReview(e.target.value); setCharCount(e.target.value.length) }} style={styles.textArea} maxLength="150"> </textarea>
                 <h4>Characters typed: {charCount}</h4>
                 <button onClick={() => submit(verify(jobChose))}>Submitttttttt</button>
-                
+                <h4>{test}</h4>
                 
             </div>
             
@@ -155,7 +155,7 @@ function MakingReview() {
         </div>
     );
 }
-//<h4>{test}</h4>
+//
  //<h2>{review}</h2>
 //<h4>{jobChose}</h4>
 //{val.OppID}

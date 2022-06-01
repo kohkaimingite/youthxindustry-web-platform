@@ -32,9 +32,12 @@ export default function Login() {
             <NavBar />
             <div className="login">
                 <h1>Login</h1>
+
                 <label>Email</label>
                 <input type="email"
                     placeholder="Email..."
+                    id="email"
+                    required
                     onChange={(e) => {
                         setEmail(e.target.value);
                     }}
@@ -42,12 +45,15 @@ export default function Login() {
                 <label>Password</label>
                 <input type="password"
                     placeholder="Password..."
+                    id="password"
+                    required
                     onChange={(e) => {
                         setPassword(e.target.value);
                     }}
                 />
 
                 <button onClick={login}>Login</button>
+
             </div>
             <h1>{status}</h1>
         </div>
