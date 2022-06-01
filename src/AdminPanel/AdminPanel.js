@@ -1,5 +1,6 @@
 // JavaScript source code
-import React, { Component } from 'react';
+import React from 'react';
+import { Link } from 'react-router-dom'
 import NavBar from '../components/NavBar'
 import AdminNavBar from './AdminNavBar';
 import classes from '../components/AdminPanel.module.css'
