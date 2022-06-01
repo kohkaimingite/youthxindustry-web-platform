@@ -8,3 +8,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Collapsible from '../components/Collapsible';
 import { Route, Link } from 'react-router-dom';
 import axios from 'axios';
+
+function EditCompany() {
+
+
+
+}
+
+export default EditCompany;
