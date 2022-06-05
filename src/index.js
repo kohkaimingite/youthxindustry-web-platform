@@ -4,6 +4,10 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import AdminPanel from './AdminPanel/AdminPanel';
+import EditOppo from './AdminPanel/EditOppo';
+import EditUser from './AdminPanel/EditUser';
+import MngPartner from './AdminPanel/MngPartner';
 import AboutPage from './AboutPage/AboutPage';
 import OppoPage from './OppoPage/OppoPage';
 import ContactPage from './ContactPage/ContactPage';
@@ -25,6 +29,10 @@ root.render(
         <Router>
         <Routes>
                 <Route path='/' element={<App />} />
+                <Route path='/AdminPanel' element={<AdminPanel />} />
+                <Route path='/EditOppo' element={<EditOppo />} />
+                <Route path='/EditUser' element={<EditUser />} />
+                <Route path='/MngPartner' element={<MngPartner />} />
                 <Route path='/AboutUs' element={<AboutPage />} />
                 <Route path='/Opportunities' element={<OppoPage />} />
                 <Route path='/ContactUs' element={<ContactPage />} />

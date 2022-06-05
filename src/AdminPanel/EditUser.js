@@ -1,11 +1,11 @@
 // JavaScript source code
 import React, { Component } from 'react';
-import NavBar from '../components/NavBar'
+import NavBar from '../components/NavBar';
 import AdminNavBar from '../components/AdminNavBar';
 
-const EditUser = () => {
+function EditUser() {
     return (
-        <div className={classes.EditUser} id="EditUser">
+        <div className="App">
             <NavBar/>
             <AdminNavBar/>
             <h1>edit user</h1>

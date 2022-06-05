@@ -1,12 +1,12 @@
 // JavaScript source code
 import React from 'react';
 import axios from 'axios';
-import NavBar from '../components/NavBar'
-import AdminNavBar from './AdminNavBar';
+import NavBar from '../components/NavBar';
+import AdminNavBar from '../components/AdminNavBar';
 
 function EditOppo() {
     return (
-        <div className={classes.EditOppo} id="EditOppo">
+        <div className="App">
             <NavBar/>
             <AdminNavBar/>
             <h1 className="page-header text-center">Edit Opportunities</h1>
