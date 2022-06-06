@@ -13,6 +13,7 @@ import OppoPage from './OppoPage/OppoPage';
 import ContactPage from './ContactPage/ContactPage';
 import Login from './LoginPage/Login';
 import SignUp from './Register/SignUp';
+import SignUpPartner from './Register/SignUpPartner'
 import Favourites from './OppoPage/Favourites';
 import OneJob from './OppoPage/OneJob';
 import ProfilePage from './Manage/UserProfile';
@@ -39,6 +40,7 @@ root.render(
                 <Route path='/Login' element={<Login />} />
                 <Route path='/Favourites' element={<Favourites />} />
                 <Route path='/Register' element={<SignUp />} />
+                <Route path='/RegisterPartner' element={<SignUpPartner />} />
                 <Route path='/job' element={<OneJob />} />
                 <Route path='/Profile' element={<ProfilePage />} />
                 <Route path='/Company' element={<CompanyPage />} />

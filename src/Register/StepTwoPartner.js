@@ -30,6 +30,7 @@ const StepTwoPartner = ({ nextStep, handleFormData, prevStep, values }) => {
                                 style={{ border: error ? "2px solid red" : "" }}
                                 defaultValue={values.email}
                                 type="email"
+                                required
                                 placeholder="E.g: newuser@gmail.com"
                                 onChange={handleFormData("email")}
                             />
@@ -47,8 +48,9 @@ const StepTwoPartner = ({ nextStep, handleFormData, prevStep, values }) => {
                             <Form.Label>Contact Number</Form.Label>
                             <Form.Control
                                 style={{ border: error ? "2px solid red" : "" }}
-                                defaultValue={values.mobileNumber}
+                                defaultValue={values.contactNumber}
                                 type="tel"
+                                required
                                 id="contactNumber"
                                 name="contactNumber"
                                 pattern="(8|9)\d{7}"

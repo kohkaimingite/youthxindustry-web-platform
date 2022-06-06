@@ -14,7 +14,7 @@ function SignUpPartner() {
         name: "",
         password: "",
         email: "",
-        contactNumber: ""
+        contactNumber: "",
     })
 
     // function for going to next step by increasing step state by 1
