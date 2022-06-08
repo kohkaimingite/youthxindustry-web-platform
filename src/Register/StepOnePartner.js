@@ -34,6 +34,7 @@ const StepOnePartner = ({ nextStep, handleFormData, values }) => {
                                 name="name"
                                 defaultValue={values.name}
                                 type="text"
+                                required
                                 placeholder="Name..."
                                 onChange={handleFormData("name")}
                             />
@@ -52,6 +53,7 @@ const StepOnePartner = ({ nextStep, handleFormData, values }) => {
                                 style={{ border: error ? "2px solid red" : "" }}
                                 defaultValue={values.password}
                                 type="password"
+                                required
                                 id="password"
                                 name="password"
                                 pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"

@@ -4,11 +4,16 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import AdminPanel from './AdminPanel/AdminPanel';
+import EditOppo from './AdminPanel/EditOppo';
+import EditUser from './AdminPanel/EditUser';
+import MngPartner from './AdminPanel/MngPartner';
 import AboutPage from './AboutPage/AboutPage';
 import OppoPage from './OppoPage/OppoPage';
 import ContactPage from './ContactPage/ContactPage';
 import Login from './LoginPage/Login';
 import SignUp from './Register/SignUp';
+import SignUpPartner from './Register/SignUpPartner'
 import Favourites from './OppoPage/Favourites';
 import OneJob from './OppoPage/OneJob';
 import ProfilePage from './Manage/UserProfile';
@@ -25,12 +30,17 @@ root.render(
         <Router>
         <Routes>
                 <Route path='/' element={<App />} />
+                <Route path='/AdminPanel' element={<AdminPanel />} />
+                <Route path='/EditOppo' element={<EditOppo />} />
+                <Route path='/EditUser' element={<EditUser />} />
+                <Route path='/MngPartner' element={<MngPartner />} />
                 <Route path='/AboutUs' element={<AboutPage />} />
                 <Route path='/Opportunities' element={<OppoPage />} />
                 <Route path='/ContactUs' element={<ContactPage />} />
                 <Route path='/Login' element={<Login />} />
                 <Route path='/Favourites' element={<Favourites />} />
                 <Route path='/Register' element={<SignUp />} />
+                <Route path='/RegisterPartner' element={<SignUpPartner />} />
                 <Route path='/job' element={<OneJob />} />
                 <Route path='/Profile' element={<ProfilePage />} />
                 <Route path='/Company' element={<CompanyPage />} />

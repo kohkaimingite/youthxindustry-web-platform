@@ -21,9 +21,6 @@ function EditProfile() {
     const [NumberCheck, setNumberCheck] = useState("");
     const [ProfList, setProfList] = useState([]);
     const columns = ProfList[0] && Object.keys(ProfList[0]);
-    const getProfile = () => {
-
-    };
     useEffect(() => {
         axios.get("http://localhost:3001/profile").then((response) => {
 
@@ -62,11 +59,11 @@ function EditProfile() {
                     <form method="post">
                         <h3>Changes: </h3>
                         <label>New Email:</label>
-                        <input type="text" id='email' placeholder="Enter A Email" onChange={e => setEmail(e.target.value)}></input><text color='#FF0000'>{EmailCheck}</text><br />
+                        <input type="Email" id='email' placeholder="Enter A Email..." onChange={e => setEmail(e.target.value)}></input><text color='#FF0000'>{EmailCheck}</text><br />
                         <label>New Mobile Number:</label>
                         <input type="text" id='number' placeholder="Enter A Mobile Number..." onChange={e => setNumber(e.target.value)}></input><text color='#FF0000'>{NumberCheck}</text><br />
                         <label>New Bio: </label>
-                        <input type="text" id='bio' placeholder="Enter New Bio..." onChange={e => setBio(e.target.value)}></input>
+                        <input type="text" id='bio' placeholder="Enter New Bio..." onChange={e => setBio(e.target.value)}></input><br />
                         <button onClick={submit}> Confirm </button>
                         <text align='left'>{Check}</text>
                     </form>
@@ -77,22 +74,22 @@ function EditProfile() {
 
     )
     //function checkInput() {
-    //if (Regex.test(Email)) {
-    //    setEmailCheck("Ok Email")
-    //}
-    //else {
-    //    setEmailCheck("Please Enter a Valid Email!")
-    //}
-    //    if ('email' == "") {
-    //        setEmailCheck("Please Enter an Email!")
-    //    }
-    //    else if ('email' != "'*'@'*'.com") {
-    //        setEmailCheck("Please Enter A Valid Email")
-    //    }
-    //    else {
+    //    if (Regex.test(Email)) {
     //        setEmailCheck("Ok Email")
     //    }
-    //}
+    //    else {
+    //        setEmailCheck("Please Enter a Valid Email!")
+    //    }
+        //    if ('email' == "") {
+        //        setEmailCheck("Please Enter an Email!")
+        //    }
+        //    else if ('email' != "'*'@'*'.com") {
+        //        setEmailCheck("Please Enter A Valid Email")
+        //    }
+        //    else {
+        //        setEmailCheck("Ok Email")
+        //    }
+        //}
     function submit() {
         axios.post("http://localhost:3001/EditProfile", {
             Number: parseInt(Number),
@@ -101,9 +98,8 @@ function EditProfile() {
         }).then(() => {
             console.log("Test");
             /*setCheck(response.data);*/
-            window.location = "http://localhost:3000/Profile";
+            window.location = "http://localhost:3000/EditProfile";
         });
     };
 }//ADD IF STATEMENT TO CHECK FOR IF IT IS SUCCESSFUL
-
 export default EditProfile;

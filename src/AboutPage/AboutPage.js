@@ -9,7 +9,7 @@
             //<h2>Picure of logo with "login" button</h2>
 import React, { Component } from 'react';
 import NavBar from '../components/NavBar'
-import AdminNavBar from '../AdminPanel/AdminNavBar'
+import AdminNavBar from '../components/AdminNavBar'
 function AboutPage() {
     return (
         <div className="App">
