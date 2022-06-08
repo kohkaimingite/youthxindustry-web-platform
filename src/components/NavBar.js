@@ -5,40 +5,54 @@ import React, { Component } from 'react';
 //
 const NavBar  = () => {
         return (
-            <header class = 'header'>
-                <h1 style={brandName}>Testing nav bar</h1>
-                
-                <Link to="/AboutUs"><button class= "button aboutUsButton">About Us</button> </Link>
-                        <div class="dropdown">
+            <header class='header' style={test}>
+                <h1 style={brandName}>CYC</h1>
+                <div class="container teal borderYtoX">
+                    <a href="/AboutUs">About Us</a>
+                    <a href="/Opportunities">Opportunities</a>
+                    <a href="/Favourites">Favourites</a>
+                    <a href="/ContactUs">Contact Us</a>
+                    <a href="/Login">Login</a>
+                    <a href="/Register">Register</a>
+                    <a href="/makingReview">Making Review</a>
+                    <a href="/Profile">Profile</a>
+                    <a href="/EditProfile">Edit Profile</a>
+                    
 
-                        <Link to="/Opportunities"><button class= "button oppoButton">Opportunities</button> </Link>
-
-                            <div class="dropdown-content">
-
-                        <Link to="/Favourites"><button class="button oppoButton">Favourites</button></Link>
-                            </div>
-
-                        </div>
-                
-                    <Link to="/ContactUs"><button class= "button contactButton">Contact us</button> </Link>
-                    <Link to="/Login"><button class= "button loginButton">Login</button> </Link>
-                <Link to="/Register"><button class="button registerButton">Register</button></Link>
-                <Link to="/makingReview"><button class="button registerButton">review</button></Link>
-                <div class="dropdown">
-                    <Link to="/Profile"><button class="button ProfileButton">Profile</button></Link>
-                    <div class="dropdown-content">
-                        <Link to="/EditProfile"><button class="button ProfileButton">Edit Profile</button></Link>
-                        </div>
                 </div>
+                
             </header>
              
             )
 }
 
+
 const brandName = {
     color: "white",
-    backgroundColor: 'red'
+    
 }
+const test = {
+    
+    backgroundColor: '#FFD700'
+}
+const styles = {
+    container: {
+
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center"
+    },
+    textArea: {
+        border: "1px solid #a9a9a9",
+        borderRadius: 5,
+        padding: 10,
+        margin: "20px 0",
+        minHeight: 200,
+        width: 300
+
+    }
+    
+};
 
 
 export default NavBar 

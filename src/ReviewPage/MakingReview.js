@@ -27,7 +27,7 @@ function MakingReview() {
     const [jobList, setJobList] = useState([]);
     const [data, setData] = useState([]);
     const columns = data[0] && Object.keys(data[0]);
-    const [userID,setUserID] = useState(1);
+    const [userID,setUserID] = useState(2);
 
     const [rating, setRating] = useState(0);
     const [review, setReview] = useState("");
@@ -146,7 +146,7 @@ function MakingReview() {
 
                 <textarea placeholder="Provide some reviews! Maximum 150 characters" id="review" name="review" value={review} onChange={e => { setReview(e.target.value); setCharCount(e.target.value.length) }} style={styles.textArea} maxLength="150"> </textarea>
                 <h4>Characters typed: {charCount}</h4>
-                <button onClick={() => submit(verify(jobChose))}>Submitttttttt</button>
+                <button onClick={() => submit(verify(jobChose))}>Submit</button>
                 <h4>{test}</h4>
                 
             </div>

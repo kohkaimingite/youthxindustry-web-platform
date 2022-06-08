@@ -364,7 +364,7 @@ function OppoPage() {
                 <input type="text" value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search.." />
                 
                 <Datatable data={filterAll(OppoList)} />
-
+                
             </div>
             
             

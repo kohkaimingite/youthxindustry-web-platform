@@ -12,8 +12,15 @@ export default function DatatableFav({ data }) {
     const [OppoList, setOppoList] = useState([]);
     const columns = data[0] && Object.keys(data[0]);
     //const columns = OppoList[0] && Object.keys(OppoList[0]);
-
-
+    function deleteFav(oppoID) {
+        axios.post("http://localhost:3001/deleteFav", {
+            OppID: parseInt(oppoID),
+            UserID: 2
+        }).then(() => {
+            console.log("Deleted sucessfully!");
+        });
+    }
+   
     return (
 
         <table class="oppoTable">
@@ -31,8 +38,9 @@ export default function DatatableFav({ data }) {
                 {
                     columns.map(column => <td style={{ textAlign: 'left' }}>{row[column]}</td>)
 
+
                 }
-                <td>delete button</td>
+                <td><button onClick={() => deleteFav(row[columns[0]])}>delete {row[columns[0]]}</button></td>
 
             </tr>)}
         </table>
@@ -40,3 +48,5 @@ export default function DatatableFav({ data }) {
 
     );
 }
+// onClick={() => deleteFav({row[columns[0]]})}
+//<td><button>{row[columns[1]]}</button></td>

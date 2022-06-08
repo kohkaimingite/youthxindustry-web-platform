@@ -38,7 +38,8 @@ function Favourites() {
     const [East, setEast] = useState("");
     const [West, setWest] = useState("")
 
-
+    const [test, setTest] = useState("kol");
+    const [userID, setUserID] = useState(2);
     const columns = data[0] && Object.keys(data[0]);
     const [t, setT] = useState("");
     const [searchColumns, setSearchColumns] = useState([
@@ -62,11 +63,19 @@ function Favourites() {
         return rows.filter((row) => row.Type.toLowerCase().indexOf(q.toLowerCase()) > -1
         );
     }
-
-    useEffect(() => {
-        axios.get("http://localhost:3001/FavOppo", {
+    function deleteme() {
+        axios.post("http://localhost:3001/deleteFav", {
+            OppID: 696969,
+            UserID: 2
             
-            UserID: 1,
+        }).then(() => {
+            console.log("deleted sucessfully!");
+        });
+    };
+    useEffect(() => {
+        axios.post("http://localhost:3001/FavOppo", {
+            
+            UserID: userID
             
         }).then((response) => {
 
@@ -266,6 +275,9 @@ function Favourites() {
     function filterAll(row) {
         return filterType(filterLocation(row))
     }
+    function fun() {
+        setTest("pp")
+    };
     //return changed.concat(og.filter((row) => row.Location.toLowerCase().indexOf("central") > -1));
     //return changed.concat(og.filter((row) => row.Location.toLowerCase().indexOf("west") > -1));
     function changeState(boo, val) {
@@ -333,7 +345,7 @@ function Favourites() {
 
 
             <div className="main">
-                <h1>Job Listings</h1>
+                <h1>Favourites</h1>
                 <div class="sidenav">
 
                     <h2>Filter!</h2>
@@ -365,6 +377,7 @@ function Favourites() {
                         </form>
 
                     </div>
+                    
 
 
 
@@ -373,6 +386,7 @@ function Favourites() {
                 <input type="text" value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search.." />
 
                 <DatatableFav data={filterAll(OppoList)} />
+                
 
             </div>
 

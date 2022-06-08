@@ -38,9 +38,9 @@ app.get('/Oppo', (req, res) => {
     });
 });
 
-app.get('/FavOppo', (req, res) => {
+app.post('/FavOppo', (req, res) => {
     const UserID = req.body.UserID;
-    db.query("SELECT opportunities.OppID, Name, Description, Location, Address, Type FROM opportunities INNER JOIN users_have_fav ON opportunities.OppID = users_have_fav.OppID WHERE users_have_fav.UserID = 1 ORDER BY opportunities.OppID;",
+    db.query("SELECT opportunities.OppID, Name, Description, Location, Address, Type FROM opportunities INNER JOIN users_have_fav ON opportunities.OppID = users_have_fav.OppID WHERE users_have_fav.UserID = 2 ORDER BY opportunities.OppID;",
         [UserID],
         (err, result) => {
         if (err) {
@@ -49,6 +49,71 @@ app.get('/FavOppo', (req, res) => {
 
     });
 });
+
+app.post('/CheckFavOppo', (req, res) => {
+    const UserID = req.body.UserID;
+    const OppID = req.body.OppID;
+    db.query("SELECT * FROM users_have_fav  WHERE UserID = 2 AND OppID = 0 ;",
+        [UserID, OppID],
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else { res.send(result) };
+
+        });
+});
+
+
+app.get('/Check123FavOppo', (req, res) => {
+    db.query("SELECT * FROM users_have_fav  WHERE EXISTS( SELECT users_have_fav WHERE UserID = 2 AND OppID = 696969 );", (err, result) => {
+        if (err) {
+            console.log(err);
+        } else { res.send(result) };
+
+    });
+});
+app.post('/deleteFav', (req, res) => {
+    const OppID = req.body.OppID;
+    const UserID = req.body.UserID;
+    
+    db.query('DELETE FROM users_have_fav WHERE OppID = ? AND UserID = ?;',
+        [ OppID, UserID],
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send("Deleted fav!");
+            }
+        }
+    );
+
+});
+
+app.post('/addFav', (req, res) => {
+    const OppID = req.body.OppID;
+    const UserID = req.body.UserID;
+
+    db.query('INSERT INTO users_have_fav (UserID, OppID) VALUE (?, ?);',
+        [UserID, OppID ],
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send("added fav!");
+            }
+        }
+    );
+
+});
+app.get('/getReview', (req, res) => {
+    db.query("SELECT users_have_opp.UserID, users_have_opp.OppID, users_have_opp.Review, users_have_opp.Rating, opportunities.Name FROM users_have_opp INNER JOIN opportunities ON users_have_opp.OppID = opportunities.OppID WHERE Review IS NULL ORDER BY OppID", (err, result) => {
+        if (err) {
+            console.log(err);
+        } else { res.send(result) };
+
+    });
+});
+
 app.get('/getReview', (req, res) => {
     db.query("SELECT users_have_opp.UserID, users_have_opp.OppID, users_have_opp.Review, users_have_opp.Rating, opportunities.Name FROM users_have_opp INNER JOIN opportunities ON users_have_opp.OppID = opportunities.OppID WHERE Review IS NULL ORDER BY OppID", (err, result) => {
         if (err) {
