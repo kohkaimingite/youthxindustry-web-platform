@@ -111,12 +111,12 @@ function MakingReview() {
             
             <div className="main">
                 
-                <h2>Star rating and review</h2>
+                <h2>Leave a review!</h2>
                 <div style={styles.stars}>
                     {stars.map((_, index) => {
                         return (
                             <FontAwesomeIcon icon={faStar} key={index}
-                                size={24}
+                                size="xl"
                                 onClick={() => handleClick(index + 1)}
                                 onMouseOver={() => handleMouseOver(index + 1)}
                                 onMouseLeave={handleMouseLeave}
@@ -147,8 +147,8 @@ function MakingReview() {
                 <textarea placeholder="Provide some reviews! Maximum 150 characters" id="review" name="review" value={review} onChange={e => { setReview(e.target.value); setCharCount(e.target.value.length) }} style={styles.textArea} maxLength="150"> </textarea>
                 <h4>Characters typed: {charCount}</h4>
                 <button onClick={() => submit(verify(jobChose))}>Submit</button>
-                <h4>{test}</h4>
-                
+                <h2>{test}</h2>
+                <button class="testingSubmit" onClick={() => submit(verify(jobChose))} >Testing submit</button>
             </div>
             
 
