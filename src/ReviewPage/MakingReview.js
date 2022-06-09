@@ -137,7 +137,7 @@ function MakingReview() {
                     <select onChange={(e) => setJobChose(e.target.value)} >
                         <option value="0">Select Job:</option>
                         {jobList.map((val, key) => {
-                            return <option value={val.OppID}  >{val.OppID} - {val.Name}</option>;
+                            return <option value={val.OppID}  >{val.OppID}: {val.Name}</option>;
                         })}
                         
                     </select>
