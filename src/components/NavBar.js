@@ -7,7 +7,8 @@ const NavBar  = () => {
         return (
             <header class='header' style={test}>
                 <h1 style={brandName}>CYC</h1>
-                <div class="container teal borderYtoX">
+                <div class="containerNavBar borderYtoX">
+                    <a href="/">Home</a>
                     <a href="/AboutUs">About Us</a>
                     <a href="/Opportunities">Opportunities</a>
                     <a href="/Favourites">Favourites</a>
@@ -31,28 +32,16 @@ const brandName = {
     color: "white",
     
 }
+//position: "fixed",
+//    width: "100%",
+ //       top: 0,
+ //           margin: "0  0 30px",
 const test = {
     
     backgroundColor: '#FFD700'
-}
-const styles = {
-    container: {
-
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center"
-    },
-    textArea: {
-        border: "1px solid #a9a9a9",
-        borderRadius: 5,
-        padding: 10,
-        margin: "20px 0",
-        minHeight: 200,
-        width: 300
-
-    }
     
-};
+}
+
 
 
 export default NavBar 

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@600&display=swap');
+
 .App {
   text-align: center;
 }
@@ -106,64 +108,7 @@ ul li {
     cursor: pointer;
 }
 
-.aboutUsButton {
-    background-color: white;
-    color: black;
-    border: 2px solid red;
-}
 
-    .aboutUsButton:hover {
-        background-color: red;
-        color: white;
-    }
-
-.oppoButton {
-    background-color: white;
-    color: black;
-    border: 2px solid #880db5;
-}
-
-    .oppoButton:hover {
-        background-color: #880db5;
-        color: white;
-    }
-.contactButton {
-    background-color: white;
-    color: black;
-    border: 2px solid #1c26e8;
-}
-
-    .contactButton:hover {
-        background-color: #1c26e8;
-        color: white;
-    }
-
-.loginButton {
-    background-color: white;
-    color: black;
-    border: 2px solid #0db88a;
-}
-
-    .loginButton:hover {
-        background-color: #0db88a;
-        color: white;
-    }
-.registerButton {
-    background-color: white;
-    color: black;
-    border: 2px solid #b8950d;
-}
-
-    .registerButton:hover {
-        background-color: #b8950d;
-        color: white;
-    }
-
-.ProfileButton {
-    background-color: white;
-    color: black;
-    border: 2px solid #FFF700;
-}
 
 .oppoTable {
     width: 79%;
@@ -172,23 +117,16 @@ ul li {
     margin-right: 2%;
     margin-left: auto;
 }
-.oppoTableRow {
-    width: 100%;
-    border: 1px solid black;
-    border-collapse: collapse;
-}
-.oppoTableRow:hover {
-    background-color: #D6EEEE;
-}
-tr:hover {
-    background-color: #D6EEEE;
-}
 
-th {
+
+.oppoTable tr:hover {
+    background-color: #edead5;
+}
+.oppoTable th {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
-    background-color: #04AA6D;
+    background-color: #DAA520;
     color: white;
 }
 
@@ -329,20 +267,20 @@ div.borderYtoX a:after {
     bottom: 0px;
 }
 
-div.borderYtoX a:hover:before, div.borderYtoX a:hover:after {
+div.borderYtoX a:hover:before, div.borderYtoX a:hover:after{
     opacity: 1;
     height: 2px;
     width: 100%;
 }
-div.container {
-    font-family: Raleway;
+div.containerNavBar {
+    font-family: 'Raleway', sans-serif;
     margin: 0 auto;
     padding: 2em 3em;
     text-align: center;
 
 }
 
-    div.container a {
+    div.containerNavBar a {
         color: black;
         text-decoration: none;
         font: 20px Raleway;

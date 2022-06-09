@@ -7,6 +7,8 @@ import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Collapsible from '../components/Collapsible';
 import axios from 'axios';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
 
 export default function Datatable({ data }) {
     const [OppoList, setOppoList] = useState([]);
@@ -119,7 +121,7 @@ export default function Datatable({ data }) {
                     columns.map(column => <td style={{ textAlign: 'left' }}>{row[column]}</td>)
                     
                 }
-                <td><button onClick={() => addFav(testing(row[columns[0]], wtfTesting(row[columns[0]])), row[columns[0]])}>{row[columns[0]]} {test}</button></td>
+                <td><FontAwesomeIcon icon={faStar} onClick={() => addFav(testing(row[columns[0]], wtfTesting(row[columns[0]])), row[columns[0]])}>{row[columns[0]]} {test}</FontAwesomeIcon></td>
 
             </tr>)}
         </table>

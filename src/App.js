@@ -34,6 +34,7 @@ import AdminPanel from './AdminPanel/AdminPanel'
 function App() {
   return (
       <div className="App">
+          
           <NavBar />
           
           <AboutmeSet/>

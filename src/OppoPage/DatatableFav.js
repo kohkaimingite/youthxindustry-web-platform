@@ -7,6 +7,8 @@ import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Collapsible from '../components/Collapsible';
 import axios from 'axios';
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function DatatableFav({ data }) {
     const [OppoList, setOppoList] = useState([]);
@@ -40,7 +42,7 @@ export default function DatatableFav({ data }) {
 
 
                 }
-                <td><button onClick={() => deleteFav(row[columns[0]])}>delete {row[columns[0]]}</button></td>
+                <td><FontAwesomeIcon icon={faTrash} onClick={() => deleteFav(row[columns[0]])}>delete {row[columns[0]]}</FontAwesomeIcon></td>
 
             </tr>)}
         </table>
