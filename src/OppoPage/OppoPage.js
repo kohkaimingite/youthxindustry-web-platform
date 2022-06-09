@@ -324,7 +324,7 @@ function OppoPage() {
 
             
             <div className="main">
-                <h1>Opportunities</h1>
+                <h1 class="oppoNFavTitle">Opportunities</h1>
                 <div class="sidenav">
 
                     <h2>Filter!</h2>
@@ -377,5 +377,4 @@ function OppoPage() {
 
 //<Datatable data={search(OppoList)} />
 //<Datatable data={typeBox(search(OppoList))} />
-
 export default OppoPage;

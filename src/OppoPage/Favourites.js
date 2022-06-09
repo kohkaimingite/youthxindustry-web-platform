@@ -345,7 +345,7 @@ function Favourites() {
 
 
             <div className="main">
-                <h1>Favourites</h1>
+                <h1 class="oppoNFavTitle">Favourites</h1>
                 <div class="sidenav">
 
                     <h2>Filter!</h2>

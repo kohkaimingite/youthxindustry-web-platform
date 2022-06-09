@@ -108,26 +108,34 @@ ul li {
     cursor: pointer;
 }
 
-
-
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
 .oppoTable {
     width: 79%;
     border: 1px solid black;
     border-collapse: collapse;
     margin-right: 2%;
     margin-left: auto;
+    border-radius: 10px 10px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0,0,0,0.15);
+    font-family: 'Rubik', sans-serif;
+    font-weight: 400;
 }
-
+.oppoTable  tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
 
 .oppoTable tr:hover {
     background-color: #edead5;
+
 }
 .oppoTable th {
     padding-top: 12px;
     padding-bottom: 12px;
-    text-align: left;
+    text-align: center;
     background-color: #DAA520;
     color: white;
+
 }
 
 
@@ -274,10 +282,10 @@ div.borderYtoX a:hover:before, div.borderYtoX a:hover:after{
 }
 div.containerNavBar {
     font-family: 'Raleway', sans-serif;
+    font-weight: 600;
     margin: 0 auto;
     padding: 2em 3em;
     text-align: center;
-
 }
 
     div.containerNavBar a {
@@ -291,6 +299,7 @@ div.containerNavBar {
         cursor: pointer;
     }
 @import url('https://fonts.googleapis.com/css?family=Rubik:700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@700&display=swap');
 .testingSubmit {
     position: relative;
     display: inline-block;
@@ -345,3 +354,8 @@ div.containerNavBar {
             box-shadow: 0 0 0 2px #b0a984, 0 0 #fffae3;
             transform: translate3d(0, 0, -1em);
         }
+.oppoNFavTitle {
+    font-family: 'Rubik', sans-serif;
+    font-weight: 700;
+}
+
