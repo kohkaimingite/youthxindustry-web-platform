@@ -25,6 +25,10 @@ import CreateCompanyProfile from './CompanyProfile/CreateCompanyProfile';
 import Register from './Register/Register';
 import RegisterUser from './Register/RegisterUser';
 import RegisterPartner from './Register/RegisterPartner';
+import MyApplication from './Manage/MyApplication';
+
+
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
@@ -53,7 +57,7 @@ root.render(
                 <Route path='/CreateCompanyProfile' element={<CreateCompanyProfile />} />
                 <Route path='/RegisterUser' element={< RegisterUser />} />
                 <Route path='/RegisterPartner' element={< RegisterPartner />} />
-
+                <Route path='/MyApplications' element={< MyApplication />} />
         </Routes>
     </Router>
     </React.StrictMode>
