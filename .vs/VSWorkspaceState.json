@@ -1,0 +1,14 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\node-mysql",
+    "\\src",
+    "\\src\\CompanyProfile",
+    "\\src\\LoginPage",
+    "\\src\\OppoPartner",
+    "\\src\\Register",
+    "\\src\\Some test data"
+  ],
+  "SelectedNode": "\\src\\CompanyProfile\\CreateCompanyProfile.js",
+  "PreviewInSolutionExplorer": false
+}

@@ -20,13 +20,11 @@ app.post("/registerUser", (req, res) => {
     const name = req.body.name;
     const password = req.body.password;
     const email = req.body.email;
-    const age = req.body.age;
-    const gender = req.body.gender;
-    const mobileNumber = req.body.mobileNumber;
+  
 
     db.query(
-        "INSERT INTO users (Name, Password, Email, Age, Gender, MobileNumber) VALUES (?, ?, ?, ?, ?, ?)",
-        [name, password, email, age, gender, mobileNumber],
+        "INSERT INTO users (RoleID, Name, Password, Email) VALUES (1, ?, ?, ?)",
+        [name, password, email],
         (err, result) => {
             if (err) {
                 console.log(err);
@@ -39,11 +37,10 @@ app.post("/registerPartner", (req, res) => {
     const name = req.body.name;
     const password = req.body.password;
     const email = req.body.email;
-    const contactNumber = req.body.contactNumber;
 
     db.query(
-        "INSERT INTO partners (Name, Password, Email, ContactNumber) VALUES (?, ?, ?, ?)",
-        [name, password, email, contactNumber],
+        "INSERT INTO users (RoleID, Name, Password, Email) VALUES (2, ?, ?, ?)",
+        [name, password, email],
         (err, result) => {
             if (err) {
                 console.log(err);

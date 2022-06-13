@@ -12,8 +12,6 @@ import AboutPage from './AboutPage/AboutPage';
 import OppoPage from './OppoPage/OppoPage';
 import ContactPage from './ContactPage/ContactPage';
 import Login from './LoginPage/Login';
-import SignUp from './Register/SignUp';
-import SignUpPartner from './Register/SignUpPartner'
 import Favourites from './OppoPage/Favourites';
 import OneJob from './OppoPage/OneJob';
 import ProfilePage from './Manage/UserProfile';
@@ -24,7 +22,9 @@ import ReviewSuccess from './ReviewPage/ReviewSuccess';
 import ReviewNoSuccess from './ReviewPage/ReviewNoSuccess';
 import EditCompany from './Manage/EditCompany';
 import CreateCompanyProfile from './CompanyProfile/CreateCompanyProfile';
-import MyApplication from './Manage/MyApplication';
+import Register from './Register/Register';
+import RegisterUser from './Register/RegisterUser';
+import RegisterPartner from './Register/RegisterPartner';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
@@ -41,8 +41,7 @@ root.render(
                 <Route path='/ContactUs' element={<ContactPage />} />
                 <Route path='/Login' element={<Login />} />
                 <Route path='/Favourites' element={<Favourites />} />
-                <Route path='/Register' element={<SignUp />} />
-                <Route path='/RegisterPartner' element={<SignUpPartner />} />
+                <Route path='/Register' element={<Register />} />
                 <Route path='/job' element={<OneJob />} />
                 <Route path='/Profile' element={<ProfilePage />} />
                 <Route path='/Company' element={<CompanyPage />} />
@@ -52,7 +51,8 @@ root.render(
                 <Route path='/ReviewNoSuccess' element={<ReviewNoSuccess />} />
                 <Route path='/EditCompany' element={<EditCompany />} />
                 <Route path='/CreateCompanyProfile' element={<CreateCompanyProfile />} />
-                <Route path='/MyApplications' element={<MyApplication/>} />
+                <Route path='/RegisterUser' element={< RegisterUser />} />
+                <Route path='/RegisterPartner' element={< RegisterPartner />} />
 
         </Routes>
     </Router>
