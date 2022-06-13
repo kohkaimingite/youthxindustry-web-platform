@@ -24,6 +24,7 @@ import ReviewSuccess from './ReviewPage/ReviewSuccess';
 import ReviewNoSuccess from './ReviewPage/ReviewNoSuccess';
 import EditCompany from './Manage/EditCompany';
 import CreateCompanyProfile from './CompanyProfile/CreateCompanyProfile';
+import MyApplication from './Manage/MyApplication';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
@@ -51,6 +52,7 @@ root.render(
                 <Route path='/ReviewNoSuccess' element={<ReviewNoSuccess />} />
                 <Route path='/EditCompany' element={<EditCompany />} />
                 <Route path='/CreateCompanyProfile' element={<CreateCompanyProfile />} />
+                <Route path='/MyApplications' element={<MyApplication/>} />
 
         </Routes>
     </Router>
