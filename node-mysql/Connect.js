@@ -48,6 +48,21 @@ app.post("/registerPartner", (req, res) => {
         });
 });
 
+app.post("/checkUser", (req, res) => {
+    const name = req.body.name;
+    const email = req.body.email;
+
+    db.query(
+        "SELECT * FROM users WHERE Name = ? OR Email = ?",
+        [name, email],
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else { res.send(result) };
+
+        });
+});
+
 
 app.post("/login", (req, res) => {
     const email = req.body.email
@@ -82,13 +97,28 @@ app.post("/login", (req, res) => {
 
 
 
+app.get('/oppListing', (req, res) => {
+    const UserID = req.body.UserID;
+    db.query("SELECT opportunities.OppID, Name, Description, Location, Address, Type FROM opportunities INNER JOIN users_have_opp ON opportunities.OppID = users_have_opp.OppID WHERE users_have_opp.UserID = 2 ORDER BY opportunities.OppID;",
+        [UserID],
 
-app.post("/addlisting", (req, res) => {
-    const name = req.body.name
-    const description = req.body.description
-    const location = req.body.location
-    const address = req.body.Address
-    const type = req.body.Type
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send(result);
+            }
+        }
+    )
+})
+
+
+app.post("/addOppPartner", (req, res) => {
+    const name = req.body.name;
+    const description = req.body.description;
+    const location = req.body.location;
+    const address = req.body.address;
+    const type = req.body.type;
 
     db.query(
         "INSERT INTO opportunities (Name, Description, Location, Address, Type) VALUES (?, ?, ?, ?, ?)",
@@ -100,41 +130,6 @@ app.post("/addlisting", (req, res) => {
 
         });
 });
-
-app.post("/updatelisting", (req, res) => {
-    const name = req.body.name
-    const description = req.body.description
-    const location = req.body.location
-    const address = req.body.Address
-    const type = req.body.Type
-    const oppID = req.body.oppID
-
-    db.query(
-        "UPDATE opportunities SET Name = ?, Description = ?, Location = ?, Address = ?, Type = ? WHERE OppID = ? ",
-        [name, description, location, address, type, oppID],
-        (err, result) => {
-            if (err) {
-                console.log(err);
-            } else { res.send(result) };
-
-        });
-});
-
-app.post("/deletelisting", (req, res) => {
-    const oppID = req.body.oppID
-
-    db.query(
-        "DELETE FROM opportunities WHERE OppID = ?",
-        [OppID],
-        (err, result) => {
-            if (err) {
-                console.log(err);
-            } else { res.send(result) };
-
-        });
-});
-
-
 
 
 

@@ -26,7 +26,8 @@ import Register from './Register/Register';
 import RegisterUser from './Register/RegisterUser';
 import RegisterPartner from './Register/RegisterPartner';
 import MyApplication from './Manage/MyApplication';
-
+import OppoPartner from './OppoPartner/OppoPartner';
+import AddOppoPartner from './OppoPartner/AddOppoPartner';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -58,6 +59,8 @@ root.render(
                 <Route path='/RegisterUser' element={< RegisterUser />} />
                 <Route path='/RegisterPartner' element={< RegisterPartner />} />
                 <Route path='/MyApplications' element={< MyApplication />} />
+                <Route path='/OppoPartner' element={<OppoPartner />} />
+                <Route path='/AddOppoPartner' element={<AddOppoPartner />} />
         </Routes>
     </Router>
     </React.StrictMode>
