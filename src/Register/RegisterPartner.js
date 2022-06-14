@@ -73,7 +73,7 @@ export default function RegisterPartner() {
                             style={{ border: error ? "2px solid red" : "", width: "400px" }}
                             type="email"
                             required
-                            placeholder="E.g: newuser@gmail.com"
+                            placeholder="Email..."
 
 
                             input onChange={handleEmail}

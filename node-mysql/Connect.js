@@ -20,10 +20,9 @@ app.post("/registerUser", (req, res) => {
     const name = req.body.name;
     const password = req.body.password;
     const email = req.body.email;
-  
 
     db.query(
-        "INSERT INTO users (RoleID, Name, Password, Email) VALUES (1, ?, ?, ?)",
+        "INSERT INTO users (RoleID, Name, Password, Email, DateCreated) VALUES (1, ?, ?, ?, curdate())",
         [name, password, email],
         (err, result) => {
             if (err) {
@@ -39,7 +38,7 @@ app.post("/registerPartner", (req, res) => {
     const email = req.body.email;
 
     db.query(
-        "INSERT INTO users (RoleID, Name, Password, Email) VALUES (2, ?, ?, ?)",
+        "INSERT INTO users (RoleID, Name, Password, Email, DateCreated) VALUES (2, ?, ?, ?, curdate())",
         [name, password, email],
         (err, result) => {
             if (err) {
@@ -53,7 +52,6 @@ app.post("/registerPartner", (req, res) => {
 app.post("/login", (req, res) => {
     const email = req.body.email
     const password = req.body.password
-    const name = req.body.name
 
     if (email && password) {
         db.query(
@@ -65,9 +63,9 @@ app.post("/login", (req, res) => {
                 }
 
                 if (result.length > 0) {
-                    res.send({message: "Correct Combination"})
-                    
-                   
+                    res.send({ message: "Correct Combination" })
+
+
 
                 } else {
                     res.send({ message: "Wrong name or password" })
