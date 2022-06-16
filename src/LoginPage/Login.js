@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Axios from 'axios';
 import NavBar from '../components/NavBar';
 import './Login.css';
@@ -9,6 +9,7 @@ export default function Login() {
     const [password, setPassword] = useState('');
     const [status, setStatus] = useState('');
 
+    Axios.defaults.withCredentials = true;
 
     const login = () => {
         Axios.post("http://localhost:3001/login", {
@@ -25,6 +26,14 @@ export default function Login() {
 
             });
     };
+
+    useEffect(() => {
+        Axios.get("http://localhost:3001/login").then((response) => {
+            if (response.data.loggedIn = true) {
+                setStatus(response.data.user[0].email);
+            }
+        });
+    }, []);
 
 
     return (

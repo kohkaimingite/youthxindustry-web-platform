@@ -28,6 +28,7 @@ import RegisterPartner from './Register/RegisterPartner';
 import MyApplication from './Manage/MyApplication';
 import OppoPartner from './OppoPartner/OppoPartner';
 import AddOppoPartner from './OppoPartner/AddOppoPartner';
+import DeleteOppoPartner from './OppoPartner/DeleteOppoPartner';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -61,6 +62,7 @@ root.render(
                 <Route path='/MyApplications' element={< MyApplication />} />
                 <Route path='/OppoPartner' element={<OppoPartner />} />
                 <Route path='/AddOppoPartner' element={<AddOppoPartner />} />
+                <Route path='/DeleteOppoPartner' element={<DeleteOppoPartner />} />
         </Routes>
     </Router>
     </React.StrictMode>

@@ -25,9 +25,9 @@ export default function OppoPartner() {
 
     const styleButton = {
         display: "flex",
-        alignItems: 'center',
         justifyContent: 'center',
-        height: '5vh'
+        height: '5vh',
+       
     };
 
     return (
@@ -35,6 +35,9 @@ export default function OppoPartner() {
             <NavBar />
             <div style={styleButton}>
                 <Link to="/AddOppoPartner" className="btn btn-primary" style={{ width: '10%' }}>Add Opportunity</Link>
+            </div>
+            <div style={styleButton}>
+                <Link to="/DeleteOppoPartner" className="btn btn-primary" style={{ width: '10%' }}>Delete Opportunity</Link>
             </div>
             <div style={styleDiv} className="OppoPartner">
             <table style={{

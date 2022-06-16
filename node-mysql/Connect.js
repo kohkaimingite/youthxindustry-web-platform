@@ -2,10 +2,34 @@ const express = require("express");
 const mysql = require("mysql");
 const cors = require("cors");
 
+const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
+const sessions = require("express-session");
+
 const app = express();
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+    origin: ["http://localhost:3000"],
+    methods: ["GET", "POST"],
+    credentials: true
+
+}));
+
+app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+
+const oneDay = 1000 * 60 * 60 * 24;
+app.use(sessions({
+    secret: "thisismysecrctekeyfhrgfgrfrty84fwir767",
+    saveUninitialized: true,
+    cookie: { maxAge: oneDay },
+    resave: false
+}));
+
+
+var session;
 
 const db = mysql.createConnection({
     user: "root",
@@ -13,6 +37,8 @@ const db = mysql.createConnection({
     password: "sql_pass123^*",
     database: "fyp_db",
 });
+
+
 
 
 
@@ -67,35 +93,45 @@ app.post("/checkUser", (req, res) => {
 app.post("/login", (req, res) => {
     const email = req.body.email
     const password = req.body.password
-
+ 
     if (email && password) {
         db.query(
             "SELECT * FROM users WHERE Email = ? AND Password = ?",
             [email, password],
             (err, result) => {
                 if (err) {
-                    res.send({ err: err })
+                    res.send({ err: err });
                 }
 
                 if (result.length > 0) {
-                    res.send({ message: "Correct Combination" })
-
-
+                    session = req.session;
+                    session.userid = req.body.email;
+                    console.log(req.session);
+                    res.send({ message: session.userid })
+                    
+                    
+                   
 
                 } else {
-                    res.send({ message: "Wrong name or password" })
+                    res.send({ message: "Wrong email or password" });
                 }
 
 
             }
         )
     } else {
-        res.send({ message: "Email or password not entered" })
+        res.send({ message: "Email or password not entered" });
     }
 
 });
 
-
+app.get("/login", (req, res) => {
+    if (req.session.user) {
+        res.send({ loggedIn: true, user: req.session.user});
+    } else {
+        res.send({ loggedIn: false });
+    }
+});
 
 app.get('/oppListing', (req, res) => {
     const UserID = req.body.UserID;
@@ -130,6 +166,21 @@ app.post("/addOppPartner", (req, res) => {
 
         });
 });
+
+
+app.post('/deleteOppPartner', (req, res) => {
+    const oppId = req.body.oppId;
+
+    db.query("DELETE FROM users_have_opp WHERE OppID = ?",
+        [oppId],
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else { res.send(result) };
+
+        });
+});
+
 
 
 
