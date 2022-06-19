@@ -2,10 +2,34 @@ const express = require("express");
 const mysql = require("mysql");
 const cors = require("cors");
 
+const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
+const sessions = require("express-session");
+
 const app = express();
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+    origin: ["http://localhost:3000"],
+    methods: ["GET", "POST"],
+    credentials: true
+
+}));
+
+app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+
+const oneDay = 1000 * 60 * 60 * 24;
+app.use(sessions({
+    secret: "thisismysecrctekeyfhrgfgrfrty84fwir767",
+    saveUninitialized: true,
+    cookie: { maxAge: oneDay },
+    resave: false
+}));
+
+
+var session;
 
 const db = mysql.createConnection({
     user: "root",
@@ -16,17 +40,16 @@ const db = mysql.createConnection({
 
 
 
+
+
 app.post("/registerUser", (req, res) => {
     const name = req.body.name;
     const password = req.body.password;
     const email = req.body.email;
-    const age = req.body.age;
-    const gender = req.body.gender;
-    const mobileNumber = req.body.mobileNumber;
 
     db.query(
-        "INSERT INTO users (Name, Password, Email, Age, Gender, MobileNumber) VALUES (?, ?, ?, ?, ?, ?)",
-        [name, password, email, age, gender, mobileNumber],
+        "INSERT INTO users (RoleID, Name, Password, Email, DateCreated) VALUES (1, ?, ?, ?, curdate())",
+        [name, password, email],
         (err, result) => {
             if (err) {
                 console.log(err);
@@ -39,11 +62,25 @@ app.post("/registerPartner", (req, res) => {
     const name = req.body.name;
     const password = req.body.password;
     const email = req.body.email;
-    const contactNumber = req.body.contactNumber;
 
     db.query(
-        "INSERT INTO partners (Name, Password, Email, ContactNumber) VALUES (?, ?, ?, ?)",
-        [name, password, email, contactNumber],
+        "INSERT INTO users (RoleID, Name, Password, Email, DateCreated) VALUES (2, ?, ?, ?, curdate())",
+        [name, password, email],
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else { res.send(result) };
+
+        });
+});
+
+app.post("/checkUser", (req, res) => {
+    const name = req.body.name;
+    const email = req.body.email;
+
+    db.query(
+        "SELECT * FROM users WHERE Name = ? OR Email = ?",
+        [name, email],
         (err, result) => {
             if (err) {
                 console.log(err);
@@ -56,7 +93,6 @@ app.post("/registerPartner", (req, res) => {
 app.post("/login", (req, res) => {
     const email = req.body.email
     const password = req.body.password
-    const name = req.body.name
 
     if (email && password) {
         db.query(
@@ -64,36 +100,68 @@ app.post("/login", (req, res) => {
             [email, password],
             (err, result) => {
                 if (err) {
-                    res.send({ err: err })
+                    res.send({ err: err });
                 }
 
                 if (result.length > 0) {
-                    res.send({message: "Correct Combination"})
-                    
-                   
+                    session = req.session;
+                    session.email = req.body.email;
+                    console.log(req.session);
+                    res.send({ message: session.email })
 
                 } else {
-                    res.send({ message: "Wrong name or password" })
+                    res.send({ message: "Incorrect Combination!" });
                 }
 
 
             }
         )
     } else {
-        res.send({ message: "Email or password not entered" })
+        res.send({ message: "Please enter email and password!" });
     }
 
 });
 
+app.get("/login", (req, res) => {
+    if (req.session.email) {
+        res.send({ loggedIn: true, message: req.session.email + " is logged in!" });
+    } else {
+        res.send({ loggedIn: false });
+    }
+});
+
+app.get("/logout", (req, res) => {
+    req.session.destroy(err => {
+        if (err) {
+            return console.log(err);
+        }
+        res.send({ loggedIn: false });
+        res.redirect("/login");
+    });
+});
+
+app.get('/oppListing', (req, res) => {
+    const UserID = req.body.UserID;
+    db.query("SELECT opportunities.OppID, Name, Description, Location, Address, Type FROM opportunities INNER JOIN users_have_opp ON opportunities.OppID = users_have_opp.OppID WHERE users_have_opp.UserID = 2 ORDER BY opportunities.OppID;",
+        [UserID],
+
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send(result);
+            }
+        }
+    )
+})
 
 
-
-app.post("/addlisting", (req, res) => {
-    const name = req.body.name
-    const description = req.body.description
-    const location = req.body.location
-    const address = req.body.Address
-    const type = req.body.Type
+app.post("/addOppPartner", (req, res) => {
+    const name = req.body.name;
+    const description = req.body.description;
+    const location = req.body.location;
+    const address = req.body.address;
+    const type = req.body.type;
 
     db.query(
         "INSERT INTO opportunities (Name, Description, Location, Address, Type) VALUES (?, ?, ?, ?, ?)",
@@ -106,17 +174,12 @@ app.post("/addlisting", (req, res) => {
         });
 });
 
-app.post("/updatelisting", (req, res) => {
-    const name = req.body.name
-    const description = req.body.description
-    const location = req.body.location
-    const address = req.body.Address
-    const type = req.body.Type
-    const oppID = req.body.oppID
 
-    db.query(
-        "UPDATE opportunities SET Name = ?, Description = ?, Location = ?, Address = ?, Type = ? WHERE OppID = ? ",
-        [name, description, location, address, type, oppID],
+app.post('/deleteOppPartner', (req, res) => {
+    const oppId = req.body.oppId;
+
+    db.query("DELETE FROM users_have_opp WHERE OppID = ?",
+        [oppId],
         (err, result) => {
             if (err) {
                 console.log(err);
@@ -124,21 +187,6 @@ app.post("/updatelisting", (req, res) => {
 
         });
 });
-
-app.post("/deletelisting", (req, res) => {
-    const oppID = req.body.oppID
-
-    db.query(
-        "DELETE FROM opportunities WHERE OppID = ?",
-        [OppID],
-        (err, result) => {
-            if (err) {
-                console.log(err);
-            } else { res.send(result) };
-
-        });
-});
-
 
 
 

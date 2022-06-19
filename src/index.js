@@ -12,19 +12,26 @@ import AboutPage from './AboutPage/AboutPage';
 import OppoPage from './OppoPage/OppoPage';
 import ContactPage from './ContactPage/ContactPage';
 import Login from './LoginPage/Login';
-import SignUp from './Register/SignUp';
-import SignUpPartner from './Register/SignUpPartner'
 import Favourites from './OppoPage/Favourites';
 import OneJob from './OppoPage/OneJob';
 import ProfilePage from './Manage/UserProfile';
 import CompanyPage from './Manage/CompanyProfile';
-import EditProfile from './Manage/EditProfile';
+import EditUserNumber from './Manage/EditUserNumber';
 import MakingReview from './ReviewPage/MakingReview';
 import ReviewSuccess from './ReviewPage/ReviewSuccess'; 
 import ReviewNoSuccess from './ReviewPage/ReviewNoSuccess';
-import EditCompany from './Manage/EditCompany';
-import TestOppoPage from './OppoPage/TestOppoPage';
-import DatatablePage from './OppoPage/DatatablePage';
+import EditCompanyNumber from './Manage/EditCompanyNumber';
+import CreateCompanyProfile from './CompanyProfile/CreateCompanyProfile';
+import Register from './Register/Register';
+import RegisterUser from './Register/RegisterUser';
+import RegisterPartner from './Register/RegisterPartner';
+import MyApplication from './Manage/MyApplication';
+import OppoPartner from './OppoPartner/OppoPartner';
+import AddOppoPartner from './OppoPartner/AddOppoPartner';
+import DeleteOppoPartner from './OppoPartner/DeleteOppoPartner';
+import EditUserBio from './Manage/EditUserBio';
+import EditCompanyBio from './Manage/EditCompanyBio';
+import EditUserResume from './Manage/EditUserResume';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -43,19 +50,26 @@ root.render(
                 <Route path='/ContactUs' element={<ContactPage />} />
                 <Route path='/Login' element={<Login />} />
                 <Route path='/Favourites' element={<Favourites />} />
-                <Route path='/Register' element={<SignUp />} />
-                <Route path='/RegisterPartner' element={<SignUpPartner />} />
+                <Route path='/Register' element={<Register />} />
                 <Route path='/job' element={<OneJob />} />
                 <Route path='/Profile' element={<ProfilePage />} />
                 <Route path='/Company' element={<CompanyPage />} />
-                <Route path='/EditProfile' element={<EditProfile />} />
+                <Route path='/EditUserNumber' element={<EditUserNumber />} />
                 <Route path='/MakingReview' element={<MakingReview />} />
                 <Route path='/ReviewSuccess' element={<ReviewSuccess />} />
                 <Route path='/ReviewNoSuccess' element={<ReviewNoSuccess />} />
-                <Route path='/EditCompany' element={<EditCompany />} />
-                <Route path='/TestOppoPage' element={<TestOppoPage />} />
-                <Route path='/lol' element={<DatatablePage />} />
-                
+                <Route path='/EditCompanyNumber' element={<EditCompanyNumber />} />
+                <Route path='/CreateCompanyProfile' element={<CreateCompanyProfile />} />
+                <Route path='/RegisterUser' element={< RegisterUser />} />
+                <Route path='/RegisterPartner' element={< RegisterPartner />} />
+                <Route path='/MyApplications' element={< MyApplication />} />
+                <Route path='/OppoPartner' element={<OppoPartner />} />
+                <Route path='/AddOppoPartner' element={<AddOppoPartner />} />
+                <Route path='/DeleteOppoPartner' element={<DeleteOppoPartner />} />
+                <Route path='/EditUserBio' element={<EditUserBio />} />
+                <Route path='/EditCompanyBio' element={<EditCompanyBio />} />
+                <Route path='/EditUserResume' element={<EditUserResume />} />
+
 
         </Routes>
     </Router>
@@ -69,7 +83,6 @@ root.render(
     //</Router> ,
     //document.getElementById('root')
 //);
-
 
 
 // If you want to start measuring performance in your app, pass a function

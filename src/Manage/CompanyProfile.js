@@ -51,7 +51,7 @@ function UserProfile() {
                             return <text align="Left">{val.ContactNumber}</text>;
                         })}<br />
                         {CompList.map((val, key) => {
-                            return <text align="Left">{val.PartnerBio}</text>;
+                            return <text align="Left">{val.UserBio}</text>;
                         })}<br />
                     </form>
                 </div>

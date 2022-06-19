@@ -7,6 +7,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Collapsible from '../components/Collapsible';
 import { Route, Link } from 'react-router-dom';
 import axios from 'axios';
+import { faPencil } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
 function UserProfile() {
@@ -38,6 +40,7 @@ function UserProfile() {
                         <text>Email:</text><br />
                         <text>Mobile Number:</text><br />
                         <text>Bio: </text><br />
+                        <text>Resume: </text><br />
                     </form>
                     
                     </div>
@@ -45,17 +48,20 @@ function UserProfile() {
                     <form action="/action_page.php" method="post">
                         <h3>Testing</h3>
                         {ProfList.map((val, key) => {
-                            return <text align="Left">{val.name}</text>;
+                            return <text align="Left">{val.Name}</text>;
                         })}<br />
                         {ProfList.map((val, key) => {
-                            return <text align="Left">{val.email}</text>;
+                            return <text align="Left">{val.Email}</text>;
                         })}<br />
                         {ProfList.map((val, key) => {
-                            return <text align="Left">{val.MobileNumber}</text>;
-                        })}<br />
+                            return <text align="Left">{val.ContactNumber}</text>;
+                        })}<FontAwesomeIcon icon={faPencil}></FontAwesomeIcon><br />
                         {ProfList.map((val, key) => {
-                            return <text align="Left">{val.userbio}</text>;
-                        })}<br />
+                            return <text align="Left">{val.UserBio}</text>;
+                        })}<FontAwesomeIcon icon={faPencil}></FontAwesomeIcon><br />
+                        {ProfList.map((val, key) => {
+                            return <text align="Left">{val.Resume}</text>;
+                        })}<FontAwesomeIcon icon={faPencil} onclick="location.href='/EditUserResume';"></FontAwesomeIcon><br />
                         
 
 
