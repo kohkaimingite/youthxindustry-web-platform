@@ -42,35 +42,41 @@ root.render(
         
         <Router>
         <Routes>
+                
                 <Route path='/' element={<App />} />
+                <Route path='/AboutUs' element={<AboutPage />} />
+                <Route path='/Login' element={<Login />} />
+                <Route path='/Register' element={<Register />} />
+                <Route path='/Opportunities' element={<OppoPage />} />
+                <Route path='/ContactUs' element={<ContactPage />} />
+
+                <Route path='/Favourites' element={<Favourites />} />
+                <Route path='/MakingReview' element={<MakingReview />} />
+                <Route path='/ReviewSuccess' element={<ReviewSuccess />} />
+                <Route path='/ReviewNoSuccess' element={<ReviewNoSuccess />} />
+                <Route path='/EditUserResume' element={<EditUserResume />} />
+                <Route path='/RegisterUser' element={< RegisterUser />} />
+                <Route path='/EditUserBio' element={<EditUserBio />} />
+
                 <Route path='/AdminPanel' element={<AdminPanel />} />
                 <Route path='/EditOppo' element={<EditOppo />} />
                 <Route path='/EditUser' element={<EditUser />} />
                 <Route path='/MngPartner' element={<MngPartner />} />
-                <Route path='/AboutUs' element={<AboutPage />} />
-                <Route path='/Opportunities' element={<OppoPage />} />
-                <Route path='/ContactUs' element={<ContactPage />} />
-                <Route path='/Login' element={<Login />} />
-                <Route path='/Favourites' element={<Favourites />} />
-                <Route path='/Register' element={<Register />} />
-                <Route path='/job' element={<OneJob />} />
                 <Route path='/Profile' element={<ProfilePage />} />
                 <Route path='/Company' element={<CompanyPage />} />
                 <Route path='/EditUserNumber' element={<EditUserNumber />} />
-                <Route path='/MakingReview' element={<MakingReview />} />
-                <Route path='/ReviewSuccess' element={<ReviewSuccess />} />
-                <Route path='/ReviewNoSuccess' element={<ReviewNoSuccess />} />
                 <Route path='/EditCompanyNumber' element={<EditCompanyNumber />} />
                 <Route path='/CreateCompanyProfile' element={<CreateCompanyProfile />} />
-                <Route path='/RegisterUser' element={< RegisterUser />} />
                 <Route path='/RegisterPartner' element={< RegisterPartner />} />
                 <Route path='/MyApplications' element={< MyApplication />} />
                 <Route path='/OppoPartner' element={<OppoPartner />} />
                 <Route path='/AddOppoPartner' element={<AddOppoPartner />} />
                 <Route path='/DeleteOppoPartner' element={<DeleteOppoPartner />} />
-                <Route path='/EditUserBio' element={<EditUserBio />} />
                 <Route path='/EditCompanyBio' element={<EditCompanyBio />} />
-                <Route path='/EditUserResume' element={<EditUserResume />} />
+                
+
+
+                <Route path='/job' element={<OneJob />} />
 
                 
                 
