@@ -1,5 +1,6 @@
 // JavaScript source code
 import NavBar from '../components/NavBar'
+import ListNavBar from '../components/ListNavBar'
 import { React, useState, useEffect } from "react";
 import TextField from "@mui/material/TextField";
 import List from "../Some test data/List";
@@ -8,6 +9,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Collapsible from '../components/Collapsible';
 import axios from 'axios';
 import Datatable from './Datatable';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowUpLong } from "@fortawesome/free-solid-svg-icons";
 require('es6-promise').polyfill();
 require('isomorphic-fetch');
 
@@ -27,12 +30,18 @@ function OppoPage() {
     const [IT, setIT] = useState("");
     const [Healthcare, setHealthcare] = useState("");
     const [Finance, setFinance] = useState("");
+    const [Education, setEducation] = useState("");
+
+    
     //location
     const [Central, setCentral] = useState("")
     const [North, setNorth] = useState("");
     const [South, setSouth] = useState("");
     const [East, setEast] = useState("");
     const [West, setWest] = useState("")
+
+    //button to scrol up
+    const [showScrollBtn, setShowScrollBtn] = useState("");
     
     
     const columns = data[0] && Object.keys(data[0]);
@@ -66,7 +75,24 @@ function OppoPage() {
         });
 
     });
-   
+    useEffect(() => {
+        window.addEventListener('scroll', scrollAppear );
+    }, []);
+    const scrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+        });
+    };
+    const scrollAppear = () => {
+        if (window.pageYOffset  > 100) {
+
+            setShowScrollBtn(true);
+        } else {
+
+            setShowScrollBtn(false);
+        }
+    }
     //it, finance, healthcare, north, south, east, west, central
     //IT === "" && Finance === "" && Healthcare === "" && North === "" && South === "" && East === "" && West === "" && Central === ""
     function filterType1(rows) {
@@ -136,8 +162,26 @@ function OppoPage() {
             }
         }
     }
+    function smthEdu(og, changed) {
+        if (og === changed) {
+            if (Education === "Education") {
+                return og.filter((row) => row.Type.toLowerCase().indexOf("education") > -1);
+            } else if (Healthcare === "") {
+                return og;
+            }
+
+        } else if (og !== changed) {
+            if (Education === "Education") {
+                return changed.concat(og.filter((row) => row.Type.toLowerCase().indexOf("education") > -1));
+            } else if (Education === "") {
+                return changed;
+            }
+        }
+    }
+    //Education
+    //smthH(row,smthF(row,smthI(row)))
     function filterType(row) {
-        return search(smthH(row,smthF(row,smthI(row))))
+        return search(smthEdu(row, smthH(row, smthF(row, smthI(row)))))
     }
     //location[x]
     
@@ -279,6 +323,12 @@ function OppoPage() {
             } else {
                 setIT("");
             }
+        } else if (val === "Education") {
+            if (boo == true) {
+                setEducation(val);
+            } else {
+                setEducation("");
+            }
         } else if (val === "Central") {
             if (boo == true) {
                 setCentral(val);
@@ -318,13 +368,15 @@ function OppoPage() {
     }
     return (
         //onSubmit={ilterdata(OppoList)}
-        
+        //
+         //class="oppoNFavTitle"
         <div className="App">
-            <NavBar />
+            <ListNavBar />
 
             
             <div className="main">
-                <h1 class="oppoNFavTitle">Opportunities</h1>
+                <h1>Opportunities</h1>
+                
                 <div class="sidenav">
 
                     <h2>Filter!</h2>
@@ -338,6 +390,8 @@ function OppoPage() {
                             <label for="Finance"> Finance</label><br />
                             <input type="checkbox" id="Healthcare" name="Healthcare" value="Healthcare" onChange={(e) => changeState(e.target.checked, "Healthcare")}/>
                             <label for="Healthcare"> Healthcare</label><br />
+                            <input type="checkbox" id="Education" name="Education" value="Education" onChange={(e) => changeState(e.target.checked, "Education")} />
+                            <label for="Education"> Education</label><br />
                      
 
                     
@@ -358,13 +412,12 @@ function OppoPage() {
                     </div>
                     
                     
-
+                    <input type="text" value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search.." />
                    
                 </div>
-                <input type="text" value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search.." />
                 
                 <Datatable data={filterAll(OppoList)} />
-                
+                <button id="scrollUp" class="scrollToTop" onClick={scrollToTop} style={{ opacity: showScrollBtn ? 100 : 0 }}><FontAwesomeIcon icon={faArrowUpLong} class="arrowUp" /></button>
             </div>
             
             
@@ -374,7 +427,9 @@ function OppoPage() {
 
     );
 }
-
+//isVisible ? 'opacity-100' : 'opacity-0'
+                //opacity: showScrollBtn ? 100 : 0 
+                //opacity: showScrollBtn ? 100 : 0 
 //<Datatable data={search(OppoList)} />
 //<Datatable data={typeBox(search(OppoList))} />
 export default OppoPage;

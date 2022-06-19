@@ -140,4 +140,15 @@ app.post('/EditUResume', (req, res) => {
 
 })
 
+app.post('/DeleteApplication', (req, res) => {
+    db.query("DELETE FROM application WHERE UserID = 1",
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send("Updated Resume!");
+            }
+        }
+    )
+}
 

@@ -11,6 +11,7 @@ import RegisterSet from './HomePage/RegisterSet';
 import AdminNavBar from './components/AdminNavBar'
 import AdminPanel from './AdminPanel/AdminPanel'
 
+
 // Idea:
 //top will be buttons "About" - "opportunities(have sub)" - "contact us" - "login"
 // below will be pictures with a text in the center and the button to the page
@@ -48,8 +49,9 @@ function App() {
           <RegisterSet/>
 
           <AdminNavBar/>
-         
-    </div>
+          
+      </div>
+      
   );
 }
 

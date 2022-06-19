@@ -1,6 +1,7 @@
 // JavaScript source code
 import { Route, Link } from 'react-router-dom';
 import React, { Component } from 'react';
+import zIndex from '@mui/material/styles/zIndex';
 // <button>About Us</button> 
 //
 const NavBar  = () => {
@@ -11,12 +12,10 @@ const NavBar  = () => {
                     <a href="/">Home</a>
                     <a href="/AboutUs">About Us</a>
                     <a href="/Opportunities">Opportunities</a>
-                    <a href="/Favourites">Favourites</a>
                     <a href="/ContactUs">Contact Us</a>
                     <a href="/Login">Login</a>
                     <a href="/Register">Register</a>
-                    <a href="/makingReview">Making Review</a>
-                    <a href="/Profile">Profile</a>
+                    
                     
 
                 </div>
@@ -37,10 +36,12 @@ const brandName = {
  //           margin: "0  0 30px",
 const test = {
     
-    backgroundColor: '#FFD700'
-    
+    backgroundColor: '#FFD700',
+    position: "sticky",
+    top: 0,
+    zIndex: 9999
 }
 
-
+//position: "fixed"
 
 export default NavBar 

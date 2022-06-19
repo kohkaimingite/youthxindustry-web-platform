@@ -111,15 +111,23 @@ ul li {
 @import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
 .oppoTable {
     width: 79%;
-    border: 1px solid black;
     border-collapse: collapse;
     margin-right: 2%;
     margin-left: auto;
     border-radius: 10px 10px 0 0;
-    overflow: hidden;
+    overflow: auto;
     box-shadow: 0 0 20px rgba(0,0,0,0.15);
     font-family: 'Rubik', sans-serif;
     font-weight: 400;
+    
+    
+}
+.oppoTable th,td {
+    padding: 0.25em 0.5em 0.25em 1em;
+    vertical-align: text-top;
+    text-align: left;
+    text-indent: -0.5em;
+
 }
 .oppoTable  tr:nth-of-type(even) {
     background-color: #f3f3f3;
@@ -129,15 +137,23 @@ ul li {
     background-color: #edead5;
 
 }
+
 .oppoTable th {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: center;
     background-color: #DAA520;
     color: white;
+    position: sticky;
+    top: 0;
+    z-index: 2;
 
 }
 
+.oppoTable td{
+    overflow: auto;
+
+}
 
 
 .sidenav {
@@ -263,6 +279,7 @@ div.borderYtoX a:before, div.borderYtoX a:after {
     content: '';
     background: #FFF;
     transition: all 0.3s;
+
 }
 
 div.borderYtoX a:before {
@@ -357,6 +374,28 @@ div.containerNavBar {
 .oppoNFavTitle {
     font-family: 'Rubik', sans-serif;
     font-weight: 700;
+    color: red;
+    top: 140px;
+    position: sticky;
+    z-index:8888;
+}
+
+.scrollToTop {
+    position: fixed;
+    bottom: 40px;
+    right: 25px;
+    z-index: 20;
+    border:none;
+    border-radius: 5px;
+    width:40px;
+    height:40px;
+    background-color:white;
+    box-shadow: 0 0 20px rgba(0,0,0,0.30);
+}
+.arrowUp{
+    color:purple;
+    height:25px;
+    width:25px;
 }
 
 .appTable th, td {
