@@ -3,35 +3,44 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
-import AdminPanel from './AdminPanel/AdminPanel';
-import EditOppo from './AdminPanel/EditOppo';
-import EditUser from './AdminPanel/EditUser';
-import MngPartner from './AdminPanel/MngPartner';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
 import AboutPage from './AboutPage/AboutPage';
 import OppoPage from './OppoPage/OppoPage';
 import ContactPage from './ContactPage/ContactPage';
 import Login from './LoginPage/Login';
+
+import EditUser from './AdminPanel/EditUser';
 import Favourites from './OppoPage/Favourites';
-import OneJob from './OppoPage/OneJob';
-import ProfilePage from './Manage/UserProfile';
-import CompanyPage from './Manage/CompanyProfile';
 import EditUserNumber from './Manage/EditUserNumber';
 import MakingReview from './ReviewPage/MakingReview';
-import ReviewSuccess from './ReviewPage/ReviewSuccess'; 
+import ReviewSuccess from './ReviewPage/ReviewSuccess';
 import ReviewNoSuccess from './ReviewPage/ReviewNoSuccess';
-import EditCompanyNumber from './Manage/EditCompanyNumber';
-import CreateCompanyProfile from './CompanyProfile/CreateCompanyProfile';
 import Register from './Register/Register';
 import RegisterUser from './Register/RegisterUser';
-import RegisterPartner from './Register/RegisterPartner';
+import EditUserBio from './Manage/EditUserBio';
 import MyApplication from './Manage/MyApplication';
+
+import AdminPanel from './AdminPanel/AdminPanel';
+import EditOppo from './AdminPanel/EditOppo';
+import MngPartner from './AdminPanel/MngPartner';
+import ProfilePage from './Manage/UserProfile';
+import CompanyPage from './Manage/CompanyProfile';
+import EditCompanyNumber from './Manage/EditCompanyNumber';
+import CreateCompanyProfile from './CompanyProfile/CreateCompanyProfile';
+import EditCompanyBio from './Manage/EditCompanyBio';
+import EditUserResume from './Manage/EditUserResume';
+import RegisterPartner from './Register/RegisterPartner';
 import OppoPartner from './OppoPartner/OppoPartner';
 import AddOppoPartner from './OppoPartner/AddOppoPartner';
 import DeleteOppoPartner from './OppoPartner/DeleteOppoPartner';
-import EditUserBio from './Manage/EditUserBio';
-import EditCompanyBio from './Manage/EditCompanyBio';
-import EditUserResume from './Manage/EditUserResume';
+
+import OneJob from './OppoPage/OneJob';
+
+
+
+
+
 
 
 
