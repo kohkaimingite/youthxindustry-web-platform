@@ -32,7 +32,7 @@ import DeleteOppoPartner from './OppoPartner/DeleteOppoPartner';
 import EditUserBio from './Manage/EditUserBio';
 import EditCompanyBio from './Manage/EditCompanyBio';
 import EditUserResume from './Manage/EditUserResume';
-import EditCompany from './Manage/EditCompany';
+//import EditCompany from './Manage/EditCompany';
 
 
 
@@ -73,7 +73,7 @@ root.render(
                 <Route path='/EditCompanyBio' element={<EditCompanyBio />} />
                 <Route path='/EditUserResume' element={<EditUserResume />} />
 
-                <Route path='/EditCompany' element={<EditCompany />} />
+                
                 
 
 
@@ -81,6 +81,9 @@ root.render(
     </Router>
     </React.StrictMode>
 );
+//<Route path='/EditCompany' element={<EditCompany />} />
+
+
 //ReactDOM.render(
   //  <Router>
     //    <Routes>
