@@ -93,7 +93,7 @@ app.post("/checkUser", (req, res) => {
 app.post("/login", (req, res) => {
     const email = req.body.email
     const password = req.body.password
- 
+
     if (email && password) {
         db.query(
             "SELECT * FROM users WHERE Email = ? AND Password = ?",
@@ -105,32 +105,39 @@ app.post("/login", (req, res) => {
 
                 if (result.length > 0) {
                     session = req.session;
-                    session.userid = req.body.email;
+                    session.email = req.body.email;
                     console.log(req.session);
-                    res.send({ message: session.userid })
-                    
-                    
-                   
+                    res.send({ message: session.email })
 
                 } else {
-                    res.send({ message: "Wrong email or password" });
+                    res.send({ message: "Incorrect Combination!" });
                 }
 
 
             }
         )
     } else {
-        res.send({ message: "Email or password not entered" });
+        res.send({ message: "Please enter email and password!" });
     }
 
 });
 
 app.get("/login", (req, res) => {
-    if (req.session.user) {
-        res.send({ loggedIn: true, user: req.session.user});
+    if (req.session.email) {
+        res.send({ loggedIn: true, message: req.session.email + " is logged in!" });
     } else {
         res.send({ loggedIn: false });
     }
+});
+
+app.get("/logout", (req, res) => {
+    req.session.destroy(err => {
+        if (err) {
+            return console.log(err);
+        }
+        res.send({ loggedIn: false });
+        res.redirect("/login");
+    });
 });
 
 app.get('/oppListing', (req, res) => {

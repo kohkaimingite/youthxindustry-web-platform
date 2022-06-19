@@ -27,10 +27,12 @@ export default function Login() {
             });
     };
 
+
+
     useEffect(() => {
         Axios.get("http://localhost:3001/login").then((response) => {
             if (response.data.loggedIn = true) {
-                setStatus(response.data.user[0].email);
+                setStatus(response.data.message);
             }
         });
     }, []);
