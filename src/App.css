@@ -359,3 +359,10 @@ div.containerNavBar {
     font-weight: 700;
 }
 
+.appTable th, td {
+    border: solid;
+}
+
+.appTable {
+    width: 80%;
+}

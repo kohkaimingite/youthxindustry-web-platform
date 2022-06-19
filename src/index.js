@@ -16,11 +16,11 @@ import Favourites from './OppoPage/Favourites';
 import OneJob from './OppoPage/OneJob';
 import ProfilePage from './Manage/UserProfile';
 import CompanyPage from './Manage/CompanyProfile';
-import EditProfile from './Manage/EditProfile';
+import EditUserNumber from './Manage/EditUserNumber';
 import MakingReview from './ReviewPage/MakingReview';
 import ReviewSuccess from './ReviewPage/ReviewSuccess'; 
 import ReviewNoSuccess from './ReviewPage/ReviewNoSuccess';
-import EditCompany from './Manage/EditCompany';
+import EditCompanyNumber from './Manage/EditCompanyNumber';
 import CreateCompanyProfile from './CompanyProfile/CreateCompanyProfile';
 import Register from './Register/Register';
 import RegisterUser from './Register/RegisterUser';
@@ -29,6 +29,8 @@ import MyApplication from './Manage/MyApplication';
 import OppoPartner from './OppoPartner/OppoPartner';
 import AddOppoPartner from './OppoPartner/AddOppoPartner';
 import DeleteOppoPartner from './OppoPartner/DeleteOppoPartner';
+import EditUserBio from './Manage/EditUserBio';
+import EditCompanyBio from './Manage/EditCompanyBio';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -51,11 +53,11 @@ root.render(
                 <Route path='/job' element={<OneJob />} />
                 <Route path='/Profile' element={<ProfilePage />} />
                 <Route path='/Company' element={<CompanyPage />} />
-                <Route path='/EditProfile' element={<EditProfile />} />
+                <Route path='/EditUserumber' element={<EditUserNumber />} />
                 <Route path='/MakingReview' element={<MakingReview />} />
                 <Route path='/ReviewSuccess' element={<ReviewSuccess />} />
                 <Route path='/ReviewNoSuccess' element={<ReviewNoSuccess />} />
-                <Route path='/EditCompany' element={<EditCompany />} />
+                <Route path='/EditCompanyNumber' element={<EditCompanyNumber />} />
                 <Route path='/CreateCompanyProfile' element={<CreateCompanyProfile />} />
                 <Route path='/RegisterUser' element={< RegisterUser />} />
                 <Route path='/RegisterPartner' element={< RegisterPartner />} />
@@ -63,6 +65,10 @@ root.render(
                 <Route path='/OppoPartner' element={<OppoPartner />} />
                 <Route path='/AddOppoPartner' element={<AddOppoPartner />} />
                 <Route path='/DeleteOppoPartner' element={<DeleteOppoPartner />} />
+                <Route path='/EditUserBio' element={<EditUserBio />} />
+                <Route path='/EditCompanyBio' element={<EditCompanyBio />} />
+
+
         </Routes>
     </Router>
     </React.StrictMode>

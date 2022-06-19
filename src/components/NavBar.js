@@ -17,7 +17,6 @@ const NavBar  = () => {
                     <a href="/Register">Register</a>
                     <a href="/makingReview">Making Review</a>
                     <a href="/Profile">Profile</a>
-                    <a href="/EditProfile">Edit Profile</a>
                     
 
                 </div>

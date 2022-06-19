@@ -74,7 +74,7 @@ function EditCompany() {
         </div>
         )
     function submit() {
-        axios.post("http://localhost:3001/EditCompany", {
+        axios.post("http://localhost:3001/EditCNumber", {
             Number: parseInt(Number),
             Email: Email,
             Bio: Bio
