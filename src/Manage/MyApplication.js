@@ -9,8 +9,9 @@ import Collapsible from '../components/Collapsible';
 import { Route, Link } from 'react-router-dom';
 import axios from 'axios';
 
-export default function MyApplication() {
-
-
+function MyApplication() {
+    
 
 }
+
+export default MyApplication;

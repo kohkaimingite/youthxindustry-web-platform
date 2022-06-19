@@ -72,7 +72,7 @@ function EditCompany() {
         }).then(() => {
             console.log("Test");
             /*setCheck(response.data);*/
-            window.location = "http://localhost:3000/EditCompany";
+            window.location = "http://localhost:3000/Company";
         });
 
     };
