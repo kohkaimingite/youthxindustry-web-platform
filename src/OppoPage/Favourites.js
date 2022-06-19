@@ -1,5 +1,6 @@
 // JavaScript source code
 import NavBar from '../components/NavBar'
+import ListNavBar from '../components/ListNavBar'
 import { React, useState, useEffect } from "react";
 import TextField from "@mui/material/TextField";
 import List from "../Some test data/List";
@@ -9,6 +10,8 @@ import Collapsible from '../components/Collapsible';
 import axios from 'axios';
 import Datatable from './Datatable';
 import DatatableFav from './DatatableFav';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowUpLong } from "@fortawesome/free-solid-svg-icons";
 require('es6-promise').polyfill();
 require('isomorphic-fetch');
 
@@ -31,12 +34,16 @@ function Favourites() {
     const [IT, setIT] = useState("");
     const [Healthcare, setHealthcare] = useState("");
     const [Finance, setFinance] = useState("");
+    const [Education, setEducation] = useState("");
     //location
     const [Central, setCentral] = useState("")
     const [North, setNorth] = useState("");
     const [South, setSouth] = useState("");
     const [East, setEast] = useState("");
     const [West, setWest] = useState("")
+
+    //button to scrol up
+    const [showScrollBtn, setShowScrollBtn] = useState("");
 
     const [test, setTest] = useState("kol");
     const [userID, setUserID] = useState(2);
@@ -46,7 +53,24 @@ function Favourites() {
         'Name'
     ]);
 
+    useEffect(() => {
+        window.addEventListener('scroll', scrollAppear);
+    }, []);
+    const scrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+        });
+    };
+    const scrollAppear = () => {
+        if (window.pageYOffset > 100) {
 
+            setShowScrollBtn(true);
+        } else {
+
+            setShowScrollBtn(false);
+        }
+    }
     function search(rows) {
         return rows.filter((row) =>
             searchColumns.some(
@@ -152,10 +176,26 @@ function Favourites() {
             } else if (Healthcare === "") {
                 return changed;
             }
+        } 
+    }
+    function smthEdu(og, changed) {
+        if (og === changed) {
+            if (Education === "Education") {
+                return og.filter((row) => row.Type.toLowerCase().indexOf("education") > -1);
+            } else if (Healthcare === "") {
+                return og;
+            }
+
+        } else if (og !== changed) {
+            if (Education === "Education") {
+                return changed.concat(og.filter((row) => row.Type.toLowerCase().indexOf("education") > -1));
+            } else if (Education === "") {
+                return changed;
+            }
         }
     }
     function filterType(row) {
-        return search(smthH(row, smthF(row, smthI(row))))
+        return search(smthEdu(row, smthH(row, smthF(row, smthI(row)))))
     }
     //location[x]
 
@@ -306,6 +346,12 @@ function Favourites() {
             } else {
                 setCentral("");
             }
+        } else if (val === "Education") {
+            if (boo == true) {
+                setEducation(val);
+            } else {
+                setEducation("");
+            }
         } else if (val === "North") {
             if (boo == true) {
                 setNorth(val);
@@ -341,11 +387,11 @@ function Favourites() {
         //onSubmit={ilterdata(OppoList)}
 
         <div className="App">
-            <NavBar />
+            <ListNavBar />
 
 
             <div className="main">
-                <h1 class="oppoNFavTitle">Favourites</h1>
+                <h1 >Favourites</h1>
                 <div class="sidenav">
 
                     <h2>Filter!</h2>
@@ -359,6 +405,8 @@ function Favourites() {
                             <label for="Finance"> Finance</label><br />
                             <input type="checkbox" id="Healthcare" name="Healthcare" value="Healthcare" onChange={(e) => changeState(e.target.checked, "Healthcare")} />
                             <label for="Healthcare"> Healthcare</label><br />
+                            <input type="checkbox" id="Education" name="Education" value="Education" onChange={(e) => changeState(e.target.checked, "Education")} />
+                            <label for="Education"> Education</label><br />
 
 
 
@@ -377,16 +425,16 @@ function Favourites() {
                         </form>
 
                     </div>
-                    
+                    <input type="text" value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search.." />
 
 
 
 
                 </div>
-                <input type="text" value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search.." />
+                
 
                 <DatatableFav data={filterAll(OppoList)} />
-                
+                <button id="scrollUp" class="scrollToTop" onClick={scrollToTop} style={{ opacity: showScrollBtn ? 100 : 0 }}><FontAwesomeIcon icon={faArrowUpLong} class="arrowUp" /></button>
 
             </div>
 

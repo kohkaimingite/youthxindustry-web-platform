@@ -105,6 +105,7 @@ export default function Datatable({ data }) {
     return (
         
         <table class="oppoTable">
+
             <tr>
                 <th>Job Code</th>
                 <th>Job Name</th>
@@ -113,7 +114,7 @@ export default function Datatable({ data }) {
                 <th>Address</th>
                 <th>Job Categories</th>
                 <th>Favourite</th>
-                <th>{test}</th>
+                
 
             </tr>
             {data.map(row => <tr>
@@ -138,3 +139,9 @@ export default function Datatable({ data }) {
 //<td><button onClick={() => addFav(testing( wtfTesting(row[columns[0]]) ), row[columns[0]])}>{row[columns[0]]} {test}</button></td>
 //row[columns[0]])
 //<td><button onClick={() => addFav(testing(row[columns[0]],wtfTesting(row[columns[0]]) ), row[columns[0]])}>{row[columns[0]]} {test}</button></td>
+const testwew =
+{
+    position: "fixed"
+        
+
+}

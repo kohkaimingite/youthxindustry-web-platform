@@ -1,7 +1,8 @@
 // JavaScript source code
 import NavBar from '../components/NavBar'
 import ListNavBar from '../components/ListNavBar'
-import { React, useState, useEffect } from "react";
+import { React, useState, useEffect, useMemo } from "react";
+import { useTable } from "react-table";
 import TextField from "@mui/material/TextField";
 import List from "../Some test data/List";
 import Button from 'react-bootstrap/Button';
@@ -11,17 +12,16 @@ import axios from 'axios';
 import Datatable from './Datatable';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUpLong } from "@fortawesome/free-solid-svg-icons";
+import { usePagination } from "react-use-pagination";
+import { MDBDataTable } from 'mdbreact';
+import Pagination from "@material-ui/core";
+
 require('es6-promise').polyfill();
 require('isomorphic-fetch');
 
-
-function OppoPage() {
-    const [inputText, setInputText] = useState("");
-    let inputHandler = (e) => {
-        //convert input text to lower case
-        var lowerCase = e.target.value.toLowerCase();
-        setInputText(lowerCase);
-    };
+const TestOppoPage = (props) => {
+//function TestOppoPage() {
+    
     const [data, setData] = useState([]);
     const [OppoList, setOppoList] = useState([]);
     const [q, setQ] = useState("");
@@ -66,18 +66,17 @@ function OppoPage() {
         return rows.filter((row) => row.Type.toLowerCase().indexOf(q.toLowerCase())>-1
         );
     }
-
+//, [oppoList]
     useEffect(() => {
         axios.get("http://localhost:3001/Oppo").then((response) => {
 
             console.log(response);
+
             setOppoList(response.data);
         });
 
-    });
-    useEffect(() => {
-        window.addEventListener('scroll', scrollAppear );
     }, []);
+   
     const scrollToTop = () => {
         window.scrollTo({
             top: 0,
@@ -366,7 +365,82 @@ function OppoPage() {
        
         return ;
     }
+
+    const testOppLists = {
+        columns: [
+            {
+                label: 'OppID',
+                field: 'OppID',
+                sort: 'asc',
+                width: 150
+            },
+            {
+                label: 'Name',
+                field: 'Name',
+                sort: 'asc',
+                width: 270
+            },
+            {
+                label: 'Description',
+                field: 'Description',
+                sort: 'asc',
+                width: 200
+            },
+            {
+                label: 'Location',
+                field: 'Location',
+                sort: 'asc',
+                width: 100
+            },
+            {
+                label: 'Address',
+                field: 'Address',
+                sort: 'asc',
+                width: 150
+            },
+            {
+                label: 'Type',
+                field: 'Type',
+                sort: 'asc',
+                width: 100
+            }
+        ],
+        rows:  filterAll(OppoList)
+    }
+
+ 
+const column = useMemo(
+    () => [
+        {
+            Header: "OppID",
+            accessor: "OppID",
+        },
+        {
+            Header: "Name",
+            accessor: "Name",
+        },
+        {
+            Header: "Description",
+            accessor: "Description",
+        },
+        {
+            Header: "Location",
+            accessor: "Location",
+        },
+        {
+            Header: "Address",
+            accessor: "Address",
+        },
+        {
+            Header: "Type",
+            accessor: "Type",
+        },
+    ],
+[]
+  );
+    
     return (
+
         //onSubmit={ilterdata(OppoList)}
         //
          //class="oppoNFavTitle"
@@ -416,8 +490,15 @@ function OppoPage() {
                    
                 </div>
                 
-                <Datatable data={filterAll(OppoList)} />
-                <button id="scrollUp" class="scrollToTop" onClick={scrollToTop} style={{ opacity: showScrollBtn ? 100 : 0 }}><FontAwesomeIcon icon={faArrowUpLong} class="arrowUp" /></button>
+                <MDBDataTable
+                    striped
+                    bordered
+                    small
+                    data={testOppLists}
+                />
+              
+                
+                <button id="scrollUp" class="scrollToTop" onClick={scrollToTop} ><FontAwesomeIcon icon={faArrowUpLong} class="arrowUp" /></button>
             </div>
             
             
@@ -427,9 +508,10 @@ function OppoPage() {
 
     );
 }
+//<Datatable data={filterAll(OppoList)} />
 //isVisible ? 'opacity-100' : 'opacity-0'
                 //opacity: showScrollBtn ? 100 : 0 
                 //opacity: showScrollBtn ? 100 : 0 
 //<Datatable data={search(OppoList)} />
 //<Datatable data={typeBox(search(OppoList))} />
-export default OppoPage;
+export default TestOppoPage;

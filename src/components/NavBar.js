@@ -1,6 +1,7 @@
 // JavaScript source code
 import { Route, Link } from 'react-router-dom';
 import React, { Component } from 'react';
+import zIndex from '@mui/material/styles/zIndex';
 // <button>About Us</button> 
 //
 const NavBar  = () => {
@@ -38,10 +39,12 @@ const brandName = {
  //           margin: "0  0 30px",
 const test = {
     
-    backgroundColor: '#FFD700'
-    
+    backgroundColor: '#FFD700',
+    position: "sticky",
+    top: 0,
+    zIndex: 9999
 }
 
-
+//position: "fixed"
 
 export default NavBar 

@@ -23,6 +23,10 @@ import MakingReview from './ReviewPage/MakingReview';
 import ReviewSuccess from './ReviewPage/ReviewSuccess'; 
 import ReviewNoSuccess from './ReviewPage/ReviewNoSuccess';
 import EditCompany from './Manage/EditCompany';
+import TestOppoPage from './OppoPage/TestOppoPage';
+import DatatablePage from './OppoPage/DatatablePage';
+
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
@@ -49,6 +53,9 @@ root.render(
                 <Route path='/ReviewSuccess' element={<ReviewSuccess />} />
                 <Route path='/ReviewNoSuccess' element={<ReviewNoSuccess />} />
                 <Route path='/EditCompany' element={<EditCompany />} />
+                <Route path='/TestOppoPage' element={<TestOppoPage />} />
+                <Route path='/lol' element={<DatatablePage />} />
+                
 
         </Routes>
     </Router>
@@ -62,6 +69,7 @@ root.render(
     //</Router> ,
     //document.getElementById('root')
 //);
+
 
 
 // If you want to start measuring performance in your app, pass a function
