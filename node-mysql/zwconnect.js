@@ -25,3 +25,51 @@ const db = mysql.createConnection({
     password: "sql_pass123^*",
     database: "fyp_db",
 });
+
+app.post('/EditUser', (req, res) => {
+    db.query("UPDATE users SET RoleID = ?, Name = ?, Password = ?, Email = ?, Age = ?, Gender = ?, UserBio = ?, MobileNumber = ?"
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send("Updated User Information!");
+            }
+        }
+    )
+})
+
+app.post('/DeleteUser', (req, res) => {
+    db.query("DELETE FROM users WHERE Name = ? AND UserID = ?"
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send("User Information Deleted");
+            }
+        }
+    )
+})
+
+app.post('/EditOppo', (req, res) => {
+    db.query("UPDATE opportunities WHERE Name = ? AND OppID = ?"
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send("Updated User Information!");
+            }
+        }
+    )
+})
+
+app.post('/DeleteOppo', (req, res) => {
+    db.query("DELETE FROM opportunities WHERE Name = ? AND OppID = ?"
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send("Opportunity Information Deleted");
+            }
+        }
+    )
+})
