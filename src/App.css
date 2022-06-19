@@ -397,3 +397,11 @@ div.containerNavBar {
     height:25px;
     width:25px;
 }
+
+.appTable th, td {
+    border: solid;
+}
+
+.appTable {
+    width: 80%;
+}
