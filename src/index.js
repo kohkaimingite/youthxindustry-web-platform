@@ -32,7 +32,6 @@ import DeleteOppoPartner from './OppoPartner/DeleteOppoPartner';
 import EditUserBio from './Manage/EditUserBio';
 import EditCompanyBio from './Manage/EditCompanyBio';
 import EditUserResume from './Manage/EditUserResume';
-//import EditCompany from './Manage/EditCompany';
 
 
 
