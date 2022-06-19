@@ -33,8 +33,7 @@ import EditUserBio from './Manage/EditUserBio';
 import EditCompanyBio from './Manage/EditCompanyBio';
 import EditUserResume from './Manage/EditUserResume';
 import EditCompany from './Manage/EditCompany';
-import TestOppoPage from './OppoPage/TestOppoPage';
-import DatatablePage from './OppoPage/DatatablePage';
+
 
 
 
@@ -75,8 +74,7 @@ root.render(
                 <Route path='/EditUserResume' element={<EditUserResume />} />
 
                 <Route path='/EditCompany' element={<EditCompany />} />
-                <Route path='/TestOppoPage' element={<TestOppoPage />} />
-                <Route path='/lol' element={<DatatablePage />} />
+                
 
 
         </Routes>
