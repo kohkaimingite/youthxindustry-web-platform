@@ -12,12 +12,10 @@ const NavBar  = () => {
                     <a href="/">Home</a>
                     <a href="/AboutUs">About Us</a>
                     <a href="/Opportunities">Opportunities</a>
-                    <a href="/Favourites">Favourites</a>
                     <a href="/ContactUs">Contact Us</a>
                     <a href="/Login">Login</a>
                     <a href="/Register">Register</a>
-                    <a href="/makingReview">Making Review</a>
-                    <a href="/Profile">Profile</a>
+                    
                     
 
                 </div>
