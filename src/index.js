@@ -31,6 +31,7 @@ import AddOppoPartner from './OppoPartner/AddOppoPartner';
 import DeleteOppoPartner from './OppoPartner/DeleteOppoPartner';
 import EditUserBio from './Manage/EditUserBio';
 import EditCompanyBio from './Manage/EditCompanyBio';
+import EditUserResume from './Manage/EditUserResume';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -53,7 +54,7 @@ root.render(
                 <Route path='/job' element={<OneJob />} />
                 <Route path='/Profile' element={<ProfilePage />} />
                 <Route path='/Company' element={<CompanyPage />} />
-                <Route path='/EditUserumber' element={<EditUserNumber />} />
+                <Route path='/EditUserNumber' element={<EditUserNumber />} />
                 <Route path='/MakingReview' element={<MakingReview />} />
                 <Route path='/ReviewSuccess' element={<ReviewSuccess />} />
                 <Route path='/ReviewNoSuccess' element={<ReviewNoSuccess />} />
@@ -67,6 +68,7 @@ root.render(
                 <Route path='/DeleteOppoPartner' element={<DeleteOppoPartner />} />
                 <Route path='/EditUserBio' element={<EditUserBio />} />
                 <Route path='/EditCompanyBio' element={<EditCompanyBio />} />
+                <Route path='/EditUserResume' element={<EditUserResume />} />
 
 
         </Routes>

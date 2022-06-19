@@ -32,7 +32,7 @@ const db = mysql.createConnection({
 
 app.get('/Profile', (req, res) => {
     const emailcheck = req.body.emailcheck;
-    db.query("SELECT userid, name, email, MobileNumber, userbio FROM users WHERE UserID = 1",(err, result) => {
+    db.query("SELECT Userid, Name, Email, ContactNumber, Resume, UserBio FROM users WHERE UserID = 2",(err, result) => {
         if (err) {
             console.log(err);
         } else { res.send(result) };
@@ -47,7 +47,7 @@ app.listen(PORT, () => {
 app.post('/EditUBio', (req, res) => {
     const Bio = req.body.Bio;
     db.query('UPDATE users SET Userbio = ? WHERE userid = 2;',
-    [Email, Number, Bio],
+    [Bio],
         (err, result) => {
             if(err) {
                 console.log(err);
@@ -60,8 +60,8 @@ app.post('/EditUBio', (req, res) => {
 
 app.post('/EditUNumber', (req, res) => {
     const Number = req.body.Number;
-    db.query('UPDATE users SET MobileNumber = ? WHERE userid = 2;',
-        [Email, Number, Bio],
+    db.query('UPDATE users SET ContactNumber = ? WHERE userid = 2;',
+        [Number],
         (err, result) => {
             if (err) {
                 console.log(err);
@@ -74,8 +74,8 @@ app.post('/EditUNumber', (req, res) => {
 
 app.post('/EditCBio', (req, res) => {
     const Bio = req.body.Bio;
-    db.query('UPDATE partners PartnerBio = ? WHERE UserID = 1;',
-        [Email, Number, Bio],
+    db.query('UPDATE users UserBio = ? WHERE UserID = 1;',
+        [Bio],
         (err, result) => {
             if (err) {
                 console.log(err);
@@ -88,13 +88,13 @@ app.post('/EditCBio', (req, res) => {
 
 app.post('/EditCNumber', (req, res) => {
     const Number = req.body.Number;
-    db.query('UPDATE partners SET ContactNumber = ? WHERE UserID = 1;',
-        [Email, Number, Bio],
+    db.query('UPDATE users SET ContactNumber = ? WHERE UserID = 1;',
+        [Number],
         (err, result) => {
             if (err) {
                 console.log(err);
             } else {
-                res.send("Updated User Mobile Number!");
+                res.send("Updated Company Contact Number!");
             }
         }
     )
@@ -102,7 +102,7 @@ app.post('/EditCNumber', (req, res) => {
 
 
 app.get('/Company', (req, res) => {
-    db.query("SELECT partnerID, Name, Email, PartnerBio, ContactNumber FROM partners WHERE PartnerID = 1;",
+    db.query("SELECT UserID, Name, Email, UserBio, ContactNumber FROM users WHERE UserID = 1;",
         (err, result) => {
             if (err) {
                 console.log(err);
@@ -125,5 +125,19 @@ app.get('/Applications', (req, res) => {
     )
 })
 
+app.post('/EditUResume', (req, res) => {
+    const Resume = req.body.Resume
+    db.query("UPDATE users SET Resume = ? WHERE UserID = 2;",
+        [Resume],
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send("Updated Resume!");
+            }
+        }
+    )
+
+})
 
 

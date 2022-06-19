@@ -92,7 +92,7 @@ function EditProfile() {
         }).then(() => {
             console.log("Test");
             /*setCheck(response.data);*/
-            window.location = "http://localhost:3000/EditProfile";
+            window.location = "http://localhost:3000/Profile";
         });
     };
 }//ADD IF STATEMENT TO CHECK FOR IF IT IS SUCCESSFUL
