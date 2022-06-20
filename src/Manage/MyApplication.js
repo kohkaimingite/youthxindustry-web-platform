@@ -10,8 +10,26 @@ import { Route, Link } from 'react-router-dom';
 import axios from 'axios';
 
 function MyApplication() {
-    
+    const [AppList, setAppList] = useState([]);
+    const columns = AppList[0] && Object.keys(AppList[0]);
+    const getApplication = () => {
 
+    };
+    useEffect(() => {
+        axios.get("http://localhost:3001/Applications").then((response) => {
+
+            console.log(response);
+            setAppList(response.data);
+
+        });
+    });
+    return (
+        
+        <div>
+
+        </div>
+        
+    )
 }
 
 export default MyApplication;
