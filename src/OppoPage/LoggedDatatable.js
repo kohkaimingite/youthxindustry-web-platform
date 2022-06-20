@@ -10,7 +10,7 @@ import axios from 'axios';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 
-export default function Datatable({ data }) {
+export default function LoggedDatatable({ data }) {
     const [OppoList, setOppoList] = useState([]);
     const columns = data[0] && Object.keys(data[0]);
     
@@ -113,7 +113,7 @@ export default function Datatable({ data }) {
                 <th>Location</th>
                 <th>Address</th>
                 <th>Job Categories</th>
-                
+                <th>Favourite</th>
                 
 
             </tr>
@@ -122,7 +122,8 @@ export default function Datatable({ data }) {
                     columns.map(column => <td style={{ textAlign: 'left' }}>{row[column]}</td>)
                     
                 }
-                
+                <td><FontAwesomeIcon icon={faStar} onClick={() => addFav(testing(row[columns[0]], wtfTesting(row[columns[0]])), row[columns[0]])}>{row[columns[0]]} {test}</FontAwesomeIcon></td>
+
             </tr>)}
         </table>
         
