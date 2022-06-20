@@ -3,7 +3,9 @@ const express = require("express");
 const mysql = require("mysql");
 const cors = require("cors");
 const app = express();
-
+var corsOptions = {
+    origin: "http://localhost:3000"
+};
 app.use(cors(corsOptions));
 
 app.use(express.json());
@@ -27,7 +29,7 @@ const db = mysql.createConnection({
 });
 
 app.post('/EditUser', (req, res) => {
-    db.query("UPDATE users SET RoleID = ?, Name = ?, Password = ?, Email = ?, Age = ?, Gender = ?, UserBio = ?, MobileNumber = ?"
+    db.query("UPDATE users SET RoleID = ?, Name = ?, Password = ?, Email = ?, Age = ?, Gender = ?, UserBio = ?, MobileNumber = ?",
         (err, result) => {
             if (err) {
                 console.log(err);
@@ -39,7 +41,7 @@ app.post('/EditUser', (req, res) => {
 })
 
 app.post('/DeleteUser', (req, res) => {
-    db.query("DELETE FROM users WHERE Name = ? AND UserID = ?"
+    db.query("DELETE FROM users WHERE Name = ? AND UserID = ?",
         (err, result) => {
             if (err) {
                 console.log(err);
@@ -51,7 +53,7 @@ app.post('/DeleteUser', (req, res) => {
 })
 
 app.post('/EditOppo', (req, res) => {
-    db.query("UPDATE opportunities WHERE Name = ? AND OppID = ?"
+    db.query("UPDATE opportunities WHERE Name = ? AND OppID = ?",
         (err, result) => {
             if (err) {
                 console.log(err);
@@ -63,7 +65,7 @@ app.post('/EditOppo', (req, res) => {
 })
 
 app.post('/DeleteOppo', (req, res) => {
-    db.query("DELETE FROM opportunities WHERE Name = ? AND OppID = ?"
+    db.query("DELETE FROM opportunities WHERE Name = ? AND OppID = ?",
         (err, result) => {
             if (err) {
                 console.log(err);
