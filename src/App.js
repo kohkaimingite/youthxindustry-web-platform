@@ -79,20 +79,20 @@ function App() {
         return <Outlet />;
     };
     const ProtectedRoutepartner = ({ user, redirectPath = '/NotAllowed' }) => {
-        if (!user) {
+        if (user!==2) {
             return <Navigate to={redirectPath} replace />;
         }
 
         return <Outlet />;
     };
     const ProtectedRouteAdmin = ({ user, redirectPath = '/NotAllowed' }) => {
-        if (!user) {
+        if (user!==3) {
             return <Navigate to={redirectPath} replace />;
         }
 
         return <Outlet />;
     };
-    const [user, setUser] = React.useState(null);
+    const [user, setUser] = React.useState(2);
     return (
         <div className="App">
 
