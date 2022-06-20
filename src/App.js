@@ -15,9 +15,9 @@ import OppoPage from './OppoPage/OppoPage';
 import ContactPage from './ContactPage/ContactPage';
 import Login from './LoginPage/Login';
 import Register from './Register/Register';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import {  Link } from 'react-router-dom';
 import ReactDOM from 'react-dom/client';
+import NotAllowedLog from './NotAllowedLog';
+import NotAllowed from './NotAllowed';
 
 
 import EditUser from './AdminPanel/EditUser';
@@ -44,6 +44,11 @@ import RegisterPartner from './Register/RegisterPartner';
 import OppoPartner from './OppoPartner/OppoPartner';
 import AddOppoPartner from './OppoPartner/AddOppoPartner';
 import DeleteOppoPartner from './OppoPartner/DeleteOppoPartner';
+
+import Protection from './Protection';
+import { BrowserRouter as Router, Routes, Route,Link, Navigate, Outlet, } from 'react-router-dom';
+
+
 // Idea:
 //top will be buttons "About" - "opportunities(have sub)" - "contact us" - "login"
 // below will be pictures with a text in the center and the button to the page
@@ -66,46 +71,79 @@ import DeleteOppoPartner from './OppoPartner/DeleteOppoPartner';
 //<h2 class = 'aboutmepic'>ABOUT US</h2>
 //<NavBar />
 function App() {
-    
-    
+    const ProtectedRouteLog = ({ user, redirectPath = '/NoAccess' }) => {
+        if (!user) {
+            return <Navigate to={redirectPath} replace />;
+        } 
+
+        return <Outlet />;
+    };
+    const ProtectedRoutepartner = ({ user, redirectPath = '/NoAccess' }) => {
+        if (!user) {
+            return <Navigate to={redirectPath} replace />;
+        }
+
+        return <Outlet />;
+    };
+    const ProtectedRouteAdmin = ({ user, redirectPath = '/NoAccess' }) => {
+        if (!user) {
+            return <Navigate to={redirectPath} replace />;
+        }
+
+        return <Outlet />;
+    };
+    const [user, setUser] = React.useState(null);
     return (
         <div className="App">
 
             
             <Routes>
+                <Route path='/NotAllowed' element={<NotAllowed />} />
+                <Route path='/NoAccess' element={<NotAllowedLog />} />
                 <Route path='/' element={<Home />} />
                 <Route path='/AboutUs' element={<AboutPage />} />
                 <Route path='/Login' element={<Login />} />
                 <Route path='/Register' element={<Register />} />
                 <Route path='/Opportunities' element={<OppoPage />} />
                 <Route path='/ContactUs' element={<ContactPage />} />
-
-
-                <Route path='/Favourites' element={<Favourites />} />
-                <Route path='/MakingReview' element={<MakingReview />} />
-                <Route path='/ReviewSuccess' element={<ReviewSuccess />} />
-                <Route path='/ReviewNoSuccess' element={<ReviewNoSuccess />} />
-                <Route path='/EditUserResume' element={<EditUserResume />} />
-                <Route path='/RegisterUser' element={< RegisterUser />} />
-                <Route path='/EditUserBio' element={<EditUserBio />} />
-                <Route path='/LoggedOppoPage' element={<LoggedOppoPage />} />
                 
 
-                <Route path='/AdminPanel' element={<AdminPanel />} />
+                <Route element={<ProtectedRouteLog user={user} />}>
+                    <Route path='/Favourites' element={<Favourites />} />
+                    <Route path='/MakingReview' element={<MakingReview />} />
+                    <Route path='/ReviewSuccess' element={<ReviewSuccess />} />
+                    <Route path='/ReviewNoSuccess' element={<ReviewNoSuccess />} />
+                    <Route path='/EditUserResume' element={<EditUserResume />} />
+                    <Route path='/RegisterUser' element={< RegisterUser />} />
+                    <Route path='/EditUserBio' element={<EditUserBio />} />
+                    <Route path='/LoggedOppoPage' element={<LoggedOppoPage />} />
+                    <Route path='/MyApplications' element={< MyApplication />} />
+                    <Route path='/EditUserNumber' element={<EditUserNumber />} />
+                </Route>
+
+                
+                
+                <Route element={<ProtectedRoutepartner user={user} />}>
+                
                 <Route path='/EditOppo' element={<EditOppo />} />
-                <Route path='/EditUser' element={<EditUser />} />
+                <Route path='/Company' element={<CompanyPage />} />
                 <Route path='/MngPartner' element={<MngPartner />} />
                 <Route path='/Profile' element={<ProfilePage />} />
-                <Route path='/Company' element={<CompanyPage />} />
-                <Route path='/EditUserNumber' element={<EditUserNumber />} />
                 <Route path='/EditCompanyNumber' element={<EditCompanyNumber />} />
-                <Route path='/CreateCompanyProfile' element={<CreateCompanyProfile />} />
                 <Route path='/RegisterPartner' element={< RegisterPartner />} />
-                <Route path='/MyApplications' element={< MyApplication />} />
                 <Route path='/OppoPartner' element={<OppoPartner />} />
                 <Route path='/AddOppoPartner' element={<AddOppoPartner />} />
-                <Route path='/DeleteOppoPartner' element={<DeleteOppoPartner />} />
                 <Route path='/EditCompanyBio' element={<EditCompanyBio />} />
+                </Route>
+
+
+                <Route element={<ProtectedRouteAdmin user={user} />}>
+                    <Route path='/AdminPanel' element={<AdminPanel />} />
+                    <Route path='/EditUser' element={<EditUser />} />
+                    <Route path='/DeleteOppoPartner' element={<DeleteOppoPartner />} />
+                    <Route path='/CreateCompanyProfile' element={<CreateCompanyProfile />} />
+
+                </Route>
                 </Routes>
         </div>
     );
