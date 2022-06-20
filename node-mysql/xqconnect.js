@@ -141,7 +141,9 @@ app.post('/EditUResume', (req, res) => {
 })
 
 app.post('/DeleteApplication', (req, res) => {
-    db.query("DELETE FROM application WHERE UserID = 1",
+    const ID = req.body.ID
+    db.query("DELETE FROM application WHERE UserID = 1 AND AppID = ?",
+        [ID],
         (err, result) => {
             if (err) {
                 console.log(err);
@@ -150,5 +152,5 @@ app.post('/DeleteApplication', (req, res) => {
             }
         }
     )
-}
+})
 

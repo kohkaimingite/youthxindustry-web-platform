@@ -55,15 +55,15 @@ function UserProfile() {
                         })}<br />
                         {ProfList.map((val, key) => {
                             return <text align="Left">{val.ContactNumber}</text>;
-                        })}<FontAwesomeIcon icon={faPencil}></FontAwesomeIcon><br />
+                        })}<a href="/EditUserNumber"> <FontAwesomeIcon icon={faPencil}></FontAwesomeIcon> </a><br />
                         {ProfList.map((val, key) => {
                             return <text align="Left">{val.UserBio}</text>;
-                        })}<FontAwesomeIcon icon={faPencil}></FontAwesomeIcon><br />
-                        {ProfList.map((val, key) => {
-                            return <text align="Left">{val.Resume}</text>;
-                        })}<FontAwesomeIcon icon={faPencil} onclick="location.href='/EditUserResume';"></FontAwesomeIcon><br />
+                        })}<a href="/EditUserBio"> <FontAwesomeIcon icon={faPencil}></FontAwesomeIcon> </a><br />
+                        {/*{ProfList.map((val, key) => {*/}
+                        {/*    return <text align="Left">{val.Resume}</text>;*/}
+                        {/*})}<br />*/}<a href="/EditUserResume"> <FontAwesomeIcon icon={faPencil}></FontAwesomeIcon> </a><br />
                         
-
+                        
 
                         
                     </form>

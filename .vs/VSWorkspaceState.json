@@ -4,13 +4,11 @@
     "\\node-mysql",
     "\\public",
     "\\src",
+    "\\src\\AboutPage",
     "\\src\\components",
-    "\\src\\components\\PageHeader",
-    "\\src\\LoginPage",
     "\\src\\Manage",
-    "\\src\\OppoPage",
-    "\\src\\ReviewPage"
+    "\\src\\Some test data"
   ],
-  "SelectedNode": "\\node-mysql\\andreaconnect.js",
+  "SelectedNode": "\\src\\Manage\\EditUserResume.js",
   "PreviewInSolutionExplorer": false
 }
