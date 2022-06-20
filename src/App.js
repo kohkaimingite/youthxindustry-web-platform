@@ -78,14 +78,14 @@ function App() {
 
         return <Outlet />;
     };
-    const ProtectedRoutepartner = ({ user, redirectPath = '/NoAccess' }) => {
+    const ProtectedRoutepartner = ({ user, redirectPath = '/NotAllowed' }) => {
         if (!user) {
             return <Navigate to={redirectPath} replace />;
         }
 
         return <Outlet />;
     };
-    const ProtectedRouteAdmin = ({ user, redirectPath = '/NoAccess' }) => {
+    const ProtectedRouteAdmin = ({ user, redirectPath = '/NotAllowed' }) => {
         if (!user) {
             return <Navigate to={redirectPath} replace />;
         }
