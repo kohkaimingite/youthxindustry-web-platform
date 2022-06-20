@@ -1,25 +1,28 @@
 // JavaScript source code
-import React from 'react';
+import { React, useState, useEffect } from 'react';
 import axios from 'axios';
 import NavBar from '../components/NavBar';
-import AdminNavBar from '../components/AdminNavBar';
 
 function EditOppo() {
+    const [searchInput, setSearchInput] = useState('');
+
+    const searchItems = () => {
+
+    }
+
     return (
         <div className="App">
             <NavBar/>
-            <AdminNavBar/>
             <h1 className="page-header text-center">Edit Opportunities</h1>
+            <input type="text" placeholder="Search..." onChange={event => {setSearchInput(event.target.value)}}/>
 
             <div className="col-md-4">
                 <div className="panel panel-primary">
-                    <div className="panel-heading"><span className="glyphicon glyphicon-pencil"></span> Edit Opportunities</div>
 
                 </div>
             </div>
 
             <div className="col-md-8">
-            <h3>Opportunities</h3>
             <table className="table table=bordered table striped">
             <thead>
             <tr>

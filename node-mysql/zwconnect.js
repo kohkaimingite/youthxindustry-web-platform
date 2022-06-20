@@ -3,7 +3,9 @@ const express = require("express");
 const mysql = require("mysql");
 const cors = require("cors");
 const app = express();
-
+var corsOptions = {
+    origin: "http://localhost:3000"
+};
 app.use(cors(corsOptions));
 
 app.use(express.json());
@@ -25,3 +27,83 @@ const db = mysql.createConnection({
     password: "sql_pass123^*",
     database: "fyp_db",
 });
+
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}.`);
+});
+
+app.post('/EditUser', (req, res) => {
+    const RoleID = req.body.RoleID;
+    const Name = req.body.Name;
+    const Password = req.body.Password;
+    const Email = req.body.Email;
+    const Age = req.body.Age;
+    const Gender = req.body.Gender;
+    const UserBio = req.body.UserBio;
+    const MobileNumber = req.body.MobileNumber;
+    db.query("UPDATE users SET RoleID = ?, Name = ?, Password = ?, Email = ?, Age = ?, Gender = ?, UserBio = ?, MobileNumber = ? ",
+        [RoleID, Name, Password, Email, Age, Gender, UserBio, MobileNumber],
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send("Updated User Information!");
+            }
+        }
+    )
+})
+
+app.post('/DeleteUser', (req, res) => {
+    db.query("DELETE FROM users WHERE Name = ? AND UserID = ?",
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send("User Information Deleted");
+            }
+        }
+    )
+})
+
+app.post('/EditOppo', (req, res) => {
+    const Name = req.body.Name;
+    const OppID = req.body.OppID;
+    db.query("UPDATE opportunities WHERE Name = ? AND OppID = ?",
+        [Name, OppID],
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send("Updated User Information!");
+            }
+        }
+    )
+})
+
+app.post('/DeleteOppo', (req, res) => {
+    const Name = req.body.Name;
+    const OppID = req.body.OppID;
+    db.query("DELETE FROM opportunities WHERE Name = ? AND OppID = ?",
+        [Name, OppID],
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send("Opportunity Information Deleted");
+            }
+        }
+    )
+})
+
+app.post('/DeleteOppo', (req, res) => {
+    db.query("DELETE FROM opportunities WHERE Name = ? AND OppID = ?",
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send("Opportunity Information Deleted");
+            }
+        }
+    )
+})
