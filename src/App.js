@@ -92,7 +92,7 @@ function App() {
 
         return <Outlet />;
     };
-    const [user, setUser] = React.useState(2);
+    const [user, setUser] = React.useState(null);
     return (
         <div className="App">
 
