@@ -8,14 +8,14 @@ import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Collapsible from '../components/Collapsible';
 import axios from 'axios';
-import Datatable from './Datatable';
+import LoggedDatatable from './LoggedDatatable';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUpLong } from "@fortawesome/free-solid-svg-icons";
 require('es6-promise').polyfill();
 require('isomorphic-fetch');
 
 
-function OppoPage() {
+function LoggedOppoPage() {
     const [inputText, setInputText] = useState("");
     let inputHandler = (e) => {
         //convert input text to lower case
@@ -371,7 +371,7 @@ function OppoPage() {
         //
          //class="oppoNFavTitle"
         <div className="App">
-            <NavBar />
+            <ListNavBar />
 
             
             <div className="main">
@@ -416,7 +416,7 @@ function OppoPage() {
                    
                 </div>
                 
-                <Datatable data={filterAll(OppoList)} />
+                <LoggedDatatable data={filterAll(OppoList)} />
                 <button id="scrollUp" class="scrollToTop" onClick={scrollToTop} style={{ opacity: showScrollBtn ? 100 : 0 }}><FontAwesomeIcon icon={faArrowUpLong} class="arrowUp" /></button>
             </div>
             
@@ -432,4 +432,4 @@ function OppoPage() {
                 //opacity: showScrollBtn ? 100 : 0 
 //<Datatable data={search(OppoList)} />
 //<Datatable data={typeBox(search(OppoList))} />
-export default OppoPage;
+export default LoggedOppoPage;
