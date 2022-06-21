@@ -6,10 +6,9 @@ const app = express();
 var corsOptions = {
     origin: "http://localhost:3000"
 };
+
 app.use(cors(corsOptions));
-
 app.use(express.json());
-
 app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
@@ -32,6 +31,23 @@ const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}.`);
 });
+
+
+app.get('/user', (req, res) => {
+    db.query("SELECT * from users",(err, result) => {
+        if (err) {
+            console.log(err);
+        } else { res.send(result) };
+
+    });
+});
+
+
+
+
+
+
+
 
 app.post('/EditUser', (req, res) => {
     const RoleID = req.body.RoleID;

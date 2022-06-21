@@ -1,16 +1,23 @@
 // JavaScript source code
-import React, { Component } from 'react';
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom"
 import NavBar from '../components/NavBar';
 import AdminNavBar from '../components/AdminNavBar';
+import axios from 'axios';
 
-function EditUser() {
+const EditUser = () => {
+
     return (
         <div className="App">
-            <NavBar/>
-            <AdminNavBar/>
-            <h1>edit user</h1>
+            <NavBar />
+            <AdminNavBar />
+            <table>
+                <td>
+                   Hi
+                </td>
+            </table>
         </div>
-    );
+    )
 }
 
 export default EditUser;
