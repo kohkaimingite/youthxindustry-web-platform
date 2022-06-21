@@ -20,7 +20,8 @@ import NotAllowedLog from './NotAllowedLog';
 import NotAllowed from './NotAllowed';
 
 
-import EditUser from './AdminPanel/EditUser';
+import EditUser from './AdminPanel/ViewUser';
+import EditUser2 from './AdminPanel/EditUser';
 import Favourites from './OppoPage/Favourites';
 import EditUserNumber from './Manage/EditUserNumber';
 import MakingReview from './ReviewPage/MakingReview';
@@ -43,7 +44,9 @@ import EditUserResume from './Manage/EditUserResume';
 import RegisterPartner from './Register/RegisterPartner';
 import OppoPartner from './OppoPartner/OppoPartner';
 import AddOppoPartner from './OppoPartner/AddOppoPartner';
+import UpdateOppoPartner from './OppoPartner/UpdateOppoPartner';
 import DeleteOppoPartner from './OppoPartner/DeleteOppoPartner';
+import SubmitApplication from './Manage/SubmitApplication';
 
 import Protection from './Protection';
 import { BrowserRouter as Router, Routes, Route,Link, Navigate, Outlet, } from 'react-router-dom';
@@ -92,7 +95,7 @@ function App() {
 
         return <Outlet />;
     };
-    const [user, setUser] = React.useState(null);
+    const [user, setUser] = React.useState(3);
     return (
         <div className="App">
 
@@ -134,12 +137,18 @@ function App() {
                 <Route path='/OppoPartner' element={<OppoPartner />} />
                 <Route path='/AddOppoPartner' element={<AddOppoPartner />} />
                 <Route path='/EditCompanyBio' element={<EditCompanyBio />} />
+                <Route path='/SubmitApplication' element={<SubmitApplication />} />
                 </Route>
 
 
                 <Route element={<ProtectedRouteAdmin user={user} />}>
                     <Route path='/AdminPanel' element={<AdminPanel />} />
                     <Route path='/EditUser' element={<EditUser />} />
+                    <Route path='/EditUser/:id' element={<EditUser2 />} />
+                    <Route path='/EditOppo' element={<EditOppo />} />
+                    <Route path='/MngPartner' element={<MngPartner />} />
+                    <Route path='/AddOppoPartner' element={<AddOppoPartner />} />
+                    <Route path='/UpdateOppoPartner' element={<UpdateOppoPartner />} />
                     <Route path='/DeleteOppoPartner' element={<DeleteOppoPartner />} />
                     <Route path='/CreateCompanyProfile' element={<CreateCompanyProfile />} />
 

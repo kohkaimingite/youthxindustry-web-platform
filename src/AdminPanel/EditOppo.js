@@ -15,27 +15,28 @@ function EditOppo() {
             <NavBar/>
             <h1 className="page-header text-center">Edit Opportunities</h1>
             <input type="text" placeholder="Search..." onChange={event => {setSearchInput(event.target.value)}}/>
+            <input type="submit" value="Edit" class="btn btn-primary"/>
 
-            <div className="col-md-4">
-                <div className="panel panel-primary">
-
-                </div>
-            </div>
-
-            <div className="col-md-8">
-            <table className="table table=bordered table striped">
+            <table class="table table-hover" className="opportunitiesTable">
             <thead>
             <tr>
                 <th>Job Code</th>
-                <th>Company</th>
+                <th>Job Name</th>
                 <th>Description</th>
                 <th>Location</th>
                 <th>Address</th>
-                <th>Job Scope</th>
+                <th>Job Categories</th>
             </tr>
             </thead>
+            <tbody>
+                <td>123456</td>
+                <td>Nurse</td>
+                <td>Admission, transfer and discharge of patients</td>
+                <td>Central</td>
+                <td>5 Lower Kent Ridge RD, Singapore 119074</td>
+                <td>Healthcare</td>
+            </tbody>
             </table>
-            </div>
         </div>
     );
 }

@@ -154,3 +154,19 @@ app.post('/DeleteApplication', (req, res) => {
     )
 })
 
+app.post('/SubmitApplication', (req, res) => {
+    const desc = req.body.desc
+    const OppID = req.body.OppID
+    const UserID = req.body.UserID
+    db.query("INSERT INTO application (OppID, UserID, Description, Status) VALUES (?, ?, ?, 'pending')"),
+        [OppID, UserID, desc],
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send("Submitted Application!");
+            }
+        }
+    }
+)
+
