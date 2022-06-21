@@ -5,12 +5,9 @@
     "\\public",
     "\\src",
     "\\src\\components",
-    "\\src\\components\\PageHeader",
-    "\\src\\LoginPage",
-    "\\src\\Manage",
     "\\src\\OppoPage",
     "\\src\\ReviewPage"
   ],
-  "SelectedNode": "\\src\\App.js",
+  "SelectedNode": "\\src\\logo.svg",
   "PreviewInSolutionExplorer": false
 }
