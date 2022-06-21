@@ -66,6 +66,18 @@ app.post('/DeleteUser', (req, res) => {
     )
 })
 
+app.get('/GetOppo', (req, res) => {
+    db.query("SELECT * FROM opportunities",
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send(result);
+            }
+        }
+    )
+})
+
 app.post('/EditOppo', (req, res) => {
     const Name = req.body.Name;
     const OppID = req.body.OppID;
