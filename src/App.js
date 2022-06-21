@@ -43,6 +43,7 @@ import EditUserResume from './Manage/EditUserResume';
 import RegisterPartner from './Register/RegisterPartner';
 import OppoPartner from './OppoPartner/OppoPartner';
 import AddOppoPartner from './OppoPartner/AddOppoPartner';
+import UpdateOppoPartner from './OppoPartner/UpdateOppoPartner';
 import DeleteOppoPartner from './OppoPartner/DeleteOppoPartner';
 
 import Protection from './Protection';
@@ -140,6 +141,10 @@ function App() {
                 <Route element={<ProtectedRouteAdmin user={user} />}>
                     <Route path='/AdminPanel' element={<AdminPanel />} />
                     <Route path='/EditUser' element={<EditUser />} />
+                    <Route path='/EditOppo' element={<EditOppo />} />
+                    <Route path='/MngPartner' element={<MngPartner />} />
+                    <Route path='/AddOppoPartner' element={<AddOppoPartner />} />
+                    <Route path='/UpdateOppoPartner' element={<UpdateOppoPartner />} />
                     <Route path='/DeleteOppoPartner' element={<DeleteOppoPartner />} />
                     <Route path='/CreateCompanyProfile' element={<CreateCompanyProfile />} />
 
