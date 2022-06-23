@@ -4,7 +4,7 @@ const cors = require("cors");
 
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
-const sessions = require("express-session");
+const session = require("express-session");
 
 const app = express();
 
@@ -21,7 +21,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 const oneDay = 1000 * 60 * 60 * 24;
-app.use(sessions({
+app.use(session({
     secret: "thisismysecrctekeyfhrgfgrfrty84fwir767",
     saveUninitialized: true,
     cookie: { maxAge: oneDay },
@@ -29,7 +29,6 @@ app.use(sessions({
 }));
 
 
-var session;
 
 const db = mysql.createConnection({
     user: "root",
@@ -37,9 +36,6 @@ const db = mysql.createConnection({
     password: "sql_pass123^*",
     database: "fyp_db",
 });
-
-
-
 
 
 app.post("/registerUser", (req, res) => {
@@ -90,7 +86,7 @@ app.post("/checkUser", (req, res) => {
 });
 
 
-app.post("/login", (req, res) => {
+app.post("/login", (req, res, next) => {
     const email = req.body.email
     const password = req.body.password
 
@@ -104,10 +100,8 @@ app.post("/login", (req, res) => {
                 }
 
                 if (result.length > 0) {
-                    session = req.session;
-                    session.email = req.body.email;
-                    console.log(req.session);
-                    res.send({ message: session.email })
+                    req.session.user = result;
+                    next();
 
                 } else {
                     res.send({ message: "Incorrect Combination!" });
@@ -122,9 +116,9 @@ app.post("/login", (req, res) => {
 
 });
 
-app.get("/login", (req, res) => {
-    if (req.session.email) {
-        res.send({ loggedIn: true, message: req.session.email + " is logged in!" });
+app.get("/login", function(req, res){
+    if (req.session.user) {
+        res.send({ loggedIn: true, message: req.session.user[0].Name + " is logged in!" });
     } else {
         res.send({ loggedIn: false });
     }
@@ -140,11 +134,10 @@ app.get("/logout", (req, res) => {
     });
 });
 
-app.get('/oppListing', (req, res) => {
-    const UserID = req.body.UserID;
-    db.query("SELECT opportunities.OppID, Name, Description, Location, Address, Type FROM opportunities INNER JOIN users_have_opp ON opportunities.OppID = users_have_opp.OppID WHERE users_have_opp.UserID = 2 ORDER BY opportunities.OppID;",
-        [UserID],
-
+app.get('/oppListing', function(req, res){
+    db.query("SELECT opportunities.OppID, Name, Description, Location, Address, Type FROM opportunities INNER JOIN users_have_opp ON opportunities.OppID = users_have_opp.OppID WHERE users_have_opp.UserID = ? ORDER BY opportunities.OppID;",
+        [req.session.user[0].UserID],
+        
         (err, result) => {
             if (err) {
                 console.log(err);

@@ -13,7 +13,7 @@ const AdminNavBar = () => {
                     </li>
 
                     <li>
-                        <Link to="/EditUser">Edit Users</Link>
+                        <Link to="/ViewUser">Edit Users</Link>
                     </li>
 
                     <li>

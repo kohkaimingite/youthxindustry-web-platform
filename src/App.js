@@ -22,6 +22,7 @@ import NotAllowed from './NotAllowed';
 
 import EditUser from './AdminPanel/ViewUser';
 import EditUser2 from './AdminPanel/EditUser';
+import DeleteUser from './AdminPanel/DeleteUser';
 import Favourites from './OppoPage/Favourites';
 import EditUserNumber from './Manage/EditUserNumber';
 import MakingReview from './ReviewPage/MakingReview';
@@ -143,8 +144,9 @@ function App() {
 
                 <Route element={<ProtectedRouteAdmin user={user} />}>
                     <Route path='/AdminPanel' element={<AdminPanel />} />
-                    <Route path='/EditUser' element={<EditUser />} />
-                    <Route path='/EditUser/:id' element={<EditUser2 />} />
+                    <Route path='/ViewUser' element={<EditUser />} />
+                    <Route path='/EditUser' element={<EditUser2 />} />
+                    <Route path='/DeleteUser' element={<DeleteUser />} />
                     <Route path='/EditOppo' element={<EditOppo />} />
                     <Route path='/MngPartner' element={<MngPartner />} />
                     <Route path='/AddOppoPartner' element={<AddOppoPartner />} />
