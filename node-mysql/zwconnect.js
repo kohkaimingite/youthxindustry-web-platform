@@ -34,7 +34,7 @@ app.listen(PORT, () => {
 
 
 app.get('/user', (req, res) => {
-    db.query("SELECT * from users",(err, result) => {
+    db.query("SELECT * from users", (err, result) => {
         if (err) {
             console.log(err);
         } else { res.send(result) };
@@ -42,14 +42,8 @@ app.get('/user', (req, res) => {
     });
 });
 
-
-
-
-
-
-
-
 app.post('/EditUser', (req, res) => {
+    const UserID = req.body.UserID;
     const RoleID = req.body.RoleID;
     const Name = req.body.Name;
     const Password = req.body.Password;
@@ -58,8 +52,8 @@ app.post('/EditUser', (req, res) => {
     const Gender = req.body.Gender;
     const UserBio = req.body.UserBio;
     const MobileNumber = req.body.MobileNumber;
-    db.query("UPDATE users SET RoleID = ?, Name = ?, Password = ?, Email = ?, Age = ?, Gender = ?, UserBio = ?, MobileNumber = ? ",
-        [RoleID, Name, Password, Email, Age, Gender, UserBio, MobileNumber],
+    db.query("UPDATE users SET RoleID = ?, Name = ?, Password = ?, Email = ?, Age = ?, Gender = ?, UserBio = ?, ContactNumber = ? WHERE UserID =?",
+        [RoleID, Name, Password, Email, Age, Gender, UserBio, MobileNumber, UserID],
         (err, result) => {
             if (err) {
                 console.log(err);
@@ -71,7 +65,9 @@ app.post('/EditUser', (req, res) => {
 })
 
 app.post('/DeleteUser', (req, res) => {
-    db.query("DELETE FROM users WHERE Name = ? AND UserID = ?",
+    const UserID = req.body.UserID;
+    db.query("DELETE FROM users WHERE UserID = ?",
+        [UserID],
         (err, result) => {
             if (err) {
                 console.log(err);
