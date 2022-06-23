@@ -2,12 +2,11 @@
   "ExpandedNodes": [
     "",
     "\\node-mysql",
-    "\\public",
     "\\src",
     "\\src\\components",
     "\\src\\OppoPage",
     "\\src\\ReviewPage"
   ],
-  "SelectedNode": "\\src\\logo.svg",
+  "SelectedNode": "\\src\\OppoPage\\Favourites.js",
   "PreviewInSolutionExplorer": false
 }
