@@ -5,11 +5,11 @@ import './Login.css';
 
 export default function Login() {
 
+    Axios.defaults.withCredentials = true;
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [status, setStatus] = useState('');
-
-    Axios.defaults.withCredentials = true;
 
     const login = () => {
         Axios.post("http://localhost:3001/login", {
@@ -19,9 +19,9 @@ export default function Login() {
             .then((response) => {
 
                 if (response.data.message) {
-                    setStatus(response.data.message)
+                    setStatus(response.data.message);
                 } else {
-                    setStatus(response.data[0].email)
+                    setStatus(response.data.message);
                 }
 
             });
