@@ -45,8 +45,6 @@ import EditUserResume from './Manage/EditUserResume';
 import RegisterPartner from './Register/RegisterPartner';
 import OppoPartner from './OppoPartner/OppoPartner';
 import AddOppoPartner from './OppoPartner/AddOppoPartner';
-import UpdateOppoPartner from './OppoPartner/UpdateOppoPartner';
-import DeleteOppoPartner from './OppoPartner/DeleteOppoPartner';
 import SubmitApplication from './Manage/SubmitApplication';
 
 import Protection from './Protection';
@@ -110,7 +108,18 @@ function App() {
                 <Route path='/Register' element={<Register />} />
                 <Route path='/Opportunities' element={<OppoPage />} />
                 <Route path='/ContactUs' element={<ContactPage />} />
-                
+              
+
+                <Route path='/EditOppo' element={<EditOppo />} />
+                <Route path='/Company' element={<CompanyPage />} />
+                <Route path='/MngPartner' element={<MngPartner />} />
+                <Route path='/Profile' element={<ProfilePage />} />
+                <Route path='/EditCompanyNumber' element={<EditCompanyNumber />} />
+                <Route path='/RegisterPartner' element={< RegisterPartner />} />
+                <Route path='/EditCompanyBio' element={<EditCompanyBio />} />
+                <Route path='/SubmitApplication' element={<SubmitApplication />} />
+                <Route path='/OppoPartner' element={<OppoPartner />} />
+                <Route path='/AddOppoPartner' element={<AddOppoPartner />} />
 
                 <Route element={<ProtectedRouteLog user={user} />}>
                     <Route path='/Favourites' element={<Favourites />} />
@@ -150,8 +159,6 @@ function App() {
                     <Route path='/EditOppo' element={<EditOppo />} />
                     <Route path='/MngPartner' element={<MngPartner />} />
                     <Route path='/AddOppoPartner' element={<AddOppoPartner />} />
-                    <Route path='/UpdateOppoPartner' element={<UpdateOppoPartner />} />
-                    <Route path='/DeleteOppoPartner' element={<DeleteOppoPartner />} />
                     <Route path='/CreateCompanyProfile' element={<CreateCompanyProfile />} />
 
                 </Route>

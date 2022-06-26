@@ -31,6 +31,7 @@ app.use(session({
 
 
 const db = mysql.createConnection({
+    multipleStatements: true,
     user: "root",
     host: "localhost",
     password: "sql_pass123^*",
@@ -44,7 +45,7 @@ app.post("/registerUser", (req, res) => {
     const email = req.body.email;
 
     db.query(
-        "INSERT INTO users (RoleID, Name, Password, Email, DateCreated) VALUES (1, ?, ?, ?, curdate())",
+        "INSERT INTO users (RoleID, Name, Password, Email, DateCreated) VALUES (1, ?, ?, ?, curdate());",
         [name, password, email],
         (err, result) => {
             if (err) {
@@ -60,7 +61,7 @@ app.post("/registerPartner", (req, res) => {
     const email = req.body.email;
 
     db.query(
-        "INSERT INTO users (RoleID, Name, Password, Email, DateCreated) VALUES (2, ?, ?, ?, curdate())",
+        "INSERT INTO users (RoleID, Name, Password, Email, DateCreated) VALUES (2, ?, ?, ?, curdate());",
         [name, password, email],
         (err, result) => {
             if (err) {
@@ -70,29 +71,13 @@ app.post("/registerPartner", (req, res) => {
         });
 });
 
-app.post("/checkUser", (req, res) => {
-    const name = req.body.name;
-    const email = req.body.email;
-
-    db.query(
-        "SELECT * FROM users WHERE Name = ? OR Email = ?",
-        [name, email],
-        (err, result) => {
-            if (err) {
-                console.log(err);
-            } else { res.send(result) };
-
-        });
-});
-
-
 app.post("/login", (req, res, next) => {
     const email = req.body.email
     const password = req.body.password
 
     if (email && password) {
         db.query(
-            "SELECT * FROM users WHERE Email = ? AND Password = ?",
+            "SELECT * FROM users WHERE Email = ? AND Password = ?;",
             [email, password],
             (err, result) => {
                 if (err) {
@@ -116,7 +101,7 @@ app.post("/login", (req, res, next) => {
 
 });
 
-app.get("/login", function(req, res){
+app.get("/login", function (req, res) {
     if (req.session.user) {
         res.send({ loggedIn: true, message: req.session.user[0].Name + " is logged in!" });
     } else {
@@ -134,10 +119,10 @@ app.get("/logout", (req, res) => {
     });
 });
 
-app.get('/oppListing', function(req, res){
+app.get('/oppListing', function (req, res) {
     db.query("SELECT opportunities.OppID, Name, Description, Location, Address, Type FROM opportunities INNER JOIN users_have_opp ON opportunities.OppID = users_have_opp.OppID WHERE users_have_opp.UserID = ? ORDER BY opportunities.OppID;",
         [req.session.user[0].UserID],
-        
+
         (err, result) => {
             if (err) {
                 console.log(err);
@@ -149,7 +134,7 @@ app.get('/oppListing', function(req, res){
 })
 
 
-app.post("/addOppPartner", (req, res) => {
+app.post("/addOppPartner", function(req, res){
     const name = req.body.name;
     const description = req.body.description;
     const location = req.body.location;
@@ -157,8 +142,25 @@ app.post("/addOppPartner", (req, res) => {
     const type = req.body.type;
 
     db.query(
-        "INSERT INTO opportunities (Name, Description, Location, Address, Type) VALUES (?, ?, ?, ?, ?)",
-        [name, description, location, address, type],
+        "INSERT INTO opportunities (Name, Description, Location, Address, Type) VALUES (?, ?, ?, ?, ?);SET @id = LAST_INSERT_ID(); INSERT INTO users_have_opp (UserID, OppID) VALUES (?, @id);",
+        [name, description, location, address, type, req.session.user[0].UserID],
+        (err, result) =>{
+            if (err) {
+                console.log(err);
+            } else
+
+            { res.send(result) };
+            
+
+        });
+});
+
+
+app.post('/deleteOppPartner', (req, res) => {
+    const oppId = req.body.oppId;
+
+    db.query("DELETE FROM users_have_opp WHERE OppID = ? AND UserID = ?;DELETE FROM opportunities WHERE OppID = ?;",
+        [oppId, req.session.user[0].UserID, oppId],
         (err, result) => {
             if (err) {
                 console.log(err);
@@ -168,11 +170,16 @@ app.post("/addOppPartner", (req, res) => {
 });
 
 
-app.post('/deleteOppPartner', (req, res) => {
+app.post('/updateOppPartner', (req, res) => {
     const oppId = req.body.oppId;
+    const name = req.body.name;
+    const description = req.body.description;
+    const location = req.body.location;
+    const address = req.body.address;
+    const type = req.body.type;
 
-    db.query("DELETE FROM users_have_opp WHERE OppID = ?",
-        [oppId],
+    db.query("UPDATE opportunities SET Name = ?, Description = ?, Location = ?, Address = ?, Type = ? WHERE OppID = ?",
+        [name, description, location, address, type, oppId],
         (err, result) => {
             if (err) {
                 console.log(err);

@@ -1,19 +1,98 @@
 import NavBar from '../components/NavBar';
 import Axios from 'axios';
-import { React, useState, useEffect } from "react";
+import { React, useState, useEffect, Fragment } from "react";
 import { Link } from "react-router-dom";
 import { faPencil, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Button from 'react-bootstrap/Button';
+import ReadOnlyRow from './ReadOnlyRows';
+import EditableRows from './EditableRows';
+
 
 export default function OppoPartner() {
 
     Axios.defaults.withCredentials = true;
+
     const [oppList, setOppList] = useState([]);
-    const columns = oppList[0] && Object.keys(oppList[0]);
+    const [editFormData, setEditFormData] = useState({
+        name: "",
+        description: "",
+        location: "",
+        address: "",
+        type: "",
+    });
 
+    const [editOppId, setEditOppId] = useState(null);
+    const handleEditFormChange = (event) => {
+        event.preventDefault();
+        const fieldName = event.target.getAttribute("name");
+        const fieldValue = event.target.value;
 
-    const delOppoPartner = (oppId) => {
+        const newFormData = { ...editFormData};
+        newFormData[fieldName] = fieldValue;
+
+        setEditFormData(newFormData);
+    }
+
+    
+
+    const handleEditFormSubmit = (event) => {
+        event.preventDefault();
+        const editedOppo = {
+            jobcode: editOppId,
+            name: editFormData.name,
+            description: editFormData.description,
+            location: editFormData.location,
+            address: editFormData.address,
+            type: editFormData.type,
+        }
+        const newOppo = [...oppList];
+
+        const index = oppList.findIndex((opp) => opp.OppID === editOppId);
+
+        newOppo[index] = editedOppo;
+
+        setOppList(newOppo);
+        setEditOppId(null);
+
+        Axios.post("http://localhost:3001/updateOppPartner", {
+            oppId: editOppId,
+            name: editedOppo.name,
+            description: editedOppo.description,
+            location: editedOppo.location,
+            address: editedOppo.address,
+            type: editedOppo.type,
+            
+        })
+  
+        
+    }
+
+    const handleEditClick = (event, opp) => {
+        event.preventDefault();
+        setEditOppId(opp.OppID);
+
+        const formValues = {
+            name: opp.Name,
+            description: opp.Description,
+            location: opp.Location,
+            address: opp.Address,
+            type: opp.Type,
+        }
+
+        setEditFormData(formValues);
+    };
+
+    const handleCancelClick = () => {
+        setEditOppId(null);
+    }
+
+    const handleDeleteClick = (oppId) => {
+        const newOppo = [...oppList];
+        const index = oppList.findIndex((opp) => opp.OppID === oppId);
+        newOppo.splice(index, 1);
+        setOppList(newOppo);
+
         Axios.post("http://localhost:3001/deleteOppPartner", {
             oppId: oppId
         }).then(() => {
@@ -42,7 +121,7 @@ export default function OppoPartner() {
     };
 
     const styleButton = {
-        display: "flex",
+        display: 'flex',
         justifyContent: 'center',
         height: '5vh',
 
@@ -55,11 +134,13 @@ export default function OppoPartner() {
                 <Link to="/AddOppoPartner" className="btn btn-primary" style={{ width: '10%' }}>Add Opportunity</Link>
             </div>
             <div style={styleDiv} className="OppoPartner">
+                <form onSubmit={handleEditFormSubmit}>
                 <table style={{
                     backgroundColor: '#f3f3f3',
                     width: '1300px',
                     height: '300px',
                 }}>
+
                     <tr>
                         <th>Job Code</th>
                         <th>Job Name</th>
@@ -67,35 +148,21 @@ export default function OppoPartner() {
                         <th>Location</th>
                         <th>Address</th>
                         <th>Job Categories</th>
-                        <th>Edit/Delete</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
 
                     </tr>
-                    {oppList.map(row => <tr>
-                        {
-                            columns.map(column => <td>{row[column]}</td>)
-
-
-                        }
-                        <Button style={{
-
-                            backgroundColor: '#008000',
-                        }}>
-                            <FontAwesomeIcon icon={faPencil} />
-                        </Button>
-                        <Button
-                            style={{
-
-                                backgroundColor: '#B22222',
-                            }}
-                            onClick={() => delOppoPartner(row[columns[0]])}>
-
-                            <FontAwesomeIcon icon={faTrash} />
-                        </Button>
-
-                    </tr>
-
-                    )}
-                </table>
+                    {oppList.map((opp) => (
+                        <Fragment>
+                            {editOppId === opp.OppID ?
+                                (
+                                    <EditableRows editFormData={editFormData} handleEditFormChange={handleEditFormChange} handleCancelClick={handleCancelClick} />
+                                ) : (
+                                    <ReadOnlyRow opp={opp} handleEditClick={handleEditClick} handleDeleteClick={handleDeleteClick}/>)}
+                        </Fragment>
+                            ))}          
+                    </table>
+                    </form>
             </div>
         </div>
     );

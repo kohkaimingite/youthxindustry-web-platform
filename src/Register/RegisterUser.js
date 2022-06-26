@@ -17,7 +17,6 @@ export default function RegisterUser() {
 
     const [error, setError] = useState(false);
 
-    const [userCheck, setUserCheck] = useState(false);
 
     const handleEmail = (e) => {
         setEmail(e.target.value);

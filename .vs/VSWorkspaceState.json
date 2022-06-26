@@ -3,10 +3,13 @@
     "",
     "\\node-mysql",
     "\\src",
-    "\\src\\components",
+    "\\src\\CompanyProfile",
+    "\\src\\LoginPage",
+    "\\src\\Manage",
     "\\src\\OppoPage",
-    "\\src\\ReviewPage"
+    "\\src\\OppoPartner",
+    "\\src\\Register",
+    "\\src\\Some test data"
   ],
-  "SelectedNode": "\\src\\OppoPage\\Favourites.js",
   "PreviewInSolutionExplorer": false
 }
