@@ -106,6 +106,7 @@ function App() {
                 setUser(response.data);
             } else {
                 console.log(response);
+                setUser(null);
             }
         });
 
