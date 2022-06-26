@@ -157,8 +157,6 @@ function App() {
                 <Route path='/Profile' element={<ProfilePage />} />
                 <Route path='/EditCompanyNumber' element={<EditCompanyNumber />} />
                 <Route path='/RegisterPartner' element={< RegisterPartner />} />
-                <Route path='/OppoPartner' element={<OppoPartner />} />
-                <Route path='/AddOppoPartner' element={<AddOppoPartner />} />
                 <Route path='/EditCompanyBio' element={<EditCompanyBio />} />
                 <Route path='/SubmitApplication' element={<SubmitApplication />} />
                 </Route>
@@ -171,7 +169,6 @@ function App() {
                     <Route path='/DeleteUser' element={<DeleteUser />} />
                     <Route path='/EditOppo' element={<EditOppo />} />
                     <Route path='/MngPartner' element={<MngPartner />} />
-                    <Route path='/AddOppoPartner' element={<AddOppoPartner />} />
                     <Route path='/CreateCompanyProfile' element={<CreateCompanyProfile />} />
 
                 </Route>
