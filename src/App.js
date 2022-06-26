@@ -75,6 +75,7 @@ import { BrowserRouter as Router, Routes, Route,Link, Navigate, Outlet, } from '
 //<h2 class = 'aboutmepic'>ABOUT US</h2>
 //<NavBar />
 function App() {
+    axios.defaults.withCredentials = true;
     const ProtectedRouteLog = ({ user, redirectPath = '/NoAccess' }) => {
         if (!user) {
             return <Navigate to={redirectPath} replace />;
@@ -98,6 +99,7 @@ function App() {
     };
     const [user, setUser] = useState(null);
     useEffect(() => {
+        
         axios.get("http://localhost:3001/getCurrentUserRole").then((response) => {
             if (response !== null) {
                 console.log(response);
