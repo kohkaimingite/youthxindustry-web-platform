@@ -6,14 +6,34 @@ const app = express();
 var corsOptions = {
     origin: "http://localhost:3000"
 };
-app.use(cors(corsOptions));
+//app.use(cors(corsOptions));
 
-app.use(express.json());
+//app.use(express.json());
 //app.use(cors());
 
-app.use(express.urlencoded({ extended: true }));
+//app.use(express.urlencoded({ extended: true }));
+const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
+const session = require("express-session");
+app.use(express.json());
+app.use(cors({
+    origin: ["http://localhost:3000"],
+    methods: ["GET", "POST"],
+    credentials: true
+
+}));
+
+app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 
+const oneDay = 1000 * 60 * 60 * 24;
+app.use(session({
+    secret: "thisismysecrctekeyfhrgfgrfrty84fwir767",
+    saveUninitialized: true,
+    cookie: { maxAge: oneDay },
+    resave: false
+}));
 
 
 app.get("/", (req, res) => {
@@ -24,6 +44,20 @@ app.get("/test", (req, res) => {
     res.send({ message: "Welcome to bezkoder application." });
     console.log("lol");
 });
+
+app.get('/getCurrentUserRole', function (req, res) {
+    db.query("SELECT RoleID FROM users WHERE UserID = ?;",
+        [req.session.user[0].UserID],
+
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send(result);
+            }
+        }
+    )
+})
 
 const db = mysql.createConnection({
     user: "root",

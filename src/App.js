@@ -5,9 +5,11 @@ import OppoPageSet from './HomePage/OppoPageSet'
 import ContactPageSet from './HomePage/ContactPageSet'
 import './App.css';
 import AboutPage from './AboutPage/AboutPage';
-import React, { Component } from 'react';
+import React from 'react';
+import { Component, useState, useEffect } from 'react';
 import RegisterSet from './HomePage/RegisterSet';
 import AdminNavBar from './components/AdminNavBar'
+import axios from 'axios';
 
 
 import Home from './HomePage/Home';
@@ -94,7 +96,18 @@ function App() {
 
         return <Outlet />;
     };
-    const [user, setUser] = React.useState(3);
+    const [user, setUser] = useState(null);
+    useEffect(() => {
+        axios.get("http://localhost:3001/getCurrentUserRole").then((response) => {
+            if (response !== null) {
+                console.log(response);
+                setUser(response.data);
+            } else {
+                console.log(response);
+            }
+        });
+
+    });
     return (
         <div className="App">
 
