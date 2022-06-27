@@ -52,7 +52,7 @@ app.post('/EditUser', (req, res) => {
     const Gender = req.body.Gender;
     const UserBio = req.body.UserBio;
     const MobileNumber = req.body.MobileNumber;
-    db.query("UPDATE users SET RoleID = ?, Name = ?, Password = ?, Email = ?, Age = ?, Gender = ?, UserBio = ?, ContactNumber = ? WHERE UserID =?",
+    db.query("UPDATE users SET RoleID = ?, Name = ?, Password = ?, Email = ?, Age = ?, Gender = ?, UserBio = ?, ContactNumber = ? WHERE UserID = ?",
         [RoleID, Name, Password, Email, Age, Gender, UserBio, MobileNumber, UserID],
         (err, result) => {
             if (err) {
