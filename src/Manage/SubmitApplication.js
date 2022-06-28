@@ -11,10 +11,51 @@ import axios from 'axios';
 
 
 function SubmitApplication() {
+    const [ProfList, setProfList] = useState([]);
+    const columns = ProfList[0] && Object.keys(ProfList[0]);
+    const getProfile = () => {
 
+    };
+    useEffect(() => {
+        axios.get("http://localhost:3001/profile").then((response) => {
+
+            console.log(response);
+            setProfList(response.data);
+
+        });
+    });
     return (
-        <div>
-
+        <div className="App">
+            <NavBar />
+            <div className="main">
+                <h1>Application</h1>
+                <div className="AlignLeft">
+                    <h3>Details:</h3>
+                    <form action="/action_page.php" method="post">
+                        <text>Full Name:</text><br />
+                        <text>Email:</text><br />
+                        <text>Mobile Number:</text><br />
+                        <text>Short Description: </text><br />
+                        <text>Resume: </text><br />
+                    </form>
+                </div>
+            
+                    <div className="AlignMiddle">
+                    <form action="/action_page.php" method="post">
+                        <h3>Testing</h3>
+                        {ProfList.map((val, key) => {
+                            return <text align="Left">{val.Name}</text>;
+                        })}<br />
+                        {ProfList.map((val, key) => {
+                            return <text align="Left">{val.Email}</text>;
+                        })}<br />
+                        <textbox>Enter Description...</textbox>
+                        {ProfList.map((val, key) => {
+                            return <text align="Left">{val.UserBio}</text>;
+                        })}<a href="/EditUserBio">
+                    </form>
+                    </div>
+            </div>
         </div>
         
         
