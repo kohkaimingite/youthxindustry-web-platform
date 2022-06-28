@@ -97,7 +97,7 @@ function App() {
 
         return <Outlet />;
     };
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState(3);
     useEffect(() => {
         
         axios.get("http://localhost:3001/getCurrentUserRole").then((response) => {

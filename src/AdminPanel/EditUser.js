@@ -1,5 +1,6 @@
 // JavaScript source code
 import React, { useState, useEffect } from "react";
+import { Route, Link } from 'react-router-dom';
 import NavBar from '../components/NavBar';
 import AdminNavBar from '../components/AdminNavBar';
 import axios from 'axios';
@@ -27,14 +28,9 @@ const EditUser = () => {
         setState({...state, [userID]: value})
     }
 
-    const handlepassword = (e) => {
-        const {password, value} = e.target;
-        setState({...state, [password]: value})
-    }
-
-    const handleUserBio = (e) => {
-        const {UserBio, value} = e.target;
-        setState({...state, [UserBio]: value})
+    const handleName= (e) => {
+        const {name, value} = e.target;
+        setState({...state, [name]: value})
     }
 
     const handleroleID= (e) => {
@@ -42,28 +38,36 @@ const EditUser = () => {
         setState({...state, [roleID]: value})
     }
 
-    const handleName= (e) => {
-        const {name, value} = e.target;
-        setState({...state, [name]: value})
+    const handlepassword = (e) => {
+        const {password, value} = e.target;
+        setState({...state, [password]: value})
     }
-    const handleAge= (e) => {
-        const {age, value} = e.target;
-        setState({...state, [age]: value})
-    }
-    const handleContact= (e) => {
-        const {MobileNumber, value} = e.target;
-        setState({...state, [MobileNumber]: value})
-    }
+
     const handleemail= (e) => {
         const {email, value} = e.target;
         setState({...state, [email]: value})
     }
+
+    const handleAge= (e) => {
+        const {age, value} = e.target;
+        setState({...state, [age]: value})
+    }
+
     const handlegender= (e) => {
         const {gender, value} = e.target;
         setState({...state, [gender]: value})
     }
 
+    const handleUserBio = (e) => {
+        const {UserBio, value} = e.target;
+        setState({...state, [UserBio]: value})
+    }
 
+    const handleContact= (e) => {
+        const {MobileNumber, value} = e.target;
+        setState({...state, [MobileNumber]: value})
+    }
+    
     const submitFormData = (e) => {
         e.preventDefault();
         {
@@ -81,7 +85,7 @@ const EditUser = () => {
                 .then((response) => {
                     console.log(response);
                     setState({ userID: 0, roleID: 0, name: "", password: "", email: "", age: 0, gender: "", UserBio: "", MobileNumber:0})
-                    console.log("Success to update");
+                    console.log("Successfully updated");
                 })
                 .catch(() => {
                     console.log("Failed to update");
@@ -95,34 +99,37 @@ const EditUser = () => {
             <AdminNavBar />
             <form>
                 <label>UserID</label>
-                <textarea value={userID} onChange={handleuserID}></textarea>
+                <input type="userID" placeholder="UserID" value={userID} onChange={handleuserID}></input>
 
                 <label>Name</label>
-                <textarea value={name} onChange={handleName}></textarea>
+                <input type="Name" placeholder="Your Name ..." value={name} onChange={handleName}></input>
 
                 <label>RoleID</label>
-                <textarea value={roleID} onChange={handleroleID}></textarea>
+                <input type="roleID" placeholder="Your RoleID ..." value={roleID} onChange={handleroleID}></input>
 
                 <label>Password</label>
-                <textarea value={password} onChange={handlepassword}></textarea>
+                <input type="password" placeholder="Your Password ..." value={password} onChange={handlepassword}></input>
 
                 <label>Email</label>
-                <textarea value={email} onChange={handleemail}></textarea>
+                <input type="email" placeholder="Your Email ..." value={email} onChange={handleemail}></input>
 
                 <label>Age</label>
-                <textarea value={age} onChange={handleAge}></textarea>
+                <input type="Age" placeholder="Your Age ..." value={age} onChange={handleAge}></input>
 
                 <label>Gender</label>
-                <textarea value={gender} onChange={handlegender}></textarea>
+                <input type="gender" placeholder="Your Gender ..." value={gender} onChange={handlegender}></input>
 
                 <label>UserBio</label>
-                <textarea value={UserBio} onChange={handleUserBio}></textarea>
+                <input type="UserBio" placeholder="Your User Biography ..." value={UserBio} onChange={handleUserBio}></input>
 
                 <label>Contact</label>
-                <textarea value={MobileNumber} onChange={handleContact}></textarea>
+                <input type="Contact" placeholder="Your Contact Number ..." value={MobileNumber} onChange={handleContact}></input>
 
+                <button onClick={submitFormData}>Submit</button>
+                <Link to="/ViewUser">
+                    <input className="Back Button" type="button" value="Back"/>
+                </Link>
             </form>
-            <button onClick={submitFormData}>Submit</button>
         </div>
     )
 }
