@@ -52,7 +52,7 @@ function SubmitApplication() {
                         <textbox>Enter Description...</textbox>
                         {ProfList.map((val, key) => {
                             return <text align="Left">{val.UserBio}</text>;
-                        })}<a href="/EditUserBio">
+                        })}<a href="/EditUserBio"></a>
                     </form>
                     </div>
             </div>
