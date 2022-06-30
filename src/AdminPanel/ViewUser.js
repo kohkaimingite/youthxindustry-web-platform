@@ -33,6 +33,7 @@ const ViewUser = () => {
                         <th style={{textAlign: "center"}}> Gender </th>
                         <th style={{textAlign: "center"}}> UserBio </th>
                         <th style={{textAlign: "center"}}> Contact </th>
+                        <th style={{textAlign: "center"}}> Actions </th>
                     </tr>
                 </thead>
                 <tbody>
