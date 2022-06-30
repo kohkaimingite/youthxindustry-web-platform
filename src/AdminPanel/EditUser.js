@@ -127,7 +127,7 @@ const EditUser = () => {
 
                 <button onClick={submitFormData}>Submit</button>
                 <Link to="/ViewUser">
-                    <input className="Back Button" type="button" value="Back"/>
+                    <input className="Back Button" type="button" value="Go Back to View All Users"/>
                 </Link>
             </form>
         </div>
