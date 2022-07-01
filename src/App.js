@@ -37,6 +37,7 @@ import MyApplication from './Manage/MyApplication';
 import LoggedOppoPage from './OppoPage/LoggedOppoPage';
 
 import AdminPanel from './AdminPanel/AdminPanel';
+import ViewOppo from './AdminPanel/ViewOppo';
 import EditOppo from './AdminPanel/EditOppo';
 import MngPartner from './AdminPanel/MngPartner';
 import ProfilePage from './Manage/UserProfile';
@@ -100,7 +101,7 @@ function App() {
     };
     const [testList, setTestList] = useState([]);
     const [user, setUser] = useState(0);
-    const [testuserRole, setTestuserRole] = useState(1);
+    const [testuserRole, setTestuserRole] = useState(3);
     //const [userTest, setUserTest] = useState(2);
     //alert(user);
     
@@ -149,7 +150,7 @@ function App() {
                 
                 <Route element={<ProtectedRoutepartner user={testuserRole} />}>
                 
-                <Route path='/EditOppo' element={<EditOppo />} />
+                <Route path='/OppoPage' element={<EditOppo />} />
                 <Route path='/Company' element={<CompanyPage />} />
                 <Route path='/MngPartner' element={<MngPartner />} />
                 <Route path='/Profile' element={<ProfilePage />} />
@@ -165,6 +166,7 @@ function App() {
                     <Route path='/ViewUser' element={<EditUser />} />
                     <Route path='/EditUser' element={<EditUser2 />} />
                     <Route path='/DeleteUser' element={<DeleteUser />} />
+                    <Route path='/ViewOppo' element={<ViewOppo />} />
                     <Route path='/EditOppo' element={<EditOppo />} />
                     <Route path='/MngPartner' element={<MngPartner />} />
                     <Route path='/ViewCompanyProfile' element={<ViewCompanyProfile />} />

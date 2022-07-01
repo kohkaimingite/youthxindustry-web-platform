@@ -1,15 +1,15 @@
 .User-Table {
     border-collapse: collapse;
     margin: auto;
-    font-size: 1.2em;
-    max-width: 1300px;
+    font-size: 1em;
+    max-width: 2000px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
 .User-Table thead tr {
     background: #D1A62E;
     color: #ffffff;
-    text-align: left;
+    text-align: center;
 }
 
 .User-Table th,

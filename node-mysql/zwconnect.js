@@ -79,9 +79,8 @@ app.post('/DeleteUser', (req, res) => {
     )
 })
 
-app.get('/GetOppo', (req, res) => {
-    db.query("SELECT * FROM opportunities",
-        (err, result) => {
+app.get('/oppo', (req, res) => {
+    db.query("SELECT * FROM opportunities", (err, result) => {
             if (err) {
                 console.log(err);
             } else {
