@@ -1,6 +1,8 @@
 // JavaScript source code
 import NavBar from '../components/NavBar'
 import ListNavBar from '../components/ListNavBar'
+import LoggedNavBar from '../components/LoggedNavBar'
+//LoggedNavBar
 import { React, useState, useEffect } from "react";
 import List from "../Some test data/List";
 import Button from 'react-bootstrap/Button';
@@ -370,7 +372,7 @@ function LoggedOppoPage() {
         //
          //class="oppoNFavTitle"
         <div className="App">
-            <ListNavBar />
+            <LoggedNavBar />
 
             
             <div className="main">

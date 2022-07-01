@@ -15,13 +15,14 @@ import axios from 'axios';
 import Home from './HomePage/Home';
 import OppoPage from './OppoPage/OppoPage';
 import ContactPage from './ContactPage/ContactPage';
+import LoggedContactPage from './ContactPage/LoggedContactPage';
 import Login from './LoginPage/Login';
 import Register from './Register/Register';
 import ReactDOM from 'react-dom/client';
 import NotAllowedLog from './NotAllowedLog';
 import NotAllowed from './NotAllowed';
 
-
+import LoggedHome from './HomePage/LoggedHome';
 import EditUser from './AdminPanel/ViewUser';
 import EditUser2 from './AdminPanel/EditUser';
 import DeleteUser from './AdminPanel/DeleteUser';
@@ -41,7 +42,7 @@ import MngPartner from './AdminPanel/MngPartner';
 import ProfilePage from './Manage/UserProfile';
 import CompanyPage from './Manage/CompanyProfile';
 import EditCompanyNumber from './Manage/EditCompanyNumber';
-import CreateCompanyProfile from './CompanyProfile/CreateCompanyProfile';
+import ViewCompanyProfile from './CompanyProfile/ViewCompanyProfile';
 import EditCompanyBio from './Manage/EditCompanyBio';
 import EditUserResume from './Manage/EditUserResume';
 import RegisterPartner from './Register/RegisterPartner';
@@ -99,29 +100,10 @@ function App() {
     };
     const [testList, setTestList] = useState([]);
     const [user, setUser] = useState(0);
-    const [testuserRole, setTestuserRole] = useState(2);
+    const [testuserRole, setTestuserRole] = useState(1);
     //const [userTest, setUserTest] = useState(2);
     //alert(user);
-    useEffect(() => {
-        
-        axios.get("http://localhost:3001/getCurrentUserRole").then((response) => {
-            if (response !== null) {
-                console.log(response);
-
-                setTestList(response.data);
-                {
-                    testList.map((val, key) => {
-                        return setUser(parseInt(val.RoleID));
-                    })
-                }
-                
-            } else {
-                console.log(response);
-                setUser(0);
-            }
-        });
-
-    });
+    
     return (
         <div className="App">
 
@@ -148,7 +130,8 @@ function App() {
                 <Route path='/OppoPartner' element={<OppoPartner />} />
                 <Route path='/AddOppoPartner' element={<AddOppoPartner />} />
 
-                <Route element={<ProtectedRouteLog user={user} />}>
+                <Route element={<ProtectedRouteLog user={testuserRole} />}>
+                    <Route path='/LoggedHome' element={<LoggedHome />} />
                     <Route path='/Favourites' element={<Favourites />} />
                     <Route path='/MakingReview' element={<MakingReview />} />
                     <Route path='/ReviewSuccess' element={<ReviewSuccess />} />
@@ -157,13 +140,14 @@ function App() {
                     <Route path='/RegisterUser' element={< RegisterUser />} />
                     <Route path='/EditUserBio' element={<EditUserBio />} />
                     <Route path='/LoggedOppoPage' element={<LoggedOppoPage />} />
+                    <Route path='/LoggedContactPage' element={<LoggedContactPage />} />
                     <Route path='/MyApplications' element={< MyApplication />} />
                     <Route path='/EditUserNumber' element={<EditUserNumber />} />
                 </Route>
 
                 
                 
-                <Route element={<ProtectedRoutepartner user={user} />}>
+                <Route element={<ProtectedRoutepartner user={testuserRole} />}>
                 
                 <Route path='/EditOppo' element={<EditOppo />} />
                 <Route path='/Company' element={<CompanyPage />} />
@@ -176,14 +160,14 @@ function App() {
                 </Route>
 
 
-                <Route element={<ProtectedRouteAdmin user={user} />}>
+                <Route element={<ProtectedRouteAdmin user={testuserRole} />}>
                     <Route path='/AdminPanel' element={<AdminPanel />} />
                     <Route path='/ViewUser' element={<EditUser />} />
                     <Route path='/EditUser' element={<EditUser2 />} />
                     <Route path='/DeleteUser' element={<DeleteUser />} />
                     <Route path='/EditOppo' element={<EditOppo />} />
                     <Route path='/MngPartner' element={<MngPartner />} />
-                    <Route path='/CreateCompanyProfile' element={<CreateCompanyProfile />} />
+                    <Route path='/ViewCompanyProfile' element={<ViewCompanyProfile />} />
 
                 </Route>
                 </Routes>

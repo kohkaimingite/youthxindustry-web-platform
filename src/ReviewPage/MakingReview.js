@@ -2,6 +2,7 @@
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import NavBar from '../components/NavBar'
+import LoggedNavBar from '../components/LoggedNavBar'
 import { React, useState, useEffect } from "react";
 import List from "../Some test data/List";
 import Button from 'react-bootstrap/Button';
@@ -105,7 +106,7 @@ function MakingReview() {
     });
     return (
         <div className="App">
-            <NavBar />
+            <LoggedNavBar />
             
             
             <div className="main">

@@ -1,5 +1,6 @@
 // JavaScript source code
 import NavBar from '../components/NavBar'
+import LoggedNavBar from '../components/LoggedNavBar'
 import { React, useState, useEffect } from "react";
 import List from "../Some test data/List";
 import Button from 'react-bootstrap/Button';
@@ -16,7 +17,7 @@ function ReviewSuccess() {
         
 
         <div className="App">
-            <NavBar />
+            <LoggedNavBar />
 
 
             <div className="main">

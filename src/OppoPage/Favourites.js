@@ -1,6 +1,7 @@
 // JavaScript source code
 import NavBar from '../components/NavBar'
 import ListNavBar from '../components/ListNavBar'
+import LoggedNavBar from '../components/LoggedNavBar'
 import { React, useState, useEffect } from "react";
 import List from "../Some test data/List";
 import Button from 'react-bootstrap/Button';
@@ -386,7 +387,7 @@ function Favourites() {
         //onSubmit={ilterdata(OppoList)}
 
         <div className="App">
-            <ListNavBar />
+            <LoggedNavBar />
 
 
             <div className="main">

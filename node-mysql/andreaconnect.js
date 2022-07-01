@@ -195,6 +195,38 @@ app.listen(PORT, () => {
 
 //============================================================================================================================
 
+app.post("/login", (req, res, next) => {
+    const email = req.body.email
+    const password = req.body.password
+
+    if (email && password) {
+        db.query(
+            "SELECT * FROM users WHERE Email = ? AND Password = ?;",
+            [email, password],
+            (err, result) => {
+                if (err) {
+                    res.send({ err: err });
+                }
+
+                if (result.length > 0) {
+                    req.session.user = result;
+                    getUserRole = req.session.user[0].RoleID;
+                    console.log(getUserRole);
+                    next();
+
+                } else {
+                    res.send({ message: "Incorrect Combination!" });
+                }
+
+
+            }
+        )
+    } else {
+        res.send({ message: "Please enter email and password!" });
+    }
+
+});
+
 app.post("/registerUser", (req, res) => {
     const name = req.body.name;
     const password = req.body.password;
