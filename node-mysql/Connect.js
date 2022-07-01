@@ -38,7 +38,7 @@ const db = mysql.createConnection({
     database: "fyp_db",
 });
 
-
+var getUserRole = '';
 app.post("/registerUser", (req, res) => {
     const name = req.body.name;
     const password = req.body.password;
@@ -86,6 +86,8 @@ app.post("/login", (req, res, next) => {
 
                 if (result.length > 0) {
                     req.session.user = result;
+                    getUserRole = req.session.user[0].RoleID;
+                    console.log(getUserRole);
                     next();
 
                 } else {
@@ -104,18 +106,20 @@ app.post("/login", (req, res, next) => {
 app.get("/login", function (req, res) {
     if (req.session.user) {
         res.send({ loggedIn: true, message: req.session.user[0].Name + " is logged in!" });
+
     } else {
         res.send({ loggedIn: false });
     }
 });
 
-app.get("/logout", (req, res) => {
+app.get("/logout", function (req, res) {
+    var loggedOutName = req.session.user[0].Name
     req.session.destroy(err => {
         if (err) {
             return console.log(err);
         }
-        res.send({ loggedIn: false });
-        res.redirect("/login");
+        res.send({ message: loggedOutName + " is logged out!" });
+
     });
 });
 
@@ -129,12 +133,11 @@ app.get('/oppListing', function (req, res) {
             } else {
                 res.send(result);
             }
-        }
-    )
-})
+        });
+});
 
 
-app.post("/addOppPartner", function(req, res){
+app.post("/addOppPartner", function (req, res) {
     const name = req.body.name;
     const description = req.body.description;
     const location = req.body.location;
@@ -144,14 +147,10 @@ app.post("/addOppPartner", function(req, res){
     db.query(
         "INSERT INTO opportunities (Name, Description, Location, Address, Type) VALUES (?, ?, ?, ?, ?);SET @id = LAST_INSERT_ID(); INSERT INTO users_have_opp (UserID, OppID) VALUES (?, @id);",
         [name, description, location, address, type, req.session.user[0].UserID],
-        (err, result) =>{
+        (err, result) => {
             if (err) {
                 console.log(err);
-            } else
-
-            { res.send(result) };
-            
-
+            } else { res.send(result) };
         });
 });
 
@@ -165,7 +164,6 @@ app.post('/deleteOppPartner', (req, res) => {
             if (err) {
                 console.log(err);
             } else { res.send(result) };
-
         });
 });
 
@@ -190,6 +188,31 @@ app.post('/updateOppPartner', (req, res) => {
 
 
 
+app.get('/viewCompanyProfile', (req, res) => {
+    db.query("SELECT * FROM users WHERE RoleID = ?;",
+        [2],
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send(result);
+            }
+        });
+});
+
+
+app.post('/getOppCards', (req, res) => {
+    const UserID = req.body.UserID;
+    db.query("SELECT opportunities.OppID, Name, Description, Location, Address, Type FROM opportunities INNER JOIN users_have_opp ON opportunities.OppID = users_have_opp.OppID WHERE users_have_opp.UserID = ? ORDER BY opportunities.OppID;",
+        [UserID],
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send(result);
+            }
+        });
+});
 
 app.listen(3001, () => {
     console.log("running server");

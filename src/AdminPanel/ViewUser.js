@@ -1,8 +1,9 @@
 // JavaScript source code
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 import NavBar from '../components/NavBar';
 import AdminNavBar from '../components/AdminNavBar';
+import "./ViewUser.css";
 import axios from 'axios';
 
 const ViewUser = () => {
@@ -22,16 +23,19 @@ const ViewUser = () => {
         <div className="App">
             <NavBar />
             <AdminNavBar />
-            <table>
-                <tr>
-                    <th> ID </th>
-                    <th> Name </th>
-                    <th> Email </th>
-                    <th> Age </th>
-                    <th> Gender </th>
-                    <th> UserBio </th>
-                    <th> Contact </th>
-                </tr>
+            <table className="User-Table">
+                <thead>
+                    <tr>
+                        <th style={{textAlign: "center"}}> ID </th>
+                        <th style={{textAlign: "center"}}> Name </th>
+                        <th style={{textAlign: "center"}}> Email </th>
+                        <th style={{textAlign: "center"}}> Age </th>
+                        <th style={{textAlign: "center"}}> Gender </th>
+                        <th style={{textAlign: "center"}}> UserBio </th>
+                        <th style={{textAlign: "center"}}> Contact </th>
+                        <th style={{textAlign: "center"}}> Actions </th>
+                    </tr>
+                </thead>
                 <tbody>
                     {data.map((User, key) => {
                         return (
@@ -43,16 +47,19 @@ const ViewUser = () => {
                                 <td> {User.Gender} </td>
                                 <td> {User.UserBio} </td>
                                 <td> {User.ContactNumber} </td>
+                                <td>
+                                    <Link to="/EditUser">
+                                        <button className="btn editButton">Edit</button>
+                                    </Link>
+
+                                    <Link to="/DeleteUser">
+                                        <button className="btn deleteButton">Delete</button>
+                                    </Link>
+                                </td>
                             </tr>
                         )
                     })}
                 </tbody>
-                <Link to="/EditUser">
-                    <button>Edit User</button>
-                </Link>
-                <Link to="/DeleteUser">
-                    <button>Delete User</button>
-                </Link>
             </table>
         </div >
     );

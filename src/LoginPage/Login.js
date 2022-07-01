@@ -11,6 +11,7 @@ export default function Login() {
     const [password, setPassword] = useState('');
     const [status, setStatus] = useState('');
 
+
     const login = () => {
         Axios.post("http://localhost:3001/login", {
             email: email,
@@ -20,10 +21,21 @@ export default function Login() {
 
                 if (response.data.message) {
                     setStatus(response.data.message);
+
                 } else {
                     setStatus(response.data.message);
                 }
 
+            });
+    };
+
+    const logout = () => {
+        Axios.get("http://localhost:3001/logout")
+            .then((response) => {
+
+                if (response.data.message) {
+                    setStatus(response.data.message);
+                }
             });
     };
 
@@ -33,6 +45,7 @@ export default function Login() {
         Axios.get("http://localhost:3001/login").then((response) => {
             if (response.data.loggedIn = true) {
                 setStatus(response.data.message);
+
             }
         });
     }, []);
@@ -64,6 +77,7 @@ export default function Login() {
                 />
 
                 <button onClick={login}>Login</button>
+                <button onClick={logout}>Logout</button>
 
             </div>
             <h1>{status}</h1>

@@ -5,11 +5,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const EditableRows = ({ editFormData, handleEditFormChange, handleCancelClick }) => {
     return (
         <tr>
-            <td>           
+            <td>
                 <input
                     type="text"
                     disabled="disabled"
-                    placeholder="Jobcode"
                     name="jobcode"
                 ></input>
             </td>
@@ -22,18 +21,18 @@ const EditableRows = ({ editFormData, handleEditFormChange, handleCancelClick })
                     name="name"
                     value={editFormData.name}
                     onChange={handleEditFormChange}
-                ></input>   
+                ></input>
             </td>
 
             <td>
                 <input
-                type="text"
-                required="required"
-                placeholder="Description..."
-                name="description"
-                value={editFormData.description}
-                onChange={handleEditFormChange}
-               ></input>
+                    type="text"
+                    required="required"
+                    placeholder="Description..."
+                    name="description"
+                    value={editFormData.description}
+                    onChange={handleEditFormChange}
+                ></input>
             </td>
 
             <td>
@@ -69,11 +68,11 @@ const EditableRows = ({ editFormData, handleEditFormChange, handleCancelClick })
                 ></input>
             </td>
             <td>
-                <button style={{ backgroundColor: '#00FF00' }}  type="submit">Save<FontAwesomeIcon icon={faCheck} /></button>
-                
+                <button style={{ backgroundColor: '#00FF00' }} type="submit">Save<FontAwesomeIcon icon={faCheck} /></button>
+
             </td>
             <td>
-                <button style={{ backgroundColor: '#FF0000' }}  type="button" onClick={handleCancelClick}>Cancel<FontAwesomeIcon icon={faTimes} /></button>
+                <button style={{ backgroundColor: '#FF0000' }} type="button" onClick={handleCancelClick}>Cancel<FontAwesomeIcon icon={faTimes} /></button>
             </td>
         </tr>
     )
