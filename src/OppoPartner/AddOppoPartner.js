@@ -46,7 +46,7 @@ export default function AddOppoPartner() {
             validator.isEmpty(description) ||
             validator.isEmpty(location) ||
             validator.isEmpty(address) ||
-            validator.isEmpty(type) 
+            validator.isEmpty(type)
         ) {
             setError(true);
         } else {
@@ -81,15 +81,12 @@ export default function AddOppoPartner() {
             <h1 style={{ color: "yellow" }}>Add Opportunity</h1>
             <div style={styleDiv}>
                 <Form onSubmit={submitFormData}>
-                    <Form.Group className="mb-3">
+                    <Form.Group className="mb-2">
                         <Form.Label>Name</Form.Label>
                         <Form.Control
                             style={{ border: error ? "2px solid red" : "", width: "400px" }}
                             type="text"
                             required
-                            placeholder="Name..."
-
-
                             input onChange={handleName}
                             value={name}
                         />
@@ -98,14 +95,10 @@ export default function AddOppoPartner() {
 
                     <Form.Group className="mb-3">
                         <Form.Label>Description</Form.Label>
-                        <Form.Control
+                        <Form.Control as="textarea" rows={2}
                             style={{ border: error ? "2px solid red" : "", width: "400px" }}
-                         
                             type="text"
                             required
-                            placeholder="Description..."
-
-
                             input onChange={handleDescription}
                             value={description}
                         />
@@ -119,8 +112,6 @@ export default function AddOppoPartner() {
                             style={{ border: error ? "2px solid red" : "", width: "400px" }}
                             type="text"
                             required
-                            placeholder="Location..."
-
                             input onChange={handleLocation}
                             value={location}
 
@@ -134,8 +125,6 @@ export default function AddOppoPartner() {
                             style={{ border: error ? "2px solid red" : "", width: "400px" }}
                             type="text"
                             required
-                            placeholder="Address..."
-
                             input onChange={handleAddress}
                             value={address}
 
@@ -149,8 +138,6 @@ export default function AddOppoPartner() {
                             style={{ border: error ? "2px solid red" : "", width: "400px" }}
                             type="text"
                             required
-                            placeholder="Type..."
-
                             input onChange={handleType}
                             value={type}
 
@@ -161,7 +148,7 @@ export default function AddOppoPartner() {
 
 
                     <Button variant="primary" type="submit">
-                        Add 
+                        Add
                     </Button>
                     <p>
                         {status?.type === 'success' && <a href="/OppoPartner"> Successfully added!</a>}

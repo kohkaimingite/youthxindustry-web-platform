@@ -32,7 +32,7 @@ import ReviewSuccess from './ReviewPage/ReviewSuccess';
 import ReviewNoSuccess from './ReviewPage/ReviewNoSuccess';
 import RegisterUser from './Register/RegisterUser';
 import EditUserBio from './Manage/EditUserBio';
-import MyApplication from './Manage/MyApplication'; 
+import MyApplication from './Manage/MyApplication';
 import LoggedOppoPage from './OppoPage/LoggedOppoPage';
 
 import AdminPanel from './AdminPanel/AdminPanel';
@@ -41,16 +41,19 @@ import MngPartner from './AdminPanel/MngPartner';
 import ProfilePage from './Manage/UserProfile';
 import CompanyPage from './Manage/CompanyProfile';
 import EditCompanyNumber from './Manage/EditCompanyNumber';
-import CreateCompanyProfile from './CompanyProfile/CreateCompanyProfile';
+import ViewCompanyProfile from './CompanyProfile/ViewCompanyProfile';
 import EditCompanyBio from './Manage/EditCompanyBio';
 import EditUserResume from './Manage/EditUserResume';
 import RegisterPartner from './Register/RegisterPartner';
 import OppoPartner from './OppoPartner/OppoPartner';
 import AddOppoPartner from './OppoPartner/AddOppoPartner';
 import SubmitApplication from './Manage/SubmitApplication';
+import RatingStats from './RatingStats/RatingStats'
 
 import Protection from './Protection';
-import { BrowserRouter as Router, Routes, Route,Link, Navigate, Outlet, } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link, Navigate, Outlet, useParams, } from 'react-router-dom';
+
+
 
 
 // Idea:
@@ -69,9 +72,9 @@ import { BrowserRouter as Router, Routes, Route,Link, Navigate, Outlet, } from '
 //-------------------------------------------------------------
 
 //mamamamadsadasadsadasda
- //<switch>
-   //           <Route exact path="/aboutus" component={AboutPage} />
-    //          </switch>
+//<switch>
+//           <Route exact path="/aboutus" component={AboutPage} />
+//          </switch>
 //<h2 class = 'aboutmepic'>ABOUT US</h2>
 //<NavBar />
 function App() {
@@ -79,27 +82,30 @@ function App() {
     const ProtectedRouteLog = ({ user, redirectPath = '/NoAccess' }) => {
         if (!user) {
             return <Navigate to={redirectPath} replace />;
-        } 
+        }
 
         return <Outlet />;
     };
     const ProtectedRoutepartner = ({ user, redirectPath = '/NotAllowed' }) => {
-        if (user!==2) {
+        if (user !== 2) {
             return <Navigate to={redirectPath} replace />;
         }
 
         return <Outlet />;
     };
     const ProtectedRouteAdmin = ({ user, redirectPath = '/NotAllowed' }) => {
-        if (user!==3) {
+        if (user !== 3) {
             return <Navigate to={redirectPath} replace />;
         }
 
         return <Outlet />;
     };
-    const [user, setUser] = useState(3);
+    const [user, setUser] = useState(null);
+
+
+
     useEffect(() => {
-        
+
         axios.get("http://localhost:3001/getCurrentUserRole").then((response) => {
             if (response !== null) {
                 console.log(response);
@@ -114,7 +120,7 @@ function App() {
     return (
         <div className="App">
 
-            
+
             <Routes>
                 <Route path='/NotAllowed' element={<NotAllowed />} />
                 <Route path='/NoAccess' element={<NotAllowedLog />} />
@@ -124,18 +130,22 @@ function App() {
                 <Route path='/Register' element={<Register />} />
                 <Route path='/Opportunities' element={<OppoPage />} />
                 <Route path='/ContactUs' element={<ContactPage />} />
-              
+
 
                 <Route path='/EditOppo' element={<EditOppo />} />
                 <Route path='/Company' element={<CompanyPage />} />
                 <Route path='/MngPartner' element={<MngPartner />} />
                 <Route path='/Profile' element={<ProfilePage />} />
                 <Route path='/EditCompanyNumber' element={<EditCompanyNumber />} />
+                <Route path='/RegisterUser' element={< RegisterUser />} />
                 <Route path='/RegisterPartner' element={< RegisterPartner />} />
                 <Route path='/EditCompanyBio' element={<EditCompanyBio />} />
                 <Route path='/SubmitApplication' element={<SubmitApplication />} />
                 <Route path='/OppoPartner' element={<OppoPartner />} />
                 <Route path='/AddOppoPartner' element={<AddOppoPartner />} />
+                <Route path='/RatingStats' element={<RatingStats />} />
+                <Route exact path='/ViewCompanyProfile/:Name' element={<ViewCompanyProfile />} />
+
 
                 <Route element={<ProtectedRouteLog user={user} />}>
                     <Route path='/Favourites' element={<Favourites />} />
@@ -150,18 +160,18 @@ function App() {
                     <Route path='/EditUserNumber' element={<EditUserNumber />} />
                 </Route>
 
-                
-                
+
+
                 <Route element={<ProtectedRoutepartner user={user} />}>
-                
-                <Route path='/EditOppo' element={<EditOppo />} />
-                <Route path='/Company' element={<CompanyPage />} />
-                <Route path='/MngPartner' element={<MngPartner />} />
-                <Route path='/Profile' element={<ProfilePage />} />
-                <Route path='/EditCompanyNumber' element={<EditCompanyNumber />} />
-                <Route path='/RegisterPartner' element={< RegisterPartner />} />
-                <Route path='/EditCompanyBio' element={<EditCompanyBio />} />
-                <Route path='/SubmitApplication' element={<SubmitApplication />} />
+
+                    <Route path='/EditOppo' element={<EditOppo />} />
+                    <Route path='/Company' element={<CompanyPage />} />
+                    <Route path='/MngPartner' element={<MngPartner />} />
+                    <Route path='/Profile' element={<ProfilePage />} />
+                    <Route path='/EditCompanyNumber' element={<EditCompanyNumber />} />
+                    <Route path='/RegisterPartner' element={< RegisterPartner />} />
+                    <Route path='/EditCompanyBio' element={<EditCompanyBio />} />
+                    <Route path='/SubmitApplication' element={<SubmitApplication />} />
                 </Route>
 
 
@@ -172,10 +182,10 @@ function App() {
                     <Route path='/DeleteUser' element={<DeleteUser />} />
                     <Route path='/EditOppo' element={<EditOppo />} />
                     <Route path='/MngPartner' element={<MngPartner />} />
-                    <Route path='/CreateCompanyProfile' element={<CreateCompanyProfile />} />
+
 
                 </Route>
-                </Routes>
+            </Routes>
         </div>
     );
 
@@ -187,7 +197,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 
     <Router>
-        <App/>
+        <App />
     </Router>,
     root
 );
