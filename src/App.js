@@ -97,16 +97,27 @@ function App() {
 
         return <Outlet />;
     };
-    const [user, setUser] = useState(null);
+    const [testList, setTestList] = useState([]);
+    const [user, setUser] = useState(0);
+    const [testuserRole, setTestuserRole] = useState(2);
+    //const [userTest, setUserTest] = useState(2);
+    //alert(user);
     useEffect(() => {
         
         axios.get("http://localhost:3001/getCurrentUserRole").then((response) => {
             if (response !== null) {
                 console.log(response);
-                setUser(response.data);
+
+                setTestList(response.data);
+                {
+                    testList.map((val, key) => {
+                        return setUser(parseInt(val.RoleID));
+                    })
+                }
+                
             } else {
                 console.log(response);
-                setUser(null);
+                setUser(0);
             }
         });
 
@@ -126,7 +137,7 @@ function App() {
                 <Route path='/ContactUs' element={<ContactPage />} />
               
 
-                <Route path='/EditOppo' element={<EditOppo />} />
+                
                 <Route path='/Company' element={<CompanyPage />} />
                 <Route path='/MngPartner' element={<MngPartner />} />
                 <Route path='/Profile' element={<ProfilePage />} />

@@ -3,13 +3,10 @@
     "",
     "\\node-mysql",
     "\\src",
-    "\\src\\CompanyProfile",
+    "\\src\\components",
     "\\src\\LoginPage",
-    "\\src\\Manage",
     "\\src\\OppoPage",
-    "\\src\\OppoPartner",
-    "\\src\\Register",
-    "\\src\\Some test data"
+    "\\src\\ReviewPage"
   ],
   "PreviewInSolutionExplorer": false
 }

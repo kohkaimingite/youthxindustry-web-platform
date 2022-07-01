@@ -1,7 +1,11 @@
 // JavaScript source code
 import NavBar from './components/NavBar'
 import { Route, Link } from 'react-router-dom';
+import { Component, useState, useEffect } from 'react';
+import axios from 'axios';
+
 function NotAllowed() {
+    
     return (
 
         <div className="App">
