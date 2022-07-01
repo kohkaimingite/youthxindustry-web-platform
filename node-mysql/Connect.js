@@ -38,7 +38,7 @@ const db = mysql.createConnection({
     database: "fyp_db",
 });
 
-
+var getUserRole = '';
 app.post("/registerUser", (req, res) => {
     const name = req.body.name;
     const password = req.body.password;
@@ -86,6 +86,8 @@ app.post("/login", (req, res, next) => {
 
                 if (result.length > 0) {
                     req.session.user = result;
+                    getUserRole = req.session.user[0].RoleID;
+                    console.log(getUserRole);
                     next();
 
                 } else {

@@ -95,7 +95,7 @@ function ViewCompanyProfile() {
 
                                                     <Card.Body>
                                                         <Card.Title>{opp.Name}</Card.Title>
-                                                        <Card.Text>{opp.Type}</Card.Text>
+                                                        <Card.Subtitle>{opp.Type}</Card.Subtitle>
                                                     </Card.Body>
                                                 </Card>
                                             </Col>
