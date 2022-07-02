@@ -23,6 +23,9 @@ const ViewUser = () => {
         <div className="App">
             <NavBar />
             <AdminNavBar />
+            <Link to="/AdminPanel">
+                <button className="btn backButton">Go Back to Admin Panel</button>
+            </Link>
             <table className="User-Table">
                 <thead>
                     <tr>
