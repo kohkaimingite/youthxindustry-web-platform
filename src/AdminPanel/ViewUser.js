@@ -11,12 +11,16 @@ const ViewUser = () => {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        axios.get("http://localhost:3001/user").then((response) => {
+        axios.get("http://localhost:3001/user")
+        .then((response) => {
 
             console.log(response);
             setData(response.data);
 
-        });
+        })
+        .catch((error) => {
+            console.log(error);
+        })
     });
 
     return (
@@ -51,11 +55,11 @@ const ViewUser = () => {
                                 <td> {User.UserBio} </td>
                                 <td> {User.ContactNumber} </td>
                                 <td>
-                                    <Link to="/EditUser">
+                                    <Link to="/userEdit">
                                         <button className="btn editButton">Edit</button>
                                     </Link>
 
-                                    <Link to="/DeleteUser">
+                                    <Link to="/userDelete">
                                         <button className="btn deleteButton">Delete</button>
                                     </Link>
                                 </td>

@@ -35,7 +35,7 @@ app.listen(PORT, () => {
 
 
 app.get('/user', (req, res) => {
-    db.query("SELECT * from users", (err, result) => {
+    db.query("SELECT * from users INNER JOIN roles ON roles.RoleID = users.RoleID WHERE users.RoleID = 1", (err, result) => {
         if (err) {
             console.log(err);
         } else { res.send(result) };
@@ -43,7 +43,7 @@ app.get('/user', (req, res) => {
     });
 });
 
-app.post('/EditUser', (req, res) => {
+app.post('/userEdit', (req, res) => {
     const UserID = req.body.UserID;
     const RoleID = req.body.RoleID;
     const Name = req.body.Name;
@@ -65,7 +65,7 @@ app.post('/EditUser', (req, res) => {
     )
 })
 
-app.post('/DeleteUser', (req, res) => {
+app.post('/userDelete', (req, res) => {
     const UserID = req.body.UserID;
     db.query("DELETE FROM users WHERE UserID = ?",
         [UserID],
@@ -90,7 +90,7 @@ app.get('/oppo', (req, res) => {
     )
 })
 
-app.post('/EditOppo', (req, res) => {
+app.post('/oppoEdit', (req, res) => {
     const Name = req.body.Name;
     const OppID = req.body.OppID;
     db.query("UPDATE opportunities WHERE Name = ? AND OppID = ?",
@@ -105,7 +105,7 @@ app.post('/EditOppo', (req, res) => {
     )
 })
 
-app.post('/DeleteOppo', (req, res) => {
+app.post('/oppoDelete', (req, res) => {
     const Name = req.body.Name;
     const OppID = req.body.OppID;
     db.query("DELETE FROM opportunities WHERE Name = ? AND OppID = ?",
@@ -120,13 +120,34 @@ app.post('/DeleteOppo', (req, res) => {
     )
 })
 
-app.post('/DeleteOppo', (req, res) => {
-    db.query("DELETE FROM opportunities WHERE Name = ? AND OppID = ?",
-        (err, result) => {
+app.get('/partners', (req, res) => {
+    db.query("SELECT * FROM user INNER JOIN roles ON roles.RoleID = user.RoleID WHERE user.RoleID = 2", (err, result) => {
             if (err) {
                 console.log(err);
             } else {
-                res.send("Opportunity Information Deleted");
+                res.send("Partner successfully deleted!");
+            }
+        }
+    )
+})
+
+// app.post('/partnerEdit', (req, res) => {
+//     db.query("DELETE FROM user INNER JOIN roles ON roles.RoleID = user.RoleID WHERE user.RoleID = 2", (err, result) => {
+//             if (err) {
+//                 console.log(err);
+//             } else {
+//                 res.send("Partner successfully deleted!");
+//             }
+//         }
+//     )
+// })
+
+app.post('/partnerDelete', (req, res) => {
+    db.query("DELETE FROM user INNER JOIN roles ON roles.RoleID = user.RoleID WHERE user.RoleID = 2", (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send("Partner successfully deleted!");
             }
         }
     )

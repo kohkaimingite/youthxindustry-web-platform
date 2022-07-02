@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Route, Link } from 'react-router-dom';
 import NavBar from '../components/NavBar';
 import AdminNavBar from '../components/AdminNavBar';
+import "./EditUser.css";
 import axios from 'axios';
 
 const initialSate = {
@@ -71,7 +72,7 @@ const EditUser = () => {
     const submitFormData = (e) => {
         e.preventDefault();
         {
-            axios.post("http://localhost:3001/EditUser", {
+            axios.post("http://localhost:3001/userEdit", {
                 userID,
                 roleID,
                 name,
@@ -97,7 +98,12 @@ const EditUser = () => {
         <div className="App">
             <NavBar />
             <AdminNavBar />
-            <form>
+            <form style={{
+                margin: "auto",
+                padding: "15px",
+                maxWidth: "400px",
+                alignContent: "center"
+            }}>
                 <label>UserID</label>
                 <input type="userID" placeholder="UserID" value={userID} onChange={handleuserID}></input>
 
@@ -127,7 +133,7 @@ const EditUser = () => {
 
                 <button onClick={submitFormData}>Submit</button>
                 <Link to="/ViewUser">
-                    <input className="Back Button" type="button" value="Go Back to View All Users"/>
+                    <input className="btn backButton">Go Back to View All Users</input>
                 </Link>
             </form>
         </div>

@@ -15,7 +15,7 @@ const DeleteUser = () => {
 
     const submitFormData = (e) => {
         e.preventDefault();
-        axios.post("http://localhost:3001/DeleteUser", {
+        axios.post("http://localhost:3001/userDelete", {
             userId: userId,
 
         })

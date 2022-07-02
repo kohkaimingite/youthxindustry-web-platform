@@ -1,0 +1,22 @@
+input[type="userID"],
+input[type="Name"],
+input[type="roleID"],
+input[type="password"],
+input[type="email"],
+input[type="Age"],
+input[type="gender"],
+input[type="UserBio"],
+input[type="Contact"],
+select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.backButton {
+    background-color: #4285F4;
+  }
