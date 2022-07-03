@@ -25,6 +25,9 @@ function AdminPanel() {
                 <Link to="/MngPartners">
                     <div className="btn linkButton">Partners</div>
                 </Link>
+                <Link to="/MakingReview">
+                    <div className="btn linkButton">Reviews</div>
+                </Link>
             </form>
         </div>
     );
