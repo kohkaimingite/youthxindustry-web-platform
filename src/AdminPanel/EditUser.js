@@ -72,7 +72,7 @@ const EditUser = () => {
     const submitFormData = (e) => {
         e.preventDefault();
         {
-            axios.post("http://localhost:3001/userEdit", {
+            axios.post("http://localhost:3001/EditUser", {
                 userID,
                 roleID,
                 name,
@@ -133,7 +133,7 @@ const EditUser = () => {
 
                 <button onClick={submitFormData}>Submit</button>
                 <Link to="/ViewUser">
-                    <input className="btn backButton">Go Back to View All Users</input>
+                    <button className="btn backButton">Go Back to View All Users</button>
                 </Link>
             </form>
         </div>

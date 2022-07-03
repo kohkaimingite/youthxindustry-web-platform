@@ -55,11 +55,11 @@ const ViewUser = () => {
                                 <td> {User.UserBio} </td>
                                 <td> {User.ContactNumber} </td>
                                 <td>
-                                    <Link to="/userEdit">
+                                    <Link to="/EditUser">
                                         <button className="btn editButton">Edit</button>
                                     </Link>
 
-                                    <Link to="/userDelete">
+                                    <Link to="/DeleteUser">
                                         <button className="btn deleteButton">Delete</button>
                                     </Link>
                                 </td>

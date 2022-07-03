@@ -43,7 +43,7 @@ app.get('/user', (req, res) => {
     });
 });
 
-app.post('/userEdit', (req, res) => {
+app.post('/EditUser', (req, res) => {
     const UserID = req.body.UserID;
     const RoleID = req.body.RoleID;
     const Name = req.body.Name;

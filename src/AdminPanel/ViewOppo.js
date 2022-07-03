@@ -24,10 +24,13 @@ const ViewOppo = () => {
         <div className="App">
             <NavBar />
             <AdminNavBar />
+            <Link to="/AdminPanel">
+                <button className="btn backButton">Go Back to Admin Panel</button>
+            </Link>
+            <input type="search" placeholder="Search..." onChange={event => {setSearchInput(event.target.value)}}/>
+            <input type="submit" value="Go" class="btn goButton"/>
             <table className="User-Table">
                 <thead>
-                        <input type="text" placeholder="Search..." onChange={event => {setSearchInput(event.target.value)}}/>
-                        <input type="submit" value="Go" class="btn goButton"/>
                     <tr>
                         <th style={{textAlign: "center"}}> Job Code </th>
                         <th style={{textAlign: "center"}}> Job Name </th>
@@ -47,6 +50,7 @@ const ViewOppo = () => {
                                 <td> {User.Description} </td>
                                 <td> {User.Location} </td>
                                 <td> {User.Address} </td>
+                                <td> {User.Type} </td>
                                 <td>
                                     <Link to="/EditUser">
                                         <button className="btn editButton">Edit</button>

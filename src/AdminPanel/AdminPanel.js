@@ -11,15 +11,21 @@ function AdminPanel() {
         <div className="App">
             <NavBar/>
             <AdminNavBar/>
-            <Link to="/ViewUser">
-                <div className="btn linkButton">Users</div>
-            </Link>
-            <Link to="/ViewOppo">
-                <div className="btn linkButton">Opportunities</div>
-            </Link>
-            <Link to="/MngPartners">
-                <div className="btn linkButton">Partners</div>
-            </Link>
+            <form style={{
+                margin: "auto",
+                padding: "15px",
+                maxWidth: "400px"
+            }}>
+                <Link to="/ViewUser">
+                    <div className="btn linkButton">Users</div>
+                </Link>
+                <Link to="/ViewOppo">
+                    <div className="btn linkButton">Opportunities</div>
+                </Link>
+                <Link to="/MngPartners">
+                    <div className="btn linkButton">Partners</div>
+                </Link>
+            </form>
         </div>
     );
 };
