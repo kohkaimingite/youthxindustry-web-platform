@@ -13,7 +13,7 @@ import axios from 'axios';
 function SubmitApplication() {
     const [ProfList, setProfList] = useState([]);
     const [desc, setdesc] = useState("");
-    const [Chars, setChars = useState(0);
+    const [Chars, setChars] = useState(0);
     const columns = ProfList[0] && Object.keys(ProfList[0]);
     const getProfile = () => {
 
@@ -52,7 +52,7 @@ function SubmitApplication() {
                             return <text align="Left">{val.Email}</text>;
                         })}<br />
                         {ProfList.map((val, key) => {
-                            return <text align="Left">(val.ContactNumber}</text>;
+                            return <text align="Left">{val.ContactNumber}</text>;
                         })}<br />
                             
                         <textarea placeholder="Briefly Describe Why You Want This Opportunity... (250 characters)" id="desc" name="desc" value={desc} onChange={e => { setdesc(e.target.value); setChars(e.target.value.length) }} style={styles.textArea} maxLength="250"> </textarea>
