@@ -6,14 +6,18 @@ import { Container, Row, Col, Card } from 'react-bootstrap'
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 import { useParams } from "react-router-dom";
+import { faGraduationCap, faDollarSign, faStar, faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 
 function ViewCompanyProfile() {
 
     const [storeUser, setStoreUser] = useState([]);
     const [storeOpp, setStoreOpp] = useState([]);
+    const [storeReviewRating, setStoreReviewRating] = useState([]);
+
     let { storeUserID } = '';
     let { Name } = useParams();
-
 
 
     const style1 = {
@@ -46,6 +50,16 @@ function ViewCompanyProfile() {
         });
     }, [storeOpp]);
 
+    useEffect(() => {
+        Axios.post("http://localhost:3001/getReviewRatingForCompany", {
+            UserID: parseInt(storeUserID)
+
+        }).then((response) => {
+            setStoreReviewRating(response.data);
+
+        });
+    }, [storeReviewRating]);
+
 
     return (
 
@@ -56,6 +70,7 @@ function ViewCompanyProfile() {
                     storeUser.filter(company => company.Name === Name).map((company) => {
                         storeUserID = company.UserID;
 
+
                         return (
 
                             <h1>{company.Name}</h1>
@@ -65,7 +80,7 @@ function ViewCompanyProfile() {
                 }
                 <Container>
                     <row>
-                        <Tabs defaultActiveKey="second">
+                        <Tabs defaultActiveKey="first">
                             <Tab eventKey="first" title="Information">
                                 <h4 align="left" style={style1}>Company Overview</h4>
                                 {
@@ -84,18 +99,25 @@ function ViewCompanyProfile() {
                                     })
                                 }
                             </Tab>
-                            <Tab eventKey="second" title="Opportunities">
-                                <h1 style={style1}>Number of Opp: {storeOpp.length}</h1>
+                            <Tab eventKey="second" title="Opportunities "  >
                                 <Container>
+                                    <h1 style={{
+                                        textAlign: "left",
+                                        paddingTop: "40px",
+                                        fontSize: "26px",
+                                    }}>Number of jobs: {storeOpp.length}</h1>
                                     <Row>
                                         {storeOpp.map((opp, k) => (
-                                            <Col key={k} xs={12} md={4} lg={4}>
-                                                <Card style={{ width: '18rem' }}>
 
-
+                                            <Col key={k} xs={12} md={4} lg={4} style={{ paddingTop: "50px", }}>
+                                                <Card border="dark" style={{ width: '18 rem' }}>
+                                                    <Card.Header style={{ textAlign: 'left' }}>{opp.OppID}</Card.Header>
                                                     <Card.Body>
-                                                        <Card.Title>{opp.Name}</Card.Title>
-                                                        <Card.Subtitle>{opp.Type}</Card.Subtitle>
+                                                        <Card.Title style={{ textAlign: 'left' }}>{opp.Name}</Card.Title>
+                                                        <Card.Subtitle style={{ textAlign: 'left', color: 'grey' }} >{opp.Type}</Card.Subtitle>
+                                                        <Card.Text style={{ textAlign: 'left', fontSize: "16px" }} ><FontAwesomeIcon icon={faGraduationCap} /> {opp.Qualification}</Card.Text>
+                                                        <Card.Text style={{ textAlign: 'left', fontSize: "16px" }} > <FontAwesomeIcon icon={faMapMarkerAlt} /> {opp.Location}</Card.Text>
+                                                        <Card.Text style={{ textAlign: 'left', fontSize: "16px" }} > <FontAwesomeIcon icon={faDollarSign} /> {opp.Pay}</Card.Text>
                                                     </Card.Body>
                                                 </Card>
                                             </Col>
@@ -105,7 +127,38 @@ function ViewCompanyProfile() {
 
                             </Tab>
                             <Tab eventKey="third" title="Reviews" >
-                                Hii, I am 3rd tab content
+
+                                <Container>
+                                    <h1 style={{
+                                        textAlign: "left",
+                                        paddingTop: "40px",
+                                        fontSize: "26px",
+                                    }}>Number of Review/Rating: {storeReviewRating.length}</h1>
+                                    <Row>
+                                        {
+                                            storeReviewRating.map((rr, k) => {
+                                                return (
+                                                    <Col key={k} xs={12} md={4} lg={8} style={{ paddingTop: '50px' }}>
+                                                        <Card border="dark" style={{ width: '18 rem', height: '200px' }}>
+
+                                                            <Card.Header style={{ textAlign: 'left' }}>
+                                                                {new Array(rr.Rating).fill(null).map(() => (
+                                                                    <FontAwesomeIcon icon={faStar} style={{ color: "orange" }} />
+                                                                ))}
+
+                                                            </Card.Header>
+
+                                                            <Card.Body>
+                                                                <Card.Text style={{ textAlign: 'left', fontSize: "16px" }} >{rr.Review}</Card.Text>
+
+                                                            </Card.Body>
+                                                        </Card>
+                                                    </Col>
+                                                )
+                                            })
+                                        }
+                                    </Row>
+                                </Container>
                             </Tab>
                         </Tabs>
 

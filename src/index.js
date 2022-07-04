@@ -12,7 +12,7 @@ import OppoPage from './OppoPage/OppoPage';
 import ContactPage from './ContactPage/ContactPage';
 import Login from './LoginPage/Login';
 import Register from './Register/Register';
-
+import SearchCompanyProfile from './CompanyProfile/SearchCompanyProfile';
 
 
 import OneJob from './OppoPage/OneJob';
@@ -28,12 +28,12 @@ import OneJob from './OppoPage/OneJob';
 
 
 //ReactDOM.render(
-  //  <Router>
-    //    <Routes>
-      //      <Route path='/' element={<App/>}/>
-        //</Routes>
-    //</Router> ,
-    //document.getElementById('root')
+//  <Router>
+//    <Routes>
+//      <Route path='/' element={<App/>}/>
+//</Routes>
+//</Router> ,
+//document.getElementById('root')
 //);
 
 

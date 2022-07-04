@@ -14,6 +14,7 @@ const ListNavBar = () => {
                 <a href="/Opportunities">Opportunities</a>
                 <a href="/Favourites">Favourites</a>
                 <a href="/ContactUs">Contact Us</a>
+                <a href="/ViewCompanyProfile">Company Profile</a>
                 <a href="/Login">Login</a>
                 <a href="/Register">Register</a>
                 <a href="/makingReview">Making Review</a>

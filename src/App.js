@@ -43,6 +43,7 @@ import MngPartner from './AdminPanel/MngPartner';
 import ProfilePage from './Manage/UserProfile';
 import CompanyPage from './Manage/CompanyProfile';
 import EditCompanyNumber from './Manage/EditCompanyNumber';
+import SearchCompanyProfile from './CompanyProfile/SearchCompanyProfile';
 import ViewCompanyProfile from './CompanyProfile/ViewCompanyProfile';
 import EditCompanyBio from './Manage/EditCompanyBio';
 import EditUserResume from './Manage/EditUserResume';
@@ -118,6 +119,9 @@ function App() {
                 <Route path='/Register' element={<Register />} />
                 <Route path='/Opportunities' element={<OppoPage />} />
                 <Route path='/ContactUs' element={<ContactPage />} />
+                <Route path='/ViewCompanyProfile' element={<SearchCompanyProfile />} />
+                <Route exact path='/ViewCompanyProfile/:Name' element={<ViewCompanyProfile />} />
+
               
 
                 
@@ -169,7 +173,7 @@ function App() {
                     <Route path='/ViewOppo' element={<ViewOppo />} />
                     <Route path='/EditOppo' element={<EditOppo />} />
                     <Route path='/MngPartner' element={<MngPartner />} />
-                    <Route path='/ViewCompanyProfile' element={<ViewCompanyProfile />} />
+                    
 
                 </Route>
                 </Routes>

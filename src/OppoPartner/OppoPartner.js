@@ -4,6 +4,9 @@ import { React, useState, useEffect, Fragment } from "react";
 import { Link } from "react-router-dom";
 import ReadOnlyRow from './ReadOnlyRows';
 import EditableRows from './EditableRows';
+import "./ForOppoPartner.css";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
 export default function OppoPartner() {
@@ -17,6 +20,8 @@ export default function OppoPartner() {
         location: "",
         address: "",
         type: "",
+        qualification: "",
+        pay: "",
     });
 
     const [editOppId, setEditOppId] = useState(null);
@@ -42,6 +47,8 @@ export default function OppoPartner() {
             location: editFormData.location,
             address: editFormData.address,
             type: editFormData.type,
+            qualification: editFormData.qualification,
+            pay: editFormData.pay,
         }
         const newOppo = [...oppList];
 
@@ -59,6 +66,8 @@ export default function OppoPartner() {
             location: editedOppo.location,
             address: editedOppo.address,
             type: editedOppo.type,
+            qualification: editedOppo.qualification,
+            pay: editedOppo.pay,
 
         })
 
@@ -75,6 +84,8 @@ export default function OppoPartner() {
             location: opp.Location,
             address: opp.Address,
             type: opp.Type,
+            qualification: opp.Qualification,
+            pay: opp.Pay,
         }
 
         setEditFormData(formValues);
@@ -110,13 +121,6 @@ export default function OppoPartner() {
     });
 
 
-    const styleDiv = {
-        height: '50vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center'
-    };
-
     const styleButton = {
         display: 'flex',
         justifyContent: 'center',
@@ -128,15 +132,12 @@ export default function OppoPartner() {
         <div>
             <NavBar />
             <div style={styleButton}>
-                <Link to="/AddOppoPartner" className="btn btn-primary" style={{ width: '10%' }}>Add Opportunity</Link>
+                <p style={{ paddingRight: '40px' }}>Number of Opportunities: {oppList.length}</p>
+                <Link to="/AddOppoPartner" style={{ width: '10%', height: '100%' }}><FontAwesomeIcon icon={faPlus} />Add Opportunity  </Link>
             </div>
-            <div style={styleDiv} className="OppoPartner">
+            <div className="OppoPartner">
                 <form onSubmit={handleEditFormSubmit}>
-                    <table style={{
-                        backgroundColor: '#f3f3f3',
-                        width: '1300px',
-                        height: '300px',
-                    }}>
+                    <table class="OppoPartnerTable">
 
                         <tr>
                             <th>Job Code</th>
@@ -145,6 +146,8 @@ export default function OppoPartner() {
                             <th>Location</th>
                             <th>Address</th>
                             <th>Job Categories</th>
+                            <th>Qualification</th>
+                            <th>Pay (SGD) </th>
                             <th>Edit</th>
                             <th>Delete</th>
 

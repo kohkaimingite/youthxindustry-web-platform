@@ -19,6 +19,10 @@ export default function AddOppoPartner() {
 
     const [type, setType] = useState('');
 
+    const [qualification, setQualification] = useState('');
+
+    const [pay, setPay] = useState('');
+
     const [error, setError] = useState(false);
 
     const handleName = (e) => {
@@ -32,11 +36,18 @@ export default function AddOppoPartner() {
     const handleLocation = (e) => {
         setLocation(e.target.value);
     };
+
     const handleAddress = (e) => {
         setAddress(e.target.value);
     };
     const handleType = (e) => {
         setType(e.target.value);
+    };
+    const handleQualification = (e) => {
+        setQualification(e.target.value);
+    };
+    const handlePay = (e) => {
+        setPay(e.target.value);
     };
 
     const submitFormData = (e) => {
@@ -46,7 +57,9 @@ export default function AddOppoPartner() {
             validator.isEmpty(description) ||
             validator.isEmpty(location) ||
             validator.isEmpty(address) ||
-            validator.isEmpty(type)
+            validator.isEmpty(type) ||
+            validator.isEmpty(qualification) ||
+            validator.isEmpty(pay)
         ) {
             setError(true);
         } else {
@@ -55,7 +68,9 @@ export default function AddOppoPartner() {
                 description: description,
                 location: location,
                 address: address,
-                type: type
+                type: type,
+                qualification: qualification,
+                pay: pay
 
             })
                 .then(() => {
@@ -71,7 +86,7 @@ export default function AddOppoPartner() {
         display: "flex",
         alignItems: 'center',
         justifyContent: 'center',
-        height: '70vh',
+        height: '90vh',
         flexDirection: "column",
     };
 
@@ -81,6 +96,7 @@ export default function AddOppoPartner() {
             <h1 style={{ color: "yellow" }}>Add Opportunity</h1>
             <div style={styleDiv}>
                 <Form onSubmit={submitFormData}>
+
                     <Form.Group className="mb-2">
                         <Form.Label>Name</Form.Label>
                         <Form.Control
@@ -145,6 +161,31 @@ export default function AddOppoPartner() {
 
                     </Form.Group>
 
+                    <Form.Group className="mb-3">
+                        <Form.Label>Qualification</Form.Label>
+                        <Form.Control
+                            style={{ border: error ? "2px solid red" : "", width: "400px" }}
+                            type="text"
+                            required
+                            input onChange={handleQualification}
+                            value={qualification}
+
+                        />
+
+                    </Form.Group>
+
+                    <Form.Group className="mb-3">
+                        <Form.Label>Pay</Form.Label>
+                        <Form.Control
+                            style={{ border: error ? "2px solid red" : "", width: "400px" }}
+                            type="number"
+                            required
+                            input onChange={handlePay}
+                            value={pay}
+
+                        />
+
+                    </Form.Group>
 
 
                     <Button variant="primary" type="submit">

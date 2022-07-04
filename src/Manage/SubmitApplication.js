@@ -55,7 +55,7 @@ function SubmitApplication() {
                             return <text align="Left">{val.ContactNumber}</text>;
                         })}<br />
                             
-                        <textarea placeholder="Briefly Describe Why You Want This Opportunity... (250 characters)" id="desc" name="desc" value={desc} onChange={e => { setdesc(e.target.value); setChars(e.target.value.length) }} style={styles.textArea} maxLength="250"> </textarea>
+                        <textarea placeholder="Briefly Describe Why You Want This Opportunity... (250 characters)" id="desc" name="desc" value={desc} onChange={e => { setdesc(e.target.value); setChars(e.target.value.length) }} /*style={styles.textArea}*/ maxLength="250"> </textarea>
                         <h4>Characters typed: {Chars}</h4>
                         <button onClick={submit}> Confirm </button>
                     </form>
