@@ -23,7 +23,7 @@ export default function Login() {
                     setStatus(response.data.message);
 
                 } else {
-                    setStatus(response.data.message);
+                    setStatus(response.data[0].Name);
                 }
 
             });
@@ -35,6 +35,7 @@ export default function Login() {
 
                 if (response.data.message) {
                     setStatus(response.data.message);
+                    
                 }
             });
     };
@@ -43,9 +44,9 @@ export default function Login() {
 
     useEffect(() => {
         Axios.get("http://localhost:3001/login").then((response) => {
-            if (response.data.loggedIn = true) {
-                setStatus(response.data.message);
-
+            if (response.data.loggedIn == true) {
+                setStatus(response.data.user[0].Name);
+            
             }
         });
     }, []);

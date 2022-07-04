@@ -114,6 +114,8 @@ app.post("/login", (req, res, next) => {
 
                 if (result.length > 0) {
                     req.session.user = result;
+                    res.send(result);
+                    console.log(req.session.user);
                     getUserRole = req.session.user[0].RoleID;
                     console.log(getUserRole);
                     next();
@@ -133,7 +135,7 @@ app.post("/login", (req, res, next) => {
 
 app.get("/login", function (req, res) {
     if (req.session.user) {
-        res.send({ loggedIn: true, message: req.session.user[0].Name + " is logged in!" });
+        res.send({ loggedIn: true,  user: req.session.user });
 
     } else {
         res.send({ loggedIn: false });
