@@ -378,40 +378,57 @@ function OppoPage() {
                 
                 <div class="sidenav">
 
-                    <h2>Filter!</h2>
-                    <h4>Filter for Job Categories</h4>
+                    <h2>Filters</h2>
+                    
                     <div>
 
-                        <form >
-                            <input type="checkbox" id="IT" name="IT" value="IT" onChange={(e) => changeState(e.target.checked, "IT")} />
-                            <label for="IT">IT</label><br/>
-                            <input type="checkbox" id="Finance" name="Finance" value="Finance" onChange={(e) => changeState(e.target.checked,"Finance")}/>
-                            <label for="Finance"> Finance</label><br />
-                            <input type="checkbox" id="Healthcare" name="Healthcare" value="Healthcare" onChange={(e) => changeState(e.target.checked, "Healthcare")}/>
-                            <label for="Healthcare"> Healthcare</label><br />
-                            <input type="checkbox" id="Education" name="Education" value="Education" onChange={(e) => changeState(e.target.checked, "Education")} />
-                            <label for="Education"> Education</label><br />
+                        <form>
+                            <h4>Job Categories</h4>
+                            <label>
+                                <input type="checkbox" id="IT" name="IT" value="IT" onChange={(e) => changeState(e.target.checked, "IT")} />
+                                IT</label><br />
+
+                            <label>
+                                <input type="checkbox" id="Finance" name="Finance" value="Finance" onChange={(e) => changeState(e.target.checked, "Finance")} />
+                                Finance</label><br />
+
+                            
+                                <input type="checkbox" id="Healthcare" name="Healthcare" value="Healthcare" onChange={(e) => changeState(e.target.checked, "Healthcare")} /> Healthcare
+                                <br />
+
+                            <label>
+                                <input style={{width:"14px" }} type="checkbox" id="Education" name="Education" value="Education" onChange={(e) => changeState(e.target.checked, "Education")} />
+                                Education</label><br />
+
                      
 
                     
-                    <h4>Filter for Location</h4>
+                    <h4>Location</h4>
                     
-                            <input type="checkbox" id="North" name="North" value="North" onChange={(e) => changeState(e.target.checked, "North")}/>
-                            <label for="North"> North</label><br />
-                            <input type="checkbox" id="South" name="South" value="South" onChange={(e) => changeState(e.target.checked, "South")}/>
-                            <label for="South"> South</label><br />
-                            <input type="checkbox" id="East" name="East" value="East" onChange={(e) => changeState(e.target.checked, "East")}/>
-                            <label for="East"> East</label><br />
-                            <input type="checkbox" id="West" name="West" value="West" onChange={(e) => changeState(e.target.checked, "West")}/>
-                            <label for="West"> West</label><br />
-                            <input type="checkbox" id="Central" name="Central" value="Central" onChange={(e) => changeState(e.target.checked, "Central")} />
-                            <label for="Central"> Central</label><br />
+                            <label >
+                                <input type="checkbox" id="North" name="North" value="North" onChange={(e) => changeState(e.target.checked, "North")} />
+                                North</label><br />
+
+                            <label>
+                                <input type="checkbox" id="South" name="South" value="South" onChange={(e) => changeState(e.target.checked, "South")} />
+                                South</label><br />
+
+                            <label>
+                                <input type="checkbox" id="East" name="East" value="East" onChange={(e) => changeState(e.target.checked, "East")} />
+                                East</label><br />
+
+                            <label><input type="checkbox" id="West" name="West" value="West" onChange={(e) => changeState(e.target.checked, "West")}/>
+                                West</label><br />
+
+                            <label><input type="checkbox" id="Central" name="Central" value="Central" onChange={(e) => changeState(e.target.checked, "Central")} />
+                                Central</label><br />
+
                         </form>
 
                     </div>
                     
-                    
-                    <input type="text" value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search.." />
+                    <h4>Search by Name:</h4>
+                    <input style={{ width:"170px", marginLeft:"30px", marginRight: "30px" }} type="text" value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search.." />
                    
                 </div>
                 

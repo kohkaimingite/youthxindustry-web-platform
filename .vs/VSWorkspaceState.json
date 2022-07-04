@@ -4,9 +4,13 @@
     "\\node-mysql",
     "\\src",
     "\\src\\components",
+    "\\src\\ContactPage",
+    "\\src\\HomePage",
     "\\src\\LoginPage",
     "\\src\\OppoPage",
+    "\\src\\OppoPartner",
     "\\src\\ReviewPage"
   ],
+  "SelectedNode": "\\src\\ReviewPage\\MakingReview.js",
   "PreviewInSolutionExplorer": false
 }
