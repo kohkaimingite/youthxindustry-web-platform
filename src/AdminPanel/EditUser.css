@@ -1,12 +1,12 @@
-/*input[type="userID"],
-input[type="Name"],
-input[type="roleID"],
-input[type="password"],
-input[type="email"],
-input[type="Age"],
-input[type="gender"],
-input[type="UserBio"],
-input[type="Contact"],
+input[type="aUserID"],
+input[type="aName"],
+input[type="aRoleID"],
+input[type="aPassword"],
+input[type="aEmail"],
+input[type="aAge"],
+input[type="aGender"],
+input[type="aUserBio"],
+input[type="aContact"],
 select {
     width: 100%;
     padding: 12px 20px;
@@ -19,4 +19,4 @@ select {
 
 .backButton {
     background-color: #4285F4;
-  }*/
+  }
