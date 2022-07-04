@@ -6,6 +6,7 @@ const app = express();
 var corsOptions = {
     origin: "http://localhost:3000"
 };
+var getUserRole = '';
 //app.use(cors(corsOptions));
 
 //app.use(express.json());
