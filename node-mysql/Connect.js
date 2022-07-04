@@ -1,6 +1,7 @@
 const express = require("express");
 const mysql = require("mysql");
 const cors = require("cors");
+const nodemailer = require("nodemailer");
 
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
@@ -37,6 +38,33 @@ const db = mysql.createConnection({
     password: "sql_pass123^*",
     database: "fyp_db",
 });
+
+
+/*const transporter = nodemailer.createTransport({
+    service: "hotmail",
+    auth: {
+    user: "TestingNode-1235r124@outlook.com",
+    pass: "!Evg8bsD7M}{",
+    }
+});
+
+const options = {
+    from: "TestingNode-1235r124@outlook.com",
+    to: "20045346@outlook.com",
+    subject: "Sending email with nodejs",
+    text: "successfully send"
+}
+
+transporter.sendMail(options, function (err, info) {
+    if (err) {
+        console.log(err);
+        return;
+    }
+    console.log("Sent: " + info.response);
+
+});
+*/
+
 
 var getUserRole = '';
 app.post("/registerUser", (req, res) => {
