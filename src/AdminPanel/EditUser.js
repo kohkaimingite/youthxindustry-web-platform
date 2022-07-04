@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Route, Link } from 'react-router-dom';
 import NavBar from '../components/NavBar';
 import AdminNavBar from '../components/AdminNavBar';
+import "./EditUser.css";
 import axios from 'axios';
 
 const initialSate = {
@@ -97,37 +98,42 @@ const EditUser = () => {
         <div className="App">
             <NavBar />
             <AdminNavBar />
-            <form>
+            <form style={{
+                margin: "auto",
+                padding: "15px",
+                maxWidth: "400px",
+                alignContent: "center"
+            }}>
                 <label>UserID</label>
-                <input type="userID" placeholder="UserID" value={userID} onChange={handleuserID}></input>
+                <input type="aUserID" placeholder="UserID" value={userID} onChange={handleuserID}></input>
 
                 <label>Name</label>
-                <input type="Name" placeholder="Your Name ..." value={name} onChange={handleName}></input>
+                <input type="aName" placeholder="Your Name ..." value={name} onChange={handleName}></input>
 
                 <label>RoleID</label>
-                <input type="roleID" placeholder="Your RoleID ..." value={roleID} onChange={handleroleID}></input>
+                <input type="aRoleID" placeholder="Your RoleID ..." value={roleID} onChange={handleroleID}></input>
 
                 <label>Password</label>
-                <input type="password" placeholder="Your Password ..." value={password} onChange={handlepassword}></input>
+                <input type="aPassword" placeholder="Your Password ..." value={password} onChange={handlepassword}></input>
 
                 <label>Email</label>
-                <input type="email" placeholder="Your Email ..." value={email} onChange={handleemail}></input>
+                <input type="aEmail" placeholder="Your Email ..." value={email} onChange={handleemail}></input>
 
                 <label>Age</label>
-                <input type="Age" placeholder="Your Age ..." value={age} onChange={handleAge}></input>
+                <input type="aAge" placeholder="Your Age ..." value={age} onChange={handleAge}></input>
 
                 <label>Gender</label>
-                <input type="gender" placeholder="Your Gender ..." value={gender} onChange={handlegender}></input>
+                <input type="aGender" placeholder="Your Gender ..." value={gender} onChange={handlegender}></input>
 
                 <label>UserBio</label>
-                <input type="UserBio" placeholder="Your User Biography ..." value={UserBio} onChange={handleUserBio}></input>
+                <input type="aUserBio" placeholder="Your User Biography ..." value={UserBio} onChange={handleUserBio}></input>
 
                 <label>Contact</label>
-                <input type="Contact" placeholder="Your Contact Number ..." value={MobileNumber} onChange={handleContact}></input>
+                <input type="aContact" placeholder="Your Contact Number ..." value={MobileNumber} onChange={handleContact}></input>
 
                 <button onClick={submitFormData}>Submit</button>
                 <Link to="/ViewUser">
-                    <input className="Back Button" type="button" value="Go Back to View All Users"/>
+                    <button className="btn backButton">Go Back to View All Users</button>
                 </Link>
             </form>
         </div>

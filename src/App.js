@@ -23,8 +23,8 @@ import NotAllowedLog from './NotAllowedLog';
 import NotAllowed from './NotAllowed';
 
 import LoggedHome from './HomePage/LoggedHome';
-import EditUser from './AdminPanel/ViewUser';
-import EditUser2 from './AdminPanel/EditUser';
+import ViewUser from './AdminPanel/ViewUser';
+import EditUser from './AdminPanel/EditUser';
 import DeleteUser from './AdminPanel/DeleteUser';
 import Favourites from './OppoPage/Favourites';
 import EditUserNumber from './Manage/EditUserNumber';
@@ -37,11 +37,13 @@ import MyApplication from './Manage/MyApplication';
 import LoggedOppoPage from './OppoPage/LoggedOppoPage';
 
 import AdminPanel from './AdminPanel/AdminPanel';
+import ViewOppo from './AdminPanel/ViewOppo';
 import EditOppo from './AdminPanel/EditOppo';
 import MngPartner from './AdminPanel/MngPartner';
 import ProfilePage from './Manage/UserProfile';
 import CompanyPage from './Manage/CompanyProfile';
 import EditCompanyNumber from './Manage/EditCompanyNumber';
+import SearchCompanyProfile from './CompanyProfile/SearchCompanyProfile';
 import ViewCompanyProfile from './CompanyProfile/ViewCompanyProfile';
 import EditCompanyBio from './Manage/EditCompanyBio';
 import EditUserResume from './Manage/EditUserResume';
@@ -100,8 +102,7 @@ function App() {
     };
     const [testList, setTestList] = useState([]);
     const [user, setUser] = useState(0);
-    const [testuserRole, setTestuserRole] = useState(1);
-    var getUserRole = '';
+    const [testuserRole, setTestuserRole] = useState(3);
     //const [userTest, setUserTest] = useState(2);
     //alert(user);
     
@@ -118,6 +119,9 @@ function App() {
                 <Route path='/Register' element={<Register />} />
                 <Route path='/Opportunities' element={<OppoPage />} />
                 <Route path='/ContactUs' element={<ContactPage />} />
+                <Route path='/ViewCompanyProfile' element={<SearchCompanyProfile />} />
+                <Route exact path='/ViewCompanyProfile/:Name' element={<ViewCompanyProfile />} />
+
               
 
                 
@@ -150,7 +154,7 @@ function App() {
                 
                 <Route element={<ProtectedRoutepartner user={testuserRole} />}>
                 
-                <Route path='/EditOppo' element={<EditOppo />} />
+                <Route path='/OppoPage' element={<EditOppo />} />
                 <Route path='/Company' element={<CompanyPage />} />
                 <Route path='/MngPartner' element={<MngPartner />} />
                 <Route path='/Profile' element={<ProfilePage />} />
@@ -163,12 +167,13 @@ function App() {
 
                 <Route element={<ProtectedRouteAdmin user={testuserRole} />}>
                     <Route path='/AdminPanel' element={<AdminPanel />} />
-                    <Route path='/ViewUser' element={<EditUser />} />
-                    <Route path='/EditUser' element={<EditUser2 />} />
+                    <Route path='/ViewUser' element={<ViewUser />} />
+                    <Route path='/EditUser' element={<EditUser />} />
                     <Route path='/DeleteUser' element={<DeleteUser />} />
+                    <Route path='/ViewOppo' element={<ViewOppo />} />
                     <Route path='/EditOppo' element={<EditOppo />} />
                     <Route path='/MngPartner' element={<MngPartner />} />
-                    <Route path='/ViewCompanyProfile' element={<ViewCompanyProfile />} />
+                    
 
                 </Route>
                 </Routes>

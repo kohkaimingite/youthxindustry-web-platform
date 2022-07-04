@@ -11,18 +11,25 @@ const ViewUser = () => {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        axios.get("http://localhost:3001/user").then((response) => {
+        axios.get("http://localhost:3001/user")
+        .then((response) => {
 
             console.log(response);
             setData(response.data);
 
-        });
+        })
+        .catch((error) => {
+            console.log(error);
+        })
     });
 
     return (
         <div className="App">
             <NavBar />
             <AdminNavBar />
+            <Link to="/AdminPanel">
+                <button className="btn backButton">Go Back to Admin Panel</button>
+            </Link>
             <table className="User-Table">
                 <thead>
                     <tr>

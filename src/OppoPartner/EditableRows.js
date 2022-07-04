@@ -4,7 +4,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const EditableRows = ({ editFormData, handleEditFormChange, handleCancelClick }) => {
     return (
-        <tr>
+
+        <tr >
             <td>
                 <input
                     type="text"
@@ -46,6 +47,7 @@ const EditableRows = ({ editFormData, handleEditFormChange, handleCancelClick })
                 ></input>
             </td>
 
+
             <td>
                 <input
                     type="text"
@@ -67,6 +69,30 @@ const EditableRows = ({ editFormData, handleEditFormChange, handleCancelClick })
                     onChange={handleEditFormChange}
                 ></input>
             </td>
+
+            <td>
+                <input
+                    type="text"
+                    required="required"
+                    placeholder="Qualification..."
+                    name="qualification"
+                    value={editFormData.qualification}
+                    onChange={handleEditFormChange}
+                ></input>
+            </td>
+
+
+            <td>
+                <input
+                    type="number"
+                    required="required"
+                    placeholder="Pay..."
+                    name="pay"
+                    value={editFormData.pay}
+                    onChange={handleEditFormChange}
+                ></input>
+            </td>
+
             <td>
                 <button style={{ backgroundColor: '#00FF00' }} type="submit">Save<FontAwesomeIcon icon={faCheck} /></button>
 
@@ -75,6 +101,7 @@ const EditableRows = ({ editFormData, handleEditFormChange, handleCancelClick })
                 <button style={{ backgroundColor: '#FF0000' }} type="button" onClick={handleCancelClick}>Cancel<FontAwesomeIcon icon={faTimes} /></button>
             </td>
         </tr>
+
     )
 }
 

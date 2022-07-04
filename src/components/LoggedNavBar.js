@@ -14,6 +14,7 @@ const LoggedNavBar = () => {
             <div class="containerNavBar borderYtoX">
                 <a href="/LoggedHome">Home</a>
                 <a href="/AboutUs">About Us</a>
+                <a href="/ViewCompanyProfile">Company Profile</a>
                 <a href="/LoggedOppoPage">Opportunities</a>
                 <a href="/Favourites">Favourites</a>
                 <a href="/LoggedContactPage">Contact Us</a>

@@ -17,7 +17,7 @@ const AdminNavBar = () => {
                     </li>
 
                     <li>
-                        <Link to="/EditOppo">Edit Opportunities</Link>
+                        <Link to="/ViewOppo">Edit Opportunities</Link>
                     </li>
 
                     <li>

@@ -41,6 +41,18 @@
     margin: 4px 2px;
     cursor: pointer;
   }
+
+  .linkButton {
+    background-color: #D1A62E;
+  }
+
+  .goButton {
+    background-color: #4285F4;
+  }
+
+  .backButton {
+    background-color: #4285F4;
+  }
   
   .editButton {
     background-color: #000000;

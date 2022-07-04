@@ -12,6 +12,8 @@ import axios from 'axios';
 
 function SubmitApplication() {
     const [ProfList, setProfList] = useState([]);
+    const [desc, setdesc] = useState("");
+    const [Chars, setChars] = useState(0);
     const columns = ProfList[0] && Object.keys(ProfList[0]);
     const getProfile = () => {
 
@@ -49,17 +51,30 @@ function SubmitApplication() {
                         {ProfList.map((val, key) => {
                             return <text align="Left">{val.Email}</text>;
                         })}<br />
-                        <textbox>Enter Description...</textbox>
                         {ProfList.map((val, key) => {
-                            return <text align="Left">{val.UserBio}</text>;
-                        })}<a href="/EditUserBio"></a>
+                            return <text align="Left">{val.ContactNumber}</text>;
+                        })}<br />
+                            
+                        <textarea placeholder="Briefly Describe Why You Want This Opportunity... (250 characters)" id="desc" name="desc" value={desc} onChange={e => { setdesc(e.target.value); setChars(e.target.value.length) }} /*style={styles.textArea}*/ maxLength="250"> </textarea>
+                        <h4>Characters typed: {Chars}</h4>
+                        <button onClick={submit}> Confirm </button>
                     </form>
                     </div>
             </div>
         </div>
         
         
-        )
+    )
+
+    function submit() {
+        axios.post("http://localhost:3001/SubmitApplication", {
+                desc: desc
+        }).then(() => {
+            console.log("Test");
+            /*setCheck(response.data);*/
+            window.location = "http://localhost:3000/MyApplications";
+        });
+    }
 }
 
 export default SubmitApplication;

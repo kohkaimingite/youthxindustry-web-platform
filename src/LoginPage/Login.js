@@ -1,16 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState} from "react";
 import Axios from 'axios';
 import NavBar from '../components/NavBar';
 import './Login.css';
+import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
 
     Axios.defaults.withCredentials = true;
-
+    
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [status, setStatus] = useState('');
-
+    const navigate = useNavigate('');
 
     const login = () => {
         Axios.post("http://localhost:3001/login", {
@@ -23,7 +24,8 @@ export default function Login() {
                     setStatus(response.data.message);
 
                 } else {
-                    setStatus(response.data.message);
+                    setStatus(response.data[0].Name);
+                    navigate("/AboutUs")
                 }
 
             });
@@ -35,6 +37,7 @@ export default function Login() {
 
                 if (response.data.message) {
                     setStatus(response.data.message);
+                    
                 }
             });
     };
@@ -43,12 +46,13 @@ export default function Login() {
 
     useEffect(() => {
         Axios.get("http://localhost:3001/login").then((response) => {
-            if (response.data.loggedIn = true) {
-                setStatus(response.data.message);
-
+            if (response.data.loggedIn == true) {
+                setStatus(response.data.user[0].Name);
+            
             }
         });
     }, []);
+
 
 
     return (
