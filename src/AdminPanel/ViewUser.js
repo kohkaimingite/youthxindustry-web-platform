@@ -21,7 +21,16 @@ const ViewUser = () => {
         .catch((error) => {
             console.log(error);
         })
-    });
+    })
+
+    const deleteUser = (id) => {
+        if (
+            window.confirm("Are you sure that you wanted to delete that user?")
+        ) {
+            axios.post("http://localhost:3001/userDelete");
+            console.log("Successfully Deleted");
+        }
+    };
 
     return (
         <div className="App">
@@ -59,9 +68,13 @@ const ViewUser = () => {
                                         <button className="btn editButton">Edit</button>
                                     </Link>
 
-                                    <Link to="/DeleteUser">
+                                    <button className="btn deleteButton" onClick={() => deleteUser(User.UserID)}>
+                                        Delete
+                                    </button>
+
+                                    {/* <Link to="/DeleteUser">
                                         <button className="btn deleteButton">Delete</button>
-                                    </Link>
+                                    </Link> */}
                                 </td>
                             </tr>
                         )

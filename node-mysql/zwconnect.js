@@ -43,7 +43,7 @@ app.get('/user', (req, res) => {
     });
 });
 
-app.post('/EditUser', (req, res) => {
+app.post('/userEdit', (req, res) => {
     const UserID = req.body.UserID;
     const RoleID = req.body.RoleID;
     const Name = req.body.Name;
@@ -90,11 +90,17 @@ app.get('/oppo', (req, res) => {
     )
 })
 
-app.post('/oppoEdit', (req, res) => {
-    const Name = req.body.Name;
+app.post('/EditOppo', (req, res) => {
     const OppID = req.body.OppID;
-    db.query("UPDATE opportunities WHERE Name = ? AND OppID = ?",
-        [Name, OppID],
+    const Name = req.body.Name;
+    const Description = req.body.Description;
+    const Location = req.body.Location;
+    const Address = req.body.Address;
+    const Type = req.body.Type;
+    const Qualification = req.body.Qualification;
+    const Pay = req.body.Pay;
+    db.query("UPDATE opportunities SET OppID = ?, Name = ?, Description = ?, Location = ?, Address = ?, Type = ?, Qualification = ?, Pay = ? WHERE OppID = ?",
+        [OppID, Name, Description, Location, Address, Type, Qualification, Pay],
         (err, result) => {
             if (err) {
                 console.log(err);
@@ -105,7 +111,7 @@ app.post('/oppoEdit', (req, res) => {
     )
 })
 
-app.post('/oppoDelete', (req, res) => {
+app.post('/DeleteOppo', (req, res) => {
     const Name = req.body.Name;
     const OppID = req.body.OppID;
     db.query("DELETE FROM opportunities WHERE Name = ? AND OppID = ?",
