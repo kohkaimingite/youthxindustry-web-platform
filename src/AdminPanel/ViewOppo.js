@@ -52,7 +52,7 @@ const ViewOppo = () => {
                                 <td> {User.Address} </td>
                                 <td> {User.Type} </td>
                                 <td>
-                                    <Link to="/EditUser">
+                                    <Link to="/EditOppo">
                                         <button className="btn editButton">Edit</button>
                                     </Link>
 
