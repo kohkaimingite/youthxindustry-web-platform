@@ -384,51 +384,29 @@ function OppoPage() {
 
                         <form>
                             <h4>Job Categories</h4>
-                            <label>
-                                <input type="checkbox" id="IT" name="IT" value="IT" onChange={(e) => changeState(e.target.checked, "IT")} />
-                                IT</label><br />
 
-                            <label>
-                                <input type="checkbox" id="Finance" name="Finance" value="Finance" onChange={(e) => changeState(e.target.checked, "Finance")} />
-                                Finance</label><br />
-
-                            
-                                <input type="checkbox" id="Healthcare" name="Healthcare" value="Healthcare" onChange={(e) => changeState(e.target.checked, "Healthcare")} /> Healthcare
-                                <br />
-
-                            <label>
-                                <input style={{width:"14px" }} type="checkbox" id="Education" name="Education" value="Education" onChange={(e) => changeState(e.target.checked, "Education")} />
-                                Education</label><br />
+                            <input type="checkbox" id="IT" name="IT" value="IT" onChange={(e) => changeState(e.target.checked, "IT")} /> IT<br />
+                            <input type="checkbox" id="Finance" name="Finance" value="Finance" onChange={(e) => changeState(e.target.checked, "Finance")} /> Finance<br />
+                            <input type="checkbox" id="Healthcare" name="Healthcare" value="Healthcare" onChange={(e) => changeState(e.target.checked, "Healthcare")} /> Healthcare<br />
+                            <input type="checkbox" id="Education" name="Education" value="Education" onChange={(e) => changeState(e.target.checked, "Education")} /> Education<br />
 
                      
 
                     
-                    <h4>Location</h4>
-                    
-                            <label >
-                                <input type="checkbox" id="North" name="North" value="North" onChange={(e) => changeState(e.target.checked, "North")} />
-                                North</label><br />
+                            <h4>Location</h4>
 
-                            <label>
-                                <input type="checkbox" id="South" name="South" value="South" onChange={(e) => changeState(e.target.checked, "South")} />
-                                South</label><br />
-
-                            <label>
-                                <input type="checkbox" id="East" name="East" value="East" onChange={(e) => changeState(e.target.checked, "East")} />
-                                East</label><br />
-
-                            <label><input type="checkbox" id="West" name="West" value="West" onChange={(e) => changeState(e.target.checked, "West")}/>
-                                West</label><br />
-
-                            <label><input type="checkbox" id="Central" name="Central" value="Central" onChange={(e) => changeState(e.target.checked, "Central")} />
-                                Central</label><br />
+                            <input type="checkbox" id="North" name="North" value="North" onChange={(e) => changeState(e.target.checked, "North")} /> North<br />
+                            <input type="checkbox" id="South" name="South" value="South" onChange={(e) => changeState(e.target.checked, "South")} /> South<br />
+                            <input type="checkbox" id="East" name="East" value="East" onChange={(e) => changeState(e.target.checked, "East")} /> East<br />
+                            <input type="checkbox" id="West" name="West" value="West" onChange={(e) => changeState(e.target.checked, "West")}/> West<br />
+                            <input type="checkbox" id="Central" name="Central" value="Central" onChange={(e) => changeState(e.target.checked, "Central")} /> Central<br />
 
                         </form>
 
                     </div>
                     
                     <h4>Search by Name:</h4>
-                    <input style={{ width:"170px", marginLeft:"30px", marginRight: "30px" }} type="text" value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search.." />
+                    <input style={{ width:"170px", marginLeft:"28px", marginRight: "30px" }} type="text" value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search.." />
                    
                 </div>
                 
