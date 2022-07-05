@@ -1,8 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\node-mysql",
     "\\src",
+    "\\src\\AdminPanel",
     "\\src\\components",
     "\\src\\ContactPage",
     "\\src\\HomePage",
@@ -11,6 +11,6 @@
     "\\src\\OppoPartner",
     "\\src\\ReviewPage"
   ],
-  "SelectedNode": "\\src\\components\\ListNavBar.js",
+  "SelectedNode": "\\src\\AdminPanel\\EditUser.js",
   "PreviewInSolutionExplorer": false
 }
