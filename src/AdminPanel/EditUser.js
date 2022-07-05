@@ -18,7 +18,8 @@ const initialSate = {
     MobileNumber: 0
 }
 
-
+    //<input type="aGender" placeholder="Your Gender ..." value={gender} onChange={handlegender}></input>
+    //< input type = "aEmail" placeholder = "Your Email ..." value = { email } onChange = { handleemail } ></input>
 const EditUser = () => {
 
     const [state, setState] = useState(initialSate);
@@ -117,13 +118,13 @@ const EditUser = () => {
                 <input type="aPassword" placeholder="Your Password ..." value={password} onChange={handlepassword}></input>
 
                 <label>Email</label>
-                <input type="aEmail" placeholder="Your Email ..." value={email} onChange={handleemail}></input>
+                
 
                 <label>Age</label>
                 <input type="aAge" placeholder="Your Age ..." value={age} onChange={handleAge}></input>
 
                 <label>Gender</label>
-                <input type="aGender" placeholder="Your Gender ..." value={gender} onChange={handlegender}></input>
+                
 
                 <label>UserBio</label>
                 <input type="aUserBio" placeholder="Your User Biography ..." value={UserBio} onChange={handleUserBio}></input>
