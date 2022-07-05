@@ -66,7 +66,7 @@ transporter.sendMail(options, function (err, info) {
 */
 
 
-var getUserRole = '';
+var getUserRole = '0';
 app.post("/registerUser", (req, res) => {
     const name = req.body.name;
     const password = req.body.password;
@@ -135,7 +135,7 @@ app.post("/login", (req, res, next) => {
 
 app.get("/login", function (req, res) {
     if (req.session.user) {
-        res.send({ loggedIn: true,  user: req.session.user });
+        res.send({ loggedIn: true, user: req.session.user });
 
     } else {
         res.send({ loggedIn: false });
@@ -149,6 +149,8 @@ app.get("/logout", function (req, res) {
             return console.log(err);
         }
         res.send({ message: loggedOutName + " is logged out!" });
+        getUserRole = '0';
+        console.log(getUserRole);
 
     });
 });
@@ -212,7 +214,7 @@ app.post("/updateOppPartner", (req, res) => {
 
 
     db.query("UPDATE opportunities SET Name = ?, Description = ?,Location = ?, Address = ?, Type = ?, Qualification =? , Pay = ? WHERE OppID = ?",
-        [name, description, location, address, type, qualification,pay, oppId],
+        [name, description, location, address, type, qualification, pay, oppId],
         (err, result) => {
             if (err) {
                 console.log(err);
@@ -259,7 +261,7 @@ app.post("/getReviewRatingForCompany", (req, res) => {
                 console.log(err);
             } else {
                 res.send(result);
-         
+
             }
         });
 });

@@ -44,7 +44,7 @@ const EditUser = () => {
         setState({...state, [password]: value})
     }
 
-    const handleemail= (e) => {
+    const handleEmail= (e) => {
         const {email, value} = e.target;
         setState({...state, [email]: value})
     }
@@ -54,7 +54,7 @@ const EditUser = () => {
         setState({...state, [age]: value})
     }
 
-    const handlegender= (e) => {
+    const handleGender= (e) => {
         const {gender, value} = e.target;
         setState({...state, [gender]: value})
     }
