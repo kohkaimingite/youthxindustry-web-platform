@@ -10,6 +10,8 @@ const ViewUser = () => {
 
     const [data, setData] = useState([]);
 
+    let { storeUserID } = '';
+
     useEffect(() => {
         axios.get("http://localhost:3001/user")
         .then((response) => {
@@ -21,14 +23,17 @@ const ViewUser = () => {
         .catch((error) => {
             console.log(error);
         })
-    })
+    }, []);
 
     const deleteUser = (id) => {
         if (
             window.confirm("Are you sure that you wanted to delete that user?")
         ) {
-            axios.post("http://localhost:3001/userDelete");
-            console.log("Successfully Deleted");
+            axios.post("http://localhost:3001/userDelete", {
+                UserID: parseInt(storeUserID)
+            }).then(() => {
+                console.log("Deleted sucessfully!");
+            });
         }
     };
 
@@ -54,6 +59,7 @@ const ViewUser = () => {
                 </thead>
                 <tbody>
                     {data.map((User, key) => {
+                        storeUserID = User.UserID;
                         return (
                             <tr key={key}>
                                 <td> {User.UserID} </td>
