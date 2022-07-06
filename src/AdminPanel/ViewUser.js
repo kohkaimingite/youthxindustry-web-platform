@@ -32,7 +32,7 @@ const ViewUser = () => {
             axios.post("http://localhost:3001/userDelete", {
                 UserID: parseInt(storeUserID)
             }).then(() => {
-                console.log("Deleted sucessfully!");
+                console.log("Deleted sucessfully");
             });
         }
     };
@@ -77,10 +77,6 @@ const ViewUser = () => {
                                     <button className="btn deleteButton" onClick={() => deleteUser(User.UserID)}>
                                         Delete
                                     </button>
-
-                                    {/* <Link to="/DeleteUser">
-                                        <button className="btn deleteButton">Delete</button>
-                                    </Link> */}
                                 </td>
                             </tr>
                         )

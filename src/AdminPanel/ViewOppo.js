@@ -11,14 +11,32 @@ const ViewOppo = () => {
 
     const [data, setData] = useState([]);
 
+    let { storeOppID } = '';
+
     useEffect(() => {
-        axios.get("http://localhost:3001/oppo").then((response) => {
+        axios.get("http://localhost:3001/oppo")
+        .then((response) => {
 
             console.log(response);
             setData(response.data);
 
-        });
-    });
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+    }, []);
+
+    const deleteOppo = (id) => {
+        if (
+            window.confirm("Are you sure that you wanted to delete that opportunity?")
+        ) {
+            axios.post("http://localhost:3001/oppoDelete", {
+                OppID: parseInt(OppID)
+            }).then(() => {
+                console.log("Deleted sucessfully");
+            });
+        }
+    };
 
     return (
         <div className="App">
@@ -43,6 +61,7 @@ const ViewOppo = () => {
                 </thead>
                 <tbody>
                     {data.map((User, key) => {
+                        storeOppID = User.OppID;
                         return (
                             <tr key={key}>
                                 <td> {User.OppID} </td>
@@ -56,9 +75,9 @@ const ViewOppo = () => {
                                         <button className="btn editButton">Edit</button>
                                     </Link>
 
-                                    <Link to="/DeleteUser">
-                                        <button className="btn deleteButton">Delete</button>
-                                    </Link>
+                                    <button className="btn deleteButton" onClick={() => deleteOppo(User.UserID)}>
+                                        Delete
+                                    </button>
                                 </td>
                             </tr>
                         )

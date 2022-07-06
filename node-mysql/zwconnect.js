@@ -67,8 +67,9 @@ app.post('/userEdit', (req, res) => {
 
 app.post('/userDelete', (req, res) => {
     const UserID = req.body.UserID;
-    db.query("DELETE FROM users WHERE UserID = ?",
-        [UserID],
+    const Name = req.body.Name;
+    db.query("DELETE FROM users WHERE UserID = ? AND Name = ?",
+        [UserID, Name],
         (err, result) => {
             if (err) {
                 console.log(err);
@@ -111,11 +112,11 @@ app.post('/EditOppo', (req, res) => {
     )
 })
 
-app.post('/DeleteOppo', (req, res) => {
-    const Name = req.body.Name;
+app.post('/oppoDelete', (req, res) => {
     const OppID = req.body.OppID;
-    db.query("DELETE FROM opportunities WHERE Name = ? AND OppID = ?",
-        [Name, OppID],
+    const Name = req.body.Name;
+    db.query("DELETE FROM opportunities WHERE OppID = ? AND Name = ?",
+        [OppID, Name],
         (err, result) => {
             if (err) {
                 console.log(err);
