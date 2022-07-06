@@ -25,7 +25,6 @@ import NotAllowed from './NotAllowed';
 import LoggedHome from './HomePage/LoggedHome';
 import ViewUser from './AdminPanel/ViewUser';
 import EditUser from './AdminPanel/EditUser';
-import DeleteUser from './AdminPanel/DeleteUser';
 import Favourites from './OppoPage/Favourites';
 import EditUserNumber from './Manage/EditUserNumber';
 import MakingReview from './ReviewPage/MakingReview';
@@ -102,7 +101,7 @@ function App() {
     };
     const [testList, setTestList] = useState([]);
     const [user, setUser] = useState(0);
-    const [testuserRole, setTestuserRole] = useState(1);
+    const [testuserRole, setTestuserRole] = useState(3);
     //const [userTest, setUserTest] = useState(2);
     //alert(user);
     
@@ -169,7 +168,6 @@ function App() {
                     <Route path='/AdminPanel' element={<AdminPanel />} />
                     <Route path='/ViewUser' element={<ViewUser />} />
                     <Route path='/EditUser' element={<EditUser />} />
-                    <Route path='/DeleteUser' element={<DeleteUser />} />
                     <Route path='/ViewOppo' element={<ViewOppo />} />
                     <Route path='/EditOppo' element={<EditOppo />} />
                     <Route path='/MngPartner' element={<MngPartner />} />

@@ -11,14 +11,32 @@ const ViewOppo = () => {
 
     const [data, setData] = useState([]);
 
+    let { storeOppID } = '';
+
     useEffect(() => {
-        axios.get("http://localhost:3001/oppo").then((response) => {
+        axios.get("http://localhost:3001/oppo")
+        .then((response) => {
 
             console.log(response);
             setData(response.data);
 
-        });
-    });
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+    }, []);
+
+    const deleteOppo = (id) => {
+        if (
+            window.confirm("Are you sure you want to delete this opportunity?")
+        ) {
+            axios.post("http://localhost:3001/oppoDelete", {
+                OppID: parseInt(storeOppID)
+            }).then(() => {
+                console.log("Successfully Deleted.");
+            });
+        }
+    };
 
     return (
         <div className="App">
@@ -28,6 +46,13 @@ const ViewOppo = () => {
                 <button className="btn backButton">Go Back to Admin Panel</button>
             </Link>
             <input type="search" placeholder="Search..." onChange={event => {setSearchInput(event.target.value)}}/>
+            {/* {data.map((User, key) => {
+                return {
+                    <div className="aUser" key={key}>
+                        <p>User.first_name</p>
+                    </div>
+                }
+            })} */}
             <input type="submit" value="Go" class="btn goButton"/>
             <table className="User-Table">
                 <thead>
@@ -43,6 +68,7 @@ const ViewOppo = () => {
                 </thead>
                 <tbody>
                     {data.map((User, key) => {
+                        storeOppID = User.OppID;
                         return (
                             <tr key={key}>
                                 <td> {User.OppID} </td>
@@ -52,13 +78,13 @@ const ViewOppo = () => {
                                 <td> {User.Address} </td>
                                 <td> {User.Type} </td>
                                 <td>
-                                    <Link to="/EditUser">
+                                    <Link to="/EditOppo">
                                         <button className="btn editButton">Edit</button>
                                     </Link>
 
-                                    <Link to="/DeleteUser">
-                                        <button className="btn deleteButton">Delete</button>
-                                    </Link>
+                                    <button className="btn deleteButton" onClick={() => deleteOppo(User.OppID)}>
+                                        Delete
+                                    </button>
                                 </td>
                             </tr>
                         )

@@ -18,8 +18,6 @@ const initialSate = {
     MobileNumber: 0
 }
 
-    //<input type="aGender" placeholder="Your Gender ..." value={gender} onChange={handlegender}></input>
-    //< input type = "aEmail" placeholder = "Your Email ..." value = { email } onChange = { handleemail } ></input>
 const EditUser = () => {
 
     const [state, setState] = useState(initialSate);
@@ -73,7 +71,7 @@ const EditUser = () => {
     const submitFormData = (e) => {
         e.preventDefault();
         {
-            axios.post("http://localhost:3001/EditUser", {
+            axios.post("http://localhost:3001/userEdit", {
                 userID,
                 roleID,
                 name,
@@ -93,7 +91,7 @@ const EditUser = () => {
                     console.log("Failed to update");
                 });
         }
-    };
+    }
 
     return (
         <div className="App">
@@ -118,13 +116,13 @@ const EditUser = () => {
                 <input type="aPassword" placeholder="Your Password ..." value={password} onChange={handlepassword}></input>
 
                 <label>Email</label>
-                
+                <input type="aEmail" placeholder="Your Email ..." value={email} onChange={handleEmail}></input>
 
                 <label>Age</label>
                 <input type="aAge" placeholder="Your Age ..." value={age} onChange={handleAge}></input>
 
                 <label>Gender</label>
-                
+                <input type="aGender" placeholder="Your Gender ..." value={gender} onChange={handleGender}></input>
 
                 <label>UserBio</label>
                 <input type="aUserBio" placeholder="Your User Biography ..." value={UserBio} onChange={handleUserBio}></input>

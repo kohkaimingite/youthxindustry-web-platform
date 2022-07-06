@@ -10,6 +10,8 @@ const ViewUser = () => {
 
     const [data, setData] = useState([]);
 
+    let { storeUserID } = '';
+
     useEffect(() => {
         axios.get("http://localhost:3001/user")
         .then((response) => {
@@ -21,7 +23,19 @@ const ViewUser = () => {
         .catch((error) => {
             console.log(error);
         })
-    });
+    }, []);
+
+    const deleteUser = (id) => {
+        if (
+            window.confirm("Are you sure you want to delete this user?")
+        ) {
+            axios.post("http://localhost:3001/userDelete", {
+                UserID: parseInt(storeUserID)
+            }).then(() => {
+                console.log("Successfully Deleted.");
+            });
+        }
+    };
 
     return (
         <div className="App">
@@ -45,6 +59,7 @@ const ViewUser = () => {
                 </thead>
                 <tbody>
                     {data.map((User, key) => {
+                        storeUserID = User.UserID;
                         return (
                             <tr key={key}>
                                 <td> {User.UserID} </td>
@@ -59,9 +74,9 @@ const ViewUser = () => {
                                         <button className="btn editButton">Edit</button>
                                     </Link>
 
-                                    <Link to="/DeleteUser">
-                                        <button className="btn deleteButton">Delete</button>
-                                    </Link>
+                                    <button className="btn deleteButton" onClick={() => deleteUser(User.UserID)}>
+                                        Delete
+                                    </button>
                                 </td>
                             </tr>
                         )

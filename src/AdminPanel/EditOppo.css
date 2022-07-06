@@ -1,0 +1,21 @@
+input[type="aOppID"],
+input[type="aName"],
+input[type="aDescription"],
+input[type="aLocation"],
+input[type="aAddress"],
+input[type="aType"],
+input[type="aQualification"],
+input[type="aPay"],
+select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.backButton {
+    background-color: #4285F4;
+  }

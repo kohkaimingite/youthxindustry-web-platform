@@ -30,20 +30,22 @@ const db = mysql.createConnection({
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}.`);
+    console.log(`Server is currently running on port ${PORT}.`);
 });
 
 
 app.get('/user', (req, res) => {
-    db.query("SELECT * from users INNER JOIN roles ON roles.RoleID = users.RoleID WHERE users.RoleID = 1", (err, result) => {
+    db.query("SELECT * from users INNER JOIN roles ON roles.RoleID = users.RoleID WHERE users.RoleID = 1",
+    (err, result) => {
         if (err) {
             console.log(err);
-        } else { res.send(result) };
-
+        } else {
+            res.send(result)
+        };
     });
 });
 
-app.post('/EditUser', (req, res) => {
+app.post('/userEdit', (req, res) => {
     const UserID = req.body.UserID;
     const RoleID = req.body.RoleID;
     const Name = req.body.Name;
@@ -67,34 +69,41 @@ app.post('/EditUser', (req, res) => {
 
 app.post('/userDelete', (req, res) => {
     const UserID = req.body.UserID;
+    const Name = req.body.Name;
     db.query("DELETE FROM users WHERE UserID = ?",
         [UserID],
         (err, result) => {
             if (err) {
                 console.log(err);
             } else {
-                res.send("User Information Deleted");
+                res.send("User Information Deleted.");
             }
         }
     )
 })
 
 app.get('/oppo', (req, res) => {
-    db.query("SELECT * FROM opportunities", (err, result) => {
-            if (err) {
-                console.log(err);
-            } else {
-                res.send(result);
-            }
-        }
-    )
-})
+    db.query("SELECT * FROM opportunities",
+    (err, result) => {
+        if (err) {
+            console.log(err);
+        } else {
+            res.send(result);
+        };
+    });
+});
 
-app.post('/oppoEdit', (req, res) => {
-    const Name = req.body.Name;
+app.post('/EditOppo', (req, res) => {
     const OppID = req.body.OppID;
-    db.query("UPDATE opportunities WHERE Name = ? AND OppID = ?",
-        [Name, OppID],
+    const Name = req.body.Name;
+    const Description = req.body.Description;
+    const Location = req.body.Location;
+    const Address = req.body.Address;
+    const Type = req.body.Type;
+    const Qualification = req.body.Qualification;
+    const Pay = req.body.Pay;
+    db.query("UPDATE opportunities SET OppID = ?, Name = ?, Description = ?, Location = ?, Address = ?, Type = ?, Qualification = ?, Pay = ? WHERE OppID = ?",
+        [OppID, Name, Description, Location, Address, Type, Qualification, Pay],
         (err, result) => {
             if (err) {
                 console.log(err);
@@ -106,15 +115,15 @@ app.post('/oppoEdit', (req, res) => {
 })
 
 app.post('/oppoDelete', (req, res) => {
-    const Name = req.body.Name;
     const OppID = req.body.OppID;
-    db.query("DELETE FROM opportunities WHERE Name = ? AND OppID = ?",
-        [Name, OppID],
+    const Name = req.body.Name;
+    db.query("DELETE FROM opportunities WHERE OppID = ?",
+        [OppID],
         (err, result) => {
             if (err) {
                 console.log(err);
             } else {
-                res.send("Opportunity Information Deleted");
+                res.send("Opportunity Information Deleted.");
             }
         }
     )
