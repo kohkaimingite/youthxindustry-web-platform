@@ -14,12 +14,11 @@ const ViewOppo = () => {
     let { storeOppID } = '';
 
     useEffect(() => {
-        axios.get("http://localhost:3001/oppo")
-        .then((response) => {
+        axios.get("http://localhost:3001/oppo").then((response) => {
 
             console.log(response);
             setData(response.data);
-
+            
         })
         .catch((error) => {
             console.log(error);

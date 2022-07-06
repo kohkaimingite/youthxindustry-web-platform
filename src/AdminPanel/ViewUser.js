@@ -15,10 +15,8 @@ const ViewUser = () => {
     useEffect(() => {
         axios.get("http://localhost:3001/user")
         .then((response) => {
-
             console.log(response);
             setData(response.data);
-
         })
         .catch((error) => {
             console.log(error);

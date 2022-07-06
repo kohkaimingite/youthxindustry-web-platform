@@ -69,7 +69,6 @@ app.post('/userEdit', (req, res) => {
 
 app.post('/userDelete', (req, res) => {
     const UserID = req.body.UserID;
-    const Name = req.body.Name;
     db.query("DELETE FROM users WHERE UserID = ?",
         [UserID],
         (err, result) => {
