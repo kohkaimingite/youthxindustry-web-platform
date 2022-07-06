@@ -28,12 +28,12 @@ const ViewOppo = () => {
 
     const deleteOppo = (id) => {
         if (
-            window.confirm("Are you sure that you wanted to delete that opportunity?")
+            window.confirm("Are you sure you want to delete this opportunity?")
         ) {
             axios.post("http://localhost:3001/oppoDelete", {
-                OppID: parseInt(OppID)
+                OppID: parseInt(storeOppID)
             }).then(() => {
-                console.log("Deleted sucessfully");
+                console.log("Successfully Deleted.");
             });
         }
     };
@@ -46,6 +46,13 @@ const ViewOppo = () => {
                 <button className="btn backButton">Go Back to Admin Panel</button>
             </Link>
             <input type="search" placeholder="Search..." onChange={event => {setSearchInput(event.target.value)}}/>
+            {/* {data.map((User, key) => {
+                return {
+                    <div className="aUser" key={key}>
+                        <p>User.first_name</p>
+                    </div>
+                }
+            })} */}
             <input type="submit" value="Go" class="btn goButton"/>
             <table className="User-Table">
                 <thead>
@@ -75,7 +82,7 @@ const ViewOppo = () => {
                                         <button className="btn editButton">Edit</button>
                                     </Link>
 
-                                    <button className="btn deleteButton" onClick={() => deleteOppo(User.UserID)}>
+                                    <button className="btn deleteButton" onClick={() => deleteOppo(User.OppID)}>
                                         Delete
                                     </button>
                                 </td>

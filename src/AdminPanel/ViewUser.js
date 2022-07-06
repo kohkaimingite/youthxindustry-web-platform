@@ -27,12 +27,12 @@ const ViewUser = () => {
 
     const deleteUser = (id) => {
         if (
-            window.confirm("Are you sure that you wanted to delete that user?")
+            window.confirm("Are you sure you want to delete this user?")
         ) {
             axios.post("http://localhost:3001/userDelete", {
                 UserID: parseInt(storeUserID)
             }).then(() => {
-                console.log("Deleted sucessfully");
+                console.log("Successfully Deleted.");
             });
         }
     };
