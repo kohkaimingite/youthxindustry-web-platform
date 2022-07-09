@@ -1,9 +1,9 @@
 // JavaScript source code
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import NavBar from '../components/NavBar';
-import AdminNavBar from '../components/AdminNavBar';
-import "./ViewOppo.css";
+import NavBar from '../../components/NavBar';
+import AdminNavBar from '../../components/AdminNavBar';
+import "../Opportunities/ViewOppo.css";
 import axios from 'axios';
 
 const ViewOppo = () => {
