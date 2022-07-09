@@ -23,8 +23,6 @@ import NotAllowedLog from './NotAllowedLog';
 import NotAllowed from './NotAllowed';
 
 import LoggedHome from './HomePage/LoggedHome';
-import ViewUser from './AdminPanel/Users/ViewUser';
-import EditUser from './AdminPanel/Users/EditUser';
 import Favourites from './OppoPage/Favourites';
 import EditUserNumber from './Manage/EditUserNumber';
 import MakingReview from './ReviewPage/MakingReview';
@@ -36,8 +34,11 @@ import MyApplication from './Manage/MyApplication';
 import LoggedOppoPage from './OppoPage/LoggedOppoPage';
 
 import AdminPanel from './AdminPanel/AdminPanel';
+import ViewUser from './AdminPanel/Users/ViewUser';
+import EditUser from './AdminPanel/Users/EditUser';
 import ViewOppo from './AdminPanel/Opportunities/ViewOppo';
 import EditOppo from './AdminPanel/Opportunities/EditOppo';
+import ViewPartner from './AdminPanel/Partners/ViewPartner';
 import MngPartner from './AdminPanel/Partners/MngPartner';
 import ProfilePage from './Manage/UserProfile';
 import CompanyPage from './Manage/CompanyProfile';
@@ -170,6 +171,7 @@ function App() {
                     <Route path='/EditUser' element={<EditUser />} />
                     <Route path='/ViewOppo' element={<ViewOppo />} />
                     <Route path='/EditOppo' element={<EditOppo />} />
+                    <Route path='/ViewPartner' element={<ViewPartner />} />
                     <Route path='/MngPartner' element={<MngPartner />} />
                     
 

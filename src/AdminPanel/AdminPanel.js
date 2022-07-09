@@ -22,7 +22,7 @@ function AdminPanel() {
                 <Link to="/ViewOppo">
                     <div className="btn linkButton">Opportunities</div>
                 </Link>
-                <Link to="/MngPartners">
+                <Link to="/ViewPartner">
                     <div className="btn linkButton">Partners</div>
                 </Link>
                 <Link to="/MakingReview">

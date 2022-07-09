@@ -128,12 +128,12 @@ app.post('/oppoDelete', (req, res) => {
     )
 })
 
-app.get('/partners', (req, res) => {
-    db.query("SELECT * FROM user INNER JOIN roles ON roles.RoleID = user.RoleID WHERE user.RoleID = 2", (err, result) => {
+app.get('/partner', (req, res) => {
+    db.query("SELECT u.UserID, u.Name, u.UserBio, u.ContactNumber FROM users u INNER JOIN roles r ON r.RoleID = u.RoleID WHERE u.RoleID = 2", (err, result) => {
             if (err) {
                 console.log(err);
             } else {
-                res.send("Partner successfully deleted!");
+                res.send(result);
             }
         }
     )

@@ -1,26 +1,15 @@
-input[type="search"],
-select {
-    width: auto;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
 .User-Table {
     border-collapse: collapse;
     margin: auto;
     font-size: 1em;
-    max-width: 1300px;
+    max-width: 1500px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
 .User-Table thead tr {
     background: #D1A62E;
     color: #ffffff;
-    text-align: center;
+    text-align: left;
 }
 
 .User-Table th,
@@ -53,7 +42,15 @@ select {
     cursor: pointer;
   }
 
+  .linkButton {
+    background-color: #D1A62E;
+  }
+
   .goButton {
+    background-color: #4285F4;
+  }
+
+  .backButton {
     background-color: #4285F4;
   }
   
