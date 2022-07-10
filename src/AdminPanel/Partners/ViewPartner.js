@@ -1,24 +1,22 @@
 // JavaScript source code
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import NavBar from '../components/NavBar';
-import AdminNavBar from '../components/AdminNavBar';
-import "./ViewUser.css";
+import NavBar from '../../components/NavBar';
+import AdminNavBar from '../../components/AdminNavBar';
+import "../Partners/ViewPartner.css";
 import axios from 'axios';
 
-const ViewUser = () => {
+const ViewPartner = () => {
 
     const [data, setData] = useState([]);
 
     let { storeUserID } = '';
 
     useEffect(() => {
-        axios.get("http://localhost:3001/user")
+        axios.get("http://localhost:3001/partner")
         .then((response) => {
-
             console.log(response);
             setData(response.data);
-
         })
         .catch((error) => {
             console.log(error);
@@ -50,8 +48,6 @@ const ViewUser = () => {
                         <th style={{textAlign: "center"}}> ID </th>
                         <th style={{textAlign: "center"}}> Name </th>
                         <th style={{textAlign: "center"}}> Email </th>
-                        <th style={{textAlign: "center"}}> Age </th>
-                        <th style={{textAlign: "center"}}> Gender </th>
                         <th style={{textAlign: "center"}}> UserBio </th>
                         <th style={{textAlign: "center"}}> Contact </th>
                         <th style={{textAlign: "center"}}> Actions </th>
@@ -65,8 +61,6 @@ const ViewUser = () => {
                                 <td> {User.UserID} </td>
                                 <td> {User.Name} </td>
                                 <td> {User.Email} </td>
-                                <td> {User.Age} </td>
-                                <td> {User.Gender} </td>
                                 <td> {User.UserBio} </td>
                                 <td> {User.ContactNumber} </td>
                                 <td>
@@ -87,4 +81,4 @@ const ViewUser = () => {
     );
 }
 
-export default ViewUser;
+export default ViewPartner;

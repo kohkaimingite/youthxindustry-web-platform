@@ -1,9 +1,9 @@
 // JavaScript source code
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import NavBar from '../components/NavBar';
-import AdminNavBar from '../components/AdminNavBar';
-import "./ViewOppo.css";
+import NavBar from '../../components/NavBar';
+import AdminNavBar from '../../components/AdminNavBar';
+import "../Opportunities/ViewOppo.css";
 import axios from 'axios';
 
 const ViewOppo = () => {
@@ -14,12 +14,11 @@ const ViewOppo = () => {
     let { storeOppID } = '';
 
     useEffect(() => {
-        axios.get("http://localhost:3001/oppo")
-        .then((response) => {
+        axios.get("http://localhost:3001/oppo").then((response) => {
 
             console.log(response);
             setData(response.data);
-
+            
         })
         .catch((error) => {
             console.log(error);
@@ -31,7 +30,7 @@ const ViewOppo = () => {
             window.confirm("Are you sure you want to delete this opportunity?")
         ) {
             axios.post("http://localhost:3001/oppoDelete", {
-                OppID: parseInt(storeOppID)
+                adminOppID: parseInt(storeOppID)
             }).then(() => {
                 console.log("Successfully Deleted.");
             });

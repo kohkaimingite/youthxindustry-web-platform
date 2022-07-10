@@ -21,7 +21,7 @@ const AdminNavBar = () => {
                     </li>
 
                     <li>
-                        <Link to="/MngPartner">Manage Partners</Link>
+                        <Link to="/ViewPartner">Manage Partners</Link>
                     </li>
                 </ul>
             </nav>

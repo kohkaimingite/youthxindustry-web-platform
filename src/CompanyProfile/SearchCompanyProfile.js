@@ -43,7 +43,8 @@ function SearchCompanyProfile() {
             <NavBar />
             <div className="search" >
                 <div className="searchInputs" >
-                    <input type="text" onChange={handleFilter} placeholder="Enter company name..." value={wordEntered} style={{ width: "400px" }} />
+                    <p style={{ marginRight: '330px' }}>Search</p>
+                    <input type="text" onChange={handleFilter} placeholder="Search Companies" value={wordEntered} style={{ width: "400px" }} />
                     <div className="searchIcon">
                         {filteredData.length === 0 ? <FontAwesomeIcon icon={faSearch} /> : <FontAwesomeIcon icon={faX} id="clearBtn" onClick={clearInput} />}
                     </div>

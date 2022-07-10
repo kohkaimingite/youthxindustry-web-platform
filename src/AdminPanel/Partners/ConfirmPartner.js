@@ -1,9 +1,12 @@
 // JavaScript source code
 import React, { Component } from 'react';
-import NavBar from '../components/NavBar';
-import AdminNavBar from '../components/AdminNavBar';
+import NavBar from '../../components/NavBar';
+import AdminNavBar from '../../components/AdminNavBar';
+import emailjs from '@emailjs/browser';
 
-function MngPartner() {
+function ConfirmPartner() {
+    
+
     return (
         <div className="App">
             <NavBar/>
@@ -13,4 +16,4 @@ function MngPartner() {
     );
 }
 
-export default MngPartner;
+export default ConfirmPartner;

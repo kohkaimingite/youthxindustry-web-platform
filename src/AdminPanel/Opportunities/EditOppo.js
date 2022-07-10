@@ -1,9 +1,9 @@
 // JavaScript source code
 import React, { useState, useEffect } from "react";
 import { Route, Link } from 'react-router-dom';
-import NavBar from '../components/NavBar';
-import AdminNavBar from '../components/AdminNavBar';
-import "./EditOppo.css";
+import NavBar from '../../components/NavBar';
+import AdminNavBar from '../../components/AdminNavBar';
+import "../Opportunities/EditOppo.css";
 import axios from 'axios';
 
 const initialSate = {

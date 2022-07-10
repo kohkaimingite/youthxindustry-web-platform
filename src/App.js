@@ -23,8 +23,6 @@ import NotAllowedLog from './NotAllowedLog';
 import NotAllowed from './NotAllowed';
 
 import LoggedHome from './HomePage/LoggedHome';
-import ViewUser from './AdminPanel/ViewUser';
-import EditUser from './AdminPanel/EditUser';
 import Favourites from './OppoPage/Favourites';
 import EditUserNumber from './Manage/EditUserNumber';
 import MakingReview from './ReviewPage/MakingReview';
@@ -36,9 +34,12 @@ import MyApplication from './Manage/MyApplication';
 import LoggedOppoPage from './OppoPage/LoggedOppoPage';
 
 import AdminPanel from './AdminPanel/AdminPanel';
-import ViewOppo from './AdminPanel/ViewOppo';
-import EditOppo from './AdminPanel/EditOppo';
-import MngPartner from './AdminPanel/MngPartner';
+import ViewUser from './AdminPanel/Users/ViewUser';
+import EditUser from './AdminPanel/Users/EditUser';
+import ViewOppo from './AdminPanel/Opportunities/ViewOppo';
+import EditOppo from './AdminPanel/Opportunities/EditOppo';
+import ViewPartner from './AdminPanel/Partners/ViewPartner';
+import ConfirmPartner from './AdminPanel/Partners/ConfirmPartner';
 import ProfilePage from './Manage/UserProfile';
 import CompanyPage from './Manage/CompanyProfile';
 import EditCompanyNumber from './Manage/EditCompanyNumber';
@@ -125,7 +126,6 @@ function App() {
 
                 
                 <Route path='/Company' element={<CompanyPage />} />
-                <Route path='/MngPartner' element={<MngPartner />} />
                 <Route path='/Profile' element={<ProfilePage />} />
                 <Route path='/EditCompanyNumber' element={<EditCompanyNumber />} />
                 <Route path='/RegisterPartner' element={< RegisterPartner />} />
@@ -155,7 +155,6 @@ function App() {
                 
                 <Route path='/OppoPage' element={<EditOppo />} />
                 <Route path='/Company' element={<CompanyPage />} />
-                <Route path='/MngPartner' element={<MngPartner />} />
                 <Route path='/Profile' element={<ProfilePage />} />
                 <Route path='/EditCompanyNumber' element={<EditCompanyNumber />} />
                 <Route path='/RegisterPartner' element={< RegisterPartner />} />
@@ -170,7 +169,8 @@ function App() {
                     <Route path='/EditUser' element={<EditUser />} />
                     <Route path='/ViewOppo' element={<ViewOppo />} />
                     <Route path='/EditOppo' element={<EditOppo />} />
-                    <Route path='/MngPartner' element={<MngPartner />} />
+                    <Route path='/ViewPartner' element={<ViewPartner />} />
+                    <Route path='/ConfirmPartner' element={<ConfirmPartner />} />
                     
 
                 </Route>
