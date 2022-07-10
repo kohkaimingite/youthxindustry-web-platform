@@ -32,11 +32,11 @@
     margin-left: 15px;
 }
 
-a {
+.dataResult a {
     text-decoration: none;
 }
 
-    a:hover {
+    .dataResult a:hover {
         background-color: lightgrey;
     }
 
