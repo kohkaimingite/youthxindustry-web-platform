@@ -30,6 +30,7 @@
 
 .dataItem p {
     margin-left: 15px;
+    font-size: 18px;
 }
 
 .dataResult a {
@@ -38,6 +39,7 @@
 
     .dataResult a:hover {
         background-color: lightgrey;
+       
     }
 
 #clearBtn {
