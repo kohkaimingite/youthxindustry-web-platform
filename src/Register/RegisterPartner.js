@@ -30,6 +30,15 @@ export default function RegisterPartner() {
         setPassword(e.target.value);
     };
 
+    function EmailJS() {
+        emailjs.sendForm('service_nqak4rb', 'template_0fcbuq9', 'EOze04zGTBzzoGFXp')
+    .then(function(response) {
+       console.log('SUCCESS!', response.status, response.text);
+    }, function(error) {
+       console.log('FAILED...', error);
+    });
+    }
+
     const submitFormData = (e) => {
         e.preventDefault();
         if (
@@ -62,15 +71,6 @@ export default function RegisterPartner() {
         height: '50vh',
         flexDirection: "column",
     };
-
-    function EmailJS() {
-        emailjs.sendForm('service_nqak4rb', 'template_0fcbuq9', 'EOze04zGTBzzoGFXp')
-    .then(function(response) {
-       console.log('SUCCESS!', response.status, response.text);
-    }, function(error) {
-       console.log('FAILED...', error);
-    });
-    }
 
     return (
         <div className="RegisterPartner">
