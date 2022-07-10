@@ -114,19 +114,71 @@ app.post('/EditOppo', (req, res) => {
 })
 
 app.post('/oppoDelete', (req, res) => {
-    const OppID = req.body.OppID;
-    const Name = req.body.Name;
-    db.query("DELETE FROM opportunities WHERE OppID = ?",
-        [OppID],
+    const adminOppID = req.body.adminOppID;
+    db.query("DELETE FROM users_have_opp, users_have_fav, partner_have_opp, opp_have_application, opportunities WHERE OppID = ?",
+        [adminOppID],
         (err, result) => {
             if (err) {
                 console.log(err);
             } else {
-                res.send("Opportunity Information Deleted.");
+                res.send("users_have_opp");
             }
         }
     )
+    
 })
+
+// app.post('/oppoDelete', (req, res) => {
+//     db.query("DELETE FROM users_have_fav WHERE OppID = ?",
+//         [OppID],
+//         (err, result) => {
+//             if (err) {
+//                 console.log(err);
+//             } else {
+//                 res.send("users_have_fav");
+//             }
+//         }
+//     )
+// })
+
+// app.post('/oppoDelete', (req, res) => {
+//     db.query("DELETE FROM partner_have_opp WHERE OppID = ?",
+//         [OppID],
+//         (err, result) => {
+//             if (err) {
+//                 console.log(err);
+//             } else {
+//                 res.send("partner_have_opp");
+//             }
+//         }
+//     )
+// })
+
+// app.post('/oppoDelete', (req, res) => {
+//     db.query("DELETE FROM opp_have_application WHERE OppID = ?",
+//         [OppID],
+//         (err, result) => {
+//             if (err) {
+//                 console.log(err);
+//             } else {
+//                 res.send("opp_have_application");
+//             }
+//         }
+//     )
+// })
+
+// app.post('/oppoDelete', (req, res) => {
+//     db.query("DELETE FROM opportunities WHERE OppID = ?",
+//         [OppID],
+//         (err, result) => {
+//             if (err) {
+//                 console.log(err);
+//             } else {
+//                 res.send("opportunities");
+//             }
+//         }
+//     )
+// })
 
 app.get('/partner', (req, res) => {
     db.query("SELECT u.UserID, u.Name, u.UserBio, u.ContactNumber FROM users u INNER JOIN roles r ON r.RoleID = u.RoleID WHERE u.RoleID = 2", (err, result) => {

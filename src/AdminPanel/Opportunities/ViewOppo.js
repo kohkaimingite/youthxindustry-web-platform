@@ -30,7 +30,7 @@ const ViewOppo = () => {
             window.confirm("Are you sure you want to delete this opportunity?")
         ) {
             axios.post("http://localhost:3001/oppoDelete", {
-                OppID: parseInt(storeOppID)
+                adminOppID: parseInt(storeOppID)
             }).then(() => {
                 console.log("Successfully Deleted.");
             });

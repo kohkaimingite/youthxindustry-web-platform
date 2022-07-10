@@ -39,7 +39,7 @@ import EditUser from './AdminPanel/Users/EditUser';
 import ViewOppo from './AdminPanel/Opportunities/ViewOppo';
 import EditOppo from './AdminPanel/Opportunities/EditOppo';
 import ViewPartner from './AdminPanel/Partners/ViewPartner';
-import MngPartner from './AdminPanel/Partners/MngPartner';
+import ConfirmPartner from './AdminPanel/Partners/ConfirmPartner';
 import ProfilePage from './Manage/UserProfile';
 import CompanyPage from './Manage/CompanyProfile';
 import EditCompanyNumber from './Manage/EditCompanyNumber';
@@ -126,7 +126,6 @@ function App() {
 
                 
                 <Route path='/Company' element={<CompanyPage />} />
-                <Route path='/MngPartner' element={<MngPartner />} />
                 <Route path='/Profile' element={<ProfilePage />} />
                 <Route path='/EditCompanyNumber' element={<EditCompanyNumber />} />
                 <Route path='/RegisterPartner' element={< RegisterPartner />} />
@@ -156,7 +155,6 @@ function App() {
                 
                 <Route path='/OppoPage' element={<EditOppo />} />
                 <Route path='/Company' element={<CompanyPage />} />
-                <Route path='/MngPartner' element={<MngPartner />} />
                 <Route path='/Profile' element={<ProfilePage />} />
                 <Route path='/EditCompanyNumber' element={<EditCompanyNumber />} />
                 <Route path='/RegisterPartner' element={< RegisterPartner />} />
@@ -172,7 +170,7 @@ function App() {
                     <Route path='/ViewOppo' element={<ViewOppo />} />
                     <Route path='/EditOppo' element={<EditOppo />} />
                     <Route path='/ViewPartner' element={<ViewPartner />} />
-                    <Route path='/MngPartner' element={<MngPartner />} />
+                    <Route path='/ConfirmPartner' element={<ConfirmPartner />} />
                     
 
                 </Route>
