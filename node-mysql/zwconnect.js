@@ -100,8 +100,9 @@ app.post('/oppoEdit', (req, res) => {
     const Type = req.body.Type;
     const Qualification = req.body.Qualification;
     const Pay = req.body.Pay;
+    const OppID = req.body.OppID;
     db.query("UPDATE opportunities SET Name = ?, Description = ?, Location = ?, Address = ?, Type = ?, Qualification = ?, Pay = ? WHERE OppID = ?",
-        [Name, Description, Location, Address, Type, Qualification, Pay],
+        [Name, Description, Location, Address, Type, Qualification, Pay, OppID],
         (err, result) => {
             if (err) {
                 console.log(err);
