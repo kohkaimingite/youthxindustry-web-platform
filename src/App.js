@@ -51,9 +51,11 @@ import RegisterPartner from './Register/RegisterPartner';
 import OppoPartner from './OppoPartner/OppoPartner';
 import AddOppoPartner from './OppoPartner/AddOppoPartner';
 import SubmitApplication from './Manage/SubmitApplication';
+import RatingStats from './RatingStats/RatingStats'
 
 import Protection from './Protection';
 import { BrowserRouter as Router, Routes, Route,Link, Navigate, Outlet, } from 'react-router-dom';
+
 
 
 // Idea:
@@ -121,7 +123,7 @@ function App() {
                 <Route path='/ContactUs' element={<ContactPage />} />
                 <Route path='/ViewCompanyProfile' element={<SearchCompanyProfile />} />
                 <Route exact path='/ViewCompanyProfile/:Name' element={<ViewCompanyProfile />} />
-
+                <Route path='/RatingStats' element={<RatingStats />} />
               
 
                 

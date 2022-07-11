@@ -3,7 +3,7 @@ import { Form, Button } from "react-bootstrap";
 import NavBar from '../components/NavBar';
 import Axios from 'axios';
 import validator from "validator";
-import emailjs from '@emailjs/browser';
+/*import emailjs from '@emailjs/browser';*/
 
 
 export default function RegisterPartner() {
@@ -30,14 +30,14 @@ export default function RegisterPartner() {
         setPassword(e.target.value);
     };
 
-    function EmailJS() {
+   /* function EmailJS() {
         emailjs.sendForm('service_nqak4rb', 'template_0fcbuq9', 'EOze04zGTBzzoGFXp')
     .then(function(response) {
        console.log('SUCCESS!', response.status, response.text);
     }, function(error) {
        console.log('FAILED...', error);
     });
-    }
+    }*/
 
     const submitFormData = (e) => {
         e.preventDefault();
@@ -48,7 +48,7 @@ export default function RegisterPartner() {
         ) {
             setError(true);
         } else {
-            EmailJS();
+            /*EmailJS();*/
             Axios.post("http://localhost:3001/registerPartner", {
                 name: name,
                 password: password,

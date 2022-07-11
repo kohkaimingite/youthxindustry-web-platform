@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import NavBar from '../../components/NavBar';
 import AdminNavBar from '../../components/AdminNavBar';
-import emailjs from '@emailjs/browser';
+/*import emailjs from '@emailjs/browser';*/
 
 function ConfirmPartner() {
     

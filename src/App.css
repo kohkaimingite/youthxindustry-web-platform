@@ -172,9 +172,17 @@ ul li {
 .sidenav label {
     color: red;
 }
-.sidenav input,h2, h4 {
+.sidenav input {
     margin-left: 28px;
 }
+
+    .sidenav h1 {
+        margin-left: 28px;
+    }
+
+    .sidenav h4 {
+        margin-left: 28px;
+    }
 
 parent {
     width: 100%;

@@ -268,14 +268,14 @@ app.post("/getReviewRatingForCompany", (req, res) => {
 
 
 app.get("/getStatsCompany", function (req, res) {
-    db.query("SELECT *  FROM users_have_opp INNER JOIN partner_have_opp ON users_have_opp.OppID = partner_have_opp.OppID WHERE partner_have_opp.UserID = ? ; ",
+    db.query("SELECT *  FROM users_have_opp INNER JOIN partner_have_opp ON users_have_opp.OppID = partner_have_opp.OppID WHERE partner_have_opp.UserID = ? ORDER BY users_have_opp.Rating Desc; ",
         [req.session.user[0].UserID],
         (err, result) => {
             if (err) {
                 console.log(err);
             } else {
                 res.send(result);
-
+                console.log(result);
             }
         });
 });
