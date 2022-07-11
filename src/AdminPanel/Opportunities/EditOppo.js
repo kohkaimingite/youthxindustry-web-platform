@@ -6,79 +6,83 @@ import AdminNavBar from '../../components/AdminNavBar';
 import "../Opportunities/EditOppo.css";
 import axios from 'axios';
 
-const initialSate = {
-    OppID: 0,
-    Name: "",
-    Description: "",
-    Location: "",
-    Address: "",
-    Type: "",
-    Qualification: "",
-    Pay: 0
-}
+// const initialState = {
+//     Email: "",
+//     Name: "",
+//     Description: "",
+//     Location: "",
+//     Address: "",
+//     Type: "",
+//     Qualification: "",
+//     Pay: 0
+// }
 
 
 const EditOppo = () => {
+    const initialState = { name: "", description: "", location: "", address: "", type: "", qualification: "", pay: 0};
+    const [formValues, setFormValues] = useState(initialState);
+    const [formErrors, setFormErrors] = useState({});
+    const [isSubmit, setIsSubmit] = useState(false);
+    const {name, description, location, address, type, qualification, pay} = formValues;
 
-    const [state, setState] = useState(initialSate);
-    const { oppID, name, description, location, address, type, qualification, pay} = state;
-   
-    const handleOppID = (e) => {
-        const {oppID, value} = e.target;
-        setState({...state, [oppID]: value})
-    }
-
-    const handleName= (e) => {
+    const handleChange = (e) => {
         const {name, value} = e.target;
-        setState({...state, [name]: value})
+        setFormValues({...formValues, [name]: value});
+        console.log(formValues);
     }
+    
+    // const handleName= (e) => {
+    //     const {name, value} = e.target;
+    //     setFormValues({...formValues, [name]: value})
+    // }
 
-    const handleDescription= (e) => {
-        const {description, value} = e.target;
-        setState({...state, [description]: value})
-    }
+    // const handleDescription= (e) => {
+    //     const {description, value} = e.target;
+    //     setFormValues({...formValues, [description]: value})
+    // }
 
-    const handleLocation = (e) => {
-        const {location, value} = e.target;
-        setState({...state, [location]: value})
-    }
+    // const handleLocation = (e) => {
+    //     const {location, value} = e.target;
+    //     setFormValues({...formValues, [location]: value})
+    // }
 
-    const handleAddress= (e) => {
-        const {address, value} = e.target;
-        setState({...state, [address]: value})
-    }
+    // const handleAddress= (e) => {
+    //     const {address, value} = e.target;
+    //     setFormValues({...formValues, [address]: value})
+    // }
 
-    const handleType= (e) => {
-        const {type, value} = e.target;
-        setState({...state, [type]: value})
-    }
+    // const handleType= (e) => {
+    //     const {type, value} = e.target;
+    //     setFormValues({...formValues, [type]: value})
+    // }
 
-    const handleQualification= (e) => {
-        const {qualification, value} = e.target;
-        setState({...state, [qualification]: value})
-    }
+    // const handleQualification= (e) => {
+    //     const {qualification, value} = e.target;
+    //     setFormValues({...formValues, [qualification]: value})
+    // }
 
-    const handlePay = (e) => {
-        const {pay, value} = e.target;
-        setState({...state, [pay]: value})
-    }
+    // const handlePay = (e) => {
+    //     const {pay, value} = e.target;
+    //     setFormValues({...formValues, [pay]: value})
+    // }
     
     const submitFormData = (e) => {
         e.preventDefault();
+        setFormErrors(validate(formValues));
+        setIsSubmit(true);
         {
-            axios.post("http://localhost:3001/EditOppo", {
-                oppID,
-                name,
-                description,
-                location,
-                address,
-                type,
-                qualification,
-                pay,
+            axios.post("http://localhost:3001/oppoEdit", {
+                name: name,
+                description: description,
+                location: location,
+                address: address,
+                type: type,
+                qualification: qualification,
+                pay: pay,
             })
                 .then((response) => {
                     console.log(response);
-                    setState({ oppID: 0, name: "", description: "", location: "", address: "", type: "", qualification: "", pay:0})
+                    setFormValues({ name: "", description: "", location: "", address: "", type: "", qualification: "", pay: 0 })
                     console.log("Successfully updated");
                 })
                 .catch(() => {
@@ -87,41 +91,85 @@ const EditOppo = () => {
         }
     };
 
+    useEffect(() => {
+        console.log(formErrors);
+        if (Object.keys(formErrors).length === 0 && isSubmit) {
+            console.log(formValues);
+        }
+    })
+
+    const validate = (values) => {
+        const errors = {}
+        if (!values.name) {
+            errors.name = "Name required!";
+        }
+        if (!values.description) {
+            errors.description = "Description required!";
+        }
+        if (!values.location) {
+            errors.location = "Location required!";
+        }
+        if (!values.address) {
+            errors.address = "Address required!";
+        }
+        if (!values.type) {
+            errors.type = "Job Category required!";
+        }
+        if (!values.qualification) {
+            errors.qualification = "Qualification required!";
+        }
+        if (!values.pay) {
+            errors.pay = "Pay required!";
+        }
+
+        return errors;
+    }
+
     return (
         <div className="App">
             <NavBar />
             <AdminNavBar />
-            <form style={{
+            {Object.keys(formErrors).length === 0 && isSubmit ? (<div className="ui-message-success">Signed in successfully</div>
+            ) : (
+                <pre>{JSON.stringify(formValues, undefined, 2)}</pre>
+            )}
+            <form
+            onSubmit={submitFormData}
+            style={{
                 margin: "auto",
                 padding: "15px",
                 maxWidth: "400px",
                 alignContent: "center"
             }}>
-                <label>OppID</label>
-                <input type="aOppID" placeholder="Your OppID" value={oppID} onChange={handleOppID}></input>
-
                 <label>Name</label>
-                <input type="aName" placeholder="Your Name ..." value={name} onChange={handleName}></input>
+                <input type="adminInput" name="name" placeholder="Name ..." value={formValues.name} onChange={handleChange}></input>
+                <p className="adminErrorMsg">{formErrors.name}</p>
 
                 <label>Description</label>
-                <input type="aDescription" placeholder="Your Description ..." value={description} onChange={handleDescription}></input>
+                <input type="adminInput" name="description" placeholder="Description ..." value={formValues.description} onChange={handleChange}></input>
+                <p className="adminErrorMsg">{formErrors.description}</p>
 
                 <label>Location</label>
-                <input type="aLocation" placeholder="Your Location ..." value={location} onChange={handleLocation}></input>
+                <input type="adminInput" name="location" placeholder="Location ..." value={formValues.location} onChange={handleChange}></input>
+                <p className="adminErrorMsg">{formErrors.location}</p>
 
                 <label>Address</label>
-                <input type="aAddress" placeholder="Your Address ..." value={address} onChange={handleAddress}></input>
+                <input type="adminInput" name="address" placeholder="Address ..." value={formValues.address} onChange={handleChange}></input>
+                <p className="adminErrorMsg">{formErrors.address}</p>
 
-                <label>Type</label>
-                <input type="aType" placeholder="Your Type ..." value={type} onChange={handleType}></input>
+                <label>Job Category</label>
+                <input type="adminInput" name="type" placeholder="Job Category ..." value={formValues.type} onChange={handleChange}></input>
+                <p className="adminErrorMsg">{formErrors.type}</p>
 
                 <label>Qualification</label>
-                <input type="aQualification" placeholder="Your Qualification ..." value={qualification} onChange={handleQualification}></input>
+                <input type="adminInput" name="qualification" placeholder="Qualification ..." value={formValues.qualification} onChange={handleChange}></input>
+                <p className="adminErrorMsg">{formErrors.qualification}</p>
 
                 <label>Pay</label>
-                <input type="aPay" placeholder="Your Pay ..." value={pay} onChange={handlePay}></input>
+                <input type="adminInput" name="pay" placeholder="Pay ..." value={formValues.pay} onChange={handleChange}></input>
+                <p className="adminErrorMsg">{formErrors.pay}</p>
 
-                <button onClick={submitFormData}>Submit</button>
+                <button className="btn submitButton">Submit</button>
                 <Link to="/ViewOppo">
                     <button className="btn backButton">Go Back to View All Opportunities</button>
                 </Link>

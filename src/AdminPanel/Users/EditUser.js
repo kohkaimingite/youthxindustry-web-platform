@@ -93,11 +93,29 @@ const EditUser = () => {
         }
     }
 
+    // const validate = (values) => {
+    //     const errors = {}
+    //     const pwRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+    //     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+    //     if (!values.password) {
+    //         errors.password = "Password required!";
+    //     } else if(!pwRegex.test(values.password)) {
+    //         errors.password = "Password has to be at least 8 characters, at least 1 letter, and 1 number";
+    //     }
+    //     if (!values.email) {
+    //         errors.email = "Email required!";
+    //     } else if(!emailRegex.test(values.email)) {
+    //         errors.email = "This is not a valid email format!";
+    //     }
+
+    //     return errors;
+    // }
+
     return (
         <div className="App">
             <NavBar />
             <AdminNavBar />
-            <form style={{
+            <form onSubmit={submitFormData} style={{
                 margin: "auto",
                 padding: "15px",
                 maxWidth: "400px",
