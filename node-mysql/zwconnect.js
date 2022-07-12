@@ -2,6 +2,7 @@
 const express = require("express");
 const mysql = require("mysql");
 const cors = require("cors");
+const { createSearchParams } = require("react-router-dom");
 const app = express();
 var corsOptions = {
     origin: "http://localhost:3000",
@@ -93,19 +94,21 @@ app.get('/oppo', (req, res) => {
 });
 
 app.post('/oppoEdit', (req, res) => {
-    const Name = req.body.Name;
-    const Description = req.body.Description;
-    const Location = req.body.Location;
-    const Address = req.body.Address;
-    const Type = req.body.Type;
-    const Qualification = req.body.Qualification;
-    const Pay = req.body.Pay;
+    const Name = req.body.name;
+    const Description = req.body.description;
+    const Location = req.body.location;
+    const Address = req.body.address;
+    const Type = req.body.type;
+    const Qualification = req.body.qualification;
+    const Pay = req.body.pay;
     const OppID = req.body.OppID;
     db.query("UPDATE opportunities SET Name = ?, Description = ?, Location = ?, Address = ?, Type = ?, Qualification = ?, Pay = ? WHERE OppID = ?",
         [Name, Description, Location, Address, Type, Qualification, Pay, OppID],
         (err, result) => {
             if (err) {
-                console.log(err);
+                res.status(500).send({
+                    message: err.message || "Some error occurred while retrieving oppo."
+                });
             } else {
                 res.send("Updated Opportunity Information");
             }

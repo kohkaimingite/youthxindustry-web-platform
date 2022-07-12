@@ -19,11 +19,11 @@ import axios from 'axios';
 
 
 const EditOppo = () => {
-    const initialState = { name: "", description: "", location: "", address: "", type: "", qualification: "", pay: 0};
+    const initialState = { name: "", description: "", location: "", address: "", type: "", qualification: "", pay: 0, oppID:0 };
     const [formValues, setFormValues] = useState(initialState);
     const [formErrors, setFormErrors] = useState({});
     const [isSubmit, setIsSubmit] = useState(false);
-    const {name, description, location, address, type, qualification, pay} = formValues;
+    const {name, description, location, address, type, qualification, pay, oppID} = formValues;
 
     const handleChange = (e) => {
         const {name, value} = e.target;
@@ -72,6 +72,7 @@ const EditOppo = () => {
         setIsSubmit(true);
         {
             axios.post("http://localhost:3001/oppoEdit", {
+                OppID: oppID,
                 name: name,
                 description: description,
                 location: location,
@@ -82,7 +83,7 @@ const EditOppo = () => {
             })
                 .then((response) => {
                     console.log(response);
-                    setFormValues({ name: "", description: "", location: "", address: "", type: "", qualification: "", pay: 0 })
+                    setFormValues({ name: "", description: "", location: "", address: "", type: "", qualification: "", pay: 0, oppID: 0 })
                     console.log("Successfully updated");
                 })
                 .catch(() => {
@@ -141,6 +142,10 @@ const EditOppo = () => {
                 maxWidth: "400px",
                 alignContent: "center"
             }}>
+                <label>OppID</label>
+                <input type="adminInput" name="oppID" placeholder="oppID ..." value={formValues.OppID} onChange={handleChange}></input>
+              
+
                 <label>Name</label>
                 <input type="adminInput" name="name" placeholder="Name ..." value={formValues.name} onChange={handleChange}></input>
                 <p className="adminErrorMsg">{formErrors.name}</p>
