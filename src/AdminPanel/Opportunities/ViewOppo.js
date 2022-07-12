@@ -45,13 +45,6 @@ const ViewOppo = () => {
                 <button className="btn backButton">Go Back to Admin Panel</button>
             </Link>
             <input type="search" placeholder="Search..." onChange={event => {setSearchInput(event.target.value)}}/>
-            {/* {data.map((User, key) => {
-                return {
-                    <div className="aUser" key={key}>
-                        <p>User.first_name</p>
-                    </div>
-                }
-            })} */}
             <input type="submit" value="Go" class="btn goButton"/>
             <table className="User-Table">
                 <thead>
@@ -66,7 +59,13 @@ const ViewOppo = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {data.map((User, key) => {
+                    {data.filter((User) => {
+                        if (searchInput == "") {
+                            return User
+                        } else if (User.Name.toLowerCase().includes(searchInput.toLowerCase())) {
+                            return User
+                        }
+                    }).map((User, key) => {
                         storeOppID = User.OppID;
                         return (
                             <tr key={key}>

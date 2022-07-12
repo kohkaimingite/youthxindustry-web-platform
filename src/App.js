@@ -38,6 +38,7 @@ import ViewUser from './AdminPanel/Users/ViewUser';
 import EditUser from './AdminPanel/Users/EditUser';
 import ViewOppo from './AdminPanel/Opportunities/ViewOppo';
 import EditOppo from './AdminPanel/Opportunities/EditOppo';
+import EditOppo2 from './AdminPanel/Opportunities/EditOppo2';
 import ViewPartner from './AdminPanel/Partners/ViewPartner';
 import ConfirmPartner from './AdminPanel/Partners/ConfirmPartner';
 import ProfilePage from './Manage/UserProfile';
@@ -51,9 +52,11 @@ import RegisterPartner from './Register/RegisterPartner';
 import OppoPartner from './OppoPartner/OppoPartner';
 import AddOppoPartner from './OppoPartner/AddOppoPartner';
 import SubmitApplication from './Manage/SubmitApplication';
+import RatingStats from './RatingStats/RatingStats'
 
 import Protection from './Protection';
 import { BrowserRouter as Router, Routes, Route,Link, Navigate, Outlet, } from 'react-router-dom';
+
 
 
 // Idea:
@@ -121,7 +124,7 @@ function App() {
                 <Route path='/ContactUs' element={<ContactPage />} />
                 <Route path='/ViewCompanyProfile' element={<SearchCompanyProfile />} />
                 <Route exact path='/ViewCompanyProfile/:Name' element={<ViewCompanyProfile />} />
-
+                <Route path='/RatingStats' element={<RatingStats />} />
               
 
                 
@@ -169,6 +172,7 @@ function App() {
                     <Route path='/EditUser' element={<EditUser />} />
                     <Route path='/ViewOppo' element={<ViewOppo />} />
                     <Route path='/EditOppo' element={<EditOppo />} />
+                    <Route path='/EditOppo2' element={<EditOppo2 />} />
                     <Route path='/ViewPartner' element={<ViewPartner />} />
                     <Route path='/ConfirmPartner' element={<ConfirmPartner />} />
                     

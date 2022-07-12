@@ -92,8 +92,7 @@ app.get('/oppo', (req, res) => {
     });
 });
 
-app.post('/EditOppo', (req, res) => {
-    const OppID = req.body.OppID;
+app.post('/oppoEdit', (req, res) => {
     const Name = req.body.Name;
     const Description = req.body.Description;
     const Location = req.body.Location;
@@ -101,13 +100,14 @@ app.post('/EditOppo', (req, res) => {
     const Type = req.body.Type;
     const Qualification = req.body.Qualification;
     const Pay = req.body.Pay;
-    db.query("UPDATE opportunities SET OppID = ?, Name = ?, Description = ?, Location = ?, Address = ?, Type = ?, Qualification = ?, Pay = ? WHERE OppID = ?",
-        [OppID, Name, Description, Location, Address, Type, Qualification, Pay],
+    const OppID = req.body.OppID;
+    db.query("UPDATE opportunities SET Name = ?, Description = ?, Location = ?, Address = ?, Type = ?, Qualification = ?, Pay = ? WHERE OppID = ?",
+        [Name, Description, Location, Address, Type, Qualification, Pay, OppID],
         (err, result) => {
             if (err) {
                 console.log(err);
             } else {
-                res.send("Updated User Information!");
+                res.send("Updated Opportunity Information");
             }
         }
     )

@@ -1,11 +1,4 @@
-input[type="aOppID"],
-input[type="aName"],
-input[type="aDescription"],
-input[type="aLocation"],
-input[type="aAddress"],
-input[type="aType"],
-input[type="aQualification"],
-input[type="aPay"],
+input[type="adminInput"],
 select {
     width: 100%;
     padding: 12px 20px;
@@ -14,6 +7,16 @@ select {
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+}
+
+.adminErrorMsg {
+    text-align: left;
+    font-size: medium;
+    color: #FF0000;
+}
+
+.submitButton {
+    background-color: #4285F4;
 }
 
 .backButton {

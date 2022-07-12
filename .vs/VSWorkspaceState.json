@@ -1,15 +1,16 @@
 {
   "ExpandedNodes": [
     "",
+    "\\public",
     "\\src",
+    "\\src\\AboutPage",
     "\\src\\AdminPanel",
+    "\\src\\AdminPanel\\Opportunities",
+    "\\src\\CompanyProfile",
     "\\src\\components",
-    "\\src\\ContactPage",
-    "\\src\\HomePage",
-    "\\src\\LoginPage",
-    "\\src\\OppoPage",
-    "\\src\\OppoPartner",
-    "\\src\\ReviewPage"
+    "\\src\\components\\PageHeader",
+    "\\src\\Manage"
   ],
+  "SelectedNode": "\\node-mysql\\Connect.js",
   "PreviewInSolutionExplorer": false
 }
