@@ -112,6 +112,8 @@ export default function Datatable({ data }) {
                 <th>Location</th>
                 <th>Address</th>
                 <th>Job Categories</th>
+                <th>Diploma</th>
+                <th>Pay</th>
                 
                 
 

@@ -83,7 +83,7 @@ import { BrowserRouter as Router, Routes, Route,Link, Navigate, Outlet, } from '
 function App() {
     axios.defaults.withCredentials = true;
     const ProtectedRouteLog = ({ user, redirectPath = '/NoAccess' }) => {
-        if (!user) {
+        if (!user==1) {
             return <Navigate to={redirectPath} replace />;
         } 
 
@@ -108,6 +108,22 @@ function App() {
     const [testuserRole, setTestuserRole] = useState(3);
     //const [userTest, setUserTest] = useState(2);
     //alert(user);
+
+    useEffect(() => {
+
+        axios.get("http://localhost:3001/getCurrentUserRole").then((response) => {
+            if (response !== null) {
+
+                return setUser(parseInt(response.data[0].RoleID));
+                   
+
+            } else {
+
+                setUser(0);
+            }
+        });
+
+    });
     
     return (
         <div className="App">
@@ -128,7 +144,7 @@ function App() {
               
 
                 
-                <Route path='/Company' element={<CompanyPage />} />
+                
                 <Route path='/Profile' element={<ProfilePage />} />
                 <Route path='/EditCompanyNumber' element={<EditCompanyNumber />} />
                 <Route path='/RegisterPartner' element={< RegisterPartner />} />
@@ -137,7 +153,7 @@ function App() {
                 <Route path='/OppoPartner' element={<OppoPartner />} />
                 <Route path='/AddOppoPartner' element={<AddOppoPartner />} />
 
-                <Route element={<ProtectedRouteLog user={testuserRole} />}>
+                <Route element={<ProtectedRouteLog user={user} />}>
                     <Route path='/LoggedHome' element={<LoggedHome />} />
                     <Route path='/Favourites' element={<Favourites />} />
                     <Route path='/MakingReview' element={<MakingReview />} />
@@ -154,7 +170,7 @@ function App() {
 
                 
                 
-                <Route element={<ProtectedRoutepartner user={testuserRole} />}>
+                <Route element={<ProtectedRoutepartner user={user} />}>
                 
                 <Route path='/OppoPage' element={<EditOppo />} />
                 <Route path='/Company' element={<CompanyPage />} />
@@ -166,7 +182,7 @@ function App() {
                 </Route>
 
 
-                <Route element={<ProtectedRouteAdmin user={testuserRole} />}>
+                <Route element={<ProtectedRouteAdmin user={user} />}>
                     <Route path='/AdminPanel' element={<AdminPanel />} />
                     <Route path='/ViewUser' element={<ViewUser />} />
                     <Route path='/EditUser' element={<EditUser />} />
