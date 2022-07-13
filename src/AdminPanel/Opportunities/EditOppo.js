@@ -19,7 +19,7 @@ import axios from 'axios';
 
 
 const EditOppo = () => {
-    const initialState = { name: "", description: "", location: "", address: "", type: "", qualification: "", pay: 0, oppID:0 };
+    const initialState = { name: "", description: "", location: "", address: "", type: "", qualification: "", pay: "", oppID: "" };
     const [formValues, setFormValues] = useState(initialState);
     const [formErrors, setFormErrors] = useState({});
     const [isSubmit, setIsSubmit] = useState(false);
@@ -83,7 +83,7 @@ const EditOppo = () => {
             })
                 .then((response) => {
                     console.log(response);
-                    setFormValues({ name: "", description: "", location: "", address: "", type: "", qualification: "", pay: 0, oppID: 0 })
+                    setFormValues({ name: "", description: "", location: "", address: "", type: "", qualification: "", pay: "", oppID: "" })
                     console.log("Successfully updated");
                 })
                 .catch(() => {
