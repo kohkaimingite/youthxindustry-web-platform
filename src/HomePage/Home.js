@@ -44,18 +44,10 @@ function Home() {
         <div className="App">
 
             <NavBar />
-
-            <AboutmeSet />
-
-            <OppoPageSet />
-
-            <ContactPageSet />
-
-            <LoginPageSet />
-
-            <RegisterSet />
-
-            <AdminNavBar />
+            <h3>nav bar will be removed</h3>
+            <h3>this will be improved later</h3>
+            
+            <a href="/Login">Click here to login</a>
 
         </div>
 

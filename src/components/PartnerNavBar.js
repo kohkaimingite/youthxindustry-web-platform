@@ -7,7 +7,7 @@ import axios from 'axios';
 //import zIndex from '@mui/material/styles/zIndex';
 // <button>About Us</button> 
 //
-const LoggedNavBar = () => {
+const PartnerNavBar = () => {
     return (
         <header class='header' style={test}>
             <h1 style={brandName}>CYC</h1>
@@ -18,7 +18,6 @@ const LoggedNavBar = () => {
                 <a href="/Favourites">Favourites</a>
                 <a href="/AddReview">Add Review</a>
                 <a href="/ContactUs">Contact Us</a>
-
 
 
             </div>
@@ -53,4 +52,4 @@ const test = {
   //  position: "sticky",
     //top: 0,
     //zIndex: 9999
-export default LoggedNavBar
+export default PartnerNavBar

@@ -130,21 +130,20 @@ function App() {
 
             
             <Routes>
+                <Route path='/' element={<Home />} />
+
                 <Route path='/NotAllowed' element={<NotAllowed />} />
                 <Route path='/NoAccess' element={<NotAllowedLog />} />
-                <Route path='/' element={<Home />} />
-                <Route path='/AboutUs' element={<AboutPage />} />
+                
+                
                 <Route path='/Login' element={<Login />} />
                 <Route path='/Register' element={<Register />} />
-                <Route path='/Opportunities' element={<OppoPage />} />
-                <Route path='/ContactUs' element={<ContactPage />} />
+                
                 <Route path='/ViewCompanyProfile' element={<SearchCompanyProfile />} />
                 <Route exact path='/ViewCompanyProfile/:Name' element={<ViewCompanyProfile />} />
                 <Route path='/RatingStats' element={<RatingStats />} />
               
 
-                
-                
                 <Route path='/Profile' element={<ProfilePage />} />
                 <Route path='/EditCompanyNumber' element={<EditCompanyNumber />} />
                 <Route path='/RegisterPartner' element={< RegisterPartner />} />
@@ -154,18 +153,24 @@ function App() {
                 <Route path='/AddOppoPartner' element={<AddOppoPartner />} />
 
                 <Route element={<ProtectedRouteLog user={user} />}>
-                    <Route path='/LoggedHome' element={<LoggedHome />} />
+                    <Route path='/Home' element={<LoggedHome />} />
+                    <Route path='/AboutUs' element={<AboutPage />} />
+                    <Route path='/Opportunities' element={<LoggedOppoPage />} />
                     <Route path='/Favourites' element={<Favourites />} />
-                    <Route path='/MakingReview' element={<MakingReview />} />
-                    <Route path='/ReviewSuccess' element={<ReviewSuccess />} />
-                    <Route path='/ReviewNoSuccess' element={<ReviewNoSuccess />} />
+                    <Route path='/AddReview' element={<MakingReview />} />
+                    <Route path='/ContactUs' element={<ContactPage />} />
+
                     <Route path='/EditUserResume' element={<EditUserResume />} />
                     <Route path='/RegisterUser' element={< RegisterUser />} />
                     <Route path='/EditUserBio' element={<EditUserBio />} />
-                    <Route path='/LoggedOppoPage' element={<LoggedOppoPage />} />
-                    <Route path='/LoggedContactPage' element={<LoggedContactPage />} />
                     <Route path='/MyApplications' element={< MyApplication />} />
                     <Route path='/EditUserNumber' element={<EditUserNumber />} />
+                    
+
+                    <Route path='/ReviewSuccess' element={<ReviewSuccess />} />
+                    <Route path='/ReviewNoSuccess' element={<ReviewNoSuccess />} />
+                    
+                    
                 </Route>
 
                 
