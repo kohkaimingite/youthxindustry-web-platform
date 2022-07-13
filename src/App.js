@@ -142,7 +142,14 @@ function App() {
                 <Route exact path='/ViewCompanyProfile/:Name' element={<ViewCompanyProfile />} />
                 <Route path='/RatingStats' element={<RatingStats />} />
               
-
+                <Route path='/AdminPanel' element={<AdminPanel />} />
+                    <Route path='/ViewUser' element={<ViewUser />} />
+                    <Route path='/EditUser' element={<EditUser />} />
+                    <Route path='/ViewOppo' element={<ViewOppo />} />
+                    <Route path='/EditOppo' element={<EditOppo />} />
+                    <Route path='/EditOppo2' element={<EditOppo2 />} />
+                    <Route path='/ViewPartner' element={<ViewPartner />} />
+                    <Route path='/ConfirmPartner' element={<ConfirmPartner />} />
                 
                 
                 <Route path='/Profile' element={<ProfilePage />} />
@@ -183,14 +190,14 @@ function App() {
 
 
                 <Route element={<ProtectedRouteAdmin user={user} />}>
-                    <Route path='/AdminPanel' element={<AdminPanel />} />
+                    {/* <Route path='/AdminPanel' element={<AdminPanel />} />
                     <Route path='/ViewUser' element={<ViewUser />} />
                     <Route path='/EditUser' element={<EditUser />} />
                     <Route path='/ViewOppo' element={<ViewOppo />} />
                     <Route path='/EditOppo' element={<EditOppo />} />
                     <Route path='/EditOppo2' element={<EditOppo2 />} />
                     <Route path='/ViewPartner' element={<ViewPartner />} />
-                    <Route path='/ConfirmPartner' element={<ConfirmPartner />} />
+                    <Route path='/ConfirmPartner' element={<ConfirmPartner />} /> */}
                     
 
                 </Route>

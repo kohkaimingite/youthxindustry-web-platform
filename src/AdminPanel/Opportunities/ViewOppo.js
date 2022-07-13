@@ -55,6 +55,8 @@ const ViewOppo = () => {
                         <th style={{textAlign: "center"}}> Location </th>
                         <th style={{textAlign: "center"}}> Address </th>
                         <th style={{textAlign: "center"}}> Category(-ies) </th>
+                        <th style={{textAlign: "center"}}> Qualification </th>
+                        <th style={{textAlign: "center"}}> Pay </th>
                         <th style={{textAlign: "center"}}> Actions </th>
                     </tr>
                 </thead>
@@ -75,6 +77,8 @@ const ViewOppo = () => {
                                 <td> {User.Location} </td>
                                 <td> {User.Address} </td>
                                 <td> {User.Type} </td>
+                                <td> {User.Qualification} </td>
+                                <td> {User.Pay} </td>
                                 <td>
                                     <Link to="/EditOppo">
                                         <button className="btn editButton">Edit</button>

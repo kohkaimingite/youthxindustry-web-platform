@@ -23,6 +23,7 @@ app.get("/test", (req, res) => {
 });
 
 const db = mysql.createConnection({
+    multipleStatements: true,
     user: "root",
     host: "127.0.0.1",
     password: "sql_pass123^*",
@@ -117,14 +118,16 @@ app.post('/oppoEdit', (req, res) => {
 })
 
 app.post('/oppoDelete', (req, res) => {
-    const adminOppID = req.body.adminOppID;
-    db.query("DELETE FROM users_have_opp, users_have_fav, partner_have_opp, opp_have_application, opportunities WHERE OppID = ?",
-        [adminOppID],
+    const OppID = req.body.OppID;
+    db.query("DELETE FROM users_have_opp WHERE OppID = ?; DELETE FROM users_have_fav WHERE OppID = ?; DELETE FROM partner_have_opp WHERE OppID = ?; DELETE FROM opp_have_application WHERE OppID = ?; DELETE FROM opportunities WHERE OppID = ?;",
+        [OppID, OppID, OppID, OppID, OppID],
         (err, result) => {
             if (err) {
-                console.log(err);
+                res.status(500).send({
+                    message: err.message || "Some error occurred while retrieving oppo."
+                });
             } else {
-                res.send("users_have_opp");
+                res.send("Deleted Opportunity Information");
             }
         }
     )
