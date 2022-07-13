@@ -8,13 +8,6 @@ const NavBar  = () => {
             <header class='header' style={test}>
                 <h1 style={brandName}>CYC</h1>
                 <div class="containerNavBar borderYtoX">
-                    <a href="/">Home</a>
-                    <a href="/AboutUs">About Us</a>
-                    <a href="/Opportunities">Opportunities</a>
-                    <a href="/ContactUs">Contact Us</a>
-                    <a href="/ViewCompanyProfile">Company Profile</a>
-                    <a href="/Login">Login</a>
-                    <a href="/Register">Register</a>
                     
 
                 </div>
