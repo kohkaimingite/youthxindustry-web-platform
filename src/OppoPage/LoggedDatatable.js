@@ -18,7 +18,8 @@ export default function LoggedDatatable({ data }) {
     const [lol, setLol] = useState([]);
     const favColumns = favList[0] && Object.keys(favList[0]);
     const [test, setTest] = useState("0");
-    const [wtf, setWtf] = useState([]);
+    
+    const [checkFavList, setCheckFavList] = useState([]);
     //const columns = OppoList[0] && Object.keys(OppoList[0]);
     //,CheckFavOppo
      //       UserID: userID
@@ -27,18 +28,18 @@ export default function LoggedDatatable({ data }) {
             
         }).then((response) => {
             console.log("added sucessfully!");
-            setWtf(response.data);
-            return wtf;
+            setCheckFavList(response.data);
+            return checkFavList;
         });
 
     });
-    function wtfTesting(oppoID) {
+    function checkFavListFunction(oppoID) {
         axios.post("http://localhost:3001/FavOppo", {
             OppID: parseInt(oppoID)
         }).then((response) => {
             console.log("added sucessfully!");
-            setWtf(response.data);
-            return wtf;
+            setCheckFavList(response.data);
+            return checkFavList;
         });
 
     }
@@ -47,8 +48,8 @@ export default function LoggedDatatable({ data }) {
     //addFav(testing(row[columns[0]],wtfTesting(row[columns[0]]) ), row[columns[0]])
     function testing(table,trash) {
         
-        for (var i = 0; i < wtf.length; i++) {
-            if (wtf[i].OppID === table) {
+        for (var i = 0; i < checkFavList.length; i++) {
+            if (checkFavList[i].OppID === table) {
                 setTest("1");
                 alert("You alrdy added this in fav");
                 return false;
@@ -63,7 +64,7 @@ export default function LoggedDatatable({ data }) {
         if (boo !== false) {
             axios.post("http://localhost:3001/addFav", {
                 OppID: parseInt(oppoID),
-                UserID: 2
+                
             }).then(() => {
                 console.log("added sucessfully!");
                 alert("added")
@@ -123,7 +124,7 @@ export default function LoggedDatatable({ data }) {
                     columns.map(column => <td style={{ textAlign: 'left' }}>{row[column]}</td>)
                     
                 }
-                <td><FontAwesomeIcon icon={faStar} onClick={() => addFav(testing(row[columns[0]], wtfTesting(row[columns[0]])), row[columns[0]])}>{row[columns[0]]} {test}</FontAwesomeIcon></td>
+                <td><FontAwesomeIcon icon={faStar} onClick={() => addFav(testing(row[columns[0]], checkFavListFunction(row[columns[0]])), row[columns[0]])}>{row[columns[0]]} {test}</FontAwesomeIcon></td>
 
             </tr>)}
         </table>

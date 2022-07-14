@@ -25,7 +25,8 @@ function LoggedOppoPage() {
     };
     const [data, setData] = useState([]);
     const [OppoList, setOppoList] = useState([]);
-    const [q, setQ] = useState("");
+    const [q, setQ] = useState(""); 
+    const [topType, setTopType] = useState("");
 
     //jobscope
     const [IT, setIT] = useState("");
@@ -67,15 +68,38 @@ function LoggedOppoPage() {
         return rows.filter((row) => row.Type.toLowerCase().indexOf(q.toLowerCase())>-1
         );
     }
-
     useEffect(() => {
-        axios.get("http://localhost:3001/Oppo").then((response) => {
-
-            console.log(response);
-            setOppoList(response.data);
+        axios.get("http://localhost:3001/getUserOppoType").then((response) => {
+            setTopType(response.data[0].Type)
+            
         });
 
     });
+    useEffect(() => {
+        if (topType !== null) {
+
+            axios.post("http://localhost:3001/topOppo", { topType: topType }).then((response) => {
+
+                console.log(response);
+                setOppoList(response.data);
+            });
+            
+
+
+
+
+
+        } else {
+            axios.get("http://localhost:3001/Oppo").then((response) => {
+
+                console.log(response);
+                setOppoList(response.data);
+                
+            });
+        }
+
+    });
+    
     useEffect(() => {
         window.addEventListener('scroll', scrollAppear );
     }, []);

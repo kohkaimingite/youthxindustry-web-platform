@@ -27,7 +27,7 @@ export default function Login() {
 
                 } else {
                     setStatus(response.data[0].Name);
-                    navigate("/LoggedHome")
+                    navigate("/Home")
                 }
 
             });

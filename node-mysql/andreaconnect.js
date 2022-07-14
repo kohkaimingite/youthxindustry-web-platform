@@ -67,6 +67,41 @@ app.get('/getCurrentUserRole', function (req, res) {
     )
 })
 
+app.get('/getUserOppoType', function (req, res) {
+    db.query("SELECT opportunities.Type, COUNT(*) FROM users_have_opp INNER JOIN opportunities ON users_have_opp.OppID = opportunities.OppID WHERE users_have_opp.UserID = ? GROUP by opportunities.Type ORDER BY COUNT(*) DESC;;",
+        [req.session.user[0].UserID],
+
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send(result);
+            }
+        }
+    )
+})
+app.post('/topOppo', (req, res) => {
+    const topType = req.body.topType;
+    db.query("SELECT*FROM opportunities WHERE TYPE = ?  UNION SELECT*FROM opportunities WHERE TYPE != ?;",
+        [topType, topType],
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else { res.send(result) };
+
+        });
+});
+app.post('/sortedOppo', (req, res) => {
+    const topType = req.body.topType;
+    db.query("SELECT*FROM opportunities WHERE TYPE != ? ORDER BY OppID",
+        [topType],
+        (err, result) => {
+        if (err) {
+            console.log(err);
+        } else { res.send(result) };
+
+    });
+});
 
 app.get('/Oppo', (req, res) => {
     db.query("SELECT*FROM opportunities ORDER BY OppID", (err, result) => {
@@ -79,8 +114,8 @@ app.get('/Oppo', (req, res) => {
 
 app.post('/FavOppo', (req, res) => {
     const UserID = req.body.UserID;
-    db.query("SELECT opportunities.OppID, Name, Description, Location, Address, Type FROM opportunities INNER JOIN users_have_fav ON opportunities.OppID = users_have_fav.OppID WHERE users_have_fav.UserID = 2 ORDER BY opportunities.OppID;",
-        [UserID],
+    db.query("SELECT opportunities.OppID, Name, Description, Location, Address, Type FROM opportunities INNER JOIN users_have_fav ON opportunities.OppID = users_have_fav.OppID WHERE users_have_fav.UserID = ? ORDER BY opportunities.OppID;",
+        [req.session.user[0].UserID],
         (err, result) => {
         if (err) {
             console.log(err);
@@ -93,7 +128,7 @@ app.post('/CheckFavOppo', (req, res) => {
     const UserID = req.body.UserID;
     const OppID = req.body.OppID;
     db.query("SELECT * FROM users_have_fav  WHERE UserID = 2 AND OppID = 0 ;",
-        [UserID, OppID],
+        [req.session.user[0].UserID, OppID],
         (err, result) => {
             if (err) {
                 console.log(err);
@@ -116,7 +151,7 @@ app.post('/deleteFav', (req, res) => {
     const UserID = req.body.UserID;
     
     db.query('DELETE FROM users_have_fav WHERE OppID = ? AND UserID = ?;',
-        [ OppID, UserID],
+        [OppID, req.session.user[0].UserID],
         (err, result) => {
             if (err) {
                 console.log(err);
@@ -133,7 +168,7 @@ app.post('/addFav', (req, res) => {
     const UserID = req.body.UserID;
 
     db.query('INSERT INTO users_have_fav (UserID, OppID) VALUE (?, ?);',
-        [UserID, OppID ],
+        [req.session.user[0].UserID, OppID ],
         (err, result) => {
             if (err) {
                 console.log(err);
@@ -145,7 +180,9 @@ app.post('/addFav', (req, res) => {
 
 });
 app.get('/getReview', (req, res) => {
-    db.query("SELECT users_have_opp.UserID, users_have_opp.OppID, users_have_opp.Review, users_have_opp.Rating, opportunities.Name FROM users_have_opp INNER JOIN opportunities ON users_have_opp.OppID = opportunities.OppID WHERE Review IS NULL ORDER BY OppID", (err, result) => {
+    db.query("SELECT users_have_opp.UserID, users_have_opp.OppID, users_have_opp.Review, users_have_opp.Rating, opportunities.Name FROM users_have_opp INNER JOIN opportunities ON users_have_opp.OppID = opportunities.OppID WHERE Review IS NULL AND users_have_opp.UserID = ? ORDER BY OppID",
+        [req.session.user[0].UserID],
+        (err, result) => {
         if (err) {
             console.log(err);
         } else { res.send(result) };
@@ -153,14 +190,6 @@ app.get('/getReview', (req, res) => {
     });
 });
 
-app.get('/getReview', (req, res) => {
-    db.query("SELECT users_have_opp.UserID, users_have_opp.OppID, users_have_opp.Review, users_have_opp.Rating, opportunities.Name FROM users_have_opp INNER JOIN opportunities ON users_have_opp.OppID = opportunities.OppID WHERE Review IS NULL ORDER BY OppID", (err, result) => {
-        if (err) {
-            console.log(err);
-        } else { res.send(result) };
-
-    });
-});
 //SELECT users_have_opp.UserID, users_have_opp.OppID, users_have_opp.Review, users_have_opp.Rating, opportunities.Name FROM users_have_opp INNER JOIN opportunities ON users_have_opp.OppID = opportunities.OppID WHERE Review IS NULL ORDER BY OppID
 //SELECT*FROM users_have_opp WHERE Review IS NULL ORDER BY OppID
 app.post('/addReview', (req, res) => {
@@ -169,7 +198,7 @@ app.post('/addReview', (req, res) => {
     const Review = req.body.Review;
     const Rating = req.body.Rating;
     db.query('UPDATE users_have_opp SET Review = ?, Rating = ?  WHERE OppID = ? AND UserID = ?;',
-        [ Review, Rating, OppID, UserID],
+        [Review, Rating, OppID, req.session.user[0].UserID],
         (err,result) => {
             if (err) {
                 console.log(err);

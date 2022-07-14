@@ -6,7 +6,7 @@ import ContactPageSet from './HomePage/ContactPageSet'
 import './App.css';
 import AboutPage from './AboutPage/AboutPage';
 import React from 'react';
-import { Component, useState, useEffect } from 'react';
+import { Component, useState, useEffect, useLayoutEffect} from 'react';
 import RegisterSet from './HomePage/RegisterSet';
 import AdminNavBar from './components/AdminNavBar'
 import axios from 'axios';
@@ -83,7 +83,7 @@ import { BrowserRouter as Router, Routes, Route,Link, Navigate, Outlet, } from '
 function App() {
     axios.defaults.withCredentials = true;
     const ProtectedRouteLog = ({ user, redirectPath = '/NoAccess' }) => {
-        if (!user==1) {
+        if (user!==1) {
             return <Navigate to={redirectPath} replace />;
         } 
 
@@ -106,25 +106,34 @@ function App() {
     const [testList, setTestList] = useState([]);
     const [user, setUser] = useState(0);
     const [testuserRole, setTestuserRole] = useState(3);
+    
     //const [userTest, setUserTest] = useState(2);
     //alert(user);
 
-    useEffect(() => {
-
+    const [loading,setLoading] = useState(true)
+    useLayoutEffect(() => {
+        
         axios.get("http://localhost:3001/getCurrentUserRole").then((response) => {
+            
             if (response !== null) {
+                setLoading(false)
 
                 return setUser(parseInt(response.data[0].RoleID));
-                   
+                
 
             } else {
-
+            setLoading(false)
                 setUser(0);
             }
         });
 
     });
-    
+    if (loading===true) {
+        return <div className="App">
+            <Login/>
+            
+        </div>
+    }
     return (
         <div className="App">
 
