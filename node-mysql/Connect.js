@@ -66,7 +66,19 @@ transporter.sendMail(options, function (err, info) {
 */
 
 
-var getUserRole = '0';
+app.get('/getCurrentUserRole', function (req, res) {
+    db.query("SELECT RoleID FROM users WHERE UserID = ?;",
+        [req.session.user[0].UserID],
+
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send(result);
+            }
+        });
+});
+
 app.post("/registerUser", (req, res) => {
     const name = req.body.name;
     const password = req.body.password;
@@ -116,8 +128,6 @@ app.post("/login", (req, res, next) => {
                     req.session.user = result;
                     res.send(result);
                     console.log(req.session.user);
-                    getUserRole = req.session.user[0].RoleID;
-                    console.log(getUserRole);
                     next();
 
                 } else {
@@ -149,8 +159,7 @@ app.get("/logout", function (req, res) {
             return console.log(err);
         }
         res.send({ message: loggedOutName + " is logged out!" });
-        getUserRole = '0';
-        console.log(getUserRole);
+       
 
     });
 });
@@ -267,7 +276,7 @@ app.post("/getReviewRatingForCompany", (req, res) => {
 });
 
 
-app.get("/getStatsCompany", function (req, res) {
+app.get("/getCompanyRatingStats", function (req, res) {
     db.query("SELECT *  FROM users_have_opp INNER JOIN partner_have_opp ON users_have_opp.OppID = partner_have_opp.OppID WHERE partner_have_opp.UserID = ? ORDER BY users_have_opp.Rating Desc; ",
         [req.session.user[0].UserID],
         (err, result) => {
