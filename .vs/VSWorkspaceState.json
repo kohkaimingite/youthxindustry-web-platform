@@ -2,8 +2,7 @@
   "ExpandedNodes": [
     "",
     "\\src",
-    "\\src\\CompanyProfile",
-    "\\src\\ContactPage",
+    "\\src\\components",
     "\\src\\HomePage",
     "\\src\\LoginPage",
     "\\src\\Manage",
@@ -11,5 +10,6 @@
     "\\src\\OppoPartner",
     "\\src\\ReviewPage"
   ],
+  "SelectedNode": "\\src\\components\\PartnerNavBar.js",
   "PreviewInSolutionExplorer": false
 }

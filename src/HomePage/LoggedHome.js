@@ -112,6 +112,29 @@ function Home() {
 
 
         );
+    } else if (user === 3) {
+        return (
+
+            <div className="App">
+
+                <AdminNavBar />
+
+                <AboutmeSet />
+
+                <OppoPageSet />
+
+                <ContactPageSet />
+
+                <LoginPageSet />
+
+                <RegisterSet />
+
+                <AdminNavBar />
+
+            </div>
+
+
+        );
     }
 }
 

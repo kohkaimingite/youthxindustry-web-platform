@@ -104,7 +104,7 @@ function App() {
         return <Outlet />;
     };
     const ProtectedRouteHome = ({ user, redirectPath = '/NotAllowed' }) => {
-        if (user === 3 || user===0) {
+        if (user !== 3 && user!==2 && user!==1) {
             return <Navigate to={redirectPath} replace />;
         }
 
@@ -129,9 +129,12 @@ function App() {
                 
 
             } else {
-            setLoading(false)
+                setLoading(false)
                 setUser(0);
             }
+        }, (err) => {
+            setLoading(false)
+            setUser(0);
         });
 
     },[]);
