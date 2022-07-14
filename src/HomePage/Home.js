@@ -6,7 +6,7 @@ import ContactPageSet from './ContactPageSet'
 import { Route, Link } from 'react-router-dom';
 import '../App.css';
 import AboutPage from '../AboutPage/AboutPage';
-import React, { Component } from 'react';
+import React, { Component} from 'react';
 import RegisterSet from './RegisterSet';
 import AdminNavBar from '../components/AdminNavBar'
 import AdminPanel from '../AdminPanel/AdminPanel'
@@ -39,6 +39,7 @@ import { BrowserRouter as Router, Routes } from 'react-router-dom';
 //          </switch>
 //<h2 class = 'aboutmepic'>ABOUT US</h2>
 function Home() {
+    
     return (
 
         <div className="App">

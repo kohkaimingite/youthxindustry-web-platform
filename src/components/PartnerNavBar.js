@@ -18,6 +18,7 @@ const PartnerNavBar = () => {
                 <a href="/Favourites">Favourites</a>
                 <a href="/AddReview">Add Review</a>
                 <a href="/ContactUs">Contact Us</a>
+                <a >thisis partner</a>
 
 
             </div>

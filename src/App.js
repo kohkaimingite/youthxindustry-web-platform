@@ -103,6 +103,13 @@ function App() {
 
         return <Outlet />;
     };
+    const ProtectedRouteHome = ({ user, redirectPath = '/NotAllowed' }) => {
+        if (user === 3 || user===0) {
+            return <Navigate to={redirectPath} replace />;
+        }
+
+        return <Outlet />;
+    };
     const [testList, setTestList] = useState([]);
     const [user, setUser] = useState(0);
     const [testuserRole, setTestuserRole] = useState(3);
@@ -127,7 +134,7 @@ function App() {
             }
         });
 
-    });
+    },[]);
     if (loading===true) {
         return <div className="App">
             <Login/>
@@ -174,7 +181,7 @@ function App() {
 
 
                 <Route element={<ProtectedRouteLog user={user} />}>
-                    <Route path='/Home' element={<LoggedHome />} />
+                    
                     <Route path='/AboutUs' element={<AboutPage />} />
                     <Route path='/Opportunities' element={<LoggedOppoPage />} />
                     <Route path='/Favourites' element={<Favourites />} />
@@ -205,6 +212,10 @@ function App() {
                 <Route path='/RegisterPartner' element={< RegisterPartner />} />
                 <Route path='/EditCompanyBio' element={<EditCompanyBio />} />
                 <Route path='/SubmitApplication' element={<SubmitApplication />} />
+                </Route>
+
+                <Route element={<ProtectedRouteHome user={user} />}>
+                    <Route path='/Home' element={<LoggedHome />} />
                 </Route>
 
 

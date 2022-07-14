@@ -7,17 +7,18 @@ import ContactPageSet from './ContactPageSet'
 import { Route, Link } from 'react-router-dom';
 import '../App.css';
 import AboutPage from '../AboutPage/AboutPage';
-import React, { Component } from 'react';
+import React, { Component, useLayoutEffect, useState } from 'react';
 import RegisterSet from './RegisterSet';
 import AdminNavBar from '../components/AdminNavBar'
 import AdminPanel from '../AdminPanel/AdminPanel'
-
+import axios from 'axios';
 
 import OppoPage from '../OppoPage/OppoPage';
 import ContactPage from '../ContactPage/ContactPage';
 import Login from '../LoginPage/Login';
 import Register from '../Register/Register';
 import { BrowserRouter as Router, Routes } from 'react-router-dom';
+import PartnerNavBar from '../components/PartnerNavBar'
 
 // Idea:
 //top will be buttons "About" - "opportunities(have sub)" - "contact us" - "login"
@@ -40,28 +41,78 @@ import { BrowserRouter as Router, Routes } from 'react-router-dom';
 //          </switch>
 //<h2 class = 'aboutmepic'>ABOUT US</h2>
 function Home() {
-    return (
+    const [user, setUser] = useState(0);
+    const [loading, setLoading] = useState(true)
+    useLayoutEffect(() => {
 
-        <div className="App">
+        axios.get("http://localhost:3001/getCurrentUserRole").then((response) => {
 
-            <LoggedNavBar />
+            if (response !== null) {
+                setLoading(false)
 
-            <AboutmeSet />
+                return setUser(parseInt(response.data[0].RoleID));
 
-            <OppoPageSet />
 
-            <ContactPageSet />
+            } else {
+                setLoading(false)
+                setUser(0);
+            }
+        });
 
-            <LoginPageSet />
-
-            <RegisterSet />
-
-            <AdminNavBar />
+    }, []);
+    if (loading === true) {
+        return <div className="App">
+            <Login />
 
         </div>
+    }
+    if (user === 1) {
+        return (
+
+            <div className="App">
+
+                <LoggedNavBar />
+
+                <AboutmeSet />
+
+                <OppoPageSet />
+
+                <ContactPageSet />
+
+                <LoginPageSet />
+
+                <RegisterSet />
+
+                <AdminNavBar />
+
+            </div>
 
 
-    );
+        );
+    } else if (user === 2) {
+        return (
+
+            <div className="App">
+
+                <PartnerNavBar />
+
+                <AboutmeSet />
+
+                <OppoPageSet />
+
+                <ContactPageSet />
+
+                <LoginPageSet />
+
+                <RegisterSet />
+
+                <AdminNavBar />
+
+            </div>
+
+
+        );
+    }
 }
 
 export default Home;
