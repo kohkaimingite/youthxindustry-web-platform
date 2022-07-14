@@ -8,6 +8,9 @@ const NavBar  = () => {
             <header class='header' style={test}>
                 <h1 style={brandName}>CYC</h1>
                 <div class="containerNavBar borderYtoX">
+                    <a href="/Login">Login</a>
+                    <a href="/">Register User</a>
+                    <a href="/">Register Partner</a>
                     
 
                 </div>
