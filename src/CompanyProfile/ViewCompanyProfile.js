@@ -15,7 +15,8 @@ function ViewCompanyProfile() {
     const [storeUser, setStoreUser] = useState([]);
     const [storeOpp, setStoreOpp] = useState([]);
     const [storeReviewRating, setStoreReviewRating] = useState([]);
-
+    const [error, setError] = useState(false);
+    let { storeUserName } = '';
     let { storeUserID } = '';
     let { Name } = useParams();
 
@@ -60,115 +61,145 @@ function ViewCompanyProfile() {
         });
     }, [storeReviewRating]);
 
+    useEffect(() => {
+        Axios.post("http://localhost:3001/getReviewRatingForCompany", {
+            UserID: parseInt(storeUserID)
+
+        }).then((response) => {
+            setStoreReviewRating(response.data);
+
+        });
+    }, [storeReviewRating]);
+
+
+    /*  useEffect(() => {
+         
+              if (!storeUserName === Name) {
+                  setError();
+              
+              } else {
+                  setError(true);
+              }
+          }, [Name]);*/
 
     return (
+        <>
+            {error ? (
+                <section>
+                    <h1>No company found</h1>
+                    <br />
+                </section>
+            ) : (
+                <section>
+                    <div className="App">
+                        <NavBar />
+                        <div className="CreateCompanyProfile">
+                            {
+                                storeUser.filter(company => company.Name === Name).map((company) => {
+                                    storeUserID = company.UserID;
+                                    storeUserName = company.Name;
 
-        <div className="App">
-            <NavBar />
-            <div className="CreateCompanyProfile">
-                {
-                    storeUser.filter(company => company.Name === Name).map((company) => {
-                        storeUserID = company.UserID;
+                                    return (
 
+                                        <h1>{company.Name}</h1>
 
-                        return (
+                                    )
+                                })
+                            }
+                            <Container>
+                                <row>
+                                    <Tabs defaultActiveKey="first">
+                                        <Tab eventKey="first" title="Information">
+                                            <h4 align="left" style={style1}>Company Overview</h4>
+                                            {
+                                                storeUser.filter(company => company.Name === Name).map((company) => {
+                                                    return (
 
-                            <h1>{company.Name}</h1>
+                                                        <div>
+                                                            <p style={style2}>About {company.Name}</p>
+                                                            <p style={style2}>{company.UserBio}</p>
+                                                            <h4 style={style1}>Contact Us</h4>
+                                                            <p style={style2}>Email: {company.Email} </p>
+                                                            <p style={style2}>Mobile Number: {company.MobileNumber}</p>
 
-                        )
-                    })
-                }
-                <Container>
-                    <row>
-                        <Tabs defaultActiveKey="first">
-                            <Tab eventKey="first" title="Information">
-                                <h4 align="left" style={style1}>Company Overview</h4>
-                                {
-                                    storeUser.filter(company => company.Name === Name).map((company) => {
-                                        return (
+                                                        </div>
+                                                    )
+                                                })
+                                            }
+                                        </Tab>
+                                        <Tab eventKey="second" title="Opportunities "  >
+                                            <Container>
+                                                <h1 style={{
+                                                    textAlign: "left",
+                                                    paddingTop: "40px",
+                                                    fontSize: "26px",
+                                                }}>Number of jobs: {storeOpp.length}</h1>
+                                                <Row>
+                                                    {storeOpp.map((opp, k) => (
 
-                                            <div>
-                                                <p style={style2}>About {company.Name}</p>
-                                                <p style={style2}>{company.UserBio}</p>
-                                                <h4 style={style1}>Contact Us</h4>
-                                                <p style={style2}>Email: {company.Email} </p>
-                                                <p style={style2}>Mobile Number: {company.MobileNumber}</p>
+                                                        <Col key={k} xs={12} md={4} lg={4} style={{ paddingTop: "50px", }}>
+                                                            <Card border="dark" style={{ width: '18 rem' }}>
+                                                                <Card.Header style={{ textAlign: 'left' }}>{opp.OppID}</Card.Header>
+                                                                <Card.Body>
+                                                                    <Card.Title style={{ textAlign: 'left' }}>{opp.Name}</Card.Title>
+                                                                    <Card.Subtitle style={{ textAlign: 'left', color: 'grey' }} >{opp.Type}</Card.Subtitle>
+                                                                    <Card.Text style={{ textAlign: 'left', fontSize: "16px" }} ><FontAwesomeIcon icon={faGraduationCap} /> {opp.Qualification}</Card.Text>
+                                                                    <Card.Text style={{ textAlign: 'left', fontSize: "16px" }} > <FontAwesomeIcon icon={faMapMarkerAlt} /> {opp.Location}</Card.Text>
+                                                                    <Card.Text style={{ textAlign: 'left', fontSize: "16px" }} > <FontAwesomeIcon icon={faDollarSign} /> {opp.Pay}</Card.Text>
+                                                                </Card.Body>
+                                                            </Card>
+                                                        </Col>
+                                                    ))}
+                                                </Row>
+                                            </Container>
 
-                                            </div>
-                                        )
-                                    })
-                                }
-                            </Tab>
-                            <Tab eventKey="second" title="Opportunities "  >
-                                <Container>
-                                    <h1 style={{
-                                        textAlign: "left",
-                                        paddingTop: "40px",
-                                        fontSize: "26px",
-                                    }}>Number of jobs: {storeOpp.length}</h1>
-                                    <Row>
-                                        {storeOpp.map((opp, k) => (
+                                        </Tab>
+                                        <Tab eventKey="third" title="Reviews" >
 
-                                            <Col key={k} xs={12} md={4} lg={4} style={{ paddingTop: "50px", }}>
-                                                <Card border="dark" style={{ width: '18 rem' }}>
-                                                    <Card.Header style={{ textAlign: 'left' }}>{opp.OppID}</Card.Header>
-                                                    <Card.Body>
-                                                        <Card.Title style={{ textAlign: 'left' }}>{opp.Name}</Card.Title>
-                                                        <Card.Subtitle style={{ textAlign: 'left', color: 'grey' }} >{opp.Type}</Card.Subtitle>
-                                                        <Card.Text style={{ textAlign: 'left', fontSize: "16px" }} ><FontAwesomeIcon icon={faGraduationCap} /> {opp.Qualification}</Card.Text>
-                                                        <Card.Text style={{ textAlign: 'left', fontSize: "16px" }} > <FontAwesomeIcon icon={faMapMarkerAlt} /> {opp.Location}</Card.Text>
-                                                        <Card.Text style={{ textAlign: 'left', fontSize: "16px" }} > <FontAwesomeIcon icon={faDollarSign} /> {opp.Pay}</Card.Text>
-                                                    </Card.Body>
-                                                </Card>
-                                            </Col>
-                                        ))}
-                                    </Row>
-                                </Container>
+                                            <Container>
+                                                <h1 style={{
+                                                    textAlign: "left",
+                                                    paddingTop: "40px",
+                                                    fontSize: "26px",
+                                                }}>Number of Review/Rating: {storeReviewRating.length}</h1>
+                                                <Row>
+                                                    {
+                                                        storeReviewRating.map((rr, k) => {
+                                                            return (
+                                                                <Col key={k} xs={12} md={4} lg={8} style={{ paddingTop: '50px' }}>
+                                                                    <Card border="dark" style={{ width: '18 rem', height: '200px' }}>
 
-                            </Tab>
-                            <Tab eventKey="third" title="Reviews" >
+                                                                        <Card.Header style={{ textAlign: 'left' }}>
+                                                                            {new Array(rr.Rating).fill(null).map(() => (
+                                                                                <FontAwesomeIcon icon={faStar} style={{ color: "orange" }} />
+                                                                            ))}
 
-                                <Container>
-                                    <h1 style={{
-                                        textAlign: "left",
-                                        paddingTop: "40px",
-                                        fontSize: "26px",
-                                    }}>Number of Review/Rating: {storeReviewRating.length}</h1>
-                                    <Row>
-                                        {
-                                            storeReviewRating.map((rr, k) => {
-                                                return (
-                                                    <Col key={k} xs={12} md={4} lg={8} style={{ paddingTop: '50px' }}>
-                                                        <Card border="dark" style={{ width: '18 rem', height: '200px' }}>
+                                                                        </Card.Header>
 
-                                                            <Card.Header style={{ textAlign: 'left' }}>
-                                                                {new Array(rr.Rating).fill(null).map(() => (
-                                                                    <FontAwesomeIcon icon={faStar} style={{ color: "orange" }} />
-                                                                ))}
+                                                                        <Card.Body>
+                                                                            <Card.Text style={{ textAlign: 'left', fontSize: "16px" }} >{rr.Review}</Card.Text>
 
-                                                            </Card.Header>
+                                                                        </Card.Body>
+                                                                    </Card>
+                                                                </Col>
+                                                            )
+                                                        })
+                                                    }
+                                                </Row>
+                                            </Container>
+                                        </Tab>
+                                    </Tabs>
 
-                                                            <Card.Body>
-                                                                <Card.Text style={{ textAlign: 'left', fontSize: "16px" }} >{rr.Review}</Card.Text>
+                                </row>
+                            </Container>
+                        </div>
 
-                                                            </Card.Body>
-                                                        </Card>
-                                                    </Col>
-                                                )
-                                            })
-                                        }
-                                    </Row>
-                                </Container>
-                            </Tab>
-                        </Tabs>
+                    </div>
 
-                    </row>
-                </Container>
-            </div>
-
-        </div>
-
-
+                </section>
+            )
+            }
+        </>
     )
 }
 
