@@ -4,10 +4,26 @@ const mysql = require("mysql");
 const cors = require("cors");
 const { createSearchParams } = require("react-router-dom");
 const app = express();
+
+const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
+const session = require("express-session");
 var corsOptions = {
     origin: "http://localhost:3000",
+    methods: ["GET", "POST"],
     credentials: true
 };
+
+app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+const oneDay = 1000 * 60 * 60 * 24;
+app.use(session({
+    secret: "thisismysecrctekeyfhrgfgrfrty84fwir767",
+    saveUninitialized: true,
+    cookie: { maxAge: oneDay },
+    resave: false
+}));
 
 app.use(cors(corsOptions));
 app.use(express.json());
@@ -35,6 +51,80 @@ app.listen(PORT, () => {
     console.log(`Server is currently running on port ${PORT}.`);
 });
 
+//================================================================================
+
+app.get('/getCurrentUserRole', function (req, res) {
+    db.query("SELECT RoleID FROM users WHERE UserID = ?;",
+        [req.session.user[0].UserID],
+
+        (err, result) => {
+            if (err) {
+                console.log(err)
+                res.send(result);
+            }else {
+                res.send(result);
+            }
+        }
+    )
+})
+
+app.post("/login", (req, res, next) => {
+    const email = req.body.email
+    const password = req.body.password
+
+    if (email && password) {
+        db.query(
+            "SELECT * FROM users WHERE Email = ? AND Password = ?;",
+            [email, password],
+            (err, result) => {
+                if (err) {
+                    res.send({ err: err });
+                }
+
+                if (result.length > 0) {
+                    req.session.user = result;
+                    res.send(result);
+                    console.log(req.session.user);
+                    getUserRole = req.session.user[0].RoleID;
+                    console.log(getUserRole);
+                    next();
+
+                } else {
+                    res.send({ message: "Incorrect Combination!" });
+                }
+
+
+            }
+        )
+    } else {
+        res.send({ message: "Please enter email and password!" });
+    }
+
+});
+
+app.get("/login", function (req, res) {
+    if (req.session.user) {
+        res.send({ loggedIn: true, user: req.session.user });
+
+    } else {
+        res.send({ loggedIn: false });
+    }
+});
+
+app.get("/logout", function (req, res) {
+    var loggedOutName = req.session.user[0].Name
+    req.session.destroy(err => {
+        if (err) {
+            return console.log(err);
+        }
+        res.send({ message: loggedOutName + " is logged out!" });
+        getUserRole = '0';
+        console.log(getUserRole);
+
+    });
+});
+
+//================================================================================
 
 app.get('/user', (req, res) => {
     db.query("SELECT * from users INNER JOIN roles ON roles.RoleID = users.RoleID WHERE users.RoleID = 1",
@@ -133,58 +223,6 @@ app.post('/oppoDelete', (req, res) => {
     )
     
 })
-
-// app.post('/oppoDelete', (req, res) => {
-//     db.query("DELETE FROM users_have_fav WHERE OppID = ?",
-//         [OppID],
-//         (err, result) => {
-//             if (err) {
-//                 console.log(err);
-//             } else {
-//                 res.send("users_have_fav");
-//             }
-//         }
-//     )
-// })
-
-// app.post('/oppoDelete', (req, res) => {
-//     db.query("DELETE FROM partner_have_opp WHERE OppID = ?",
-//         [OppID],
-//         (err, result) => {
-//             if (err) {
-//                 console.log(err);
-//             } else {
-//                 res.send("partner_have_opp");
-//             }
-//         }
-//     )
-// })
-
-// app.post('/oppoDelete', (req, res) => {
-//     db.query("DELETE FROM opp_have_application WHERE OppID = ?",
-//         [OppID],
-//         (err, result) => {
-//             if (err) {
-//                 console.log(err);
-//             } else {
-//                 res.send("opp_have_application");
-//             }
-//         }
-//     )
-// })
-
-// app.post('/oppoDelete', (req, res) => {
-//     db.query("DELETE FROM opportunities WHERE OppID = ?",
-//         [OppID],
-//         (err, result) => {
-//             if (err) {
-//                 console.log(err);
-//             } else {
-//                 res.send("opportunities");
-//             }
-//         }
-//     )
-// })
 
 app.get('/partner', (req, res) => {
     db.query("SELECT u.UserID, u.Name, u.UserBio, u.ContactNumber FROM users u INNER JOIN roles r ON r.RoleID = u.RoleID WHERE u.RoleID = 2", (err, result) => {

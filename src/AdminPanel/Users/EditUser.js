@@ -131,7 +131,7 @@ const EditUser = () => {
                 <input type="aRoleID" placeholder="Your RoleID ..." value={roleID} onChange={handleroleID}></input>
 
                 <label>Password</label>
-                <input type="aPassword" placeholder="Your Password ..." value={password} onChange={handlepassword}></input>
+                <input className="aPassword" type="password" placeholder="Your Password ..." value={password} onChange={handlepassword}></input>
 
                 <label>Email</label>
                 <input type="aEmail" placeholder="Your Email ..." value={email} onChange={handleEmail}></input>
