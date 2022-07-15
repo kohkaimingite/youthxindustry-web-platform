@@ -1,15 +1,15 @@
 {
   "ExpandedNodes": [
     "",
+    "\\node-mysql",
     "\\src",
+    "\\src\\AdminPanel",
     "\\src\\components",
-    "\\src\\HomePage",
-    "\\src\\LoginPage",
+    "\\src\\components\\PageHeader",
     "\\src\\Manage",
-    "\\src\\OppoPage",
-    "\\src\\OppoPartner",
-    "\\src\\ReviewPage"
+    "\\src\\RatingStats",
+    "\\src\\Register"
   ],
-  "SelectedNode": "\\src\\components\\PartnerNavBar.js",
+  "SelectedNode": "\\src\\Register\\Register.js",
   "PreviewInSolutionExplorer": false
 }

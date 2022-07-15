@@ -165,6 +165,7 @@ function App() {
                 <Route path='/Profile' element={<ProfilePage />} />
                 <Route path='/EditCompanyNumber' element={<EditCompanyNumber />} />
                 <Route path='/RegisterPartner' element={< RegisterPartner />} />
+                <Route path='/RegisterUser' element={< RegisterUser />} />
                 <Route path='/EditCompanyBio' element={<EditCompanyBio />} />
                 <Route path='/SubmitApplication' element={<SubmitApplication />} />
                 <Route path='/OppoPartner' element={<OppoPartner />} />
