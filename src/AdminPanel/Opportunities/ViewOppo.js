@@ -11,6 +11,8 @@ const ViewOppo = () => {
 
     const [data, setData] = useState([]);
 
+    const [oppList, setOppList] = useState([]);
+
     let { storeOppID } = '';
 
     useEffect(() => {
@@ -25,14 +27,23 @@ const ViewOppo = () => {
         })
     }, []);
 
-    const deleteOppo = (id) => {
+    const deleteOppo = (OppID) => {
+        const newOppo = [...oppList];
+        const index = oppList.findIndex((User) => User.OppID === OppID);
+        newOppo.splice(index, 1);
+        setOppList(newOppo);
+
         if (
             window.confirm("Are you sure you want to delete this opportunity?")
         ) {
             axios.post("http://localhost:3001/oppoDelete", {
+                OppID: OppID,
                 adminOppID: parseInt(storeOppID)
             }).then(() => {
                 console.log("Successfully Deleted.");
+            })
+            .catch(() => {
+                console.log("Failed to delete");
             });
         }
     };
