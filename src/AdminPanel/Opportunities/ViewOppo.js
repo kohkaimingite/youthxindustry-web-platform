@@ -42,7 +42,7 @@ const ViewOppo = () => {
                 console.log("Successfully Deleted.");
             })
             .catch(() => {
-                console.log("Failed to delete");
+                console.log("Failed to delete.");
             });
         }
     };

@@ -151,9 +151,11 @@ app.post('/userEdit', (req, res) => {
         [RoleID, Name, Password, Email, Age, Gender, UserBio, MobileNumber, UserID],
         (err, result) => {
             if (err) {
-                console.log(err);
+                res.status(500).send({
+                    message: err.message || "Some error occurred while retrieving user."
+                });
             } else {
-                res.send("Updated User Information!");
+                res.send("Updated User Information.");
             }
         }
     )
@@ -161,11 +163,13 @@ app.post('/userEdit', (req, res) => {
 
 app.post('/userDelete', (req, res) => {
     const UserID = req.body.UserID;
-    db.query("DELETE FROM users WHERE UserID = ?",
-        [UserID],
+    db.query("DELETE FROM users_have_opp WHERE UserID = ?; DELETE FROM users_have_fav WHERE UserID = ?; DELETE FROM partner_have_opp WHERE UserID = ?; DELETE FROM application WHERE UserID = ?; DELETE FROM users WHERE UserID = ?;",
+        [UserID, UserID, UserID, UserID, UserID],
         (err, result) => {
             if (err) {
-                console.log(err);
+                res.status(500).send({
+                    message: err.message || "Some error occurred while retrieving user."
+                });
             } else {
                 res.send("User Information Deleted.");
             }
@@ -198,10 +202,10 @@ app.post('/oppoEdit', (req, res) => {
         (err, result) => {
             if (err) {
                 res.status(500).send({
-                    message: err.message || "Some error occurred while retrieving oppo."
+                    message: err.message || "Some error occurred while retrieving opportunity."
                 });
             } else {
-                res.send("Updated Opportunity Information");
+                res.send("Updated Opportunity Information.");
             }
         }
     )
@@ -214,10 +218,10 @@ app.post('/oppoDelete', (req, res) => {
         (err, result) => {
             if (err) {
                 res.status(500).send({
-                    message: err.message || "Some error occurred while retrieving oppo."
+                    message: err.message || "Some error occurred while retrieving opportunity."
                 });
             } else {
-                res.send("Deleted Opportunity Information");
+                res.send("Deleted Opportunity Information.");
             }
         }
     )
@@ -225,33 +229,49 @@ app.post('/oppoDelete', (req, res) => {
 })
 
 app.get('/partner', (req, res) => {
-    db.query("SELECT u.UserID, u.Name, u.UserBio, u.ContactNumber FROM users u INNER JOIN roles r ON r.RoleID = u.RoleID WHERE u.RoleID = 2", (err, result) => {
+    db.query("SELECT * from users INNER JOIN roles ON roles.RoleID = users.RoleID WHERE users.RoleID = 2",
+    (err, result) => {
+        if (err) {
+            console.log(err);
+        } else {
+            res.send(result);
+        };
+    });
+});
+
+app.post('/partnerEdit', (req, res) => {
+    const RoleID = req.body.RoleID;
+    const Name = req.body.Name;
+    const Password = req.body.Password;
+    const Email = req.body.Email;
+    const UserBio = req.body.UserBio;
+    const MobileNumber = req.body.MobileNumber;
+    const UserID = req.body.UserID;
+    db.query("UPDATE users SET RoleID = ?, Name = ?, Password = ?, Email = ?, UserBio = ?, ContactNumber = ? WHERE UserID = ?",
+        [RoleID, Name, Password, Email, UserBio, MobileNumber, UserID],
+        (err, result) => {
             if (err) {
-                console.log(err);
+                res.status(500).send({
+                    message: err.message || "Some error occurred while retrieving partner."
+                });
             } else {
-                res.send(result);
+                res.send("Updated Partner Information.");
             }
         }
     )
 })
 
-// app.post('/partnerEdit', (req, res) => {
-//     db.query("DELETE FROM user INNER JOIN roles ON roles.RoleID = user.RoleID WHERE user.RoleID = 2", (err, result) => {
-//             if (err) {
-//                 console.log(err);
-//             } else {
-//                 res.send("Partner successfully deleted!");
-//             }
-//         }
-//     )
-// })
-
 app.post('/partnerDelete', (req, res) => {
-    db.query("DELETE FROM user INNER JOIN roles ON roles.RoleID = user.RoleID WHERE user.RoleID = 2", (err, result) => {
+    const UserID = req.body.UserID;
+    db.query("DELETE FROM users_have_opp WHERE UserID = ?; DELETE FROM users_have_fav WHERE UserID = ?; DELETE FROM partner_have_opp WHERE UserID = ?; DELETE FROM application WHERE UserID = ?; DELETE FROM users WHERE UserID = ?;",
+        [UserID, UserID, UserID, UserID, UserID],
+        (err, result) => {
             if (err) {
-                console.log(err);
+                res.status(500).send({
+                    message: err.message || "Some error occurred while retrieving partner."
+                });
             } else {
-                res.send("Partner successfully deleted!");
+                res.send("Partner Information Deleted.");
             }
         }
     )
