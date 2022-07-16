@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import NavBar from '../../components/NavBar';
-import AdminNavBar from '../../components/AdminNavBar';
 import "../Opportunities/ViewOppo.css";
 import axios from 'axios';
 
@@ -51,12 +50,10 @@ const ViewOppo = () => {
     return (
         <div className="App">
             <NavBar />
-            <AdminNavBar />
             <Link to="/AdminPanel">
                 <button className="btn backButton">Go Back to Admin Panel</button>
             </Link>
             <input type="search" placeholder="Search..." onChange={event => {setSearchInput(event.target.value)}}/>
-            <input type="submit" value="Go" class="btn goButton"/>
             <table className="User-Table">
                 <thead>
                     <tr>
@@ -76,6 +73,16 @@ const ViewOppo = () => {
                         if (searchInput == "") {
                             return User
                         } else if (User.Name.toLowerCase().includes(searchInput.toLowerCase())) {
+                            return User
+                        } else if (User.Description.toLowerCase().includes(searchInput.toLowerCase())) {
+                            return User
+                        } else if (User.Location.toLowerCase().includes(searchInput.toLowerCase())) {
+                            return User
+                        } else if (User.Address.toLowerCase().includes(searchInput.toLowerCase())) {
+                            return User
+                        } else if (User.Type.toLowerCase().includes(searchInput.toLowerCase())) {
+                            return User
+                        } else if (User.Qualification.toLowerCase().includes(searchInput.toLowerCase())) {
                             return User
                         }
                     }).map((User, key) => {
