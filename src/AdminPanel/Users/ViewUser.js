@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import NavBar from '../../components/NavBar';
-import AdminNavBar from '../../components/AdminNavBar';
 import "../Users/ViewUser.css";
 import axios from 'axios';
 
@@ -41,6 +40,9 @@ const ViewUser = () => {
                 adminUserID: parseInt(storeUserID)
             }).then(() => {
                 console.log("Successfully Deleted.");
+            })
+            .catch(() => {
+                console.log("Failed to dte.");
             });
         }
     };
@@ -48,10 +50,10 @@ const ViewUser = () => {
     return (
         <div className="App">
             <NavBar />
-            <AdminNavBar />
             <Link to="/AdminPanel">
                 <button className="btn backButton">Go Back to Admin Panel</button>
             </Link>
+            <input type="search" placeholder="Search..." onChange={event => {setSearchInput(event.target.value)}}/>
             <table className="User-Table">
                 <thead>
                     <tr>
@@ -66,7 +68,15 @@ const ViewUser = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {data.map((User, key) => {
+                    {data.filter((User) => {
+                        if (searchInput == "") {
+                            return User
+                        } else if (User.Name.toLowerCase().includes(searchInput.toLowerCase())) {
+                            return User
+                        } else if (User.Email.toLowerCase().includes(searchInput.toLowerCase())) {
+                            return User
+                        }
+                    }).map((User, key) => {
                         storeUserID = User.UserID;
                         return (
                             <tr key={key}>
