@@ -42,7 +42,7 @@ const ViewUser = () => {
                 console.log("Successfully Deleted.");
             })
             .catch(() => {
-                console.log("Failed to dte.");
+                console.log("Failed to delete.");
             });
         }
     };

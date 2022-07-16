@@ -268,7 +268,7 @@ app.post('/partnerDelete', (req, res) => {
         (err, result) => {
             if (err) {
                 res.status(500).send({
-                    message: err.message || "Some error occurred while retri partner."
+                    message: err.message || "Some error occurred while retrieve partner."
                 });
             } else {
                 res.send("Partner Information Deleted.");
