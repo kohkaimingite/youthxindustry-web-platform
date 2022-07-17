@@ -84,12 +84,18 @@ app.post("/registerUser", (req, res) => {
     const password = req.body.password;
     const email = req.body.email;
 
+
     db.query(
         "INSERT INTO users (RoleID, Name, Password, Email, DateCreated) VALUES (1, ?, ?, ?, curdate());",
         [name, password, email],
         (err, result) => {
             if (err) {
-                console.log(err);
+                if (err.code === 'ER_DUP_ENTRY') {
+                    res.sendStatus(409);
+                } else {
+                    console.log(err);
+                }
+
             } else { res.send(result) };
 
         });
@@ -105,7 +111,12 @@ app.post("/registerPartner", (req, res) => {
         [name, password, email],
         (err, result) => {
             if (err) {
-                console.log(err);
+                if (err.code === 'ER_DUP_ENTRY') {
+                    res.sendStatus(409);
+                } else {
+                    console.log(err);
+                }
+
             } else { res.send(result) };
 
         });
@@ -159,7 +170,7 @@ app.get("/logout", function (req, res) {
             return console.log(err);
         }
         res.send({ message: loggedOutName + " is logged out!" });
-       
+
 
     });
 });
