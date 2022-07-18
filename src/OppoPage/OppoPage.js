@@ -1,13 +1,15 @@
 // JavaScript source code
 import NavBar from '../components/NavBar'
+import ListNavBar from '../components/ListNavBar'
 import { React, useState, useEffect } from "react";
-import TextField from "@mui/material/TextField";
 import List from "../Some test data/List";
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Collapsible from '../components/Collapsible';
 import axios from 'axios';
 import Datatable from './Datatable';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowUpLong } from "@fortawesome/free-solid-svg-icons";
 require('es6-promise').polyfill();
 require('isomorphic-fetch');
 
@@ -22,37 +24,30 @@ function OppoPage() {
     const [data, setData] = useState([]);
     const [OppoList, setOppoList] = useState([]);
     const [q, setQ] = useState("");
-    const [Name, setName] = useState("");
-    const [Description, setDescription] = useState("");
-    const [Location, setLocation] = useState("");
 
     //jobscope
     const [IT, setIT] = useState("");
     const [Healthcare, setHealthcare] = useState("");
     const [Finance, setFinance] = useState("");
+    const [Education, setEducation] = useState("");
+
+    
     //location
     const [Central, setCentral] = useState("")
     const [North, setNorth] = useState("");
     const [South, setSouth] = useState("");
     const [East, setEast] = useState("");
     const [West, setWest] = useState("")
-    const tesing = ["it"];
-    const location = ["Central", "North", "South", "East", "West"];
-    const check = ["central", "north", "south", "east", "west"];
-    const [newOppoList, setNewOppoList] = useState([]);
-    ;
 
+    //button to scrol up
+    const [showScrollBtn, setShowScrollBtn] = useState("");
     
-    const getOppo = () => {
-        
-    };
     
     const columns = data[0] && Object.keys(data[0]);
     const [t, setT] = useState("");
     const [searchColumns, setSearchColumns] = useState([
         'Name'
     ]);
-    
     
     function search(rows) {
         return rows.filter((row) =>
@@ -65,10 +60,8 @@ function OppoPage() {
             ),
         );
     }
-    //searchColumns.some((column)=>row[column].toString().toLowerCase().indexOf(q.toLowerCase()) > -1,)
+    
     function typeBox(rows) {
-        //return rows.filter((row) => row.type.indexOf(t) > -1
-        //return rows.filter((row) => row.type.indexOf("IT") > -1
         return rows.filter((row) => row.Type.toLowerCase().indexOf(q.toLowerCase())>-1
         );
     }
@@ -81,23 +74,22 @@ function OppoPage() {
         });
 
     });
-    function filterJob(t) {
-        var checkBox = document.getElementById(t);
-        var text = document.getElementById("text");
-        if (checkBox.checked == true) {
-            text.style.display = "block";
-        } else {
-            text.style.display = "none";
-        }
-    }
+    useEffect(() => {
+        window.addEventListener('scroll', scrollAppear );
+    }, []);
+    const scrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+        });
+    };
+    const scrollAppear = () => {
+        if (window.pageYOffset  > 100) {
 
-    function ilterdata(rows) {
-        var checkBox = document.getElementById(t);
-        var text = document.getElementById("text");
-        if (checkBox.checked == true) {
-            text.style.display = "block";
+            setShowScrollBtn(true);
         } else {
-            text.style.display = "none";
+
+            setShowScrollBtn(false);
         }
     }
     //it, finance, healthcare, north, south, east, west, central
@@ -169,8 +161,26 @@ function OppoPage() {
             }
         }
     }
+    function smthEdu(og, changed) {
+        if (og === changed) {
+            if (Education === "Education") {
+                return og.filter((row) => row.Type.toLowerCase().indexOf("education") > -1);
+            } else if (Healthcare === "") {
+                return og;
+            }
+
+        } else if (og !== changed) {
+            if (Education === "Education") {
+                return changed.concat(og.filter((row) => row.Type.toLowerCase().indexOf("education") > -1));
+            } else if (Education === "") {
+                return changed;
+            }
+        }
+    }
+    //Education
+    //smthH(row,smthF(row,smthI(row)))
     function filterType(row) {
-        return search(smthH(row,smthF(row,smthI(row))))
+        return search(smthEdu(row, smthH(row, smthF(row, smthI(row)))))
     }
     //location[x]
     
@@ -312,6 +322,12 @@ function OppoPage() {
             } else {
                 setIT("");
             }
+        } else if (val === "Education") {
+            if (boo == true) {
+                setEducation(val);
+            } else {
+                setEducation("");
+            }
         } else if (val === "Central") {
             if (boo == true) {
                 setCentral(val);
@@ -351,53 +367,51 @@ function OppoPage() {
     }
     return (
         //onSubmit={ilterdata(OppoList)}
-        
+        //
+         //class="oppoNFavTitle"
         <div className="App">
             <NavBar />
 
             
             <div className="main">
-                <h1>Job Listings</h1>
+                <h1>Opportunities</h1>
+                
                 <div class="sidenav">
 
-                    <h2>Filter!</h2>
-                    <h4>Filter for Job</h4>
+                    <h2>Filters</h2>
+                    
                     <div>
 
-                        <form >
-                            <input type="checkbox" id="IT" name="IT" value="IT" onChange={(e) => changeState(e.target.checked, "IT")} />
-                            <label for="IT">IT</label><br/>
-                            <input type="checkbox" id="Finance" name="Finance" value="Finance" onChange={(e) => changeState(e.target.checked,"Finance")}/>
-                            <label for="Finance"> Finance</label><br />
-                            <input type="checkbox" id="Healthcare" name="Healthcare" value="Healthcare" onChange={(e) => changeState(e.target.checked, "Healthcare")}/>
-                            <label for="Healthcare"> Healthcare</label><br />
+                        <form>
+                            <h4>Job Categories</h4>
+
+                            <input type="checkbox" id="IT" name="IT" value="IT" onChange={(e) => changeState(e.target.checked, "IT")} /> IT<br />
+                            <input type="checkbox" id="Finance" name="Finance" value="Finance" onChange={(e) => changeState(e.target.checked, "Finance")} /> Finance<br />
+                            <input type="checkbox" id="Healthcare" name="Healthcare" value="Healthcare" onChange={(e) => changeState(e.target.checked, "Healthcare")} /> Healthcare<br />
+                            <input type="checkbox" id="Education" name="Education" value="Education" onChange={(e) => changeState(e.target.checked, "Education")} /> Education<br />
+
                      
 
                     
-                    <h4>Filter for Location</h4>
-                    
-                            <input type="checkbox" id="North" name="North" value="North" onChange={(e) => changeState(e.target.checked, "North")}/>
-                            <label for="North"> North</label><br />
-                            <input type="checkbox" id="South" name="South" value="South" onChange={(e) => changeState(e.target.checked, "South")}/>
-                            <label for="South"> South</label><br />
-                            <input type="checkbox" id="East" name="East" value="East" onChange={(e) => changeState(e.target.checked, "East")}/>
-                            <label for="East"> East</label><br />
-                            <input type="checkbox" id="West" name="West" value="West" onChange={(e) => changeState(e.target.checked, "West")}/>
-                            <label for="West"> West</label><br />
-                            <input type="checkbox" id="Central" name="Central" value="Central" onChange={(e) => changeState(e.target.checked, "Central")} />
-                            <label for="Central"> Central</label><br />
+                            <h4>Location</h4>
+
+                            <input type="checkbox" id="North" name="North" value="North" onChange={(e) => changeState(e.target.checked, "North")} /> North<br />
+                            <input type="checkbox" id="South" name="South" value="South" onChange={(e) => changeState(e.target.checked, "South")} /> South<br />
+                            <input type="checkbox" id="East" name="East" value="East" onChange={(e) => changeState(e.target.checked, "East")} /> East<br />
+                            <input type="checkbox" id="West" name="West" value="West" onChange={(e) => changeState(e.target.checked, "West")}/> West<br />
+                            <input type="checkbox" id="Central" name="Central" value="Central" onChange={(e) => changeState(e.target.checked, "Central")} /> Central<br />
+
                         </form>
 
                     </div>
                     
-                    
-
+                    <h4>Search by Name:</h4>
+                    <input style={{ width:"170px", marginLeft:"28px", marginRight: "30px" }} type="text" value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search.." />
                    
                 </div>
-                <input type="text" value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search.." />
                 
                 <Datatable data={filterAll(OppoList)} />
-
+                <button id="scrollUp" class="scrollToTop" onClick={scrollToTop} style={{ opacity: showScrollBtn ? 100 : 0 }}><FontAwesomeIcon icon={faArrowUpLong} class="arrowUp" /></button>
             </div>
             
             
@@ -407,8 +421,9 @@ function OppoPage() {
 
     );
 }
-
+//isVisible ? 'opacity-100' : 'opacity-0'
+                //opacity: showScrollBtn ? 100 : 0 
+                //opacity: showScrollBtn ? 100 : 0 
 //<Datatable data={search(OppoList)} />
 //<Datatable data={typeBox(search(OppoList))} />
-
 export default OppoPage;

@@ -1,0 +1,40 @@
+.OppoPartnerTable {
+    table-layout: fixed;
+    width: 90%;
+    border-collapse: collapse;
+    margin-left: 80px;
+    border-radius: 10px 10px 0 0;
+    overflow: auto;
+    box-shadow: 0 0 20px rgba(0,0,0,0.15);
+    margin-top: 30px;
+}
+
+    .OppoPartnerTable th, td {
+        padding: 0.25em 0.5em 0.25em 1em;
+        vertical-align: text-top;
+        text-align: left;
+        text-indent: -0.5em;
+    }
+
+    .OppoPartnerTable tr:nth-of-type(even) {
+        background-color: #f3f3f3;
+    }
+
+    .OppoPartnerTable tr:hover {
+        background-color: #edead5;
+    }
+
+    .OppoPartnerTable th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: center;
+        background-color: #DAA520;
+        color: white;
+        position: sticky;
+        top: 0;
+        z-index: 2;
+    }
+
+    .OppoPartnerTable td {
+        overflow: auto;
+    }

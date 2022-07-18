@@ -7,12 +7,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Collapsible from '../components/Collapsible';
 import { Route, Link } from 'react-router-dom';
 import axios from 'axios';
+import { faPencil } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
 function UserProfile() {
-    const [Email, setEmail] = useState("test1");
-    const [Name1, setName] = useState("test2");
-    const [Number, setNumber] = useState("test3");
     const [ProfList, setProfList] = useState([]);
     const columns = ProfList[0] && Object.keys(ProfList[0]);
     const getProfile = () => {
@@ -23,9 +22,7 @@ function UserProfile() {
 
             console.log(response);
             setProfList(response.data);
-            setEmail(ProfList[1]);
-            setName(ProfList[1]);
-            setNumber(ProfList[1]);
+
         });
     });
     
@@ -41,7 +38,9 @@ function UserProfile() {
                     <form action="/action_page.php" method="post">
                         <text>Full Name:</text><br />
                         <text>Email:</text><br />
-                        <text>Mobile Number:</text>
+                        <text>Mobile Number:</text><br />
+                        <text>Bio: </text><br />
+                        <text>Resume: </text><br />
                     </form>
                     
                     </div>
@@ -50,24 +49,32 @@ function UserProfile() {
                         <h3>Testing</h3>
                         {ProfList.map((val, key) => {
                             return <text align="Left">{val.Name}</text>;
-                        })}
+                        })}<br />
                         {ProfList.map((val, key) => {
                             return <text align="Left">{val.Email}</text>;
-                        })}
+                        })}<br />
                         {ProfList.map((val, key) => {
-                            return <text align="Left">{val.MobileNumber}</text>;
-                        })}
-                        <text align="Left">{ProfList[1]}</text><br />
-                        <text align="Left">{ProfList[2]}</text><br />
-                        <text align="Left">{ProfList[3]}</text><br />
-                        <Link to="/EditProfile"><button class = "Button">Edit Profile</button></Link>
-                    </form>
-                    
-                    {ProfList.map((val, key) => {
-                        return <h2>{val.Name}</h2>;
-                    })}
+                            return <text align="Left">{val.ContactNumber}</text>;
+                        })}<a href="/EditUserNumber"> <FontAwesomeIcon icon={faPencil}></FontAwesomeIcon> </a><br />
+                        {ProfList.map((val, key) => {
+                            return <text align="Left">{val.UserBio}</text>;
+                        })}<a href="/EditUserBio"> <FontAwesomeIcon icon={faPencil}></FontAwesomeIcon> </a><br />
+                        {/*{ProfList.map((val, key) => {*/}
+                        {/*    return <text align="Left">{val.Resume}</text>;*/}
+                        {/*})}<br />*/}<a href="/EditUserResume"> <FontAwesomeIcon icon={faPencil}></FontAwesomeIcon> </a><br />
+                        
+                        
 
-                    </div>
+                        
+                    </form>
+
+
+                </div>
+                <div className="AlignRight">
+                    <form action="/action_page.php" method="post">
+                    <Link to="/EditProfile"><button class="Button">Edit Profile</button></Link>
+                    </form>
+                </div>
                 </div>
         </div>
     )

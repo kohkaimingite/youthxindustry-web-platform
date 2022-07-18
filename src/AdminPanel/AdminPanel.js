@@ -1,17 +1,35 @@
 // JavaScript source code
 import React, { Component } from 'react';
-import NavBar from '../components/NavBar'
-import AdminNavBar from './AdminNavBar';
-import classes from '../components/AdminPanel.module.css'
+import { Link } from "react-router-dom";
+import NavBar from '../components/NavBar';
+import AdminNavBar from '../components/AdminNavBar';
+import "./AdminPanel.css";
+import '../components/AdminPanel.module.css';
 
-const AdminPanel = () => {
+function AdminPanel() {
     return (
-        <div className={classes.AdminPanel} id="AdminPanel">
+        <div className="App">
             <NavBar/>
-            <AdminNavBar/>
-            <h1>admin</h1>
+            <form style={{
+                margin: "auto",
+                padding: "15px",
+                maxWidth: "400px"
+            }}>
+                <Link to="/ViewUser">
+                    <div className="btn linkButton">Users</div>
+                </Link>
+                <Link to="/ViewOppo">
+                    <div className="btn linkButton">Opportunities</div>
+                </Link>
+                <Link to="/ViewPartner">
+                    <div className="btn linkButton">Partners</div>
+                </Link>
+                <Link to="/MakingReview">
+                    <div className="btn linkButton">Reviews</div>
+                </Link>
+            </form>
         </div>
-        );
-}
+    );
+};
 
 export default AdminPanel;

@@ -1,53 +1,94 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Axios from 'axios';
 import NavBar from '../components/NavBar';
+import './Login.css';
+import { useNavigate } from 'react-router-dom';
+import { faSignIn,faUserLock } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function Login() {
 
-    const [nameReg, setNameReg] = useState('');
-    const [passwordReg, setPasswordReg] = useState('');
-    const [loginStatus, setLoginStatus] = useState('');
+    Axios.defaults.withCredentials = true;
 
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [status, setStatus] = useState('');
+    const navigate = useNavigate('');
 
     const login = () => {
         Axios.post("http://localhost:3001/login", {
-            name: nameReg,
-            password: passwordReg,
-        }).then((response) => {
-            if (response.data.message) {
-                setLoginStatus(response.data.message)
+            email: email,
+            password: password,
+        })
+            .then((response) => {
 
-            } else {
-                setLoginStatus(response.data[0].name)
-            }
-            
-        });
+                if (response.data.message) {
+                    setStatus(response.data.message);
+
+                } else {
+                    setStatus(response.data[0].Name);
+                    navigate("/Home")
+                }
+
+            });
     };
+
+    const logout = () => {
+        Axios.get("http://localhost:3001/logout")
+            .then((response) => {
+
+                if (response.data.message) {
+                    setStatus(response.data.message);
+
+                }
+            });
+    };
+
+
+
+    useEffect(() => {
+        Axios.get("http://localhost:3001/login").then((response) => {
+            if (response.data.loggedIn == true) {
+                setStatus(response.data.user[0].Name);
+
+            }
+        });
+    }, []);
+
+
 
     return (
         <div className="App">
+            <NavBar />
             <div className="login">
-                <NavBar />
+                <FontAwesomeIcon icon={faUserLock} />
                 <h1>Login</h1>
-                <label>Name</label>
-                <input type="text"
-                    placeholder= "Name..."
+
+                <label style={{ marginRight: "150px" }}>Email</label>
+                <input type="email"
+                    placeholder="Enter email"
+                    id="email"
+                    required
                     onChange={(e) => {
-                    setNameReg(e.target.value);
-                }}
+                        setEmail(e.target.value);
+                    }}
                 />
-                <label>Password</label>
-                <input type="text"
-                    placeholder="Password..."
+                <label style={{ marginRight: "125px" }}>Password</label>
+                <input type="password"
+                    placeholder="Enter password"
+                    id="password"
+                    required
                     onChange={(e) => {
-                    setPasswordReg(e.target.value);
-                }}
+                        setPassword(e.target.value);
+                    }}
                 />
-              
-                <button onClick={login}>Login</button>
+
+                <button onClick={login}>Login <FontAwesomeIcon icon={faSignIn}/></button>
+                <button onClick={logout}>Logout</button>
+                <p>{status}</p>
             </div>
-            <h1>{loginStatus}</h1>
         </div>
 
     );
 }
+

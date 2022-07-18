@@ -3,48 +3,37 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './HomePage/Home';
+
+
 import AboutPage from './AboutPage/AboutPage';
 import OppoPage from './OppoPage/OppoPage';
 import ContactPage from './ContactPage/ContactPage';
 import Login from './LoginPage/Login';
-import SignUp from './Register/SignUp';
-import Favourites from './OppoPage/Favourites';
-import OneJob from './OppoPage/OneJob';
-import ProfilePage from './Manage/UserProfile';
-import CompanyPage from './Manage/CompanyProfile';
-import EditProfile from './Manage/EditProfile';
-import MakingReview from './OppoPage/MakingReview';
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-    <React.StrictMode>
-        
-        <Router>
-        <Routes>
-                <Route path='/' element={<App />} />
-                <Route path='/AboutUs' element={<AboutPage />} />
-                <Route path='/Opportunities' element={<OppoPage />} />
-                <Route path='/ContactUs' element={<ContactPage />} />
-                <Route path='/Login' element={<Login />} />
-                <Route path='/Favourites' element={<Favourites />} />
-                <Route path='/Register' element={<SignUp />} />
-                <Route path='/job' element={<OneJob />} />
-                <Route path='/Profile' element={<ProfilePage />} />
-                <Route path='/Company' element={<CompanyPage />} />
-                <Route path='/EditProfile' element={<EditProfile />} />
-                <Route path='/MakingReview' element={<MakingReview />} />
+import Register from './Register/Register';
+import SearchCompanyProfile from './CompanyProfile/SearchCompanyProfile';
 
-        </Routes>
-    </Router>
-    </React.StrictMode>
-);
+
+import OneJob from './OppoPage/OneJob';
+
+
+
+
+
+
+
+
+//<Route path='/EditCompany' element={<EditCompany />} />
+
+
 //ReactDOM.render(
-  //  <Router>
-    //    <Routes>
-      //      <Route path='/' element={<App/>}/>
-        //</Routes>
-    //</Router> ,
-    //document.getElementById('root')
+//  <Router>
+//    <Routes>
+//      <Route path='/' element={<App/>}/>
+//</Routes>
+//</Router> ,
+//document.getElementById('root')
 //);
 
 
