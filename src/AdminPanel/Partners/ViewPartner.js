@@ -26,7 +26,7 @@ const ViewPartner = () => {
         })
     }, []);
 
-    const deleteUser = (UserID) => {
+    const deletePartner = (UserID) => {
         const newPartner = [...partnerList];
         const index = partnerList.findIndex((User) => User.UserID === UserID);
         newPartner.splice(index, 1);
@@ -53,6 +53,7 @@ const ViewPartner = () => {
             <Link to="/AdminPanel">
                 <button className="btn backButton">Go Back to Admin Panel</button>
             </Link>
+            <input type="search" placeholder="Search..." onChange={event => {setSearchInput(event.target.value)}}/>
             <table className="User-Table">
                 <thead>
                     <tr>
@@ -65,7 +66,15 @@ const ViewPartner = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {data.map((User, key) => {
+                    {data.filter((User) => {
+                        if (searchInput == "") {
+                            return User
+                        } else if (User.Name.toLowerCase().includes(searchInput.toLowerCase())) {
+                            return User
+                        } else if (User.Email.toLowerCase().includes(searchInput.toLowerCase())) {
+                            return User
+                        }
+                    }).map((User, key) => {
                         storeUserID = User.UserID;
                         return (
                             <tr key={key}>
@@ -79,7 +88,7 @@ const ViewPartner = () => {
                                         <button className="btn editButton">Edit</button>
                                     </Link>
 
-                                    <button className="btn deleteButton" onClick={() => deleteUser(User.UserID)}>
+                                    <button className="btn deleteButton" onClick={() => deletePartner(User.UserID)}>
                                         Delete
                                     </button>
                                 </td>
