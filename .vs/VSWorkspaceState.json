@@ -2,10 +2,12 @@
   "ExpandedNodes": [
     "",
     "\\node-mysql",
+    "\\public",
     "\\src",
     "\\src\\components",
-    "\\src\\Manage",
+    "\\src\\components\\PageHeader",
     "\\src\\OppoPage"
   ],
+  "SelectedNode": "\\node-mysql\\andreaconnect.js",
   "PreviewInSolutionExplorer": false
 }
