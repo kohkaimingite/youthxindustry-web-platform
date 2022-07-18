@@ -138,15 +138,15 @@ app.get('/user', (req, res) => {
 });
 
 app.post('/userEdit', (req, res) => {
-    const UserID = req.body.UserID;
     const RoleID = req.body.RoleID;
-    const Name = req.body.Name;
-    const Password = req.body.Password;
-    const Email = req.body.Email;
-    const Age = req.body.Age;
-    const Gender = req.body.Gender;
-    const UserBio = req.body.UserBio;
-    const MobileNumber = req.body.MobileNumber;
+    const Name = req.body.name;
+    const Password = req.body.password;
+    const Email = req.body.email;
+    const Age = req.body.age;
+    const Gender = req.body.gender;
+    const UserBio = req.body.userBio;
+    const MobileNumber = req.body.mobileNumber;
+    const UserID = req.body.UserID;
     db.query("UPDATE users SET RoleID = ?, Name = ?, Password = ?, Email = ?, Age = ?, Gender = ?, UserBio = ?, ContactNumber = ? WHERE UserID = ?",
         [RoleID, Name, Password, Email, Age, Gender, UserBio, MobileNumber, UserID],
         (err, result) => {

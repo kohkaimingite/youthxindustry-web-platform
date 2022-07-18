@@ -1,11 +1,4 @@
-input[type="aUserID"],
-input[type="aName"],
-input[type="aRoleID"],
-input[type="aEmail"],
-input[type="aAge"],
-input[type="aGender"],
-input[type="aUserBio"],
-input[type="aContact"],
+input[type="adminInput"],
 select {
     width: 100%;
     padding: 12px 20px;
@@ -24,6 +17,16 @@ select {
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+}
+
+.adminErrorMsg {
+    text-align: left;
+    font-size: medium;
+    color: #FF0000;
+}
+
+.submitButton {
+    background-color: #4285F4;
 }
 
 .backButton {
