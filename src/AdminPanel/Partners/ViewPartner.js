@@ -84,7 +84,7 @@ const ViewPartner = () => {
                                 <td> {User.UserBio} </td>
                                 <td> {User.ContactNumber} </td>
                                 <td>
-                                    <Link to="/EditUser">
+                                    <Link to="/EditPartner">
                                         <button className="btn editButton">Edit</button>
                                     </Link>
 
