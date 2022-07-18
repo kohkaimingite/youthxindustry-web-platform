@@ -241,11 +241,11 @@ app.get('/partner', (req, res) => {
 
 app.post('/partnerEdit', (req, res) => {
     const RoleID = req.body.RoleID;
-    const Name = req.body.Name;
-    const Password = req.body.Password;
-    const Email = req.body.Email;
-    const UserBio = req.body.UserBio;
-    const MobileNumber = req.body.MobileNumber;
+    const Name = req.body.name;
+    const Password = req.body.password;
+    const Email = req.body.email;
+    const UserBio = req.body.userBio;
+    const MobileNumber = req.body.mobileNumber;
     const UserID = req.body.UserID;
     db.query("UPDATE users SET RoleID = ?, Name = ?, Password = ?, Email = ?, UserBio = ?, ContactNumber = ? WHERE UserID = ?",
         [RoleID, Name, Password, Email, UserBio, MobileNumber, UserID],

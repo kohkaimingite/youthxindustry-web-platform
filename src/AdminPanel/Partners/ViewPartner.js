@@ -2,35 +2,47 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import NavBar from '../../components/NavBar';
-import AdminNavBar from '../../components/AdminNavBar';
 import "../Partners/ViewPartner.css";
 import axios from 'axios';
 
 const ViewPartner = () => {
+    const [searchInput, setSearchInput] = useState('');
 
     const [data, setData] = useState([]);
+
+    const [partnerList, setPartnerList] = useState([]);
 
     let { storeUserID } = '';
 
     useEffect(() => {
-        axios.get("http://localhost:3001/partner")
-        .then((response) => {
+        axios.get("http://localhost:3001/partner").then((response) => {
+
             console.log(response);
             setData(response.data);
+
         })
         .catch((error) => {
             console.log(error);
         })
     }, []);
 
-    const deleteUser = (id) => {
+    const deleteUser = (UserID) => {
+        const newPartner = [...partnerList];
+        const index = partnerList.findIndex((User) => User.UserID === UserID);
+        newPartner.splice(index, 1);
+        setPartnerList(newPartner);
+
         if (
             window.confirm("Are you sure you want to delete this user?")
         ) {
-            axios.post("http://localhost:3001/userDelete", {
-                UserID: parseInt(storeUserID)
+            axios.post("http://localhost:3001/partnerDelete", {
+                UserID: UserID,
+                adminUserID: parseInt(storeUserID)
             }).then(() => {
                 console.log("Successfully Deleted.");
+            })
+            .catch(() => {
+                console.log("Failed to delete.");
             });
         }
     };
@@ -38,7 +50,6 @@ const ViewPartner = () => {
     return (
         <div className="App">
             <NavBar />
-            <AdminNavBar />
             <Link to="/AdminPanel">
                 <button className="btn backButton">Go Back to Admin Panel</button>
             </Link>
