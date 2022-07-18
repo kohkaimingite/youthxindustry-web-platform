@@ -10,7 +10,6 @@ function AdminPanel() {
     return (
         <div className="App">
             <NavBar/>
-            <AdminNavBar/>
             <form style={{
                 margin: "auto",
                 padding: "15px",

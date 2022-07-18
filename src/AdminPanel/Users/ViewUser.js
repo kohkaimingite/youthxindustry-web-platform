@@ -2,35 +2,47 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import NavBar from '../../components/NavBar';
-import AdminNavBar from '../../components/AdminNavBar';
 import "../Users/ViewUser.css";
 import axios from 'axios';
 
 const ViewUser = () => {
+    const [searchInput, setSearchInput] = useState('');
 
     const [data, setData] = useState([]);
+
+    const [userList, setUserList] = useState([]);
 
     let { storeUserID } = '';
 
     useEffect(() => {
-        axios.get("http://localhost:3001/user")
-        .then((response) => {
+        axios.get("http://localhost:3001/user").then((response) => {
+
             console.log(response);
             setData(response.data);
+            
         })
         .catch((error) => {
             console.log(error);
         })
     }, []);
 
-    const deleteUser = (id) => {
+    const deleteUser = (UserID) => {
+        const newUser = [...userList];
+        const index = userList.findIndex((User) => User.UserID === UserID);
+        newUser.splice(index, 1);
+        setUserList(newUser);
+
         if (
             window.confirm("Are you sure you want to delete this user?")
         ) {
             axios.post("http://localhost:3001/userDelete", {
-                UserID: parseInt(storeUserID)
+                UserID: UserID,
+                adminUserID: parseInt(storeUserID)
             }).then(() => {
                 console.log("Successfully Deleted.");
+            })
+            .catch(() => {
+                console.log("Failed to delete.");
             });
         }
     };
@@ -38,10 +50,10 @@ const ViewUser = () => {
     return (
         <div className="App">
             <NavBar />
-            <AdminNavBar />
             <Link to="/AdminPanel">
                 <button className="btn backButton">Go Back to Admin Panel</button>
             </Link>
+            <input type="search" placeholder="Search..." onChange={event => {setSearchInput(event.target.value)}}/>
             <table className="User-Table">
                 <thead>
                     <tr>
@@ -56,7 +68,15 @@ const ViewUser = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {data.map((User, key) => {
+                    {data.filter((User) => {
+                        if (searchInput == "") {
+                            return User
+                        } else if (User.Name.toLowerCase().includes(searchInput.toLowerCase())) {
+                            return User
+                        } else if (User.Email.toLowerCase().includes(searchInput.toLowerCase())) {
+                            return User
+                        }
+                    }).map((User, key) => {
                         storeUserID = User.UserID;
                         return (
                             <tr key={key}>

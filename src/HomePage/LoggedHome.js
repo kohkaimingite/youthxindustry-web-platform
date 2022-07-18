@@ -117,19 +117,7 @@ function Home() {
 
             <div className="App">
 
-                <AdminNavBar />
-
-                <AboutmeSet />
-
-                <OppoPageSet />
-
-                <ContactPageSet />
-
-                <LoginPageSet />
-
-                <RegisterSet />
-
-                <AdminNavBar />
+                <AdminPanel />
 
             </div>
 

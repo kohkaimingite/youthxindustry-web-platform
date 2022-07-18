@@ -6,18 +6,6 @@ import AdminNavBar from '../../components/AdminNavBar';
 import "../Opportunities/EditOppo.css";
 import axios from 'axios';
 
-// const initialState = {
-//     Email: "",
-//     Name: "",
-//     Description: "",
-//     Location: "",
-//     Address: "",
-//     Type: "",
-//     Qualification: "",
-//     Pay: 0
-// }
-
-
 const EditOppo = () => {
     const initialState = { name: "", description: "", location: "", address: "", type: "", qualification: "", pay: "", oppID: "" };
     const [formValues, setFormValues] = useState(initialState);
@@ -30,41 +18,6 @@ const EditOppo = () => {
         setFormValues({...formValues, [name]: value});
         console.log(formValues);
     }
-    
-    // const handleName= (e) => {
-    //     const {name, value} = e.target;
-    //     setFormValues({...formValues, [name]: value})
-    // }
-
-    // const handleDescription= (e) => {
-    //     const {description, value} = e.target;
-    //     setFormValues({...formValues, [description]: value})
-    // }
-
-    // const handleLocation = (e) => {
-    //     const {location, value} = e.target;
-    //     setFormValues({...formValues, [location]: value})
-    // }
-
-    // const handleAddress= (e) => {
-    //     const {address, value} = e.target;
-    //     setFormValues({...formValues, [address]: value})
-    // }
-
-    // const handleType= (e) => {
-    //     const {type, value} = e.target;
-    //     setFormValues({...formValues, [type]: value})
-    // }
-
-    // const handleQualification= (e) => {
-    //     const {qualification, value} = e.target;
-    //     setFormValues({...formValues, [qualification]: value})
-    // }
-
-    // const handlePay = (e) => {
-    //     const {pay, value} = e.target;
-    //     setFormValues({...formValues, [pay]: value})
-    // }
     
     const submitFormData = (e) => {
         e.preventDefault();
