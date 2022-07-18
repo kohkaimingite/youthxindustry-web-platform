@@ -127,7 +127,7 @@ app.get("/logout", function (req, res) {
 //================================================================================
 
 app.get('/user', (req, res) => {
-    db.query("SELECT * from users INNER JOIN roles ON roles.RoleID = users.RoleID WHERE users.RoleID = 1",
+    db.query("SELECT * from users INNER JOIN roles ON roles.RoleID = users.RoleID WHERE users.RoleID = 1 AND users.Confirmed = 1",
     (err, result) => {
         if (err) {
             console.log(err);
@@ -229,7 +229,7 @@ app.post('/oppoDelete', (req, res) => {
 })
 
 app.get('/partner', (req, res) => {
-    db.query("SELECT * from users INNER JOIN roles ON roles.RoleID = users.RoleID WHERE users.RoleID = 2",
+    db.query("SELECT * from users INNER JOIN roles ON roles.RoleID = users.RoleID WHERE users.RoleID = 2 AND users.Confirmed = 1",
     (err, result) => {
         if (err) {
             console.log(err);
