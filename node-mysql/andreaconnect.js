@@ -68,9 +68,38 @@ app.get('/getCurrentUserRole', function (req, res) {
     )
 })
 
+app.post('/getOppoStatus', function (req, res) {
+    const active = req.body.active;
+    db.query("SELECT opportunities.OppID, opportunities.Name, opportunities.Description, opportunities.Location, opportunities.Address, opportunities.Type, opportunities.Qualification, opportunities.Pay FROM application INNER JOIN opportunities ON opportunities.OppID = application.OppID WHERE UserID = ? AND Status = ?;",
+        [req.session.user[0].UserID,active],
+
+        (err, result) => {
+            if (err) {
+                console.log(err)
+                res.send(result);
+            } else {
+                res.send(result);
+            }
+        }
+    )
+})
+
 app.get('/getUserOppoType', function (req, res) {
     db.query("SELECT opportunities.Type, COUNT(*) FROM users_have_opp INNER JOIN opportunities ON users_have_opp.OppID = opportunities.OppID WHERE users_have_opp.UserID = ? GROUP by opportunities.Type ORDER BY COUNT(*) DESC;;",
         [req.session.user[0].UserID],
+
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send(result);
+            }
+        }
+    )
+})
+app.get('/getOppoStatusCount', function (req, res) {
+    db.query("SELECT COUNT(*) AS Count FROM application WHERE UserID=? AND Status = 'Success' UNION ALL SELECT COUNT(*) AS Count FROM application WHERE UserID = ? AND Status = 'Pending' UNION ALL SELECT COUNT(*) AS Count FROM application WHERE UserID = ? AND Status = 'Rejected';",
+        [req.session.user[0].UserID,req.session.user[0].UserID,req.session.user[0].UserID],
 
         (err, result) => {
             if (err) {

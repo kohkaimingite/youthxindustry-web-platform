@@ -32,6 +32,8 @@ import RegisterUser from './Register/RegisterUser';
 import EditUserBio from './Manage/EditUserBio';
 import MyApplication from './Manage/MyApplication'; 
 import LoggedOppoPage from './OppoPage/LoggedOppoPage';
+import ViewOppoStatus from './OppoPage/ViewOppoStatus';
+
 
 import AdminPanel from './AdminPanel/AdminPanel';
 import ViewUser from './AdminPanel/Users/ViewUser';
@@ -196,7 +198,7 @@ function App() {
                     <Route path='/EditUserBio' element={<EditUserBio />} />
                     <Route path='/MyApplications' element={< MyApplication />} />
                     <Route path='/EditUserNumber' element={<EditUserNumber />} />
-                    
+                    <Route path='/Status' element={<ViewOppoStatus />} />
 
                     <Route path='/ReviewSuccess' element={<ReviewSuccess />} />
                     <Route path='/ReviewNoSuccess' element={<ReviewNoSuccess />} />

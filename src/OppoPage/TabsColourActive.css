@@ -1,0 +1,36 @@
+﻿.Success {
+    width: 33.3%;
+    background-color: #5df74f;
+    
+    outline: none
+}
+
+.Pending {
+    width: 33.3%;
+    background-color: #f7bc4f;
+    
+}
+
+.Rejected {
+    width: 33.3%;
+    background-color: #e33b3b;
+    
+}
+.SuccessActive {
+    width: 33.3%;
+    background-color: #5df74f;
+    opacity: 0.5;
+    outline: none
+}
+
+.PendingActive {
+    width: 33.3%;
+    background-color: #f7bc4f;
+    opacity: 0.5;
+}
+
+.RejectedActive {
+    width: 33.3%;
+    background-color: #e33b3b;
+    opacity: 0.5;
+}
