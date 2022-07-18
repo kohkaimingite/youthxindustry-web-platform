@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from "react";
 import { Route, Link } from 'react-router-dom';
 import NavBar from '../../components/NavBar';
-import AdminNavBar from '../../components/AdminNavBar';
 import "../Opportunities/EditOppo.css";
 import axios from 'axios';
 
@@ -82,7 +81,6 @@ const EditOppo = () => {
     return (
         <div className="App">
             <NavBar />
-            <AdminNavBar />
             {Object.keys(formErrors).length === 0 && isSubmit ? (<div className="ui-message-success">Signed in successfully</div>
             ) : (
                 <pre>{JSON.stringify(formValues, undefined, 2)}</pre>
