@@ -1,0 +1,68 @@
+﻿.Success {
+    
+    width: 33.3%;
+    background-color: #5df74f;
+    
+    outline: none
+}
+
+.Pending {
+    width: 33.3%;
+    background-color: #f7bc4f;
+    
+}
+
+.Rejected {
+    width: 33.3%;
+    background-color: #e33b3b;
+    
+}
+.SuccessActive {
+    width: 33.3%;
+    background-color: #5df74f;
+    opacity: 0.5;
+    outline: none
+}
+
+.PendingActive {
+    width: 33.3%;
+    background-color: #f7bc4f;
+    opacity: 0.5;
+}
+
+.RejectedActive {
+    width: 33.3%;
+    background-color: #e33b3b;
+    opacity: 0.5;
+}
+.testboi {
+    border-bottom: 50px solid #555;
+    border-left: 25px solid transparent;
+    border-right: 25px solid transparent;
+    height: 0;
+    width: 125px;
+}
+.LOL {
+    border-bottom: 50px solid #555;
+    border-left: 25px solid transparent;
+    border-right: 25px solid transparent;
+    height: 0;
+    width: 125px;
+}
+.LOLActive {
+    border-bottom: 50px solid #555;
+    border-left: 25px solid transparent;
+    border-right: 25px solid transparent;
+    height: 0;
+    width: 125px;
+    opacity:0.5;
+}
+.Successtesing {
+    height: 0;
+    width: 33.3%;
+    background-color: #5df74f;
+    border-bottom: 50px solid;
+    border-left: 25px solid transparent;
+    border-right: 25px solid transparent;
+    border-color: #5df74f;
+}

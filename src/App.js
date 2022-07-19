@@ -32,6 +32,8 @@ import RegisterUser from './Register/RegisterUser';
 import EditUserBio from './Manage/EditUserBio';
 import MyApplication from './Manage/MyApplication'; 
 import LoggedOppoPage from './OppoPage/LoggedOppoPage';
+import ViewOppoStatus from './OppoPage/ViewOppoStatus';
+
 
 import AdminPanel from './AdminPanel/AdminPanel';
 import ViewUser from './AdminPanel/Users/ViewUser';
@@ -39,6 +41,7 @@ import EditUser from './AdminPanel/Users/EditUser';
 import ViewOppo from './AdminPanel/Opportunities/ViewOppo';
 import EditOppo from './AdminPanel/Opportunities/EditOppo';
 import ViewPartner from './AdminPanel/Partners/ViewPartner';
+import EditPartner from './AdminPanel/Partners/EditPartner';
 import ConfirmPartner from './AdminPanel/Partners/ConfirmPartner';
 import ProfilePage from './Manage/UserProfile';
 import CompanyPage from './Manage/CompanyProfile';
@@ -179,6 +182,7 @@ function App() {
                 <Route path='/ViewOppo' element={<ViewOppo />} />
                 <Route path='/EditOppo' element={<EditOppo />} />
                 <Route path='/ViewPartner' element={<ViewPartner />} />
+                <Route path='/EditPartner' element={<EditPartner />} />
                 <Route path='/ConfirmPartner' element={<ConfirmPartner />} />
 
 
@@ -196,7 +200,7 @@ function App() {
                     <Route path='/EditUserBio' element={<EditUserBio />} />
                     <Route path='/MyApplications' element={< MyApplication />} />
                     <Route path='/EditUserNumber' element={<EditUserNumber />} />
-                    
+                    <Route path='/Status' element={<ViewOppoStatus />} />
 
                     <Route path='/ReviewSuccess' element={<ReviewSuccess />} />
                     <Route path='/ReviewNoSuccess' element={<ReviewNoSuccess />} />

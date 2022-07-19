@@ -107,7 +107,82 @@ ul li {
     transition-duration: 0.4s;
     cursor: pointer;
 }
+.viewStatusTabs {
+    width: 79%;
+    margin-right: 2%;
+    margin-left: auto;
+    outline: none;
+    border-color: #04AA6D;
+}
+    .viewStatusTabs #success {
+        width: 33.3%;
+        background-color: #5df74f;
+        outline: none;
+        border-color: #04AA6D;
+    }
+        .viewStatusTabs #success:hover {
+            width: 33.3%;
+            background-color: #5df74f;
+            opacity: 0.5;
+            outline: none
+        }
+        .viewStatusTabs #success:active {
+            width: 33.3%;
+            background-color: #5df74f;
+            opacity: 0.2;
+            outline: none
+        }
+    .viewStatusTabs #pending {
+        width: 33.3%;
+        background-color: #f7bc4f;
+    }
 
+        .viewStatusTabs #pending:hover {
+            width: 33.3%;
+            background-color: #f7bc4f;
+            opacity: 0.5;
+            
+        }
+
+        .viewStatusTabs #pending:active {
+            width: 33.3%;
+            background-color: #f7bc4f;
+            opacity: 0.2;
+        }
+
+    .viewStatusTabs #rejected {
+        width: 33.3%;
+        background-color: #e33b3b;
+    }
+
+        .viewStatusTabs #rejected:hover {
+            width: 33.3%;
+            background-color: #e33b3b;
+            opacity: 0.5;
+        }
+
+        .viewStatusTabs #rejected:active {
+            width: 33.3%;
+            background-color: #e33b3b;
+            opacity: 0.2;
+        }
+
+.successs {
+    width: 33.3%;
+    background-color: #5df74f;
+    opacity: 0.2;
+    outline: none
+}
+.pendings {
+    width: 33.3%;
+    background-color: #f7bc4f;
+    opacity: 0.2;
+}
+.rejecteds {
+    width: 33.3%;
+    background-color: #e33b3b;
+    opacity: 0.2;
+}
 @import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
 .oppoTable {
     width: 79%;

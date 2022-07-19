@@ -2,35 +2,47 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import NavBar from '../../components/NavBar';
-import AdminNavBar from '../../components/AdminNavBar';
 import "../Partners/ViewPartner.css";
 import axios from 'axios';
 
 const ViewPartner = () => {
+    const [searchInput, setSearchInput] = useState('');
 
     const [data, setData] = useState([]);
+
+    const [partnerList, setPartnerList] = useState([]);
 
     let { storeUserID } = '';
 
     useEffect(() => {
-        axios.get("http://localhost:3001/partner")
-        .then((response) => {
+        axios.get("http://localhost:3001/partner").then((response) => {
+
             console.log(response);
             setData(response.data);
+
         })
         .catch((error) => {
             console.log(error);
         })
     }, []);
 
-    const deleteUser = (id) => {
+    const deletePartner = (UserID) => {
+        const newPartner = [...partnerList];
+        const index = partnerList.findIndex((User) => User.UserID === UserID);
+        newPartner.splice(index, 1);
+        setPartnerList(newPartner);
+
         if (
-            window.confirm("Are you sure you want to delete this user?")
+            window.confirm("Are you sure you want to delete this partner?")
         ) {
-            axios.post("http://localhost:3001/userDelete", {
-                UserID: parseInt(storeUserID)
+            axios.post("http://localhost:3001/partnerDelete", {
+                UserID: UserID,
+                adminUserID: parseInt(storeUserID)
             }).then(() => {
                 console.log("Successfully Deleted.");
+            })
+            .catch(() => {
+                console.log("Failed to delete.");
             });
         }
     };
@@ -38,10 +50,10 @@ const ViewPartner = () => {
     return (
         <div className="App">
             <NavBar />
-            <AdminNavBar />
             <Link to="/AdminPanel">
                 <button className="btn backButton">Go Back to Admin Panel</button>
             </Link>
+            <input type="search" placeholder="Search..." onChange={event => {setSearchInput(event.target.value)}}/>
             <table className="User-Table">
                 <thead>
                     <tr>
@@ -54,7 +66,15 @@ const ViewPartner = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {data.map((User, key) => {
+                    {data.filter((User) => {
+                        if (searchInput == "") {
+                            return User
+                        } else if (User.Name.toLowerCase().includes(searchInput.toLowerCase())) {
+                            return User
+                        } else if (User.Email.toLowerCase().includes(searchInput.toLowerCase())) {
+                            return User
+                        }
+                    }).map((User, key) => {
                         storeUserID = User.UserID;
                         return (
                             <tr key={key}>
@@ -64,11 +84,11 @@ const ViewPartner = () => {
                                 <td> {User.UserBio} </td>
                                 <td> {User.ContactNumber} </td>
                                 <td>
-                                    <Link to="/EditUser">
+                                    <Link to="/EditPartner">
                                         <button className="btn editButton">Edit</button>
                                     </Link>
 
-                                    <button className="btn deleteButton" onClick={() => deleteUser(User.UserID)}>
+                                    <button className="btn deleteButton" onClick={() => deletePartner(User.UserID)}>
                                         Delete
                                     </button>
                                 </td>

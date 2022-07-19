@@ -9,24 +9,18 @@ import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Collapsible from '../components/Collapsible';
 import axios from 'axios';
-import LoggedDatatable from './LoggedDatatable';
+import StatusDatatable from './StatusDatatable';
+import TabsColourActive from './TabsColourActive.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUpLong } from "@fortawesome/free-solid-svg-icons";
 require('es6-promise').polyfill();
 require('isomorphic-fetch');
 
 
-function LoggedOppoPage() {
-    const [inputText, setInputText] = useState("");
-    let inputHandler = (e) => {
-        //convert input text to lower case
-        var lowerCase = e.target.value.toLowerCase();
-        setInputText(lowerCase);
-    };
-    const [data, setData] = useState([]);
-    const [OppoList, setOppoList] = useState([]);
+function ViewOppoStatus() {
+    
+    const [OppoStatusList, setOppoStatusList] = useState([]);
     const [q, setQ] = useState(""); 
-    const [topType, setTopType] = useState("");
 
     //jobscope
     const [IT, setIT] = useState("");
@@ -36,18 +30,27 @@ function LoggedOppoPage() {
 
     
     //location
-    const [Central, setCentral] = useState("")
+    const [Central, setCentral] = useState("");
     const [North, setNorth] = useState("");
     const [South, setSouth] = useState("");
     const [East, setEast] = useState("");
-    const [West, setWest] = useState("")
+    const [West, setWest] = useState("");
 
     //button to scrol up
     const [showScrollBtn, setShowScrollBtn] = useState("");
     
+    //set current status
+    const [successCount, setSuccessCount] = useState(0);
+    const [pendingCount, setPendingCount] = useState(0);
+    const [rejectedCount, setRejectedCount] = useState(0);
     
-    const columns = data[0] && Object.keys(data[0]);
-    const [t, setT] = useState("");
+    const [active, setActive] = useState("Success");
+    const tabs = [
+        { name: "Success", count: successCount },
+        { name: "Pending", count: pendingCount },
+        { name: "Rejected", count: rejectedCount },
+    ]
+
     const [searchColumns, setSearchColumns] = useState([
         'Name'
     ]);
@@ -68,37 +71,25 @@ function LoggedOppoPage() {
         return rows.filter((row) => row.Type.toLowerCase().indexOf(q.toLowerCase())>-1
         );
     }
+   
     useEffect(() => {
-        axios.get("http://localhost:3001/getUserOppoType").then((response) => {
-            setTopType(response.data[0].Type)
-            
+        axios.post("http://localhost:3001/getOppoStatus", { active: active }).then((response) => {
+
+            console.log(response);
+            setOppoStatusList(response.data);
         });
 
     });
     useEffect(() => {
-        if (topType !== null) {
+        axios.get("http://localhost:3001/getOppoStatusCount").then((response) => {
 
-            axios.post("http://localhost:3001/topOppo", { topType: topType }).then((response) => {
+            console.log(response);
+            setSuccessCount(response.data[0].Count);
+            setPendingCount(response.data[1].Count);
+            setRejectedCount(response.data[2].Count);
+        });
 
-                console.log(response);
-                setOppoList(response.data);
-            });
-            
-
-
-
-
-
-        } else {
-            axios.get("http://localhost:3001/Oppo").then((response) => {
-
-                console.log(response);
-                setOppoList(response.data);
-                
-            });
-        }
-
-    });
+    }); 
     
     useEffect(() => {
         window.addEventListener('scroll', scrollAppear );
@@ -436,7 +427,21 @@ function LoggedOppoPage() {
 
                 </div>
                 
-                <LoggedDatatable data={filterAll(OppoList)} />
+                <div class="viewStatusTabs">
+                    {tabs.map((name, index) => {
+                        return (
+                            <input
+                                type="button"
+                                className={active === name.name ? name.name+"Active" : name.name}
+                                value={name.name+"("+name.count+")"}
+                                onClick={() => setActive(name.name)}
+                                key={name.name}
+                            />
+                        );
+                    })}
+                </div>
+                
+                <StatusDatatable data={filterAll(OppoStatusList)} />
                 <button id="scrollUp" class="scrollToTop" onClick={scrollToTop} style={{ opacity: showScrollBtn ? 100 : 0 }}><FontAwesomeIcon icon={faArrowUpLong} class="arrowUp" /></button>
             </div>
             
@@ -452,4 +457,4 @@ function LoggedOppoPage() {
                 //opacity: showScrollBtn ? 100 : 0 
 //<Datatable data={search(OppoList)} />
 //<Datatable data={typeBox(search(OppoList))} />
-export default LoggedOppoPage;
+export default ViewOppoStatus;

@@ -127,7 +127,7 @@ app.get("/logout", function (req, res) {
 //================================================================================
 
 app.get('/user', (req, res) => {
-    db.query("SELECT * from users INNER JOIN roles ON roles.RoleID = users.RoleID WHERE users.RoleID = 1",
+    db.query("SELECT * from users INNER JOIN roles ON roles.RoleID = users.RoleID WHERE users.RoleID = 1 AND users.Confirmed = 1",
     (err, result) => {
         if (err) {
             console.log(err);
@@ -138,15 +138,15 @@ app.get('/user', (req, res) => {
 });
 
 app.post('/userEdit', (req, res) => {
-    const UserID = req.body.UserID;
     const RoleID = req.body.RoleID;
-    const Name = req.body.Name;
-    const Password = req.body.Password;
-    const Email = req.body.Email;
-    const Age = req.body.Age;
-    const Gender = req.body.Gender;
-    const UserBio = req.body.UserBio;
-    const MobileNumber = req.body.MobileNumber;
+    const Name = req.body.name;
+    const Password = req.body.password;
+    const Email = req.body.email;
+    const Age = req.body.age;
+    const Gender = req.body.gender;
+    const UserBio = req.body.userBio;
+    const MobileNumber = req.body.mobileNumber;
+    const UserID = req.body.UserID;
     db.query("UPDATE users SET RoleID = ?, Name = ?, Password = ?, Email = ?, Age = ?, Gender = ?, UserBio = ?, ContactNumber = ? WHERE UserID = ?",
         [RoleID, Name, Password, Email, Age, Gender, UserBio, MobileNumber, UserID],
         (err, result) => {
@@ -229,7 +229,7 @@ app.post('/oppoDelete', (req, res) => {
 })
 
 app.get('/partner', (req, res) => {
-    db.query("SELECT * from users INNER JOIN roles ON roles.RoleID = users.RoleID WHERE users.RoleID = 2",
+    db.query("SELECT * from users INNER JOIN roles ON roles.RoleID = users.RoleID WHERE users.RoleID = 2 AND users.Confirmed = 1",
     (err, result) => {
         if (err) {
             console.log(err);
@@ -239,13 +239,39 @@ app.get('/partner', (req, res) => {
     });
 });
 
+app.get('/partnerConfirm', (req, res) => {
+    db.query("SELECT * from users INNER JOIN roles ON roles.RoleID = users.RoleID WHERE users.RoleID = 2 AND users.Confirmed = 0",
+    (err, result) => {
+        if (err) {
+            console.log(err);
+        } else {
+            res.send(result);
+        };
+    });
+});
+
+app.get('/confirmRegistration', (req, res) => {
+    const UserID = req.body.UserID;
+    db.query("UPDATE users SET Confirmed = 1 WHERE UserID = ?",
+    [UserID],
+    (err, result) => {
+        if (err) {
+            res.status(500).send({
+                message: err.message || "Some error occurred while retrieving user."
+            });
+        } else {
+            res.send("Updated Partner Registration.");
+        };
+    });
+});
+
 app.post('/partnerEdit', (req, res) => {
     const RoleID = req.body.RoleID;
-    const Name = req.body.Name;
-    const Password = req.body.Password;
-    const Email = req.body.Email;
-    const UserBio = req.body.UserBio;
-    const MobileNumber = req.body.MobileNumber;
+    const Name = req.body.name;
+    const Password = req.body.password;
+    const Email = req.body.email;
+    const UserBio = req.body.userBio;
+    const MobileNumber = req.body.mobileNumber;
     const UserID = req.body.UserID;
     db.query("UPDATE users SET RoleID = ?, Name = ?, Password = ?, Email = ?, UserBio = ?, ContactNumber = ? WHERE UserID = ?",
         [RoleID, Name, Password, Email, UserBio, MobileNumber, UserID],

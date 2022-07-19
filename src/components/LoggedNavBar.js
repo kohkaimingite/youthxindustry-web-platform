@@ -16,6 +16,7 @@ const LoggedNavBar = () => {
                 <a href="/AboutUs">About Us</a>
                 <a href="/Opportunities">Opportunities</a>
                 <a href="/Favourites">Favourites</a>
+                <a href="/Status">Status</a>
                 <a href="/AddReview">Add Review</a>
                 <a href="/ContactUs">Contact Us</a>
 

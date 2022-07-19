@@ -7,7 +7,7 @@ const NavBar  = () => {
         return (
             <header class='header' style={test}>
                 <h1 style={brandName}>CYC</h1>
-                <div style={{ marginRight: "180px"}} class="containerNavBar borderYtoX">
+                <div class="containerNavBar borderYtoX">
                     <a href="/Login">Login</a>
                     <a href="/RegisterUser">Register User</a>
                     <a href="/RegisterPartner">Register Partner</a>
