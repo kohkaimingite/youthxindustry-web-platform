@@ -239,6 +239,32 @@ app.get('/partner', (req, res) => {
     });
 });
 
+app.get('/partnerConfirm', (req, res) => {
+    db.query("SELECT * from users INNER JOIN roles ON roles.RoleID = users.RoleID WHERE users.RoleID = 2 AND users.Confirmed = 0",
+    (err, result) => {
+        if (err) {
+            console.log(err);
+        } else {
+            res.send(result);
+        };
+    });
+});
+
+app.get('/confirmRegistration', (req, res) => {
+    const UserID = req.body.UserID;
+    db.query("UPDATE users SET Confirmed = 1 WHERE UserID = ?",
+    [UserID],
+    (err, result) => {
+        if (err) {
+            res.status(500).send({
+                message: err.message || "Some error occurred while retrieving user."
+            });
+        } else {
+            res.send("Updated Partner Registration.");
+        };
+    });
+});
+
 app.post('/partnerEdit', (req, res) => {
     const RoleID = req.body.RoleID;
     const Name = req.body.name;

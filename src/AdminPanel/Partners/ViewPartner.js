@@ -33,7 +33,7 @@ const ViewPartner = () => {
         setPartnerList(newPartner);
 
         if (
-            window.confirm("Are you sure you want to delete this user?")
+            window.confirm("Are you sure you want to delete this partner?")
         ) {
             axios.post("http://localhost:3001/partnerDelete", {
                 UserID: UserID,
