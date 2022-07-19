@@ -276,9 +276,8 @@ app.post("/registerPartner", (req, res) => {
     const name = req.body.name;
     const password = req.body.password;
     const email = req.body.email;
-
     db.query(
-        "INSERT INTO users (RoleID, Name, Password, Email, DateCreated) VALUES (2, ?, ?, ?, curdate());",
+        "INSERT INTO users (RoleID, Name, Password, Email, DateCreated, Confirmed) VALUES (2, ?, ?, ?, curdate(), 0);",
         [name, password, email],
         (err, result) => {
             if (err) {

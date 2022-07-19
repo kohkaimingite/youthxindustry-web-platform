@@ -2,15 +2,15 @@
 import React, { useState, useEffect } from "react";
 import { Route, Link } from 'react-router-dom';
 import NavBar from '../../components/NavBar';
-import "../Users/EditUser.css";
+import "../Partners/EditPartner.css";
 import axios from 'axios';
 
-const EditUser = () => {
-    const initialState = { roleID: "", name: "", password: "", email: "", age: "", gender: "", userBio: "", mobileNumber: "", userID: "" };
+const EditPartner = () => {
+    const initialState = { roleID: "", name: "", password: "", email: "", userBio: "", mobileNumber: "", userID: "" };
     const [formValues, setFormValues] = useState(initialState);
     const [formErrors, setFormErrors] = useState({});
     const [isSubmit, setIsSubmit] = useState(false);
-    const {roleID, name, password, email, age, gender, userBio, mobileNumber, userID} = formValues;
+    const {roleID, name, password, email, userBio, mobileNumber, userID} = formValues;
 
     const handleChange = (e) => {
         const {name, value} = e.target;
@@ -23,20 +23,18 @@ const EditUser = () => {
         setFormErrors(validate(formValues));
         setIsSubmit(true);
         {
-            axios.post("http://localhost:3001/userEdit", {
+            axios.post("http://localhost:3001/partnerEdit", {
                 UserID: userID,
                 RoleID: roleID,
                 name: name,
                 password: password,
                 email: email,
-                age: age,
-                gender: gender,
                 userBio: userBio,
                 mobileNumber: mobileNumber,
             })
                 .then((response) => {
                     console.log(response);
-                    setFormValues({ roleID: "", name: "", password: "", email: "", age: "", gender: "", userBio: "", mobileNumber: "", userID: "" })
+                    setFormValues({ roleID: "", name: "", password: "", email: "", userBio: "", mobileNumber: "", userID: "" })
                     console.log("Successfully updated");
                 })
                 .catch(() => {
@@ -68,10 +66,6 @@ const EditUser = () => {
             errors.email = "Email required!";
         } else if(!emailRegex.test(values.email)) {
             errors.email = "This is not a valid email format!";
-        } else if (!values.age) {
-            errors.age = "Age required!";
-        } else if (!values.gender) {
-            errors.gender = "Gender required!";
         } else if (!values.userBio) {
             errors.userBio = "User Biography required!";
         } else if (!values.mobileNumber) {
@@ -114,14 +108,6 @@ const EditUser = () => {
                 <input type="adminInput" name="email" placeholder="Your Email ..." value={formValues.email} onChange={handleChange}></input>
                 <p className="adminErrorMsg">{formErrors.email}</p>
 
-                <label>Age</label>
-                <input type="adminInput" name="age" placeholder="Your Age ..." value={formValues.age} onChange={handleChange}></input>
-                <p className="adminErrorMsg">{formErrors.age}</p>
-
-                <label>Gender</label>
-                <input type="adminInput" name="gender" placeholder="Your Gender ..." value={formValues.gender} onChange={handleChange}></input>
-                <p className="adminErrorMsg">{formErrors.gender}</p>
-
                 <label>UserBio</label>
                 <input type="adminInput" name="userBio" placeholder="Your User Biography ..." value={formValues.userBio} onChange={handleChange}></input>
                 <p className="adminErrorMsg">{formErrors.userBio}</p>
@@ -132,11 +118,11 @@ const EditUser = () => {
 
                 <button className="btn submitButton">Submit</button>
                 <Link to="/ViewUser">
-                    <button className="btn backButton">Go Back to View All Users</button>
+                    <button className="btn backButton">Go Back to View All Partners</button>
                 </Link>
             </form>
         </div>
     )
 }
 
-export default EditUser;
+export default EditPartner;

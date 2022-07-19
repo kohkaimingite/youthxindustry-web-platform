@@ -33,7 +33,7 @@ const ViewPartner = () => {
         setPartnerList(newPartner);
 
         if (
-            window.confirm("Are you sure you want to delete this user?")
+            window.confirm("Are you sure you want to delete this partner?")
         ) {
             axios.post("http://localhost:3001/partnerDelete", {
                 UserID: UserID,
@@ -84,7 +84,7 @@ const ViewPartner = () => {
                                 <td> {User.UserBio} </td>
                                 <td> {User.ContactNumber} </td>
                                 <td>
-                                    <Link to="/EditUser">
+                                    <Link to="/EditPartner">
                                         <button className="btn editButton">Edit</button>
                                     </Link>
 
