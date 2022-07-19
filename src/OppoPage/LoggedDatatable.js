@@ -110,7 +110,7 @@ export default function LoggedDatatable({ data }) {
                 <th>Job Code</th>
                 <th>Job Name</th>
                 <th>Description</th>
-                <th>Location</th>
+                <th>Region</th>
                 <th>Address</th>
                 <th>Job Categories</th>
                 <th>Diploma</th>

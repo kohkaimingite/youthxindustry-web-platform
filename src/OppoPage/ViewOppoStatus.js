@@ -410,7 +410,7 @@ function ViewOppoStatus() {
 
 
 
-                            <h4>Location</h4>
+                            <h4>Region</h4>
 
                             <input type="checkbox" id="North" name="North" value="North" onChange={(e) => changeState(e.target.checked, "North")} /> North<br />
                             <input type="checkbox" id="South" name="South" value="South" onChange={(e) => changeState(e.target.checked, "South")} /> South<br />
@@ -440,6 +440,7 @@ function ViewOppoStatus() {
                         );
                     })}
                 </div>
+                
                 <StatusDatatable data={filterAll(OppoStatusList)} />
                 <button id="scrollUp" class="scrollToTop" onClick={scrollToTop} style={{ opacity: showScrollBtn ? 100 : 0 }}><FontAwesomeIcon icon={faArrowUpLong} class="arrowUp" /></button>
             </div>
