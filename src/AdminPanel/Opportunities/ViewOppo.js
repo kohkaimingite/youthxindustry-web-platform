@@ -60,7 +60,7 @@ const ViewOppo = () => {
                         <th style={{textAlign: "center"}}> Job Code </th>
                         <th style={{textAlign: "center"}}> Job Name </th>
                         <th style={{textAlign: "center"}}> Description </th>
-                        <th style={{textAlign: "center"}}> Location </th>
+                        <th style={{textAlign: "center"}}> Area </th>
                         <th style={{textAlign: "center"}}> Address </th>
                         <th style={{textAlign: "center"}}> Category(-ies) </th>
                         <th style={{textAlign: "center"}}> Qualification </th>
