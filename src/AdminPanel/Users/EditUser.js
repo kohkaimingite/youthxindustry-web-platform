@@ -6,11 +6,11 @@ import "../Users/EditUser.css";
 import axios from 'axios';
 
 const EditUser = () => {
-    const initialState = { roleID: "", name: "", password: "", email: "", age: "", gender: "", userBio: "", mobileNumber: "", userID: "" };
+    const initialState = { roleID: "", name: "", password: "", email: "", age: "", gender: "", userBio: "", contactNumber: "", userID: "" };
     const [formValues, setFormValues] = useState(initialState);
     const [formErrors, setFormErrors] = useState({});
     const [isSubmit, setIsSubmit] = useState(false);
-    const {roleID, name, password, email, age, gender, userBio, mobileNumber, userID} = formValues;
+    const {roleID, name, password, email, age, gender, userBio, contactNumber, userID} = formValues;
 
     const handleChange = (e) => {
         const {name, value} = e.target;
@@ -32,11 +32,11 @@ const EditUser = () => {
                 age: age,
                 gender: gender,
                 userBio: userBio,
-                mobileNumber: mobileNumber,
+                contactNumber: contactNumber,
             })
                 .then((response) => {
                     console.log(response);
-                    setFormValues({ roleID: "", name: "", password: "", email: "", age: "", gender: "", userBio: "", mobileNumber: "", userID: "" })
+                    setFormValues({ roleID: "", name: "", password: "", email: "", age: "", gender: "", userBio: "", contactNumber: "", userID: "" })
                     console.log("Successfully updated");
                 })
                 .catch(() => {
@@ -56,26 +56,53 @@ const EditUser = () => {
         const errors = {}
         const pwRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+        const pnumRegex = /[6|8|9]\d{7}/;
+        if (!values.userID) {
+            errors.userID = "UserID is required";
+        }
+        if (!values.roleID) {
+            errors.roleID = "RoleID is required";
+        } else if (values.roleID != 1|2|3) {
+            errors.roleID = "Only allow 1 (User), 2 (Partner), or 3 (Admin)";
+        }
         if (!values.name) {
-            errors.name = "Name required!";
+            errors.name = "Name is required";
+        } else if (values.name.length > 50) {
+            errors.name = "Name cannot exceed 50 characters";
         }
         if (!values.password) {
-            errors.password = "Password required!";
-        } else if(!pwRegex.test(values.password)) {
+            errors.password = "Password is required";
+        } else if (!pwRegex.test(values.password)) {
             errors.password = "Password has to be at least 8 characters, at least 1 letter, and 1 number";
+        } else if (values.password > 50) {
+            errors.password = "Password cannot exceed 50 characters";
         }
         if (!values.email) {
-            errors.email = "Email required!";
-        } else if(!emailRegex.test(values.email)) {
-            errors.email = "This is not a valid email format!";
-        } else if (!values.age) {
-            errors.age = "Age required!";
-        } else if (!values.gender) {
-            errors.gender = "Gender required!";
-        } else if (!values.userBio) {
-            errors.userBio = "User Biography required!";
-        } else if (!values.mobileNumber) {
-            errors.mobileNumber = "Contact Number required!";
+            errors.email = "Email is required";
+        } else if (!emailRegex.test(values.email)) {
+            errors.email = "Email must be a valid email address";
+        } else if (values.email.length > 50) {
+            errors.email = "Email cannot exceed 50 characters";
+        }
+        if (!values.age) {
+            errors.age = "Age is required";
+        } else if (values.age > 100) {
+            errors.age = "Maximum age is 100";
+        }
+        if (!values.gender) {
+            errors.gender = "Gender is required";
+        } else if (values.gender.length > 1) {
+            errors.gender = "Gender only accepts 'M' and 'F' characters";
+        }
+        if (values.userBio.length > 255) {
+            errors.userBio = "Biography cannot exceed 255 characters";
+        }
+        if (!values.contactNumber) {
+            errors.contactNumber = "Contact number is required";
+        } else if (!pnumRegex.test(values.contactNumber)) {
+            errors.contactNumber = "Contact number must be a valid number";
+        } else if (values.contactNumber > 8) {
+            errors.contactNumber = "Contact number cannot exceed 8 characters";
         }
 
         return errors;
@@ -97,10 +124,12 @@ const EditUser = () => {
                 alignContent: "center"
             }}>
                 <label>UserID</label>
-                <input type="adminInput" name="userID" placeholder="UserID" value={formValues.UserID} onChange={handleChange}></input>
+                <input type="adminInput" name="userID" placeholder="UserID ..." value={formValues.UserID} onChange={handleChange}></input>
+                <p className="adminErrorMsg">{formErrors.userID}</p>
 
                 <label>RoleID</label>
-                <input type="adminInput" name="roleID" placeholder="Your RoleID ..." value={formValues.RoleID} onChange={handleChange}></input>
+                <input type="adminInput" name="roleID" placeholder="RoleID ..." value={formValues.RoleID} onChange={handleChange}></input>
+                <p className="adminErrorMsg">{formErrors.roleID}</p>
 
                 <label>Name</label>
                 <input type="adminInput" name="name" placeholder="Your Name ..." value={formValues.name} onChange={handleChange}></input>
@@ -127,8 +156,8 @@ const EditUser = () => {
                 <p className="adminErrorMsg">{formErrors.userBio}</p>
 
                 <label>Contact</label>
-                <input type="adminInput" name="mobileNumber" placeholder="Your Contact Number ..." value={formValues.mobileNumber} onChange={handleChange}></input>
-                <p className="adminErrorMsg">{formErrors.mobileNumber}</p>
+                <input type="adminInput" name="contactNumber" placeholder="Your Contact Number ..." value={formValues.contactNumber} onChange={handleChange}></input>
+                <p className="adminErrorMsg">{formErrors.contactNumber}</p>
 
                 <button className="btn submitButton">Submit</button>
                 <Link to="/ViewUser">
