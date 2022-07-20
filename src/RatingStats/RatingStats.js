@@ -10,45 +10,28 @@ const RatingStats = () => {
     Axios.defaults.withCredentials = true;
 
     const [showData, setShowData] = useState([]);
-    /* const ratingArray = showData.map(item => {
-         return item.Rating
-     });
- 
-     const countOccurrences = ratingArray => ratingArray.reduce((prev, curr) => (prev[curr] = ++prev[curr] || 1, prev), {});
-     const occurrences = ratingArray.reduce(function (acc, curr) {
-         return acc[curr] ? ++acc[curr] : acc[curr] = 1, acc
-     }, {});
-         */
+   
+    const filteredRating = showData
+        .map(dataItem => dataItem.Rating) // get all Ratings
+        .filter((companies, index, array) => array.indexOf(companies) === index); // filter out duplicates
 
+    const counts = filteredRating
+        .map(companies => ({
+            rating:companies,
+            count: showData.filter(item => item.Rating === companies).length // Array to store Rating and Count
+        }));
 
+    const sum = showData.reduce((accumulator, object) => {  //Total sum of all ratings
+        return accumulator + object.Rating;
+    }, 0);
 
-    const key = 'Rating';
-
-
-    const arrayUniqueByKey = [...new Map(showData.map(item =>
-        [item[key], item])).values()];
-
-
-
-    const ratingCount = showData.map(item => {
-
-        const container = [];
-
-        container.Rating = item.Rating;
-        container.Count = showData.filter(e => e.Rating === item.Rating).length;
-
-        return container;
-
-    });
-
+    const avr = sum / showData.length;
 
     const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#FF66FF'];
 
     let renderLabel = function (entry) {
-        return entry.Rating;
+        return entry.rating + " star: "+ entry.count;
     };
-
-
 
 
     useEffect(() => {
@@ -61,35 +44,29 @@ const RatingStats = () => {
 
     return (
 
-        <div className="Charts">
-
+        <div>
             <NavBar />
-
+            <h1 style={{ textAlign: 'left' }}>My Statistics</h1>
+            <div className="Charts">
             <div className="DonutChartShowRating">
-
-                <div className="try">
-
                     <ResponsiveContainer width={'100%'} height={600}>
                         <PieChart >
-                            <Pie label={renderLabel} data={ratingCount} dataKey="Count" outerRadius={150} innerRadius={100} fill="orange" >
+                            <Pie label={renderLabel} data={counts} dataKey="count" outerRadius={150} innerRadius={100}  >
                                 <Label
-                                    value="Total Ratings" position="centerTop" className='label-top' fontSize='20px'
+                                    value="Rating Score" position="centerTop" className='label-top' fontSize='20px'
                                 />
                                 <Label
-                                    value={showData.length} position="centerBottom" className='label' fontSize='30px'
+                                    value={avr} position="centerBottom" className='label' fontSize='30px'
                                 />
                                 {
                                     showData.map((entry, index) => <Cell fill={COLORS[index % COLORS.length]} />)
-                                }
-                            </Pie>
+                            }
 
+                            </Pie>
                         </PieChart>
                     </ResponsiveContainer>
                 </div>
-
-
             </div>
-
         </div>
     );
 }
