@@ -28,6 +28,10 @@ export default function Login() {
                 } else {
                     setStatus(response.data[0].Name);
                     navigate("/Home")
+                    setTimeout(function () {
+                        window.location.reload();
+                    }, 2000);
+
                 }
 
             });

@@ -136,7 +136,7 @@ function App() {
                 setUser(0);
             }
         }, (err) => {
-            setLoading(false)
+            setLoading(true)
             setUser(0);
         });
 
@@ -222,7 +222,7 @@ function App() {
                 </Route>
 
                 <Route element={<ProtectedRouteHome user={user} />}>
-                    <Route path='/Home' element={<LoggedHome />} />
+                    <Route exact path='/Home' element={<LoggedHome />} />
                 </Route>
 
 
