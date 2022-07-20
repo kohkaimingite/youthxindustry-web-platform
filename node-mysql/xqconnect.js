@@ -170,3 +170,30 @@ app.post('/SubmitApplication', (req, res) => {
     }
 )
 
+app.post('/AcceptApplication', (req, res) => {
+    const AppID = req.body.AppID
+    db.query("UPDATE application SET Status = 'Success' WHERE AppID = ?"),
+        [AppID],
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send("");
+            }
+        }
+    }
+)
+
+app.post('/RejectApplication', (req, res) => {
+    const AppID = req.body.AppID
+    db.query("UPDATE application SET Status = 'Rejected' WHERE AppID = ?"),
+        [AppID],
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send("");
+            }
+        }
+    }
+)
