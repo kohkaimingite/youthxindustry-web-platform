@@ -2,19 +2,13 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import NavBar from '../components/NavBar';
-import AdminNavBar from '../components/AdminNavBar';
-import "./AdminPanel.css";
-import '../components/AdminPanel.module.css';
+import "../AdminPanel/AdminPanel.css";
 
 function AdminPanel() {
     return (
         <div className="App">
             <NavBar/>
-            <form style={{
-                margin: "auto",
-                padding: "15px",
-                maxWidth: "400px"
-            }}>
+            <form>
                 <Link to="/ViewUser">
                     <div className="btn linkButton">Users</div>
                 </Link>
@@ -26,6 +20,9 @@ function AdminPanel() {
                 </Link>
                 <Link to="/MakingReview">
                     <div className="btn linkButton">Reviews</div>
+                </Link>
+                <Link to="/ConfirmPartner">
+                    <div className="btn linkButton">Confirmation</div>
                 </Link>
             </form>
         </div>
