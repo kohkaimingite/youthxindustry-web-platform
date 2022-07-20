@@ -1,4 +1,5 @@
 // JavaScript source code
+// JavaScript source code
 import NavBar from '../components/NavBar'
 import { React, useState, useEffect } from "react";
 import TextField from "@mui/material/TextField";
@@ -24,11 +25,11 @@ function MyApplication() {
         });
     });
     return (
-        
+
         <div>
 
         </div>
-        
+
     )
 }
 
