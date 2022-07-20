@@ -145,10 +145,10 @@ app.post('/userEdit', (req, res) => {
     const Age = req.body.age;
     const Gender = req.body.gender;
     const UserBio = req.body.userBio;
-    const MobileNumber = req.body.mobileNumber;
+    const ContactNumber = req.body.contactNumber;
     const UserID = req.body.UserID;
     db.query("UPDATE users SET RoleID = ?, Name = ?, Password = ?, Email = ?, Age = ?, Gender = ?, UserBio = ?, ContactNumber = ? WHERE UserID = ?",
-        [RoleID, Name, Password, Email, Age, Gender, UserBio, MobileNumber, UserID],
+        [RoleID, Name, Password, Email, Age, Gender, UserBio, ContactNumber, UserID],
         (err, result) => {
             if (err) {
                 res.status(500).send({
