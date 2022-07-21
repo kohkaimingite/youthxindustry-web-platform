@@ -38,20 +38,6 @@ const db = mysql.createConnection({
 });
 
 
-app.get('/getCurrentUserRole', function (req, res) {
-    db.query("SELECT RoleID FROM users WHERE UserID = ?;",
-        [req.session.user[0].UserID],
-
-        (err, result) => {
-            if (err) {
-                console.log(err);
-            } else {
-                res.send(result);
-            }
-        });
-});
-
-
 //Kai Ming
 app.post("/registerUser", (req, res) => {
     const name = req.body.name;
@@ -91,7 +77,7 @@ app.post("/registerPartner", (req, res) => {
                 }
 
             } else { res.send(result) };
-    });
+        });
 });
 
 app.post("/login", (req, res, next) => {
@@ -107,13 +93,17 @@ app.post("/login", (req, res, next) => {
                     res.send({ err: err });
                 }
 
-                if (result.length > 0) {
+                if (result.length > 0 && result[0].Confirmed == 1) {
                     req.session.user = result;
                     res.send(result);
                     console.log(req.session.user);
                     next();
 
-                } else {
+                } else if (result.length > 0 && result[0].Confirmed == 0) {
+                    res.send({ message: "This account has not been verified yet!" });
+                }
+
+                else {
                     res.send({ message: "Incorrect Combination!" });
                 }
 
@@ -273,6 +263,19 @@ app.get("/getCompanyRatingStats", function (req, res) {
 });
 
 //Andrea
+
+app.get('/getCurrentUserRole', function (req, res) {
+    db.query("SELECT RoleID FROM users WHERE UserID = ?;",
+        [req.session.user[0].UserID],
+
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send(result);
+            }
+        });
+});
 
 app.post('/getOppoStatus', function (req, res) {
     const active = req.body.active;
