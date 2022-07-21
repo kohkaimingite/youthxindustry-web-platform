@@ -146,16 +146,16 @@ function MakingReview() {
 
                 <textarea placeholder="Provide some reviews! Maximum 150 characters" id="review" name="review" value={review} onChange={e => { setReview(e.target.value); setCharCount(e.target.value.length) }} style={styles.textArea} maxLength="150"> </textarea>
                 <h4>Characters typed: {charCount}</h4>
-                <button onClick={() => submit(verify(jobChose))}>Submit</button>
+                
                 <h2>{test}</h2>
-                <button class="testingSubmit" onClick={() => submit(verify(jobChose))} >Testing submit</button>
+                <button class="testingSubmit" onClick={() => submit(verify(jobChose))} >Submit Review</button>
             </div>
             
 
         </div>
     );
 }
-//
+//<button onClick={() => submit(verify(jobChose))}>Submit</button>
  //<h2>{review}</h2>
 //<h4>{jobChose}</h4>
 //{val.OppID}

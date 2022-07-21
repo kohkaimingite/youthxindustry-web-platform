@@ -30,7 +30,7 @@ export default function Login() {
                     navigate("/Home")
                     setTimeout(function () {
                         window.location.reload();
-                    }, 2000);
+                    }, 1000);
 
                 }
 
