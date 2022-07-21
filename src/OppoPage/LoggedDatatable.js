@@ -46,15 +46,36 @@ export default function LoggedDatatable({ data }) {
     //testing(row[columns[0]],wtfTesting(row[columns[0]]) ), row[columns[0]]
     //addFav()
     //addFav(testing(row[columns[0]],wtfTesting(row[columns[0]]) ), row[columns[0]])
-    function testing(table,trash) {
+    function deleteFav(oppoID) {
+        axios.post("http://localhost:3001/deleteFav", {
+            OppID: parseInt(oppoID),
+            UserID: 2
+        }).then(() => {
+            console.log("Deleted sucessfully!");
+        });
+    }
+    const [checkFavBoolean, setCheckFavBoolean] = useState(true);
+    function testing(table) {
         
         for (var i = 0; i < checkFavList.length; i++) {
             if (checkFavList[i].OppID === table) {
                 setTest("1");
-                alert("You alrdy added this in fav");
+                deleteFav(table)
+                alert("Removed from your favourites");
                 return false;
                 break;
             } 
+        }
+
+    }
+    function colourFav(table) {
+
+        for (var i = 0; i < checkFavList.length; i++) {
+            if (checkFavList[i].OppID === table) {
+                
+                return true;
+                break;
+            }
         }
 
     }
@@ -71,7 +92,7 @@ export default function LoggedDatatable({ data }) {
                 setTest("0")
             });
         } else {
-            alert(boo)
+            
             
         }
     }
@@ -101,7 +122,11 @@ export default function LoggedDatatable({ data }) {
         })
     }
 
-    
+    const colors = {
+        orange: "#FFBA5A",
+        grey: "#a9a9a9"
+
+    };
     return (
         
         <table class="oppoTable">
@@ -124,7 +149,7 @@ export default function LoggedDatatable({ data }) {
                     columns.map(column => <td style={{ textAlign: 'left' }}>{row[column]}</td>)
                     
                 }
-                <td><FontAwesomeIcon icon={faStar} onClick={() => addFav(testing(row[columns[0]], checkFavListFunction(row[columns[0]])), row[columns[0]])}>{row[columns[0]]} {test}</FontAwesomeIcon></td>
+                <td><FontAwesomeIcon icon={faStar} color={colourFav(row[columns[0]]) ? colors.orange : colors.grey} onClick={() => addFav( testing(row[columns[0]]) , row[columns[0]]  )}>{row[columns[0]]} {test}</FontAwesomeIcon></td>
 
             </tr>)}
         </table>
@@ -133,6 +158,7 @@ export default function LoggedDatatable({ data }) {
             
         );
 }
+//, checkFavListFunction(row[columns[0]])
 //<td><button>{row[columns[0]]}</button></td>
 //addFav(checkFav(getFav()))
 //, row[columns[0]]

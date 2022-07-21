@@ -14,12 +14,18 @@ export default function DatatableFav({ data }) {
     const columns = data[0] && Object.keys(data[0]);
     //const columns = OppoList[0] && Object.keys(OppoList[0]);
     function deleteFav(oppoID) {
-        axios.post("http://localhost:3001/deleteFav", {
-            OppID: parseInt(oppoID),
-            UserID: 2
-        }).then(() => {
-            console.log("Deleted sucessfully!");
-        });
+        if (window.confirm("Remove from favourites?")) {
+
+            axios.post("http://localhost:3001/deleteFav", {
+                OppID: parseInt(oppoID),
+                UserID: 2
+            }).then(() => {
+                alert("Removed from your favourites");
+                console.log("Deleted sucessfully!");
+            });
+        } else {
+            alert("Opportunity not removed")
+        }
     }
    
     return (
