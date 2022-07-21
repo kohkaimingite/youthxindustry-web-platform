@@ -699,7 +699,7 @@ app.get('/partner', (req, res) => {
         });
 });
 
-app.get('/partnerConfirm', (req, res) => {
+app.post('/partnerConfirm', (req, res) => {
     db.query("SELECT * from users INNER JOIN roles ON roles.RoleID = users.RoleID WHERE users.RoleID = 2 AND users.Confirmed = 0",
         (err, result) => {
             if (err) {
