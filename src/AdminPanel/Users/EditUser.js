@@ -56,7 +56,7 @@ const EditUser = () => {
         const errors = {}
         const pwRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-        const pnumRegex = /[6|8|9]\d{7}/;
+        const pnumRegex = /(^[689]{1}\d{7}$)/;
         if (!values.userID) {
             errors.userID = "UserID is required";
         }
@@ -101,8 +101,10 @@ const EditUser = () => {
             errors.contactNumber = "Contact number is required";
         } else if (!pnumRegex.test(values.contactNumber)) {
             errors.contactNumber = "Contact number must be a valid number";
-        } else if (values.contactNumber > 8) {
+        } else if (values.contactNumber.length > 8) {
             errors.contactNumber = "Contact number cannot exceed 8 characters";
+        } else if (isNaN(values.contactNumber)) {
+            errors.contactNumber = "Enter only in number";
         }
 
         return errors;
