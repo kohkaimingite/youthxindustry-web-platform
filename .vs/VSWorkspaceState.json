@@ -6,7 +6,10 @@
     "\\src",
     "\\src\\components",
     "\\src\\components\\PageHeader",
-    "\\src\\OppoPage"
+    "\\src\\OppoPage",
+    "\\src\\RatingStats",
+    "\\src\\Register"
   ],
+  "SelectedNode": "\\src\\Register\\RegisterUser.js",
   "PreviewInSolutionExplorer": false
 }

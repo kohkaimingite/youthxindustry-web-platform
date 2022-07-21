@@ -60,7 +60,7 @@ app.post("/registerUser", (req, res) => {
 
 
     db.query(
-        "INSERT INTO users (RoleID, Name, Password, Email, DateCreated) VALUES (1, ?, ?, ?, curdate());",
+        "INSERT INTO users (RoleID, Name, Password, Email, DateCreated, Confirmed) VALUES (1, ?, ?, ?, curdate(), 1);",
         [name, password, email],
         (err, result) => {
             if (err) {

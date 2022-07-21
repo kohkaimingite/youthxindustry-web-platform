@@ -35,7 +35,6 @@ export default function RegisterUser() {
 
         })
             .then(() => {
-                setStatus("Account created!");
                 setSuccess(true);
             })
             .catch((err) => {
@@ -104,7 +103,7 @@ export default function RegisterUser() {
                                 <Button variant="primary" type="submit">
                                     Register
                                 </Button>
-                                <p>
+                                    <p style={{ color: "red" }}>
                                     {status}
                                 </p>
                             </Form>
