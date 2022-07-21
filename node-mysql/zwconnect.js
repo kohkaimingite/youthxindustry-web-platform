@@ -250,7 +250,7 @@ app.get('/partnerConfirm', (req, res) => {
     });
 });
 
-app.get('/confirmRegistration', (req, res) => {
+app.post('/confirmRegistration', (req, res) => {
     const UserID = req.body.UserID;
     db.query("UPDATE users SET Confirmed = 1 WHERE UserID = ?",
     [UserID],

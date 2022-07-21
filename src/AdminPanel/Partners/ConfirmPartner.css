@@ -1,6 +1,7 @@
 .User-Table {
     border-collapse: collapse;
     margin: auto;
+    border-radius: 6px;
     font-size: 1em;
     max-width: 1500px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);

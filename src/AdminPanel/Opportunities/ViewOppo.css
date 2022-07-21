@@ -12,6 +12,7 @@ select {
 .User-Table {
     border-collapse: collapse;
     margin: auto;
+    border-radius: 6px;
     font-size: 1em;
     max-width: 1300px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
@@ -30,6 +31,10 @@ select {
 
 .User-Table tbody tr {
     border-bottom: 1px solid #dddddd;
+}
+
+.User-Table tbody tr:hover {
+  background-color: #D3D3D3;
 }
 
 .styled-table tbody tr:nth-of-type(even) {

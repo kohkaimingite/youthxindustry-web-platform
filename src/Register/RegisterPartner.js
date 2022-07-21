@@ -3,7 +3,7 @@ import { Form, Button } from "react-bootstrap";
 import NavBar from '../components/NavBar';
 import Axios from 'axios';
 import './RegisterPage.css';
-import { faUsers, faCheckCircle } from "@fortawesome/free-solid-svg-icons";
+import { faUsers, faSpinner} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 /*import emailjs from '@emailjs/browser';*/
@@ -45,7 +45,6 @@ export default function RegisterPartner() {
 
         })
             .then(() => {
-                setStatus("Account created!");
                 setSuccess(true);
             })
             .catch((err) => {
@@ -64,11 +63,10 @@ export default function RegisterPartner() {
             <>
                 {success ? (
                     <section>
-                        <FontAwesomeIcon icon={faCheckCircle} style={{ fontSize: "30px", color: " #66ff00" }} />
-                        <h1 style={{ color: " #66ff00" }}>Account successfully created!</h1>
-                        <p>
-                            <a href="/Login">Sign in</a>
-                        </p>
+                        <FontAwesomeIcon icon={faSpinner} style={{ fontSize: "30px", color: " #66ff00" }} />
+                        <h1 style={{ color: " #66ff00" }}>Admin has been notified of your account creation</h1>
+                        <p style={{fontSize: "12px"}}>*Partners are only able to access their account after account creation is confirmed by admin</p>
+                        <p style={{ fontSize: "12px" }}>*You will receive an email once your account is confirmed</p>
                     </section>
                 ) : (
                     <section>
@@ -92,6 +90,7 @@ export default function RegisterPartner() {
                                     style={{ width: "200px" }}
                                     name="name"
                                     type="text"
+                                    maxlength="20"
                                     required
                                     placeholder="Name"
                                     input onChange={handleName}
@@ -114,7 +113,7 @@ export default function RegisterPartner() {
                                 <Button variant="primary" type="submit">
                                     Register
                                 </Button>
-                                <p>
+                                    <p style={{color:"red"}}>
                                     {status}
                                 </p>
                             </Form>

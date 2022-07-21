@@ -60,7 +60,7 @@ app.post("/registerUser", (req, res) => {
 
 
     db.query(
-        "INSERT INTO users (RoleID, Name, Password, Email, DateCreated) VALUES (1, ?, ?, ?, curdate());",
+        "INSERT INTO users (RoleID, Name, Password, Email, DateCreated, Confirmed) VALUES (1, ?, ?, ?, curdate(), 1);",
         [name, password, email],
         (err, result) => {
             if (err) {
@@ -260,7 +260,7 @@ app.post("/getReviewRatingForCompany", (req, res) => {
 
 
 app.get("/getCompanyRatingStats", function (req, res) {
-    db.query("SELECT *  FROM users_have_opp INNER JOIN partner_have_opp ON users_have_opp.OppID = partner_have_opp.OppID WHERE partner_have_opp.UserID = ? ORDER BY users_have_opp.Rating Desc; ",
+    db.query("SELECT Rating FROM users_have_opp INNER JOIN partner_have_opp ON users_have_opp.OppID = partner_have_opp.OppID WHERE partner_have_opp.UserID = ? ORDER BY users_have_opp.OppID Desc; ",
         [req.session.user[0].UserID],
         (err, result) => {
             if (err) {
@@ -699,7 +699,7 @@ app.get('/partner', (req, res) => {
         });
 });
 
-app.get('/partnerConfirm', (req, res) => {
+app.post('/partnerConfirm', (req, res) => {
     db.query("SELECT * from users INNER JOIN roles ON roles.RoleID = users.RoleID WHERE users.RoleID = 2 AND users.Confirmed = 0",
         (err, result) => {
             if (err) {
