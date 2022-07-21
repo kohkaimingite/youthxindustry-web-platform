@@ -13,13 +13,14 @@ const PartnerNavBar = () => {
             <h1 style={brandName}>CYC</h1>
             <div class="containerNavBar borderYtoX">
                 <a href="/Home">Home</a>
-                <a href="/AdminPanel">Admin Panel</a>
-                <a href="/ViewUser">View User</a>
-                <a href="/EditUser">Edit User</a>
-                <a href="/ViewOppo">View Oppo</a>
-                <a href="/EditOppo">Edit Oppo</a>
-                <a href="/EditPartner">Edit Partner</a>
-                <a href="/ConfirmPartner">Confirm Partner</a>
+                
+                <a href="/OppoPage">OppoPage</a>
+                <a href="/Company">Company</a>
+                <a href="/Profile">Profile</a>
+                <a href="/EditCompanyNumber">Edit Company Number</a>
+                <a href="/RegisterPartner">Register Partner</a>
+                <a href="/EditCompanyBio">Edit Company Bio</a>
+                <a href="/SubmitApplication">SubmitApplication</a>
                 
 
 
