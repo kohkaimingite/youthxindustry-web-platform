@@ -216,7 +216,7 @@ function App() {
                 <Route path='/Company' element={<CompanyPage />} />
                 <Route path='/Profile' element={<ProfilePage />} />
                 <Route path='/EditCompanyNumber' element={<EditCompanyNumber />} />
-                <Route path='/RegisterPartner' element={< RegisterPartner />} />
+                
                 <Route path='/EditCompanyBio' element={<EditCompanyBio />} />
                 <Route path='/SubmitApplication' element={<SubmitApplication />} />
                 </Route>

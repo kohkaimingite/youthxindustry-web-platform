@@ -18,9 +18,9 @@ const PartnerNavBar = () => {
                 <a href="/Company">Company</a>
                 <a href="/Profile">Profile</a>
                 <a href="/EditCompanyNumber">Edit Company Number</a>
-                <a href="/RegisterPartner">Register Partner</a>
-                <a href="/EditCompanyBio">Edit Company Bio</a>
-                <a href="/SubmitApplication">SubmitApplication</a>
+                
+                <a href="/EditCompanyBio">Edit Bio</a>
+                <a href="/SubmitApplication">Submit Oppo</a>
                 
 
 
