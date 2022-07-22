@@ -566,7 +566,7 @@ function LoggedOppoPage() {
                             <input type="checkbox" id="Retail" name="Retail" value="Retail" onChange={(e) => changeState(e.target.checked, "Retail")} /> Retail<br />
                             <input type="checkbox" id="Marketing" name="Marketing" value="Marketing" onChange={(e) => changeState(e.target.checked, "Marketing")} /> Marketing<br />
 
-                            <button onclick={toggleMoreCheckbox}>Show More</button>
+                            
 
 
                             <h4>Region</h4>
