@@ -54,11 +54,14 @@ const EditUser = () => {
 
     const validate = (values) => {
         const errors = {}
+        const spRegex = /^\S*$/;
         const pwRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-        const pnumRegex = /[6|8|9]\d{7}/;
+        const pnumRegex = /(^[689]{1}\d{7}$)/;
         if (!values.userID) {
             errors.userID = "UserID is required";
+        } else if (!spRegex.test(values.userID)) {
+            errors.userID = "UserID cannot contain spacing";
         }
         if (!values.roleID) {
             errors.roleID = "RoleID is required";
@@ -72,13 +75,17 @@ const EditUser = () => {
         }
         if (!values.password) {
             errors.password = "Password is required";
+        } else if (!spRegex.test(values.password)) {
+            errors.password = "Password cannot contain spacing";
         } else if (!pwRegex.test(values.password)) {
-            errors.password = "Password has to be at least 8 characters, at least 1 letter, and 1 number";
-        } else if (values.password > 50) {
+            errors.password = "Password has to be at least 8 characters with at least 1 letter, and 1 number";
+        } else if (values.password.length > 50) {
             errors.password = "Password cannot exceed 50 characters";
         }
         if (!values.email) {
             errors.email = "Email is required";
+        } else if (!spRegex.test(values.email)) {
+            errors.email = "Email cannot contain spacing";
         } else if (!emailRegex.test(values.email)) {
             errors.email = "Email must be a valid email address";
         } else if (values.email.length > 50) {
@@ -86,6 +93,8 @@ const EditUser = () => {
         }
         if (!values.age) {
             errors.age = "Age is required";
+        } else if (!spRegex.test(values.age)) {
+            errors.age = "Age cannot contain spacing";
         } else if (values.age > 100) {
             errors.age = "Maximum age is 100";
         }
@@ -99,10 +108,14 @@ const EditUser = () => {
         }
         if (!values.contactNumber) {
             errors.contactNumber = "Contact number is required";
+        } else if (!spRegex.test(values.contactNumber)) {
+            errors.contactNumber = "Contact number cannot contain spacing";
+        } else if (isNaN(values.contactNumber)) {
+            errors.contactNumber = "Enter only in number";
+        } else if (values.contactNumber.length > 8) {
+            errors.contactNumber = "Contact number cannot exceed 8 characters";
         } else if (!pnumRegex.test(values.contactNumber)) {
             errors.contactNumber = "Contact number must be a valid number";
-        } else if (values.contactNumber > 8) {
-            errors.contactNumber = "Contact number cannot exceed 8 characters";
         }
 
         return errors;
