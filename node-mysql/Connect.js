@@ -263,7 +263,37 @@ app.get("/getCompanyRatingStats", function (req, res) {
 });
 
 //Andrea
+app.post('/getOneOppoCompany', function (req, res) {
+    const OppID = req.body.OppID;
+    db.query("SELECT users.Name, users.UserBio, users.ContactNumber FROM opportunities INNER JOIN partner_have_opp ON partner_have_opp.OppID = opportunities.OppID INNER JOIN users ON users.UserID = partner_have_opp.UserID  WHERE opportunities.OppID = ?;",
+        [OppID],
 
+        (err, result) => {
+            if (err) {
+                console.log(err)
+                res.send(result);
+            } else {
+                res.send(result);
+            }
+        }
+    )
+})
+
+app.post('/getOneOppo', function (req, res) {
+    const OppID = req.body.OppID;
+    db.query("SELECT * FROM opportunities WHERE OppID = ?;",
+        [OppID],
+
+        (err, result) => {
+            if (err) {
+                console.log(err)
+                res.send(result);
+            } else {
+                res.send(result);
+            }
+        }
+    )
+})
 app.get('/getCurrentUserRole', function (req, res) {
     db.query("SELECT RoleID FROM users WHERE UserID = ?;",
         [req.session.user[0].UserID],
@@ -343,7 +373,7 @@ app.post('/sortedOppo', (req, res) => {
 });
 
 app.get('/Oppo', (req, res) => {
-    db.query("SELECT*FROM opportunities ORDER BY OppID", (err, result) => {
+    db.query("SELECT OppID, Name, Location, Type, Qualification, Pay FROM opportunities ORDER BY OppID", (err, result) => {
         if (err) {
             console.log(err);
         } else { res.send(result) };
@@ -353,7 +383,7 @@ app.get('/Oppo', (req, res) => {
 
 app.post('/FavOppo', (req, res) => {
     const UserID = req.body.UserID;
-    db.query("SELECT opportunities.OppID, Name, Description, Location, Address, Type FROM opportunities INNER JOIN users_have_fav ON opportunities.OppID = users_have_fav.OppID WHERE users_have_fav.UserID = ? ORDER BY opportunities.OppID;",
+    db.query("SELECT opportunities.OppID, Name, Description, Location, Address, Type, Qualification, Pay FROM opportunities INNER JOIN users_have_fav ON opportunities.OppID = users_have_fav.OppID WHERE users_have_fav.UserID = ? ORDER BY opportunities.OppID;",
         [req.session.user[0].UserID],
         (err, result) => {
             if (err) {

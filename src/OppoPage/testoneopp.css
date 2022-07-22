@@ -1,0 +1,33 @@
+﻿body
+{
+}
+/*, textAlign: "center", display: "block", alignContent: "center", alignItems: "center", verticalAlign: "center", boxAlign: "center"*/
+jobHeader {
+    
+    float: left;
+    width: 60%;
+    height: 300px; /* only for demonstration, should be removed */
+    background: #ccc;
+    padding: 20px 180px 20px;
+}
+company {
+    float: left;
+    padding: 20px;
+    width: 40%;
+    background-color: #f1f1f1;
+    height: 300px; /* only for demonstration, should be removed */
+}
+topSection::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+bottomSection {
+    text-align: left;
+    align-content: start;
+    background-color: #e0dede;
+    float: left;
+    width: 100%;
+    padding: 20px 180px 20px;
+    /* only for demonstration, should be removed */
+}

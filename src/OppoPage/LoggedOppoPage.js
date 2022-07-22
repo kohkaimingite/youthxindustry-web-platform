@@ -33,6 +33,14 @@ function LoggedOppoPage() {
     const [Healthcare, setHealthcare] = useState("");
     const [Finance, setFinance] = useState("");
     const [Education, setEducation] = useState("");
+    const [cusService, setCusService] = useState("");
+    const [Engineering, setEngineering] = useState("");
+    const [Art, setArt] = useState("");
+    const [Event, setEvent] = useState("");
+    const [FNB, setFNB] = useState("");
+    const [Tourism, setTourism] = useState("");
+    const [Retail, setRetail] = useState("");
+    const [Marketing, setMarketing] = useState("");
 
     
     //location
@@ -45,6 +53,9 @@ function LoggedOppoPage() {
     //button to scrol up
     const [showScrollBtn, setShowScrollBtn] = useState("");
     
+    //show mroe checkbox
+    const [showMoreCheckBox, setShowMoreCheckBox] = useState(true);
+
     
     const columns = data[0] && Object.keys(data[0]);
     const [t, setT] = useState("");
@@ -120,31 +131,7 @@ function LoggedOppoPage() {
     }
     //it, finance, healthcare, north, south, east, west, central
     //IT === "" && Finance === "" && Healthcare === "" && North === "" && South === "" && East === "" && West === "" && Central === ""
-    function filterType1(rows) {
-        if (IT === "" && Finance === "" && Healthcare === "") {
-            return rows;
-        } else if (IT === "IT" && Finance === "" && Healthcare === "") {
-            return testtype(rows, "it");
-        } else if (IT === "IT" && Finance === "Finance" && Healthcare === "") {
-            return testtype(rows, "it").concat(testtype(rows, "finance"));
-        } else if (IT === "IT" && Finance === "Finance" && Healthcare === "Healthcare") {
-            return testtype(rows, "it").concat(testtype(rows, "finance")).concat(testtype(rows, "healthcare"));
-
-        } else if (IT === "" && Finance === "Finance" && Healthcare === "Healthcare") {
-            return testtype(rows, "finance").concat(testtype(rows, "healthcare"));
-        } else if (IT === "" && Finance === "" && Healthcare === "Healthcare") {
-            return testtype(rows, "healthcare");
-        } else if (IT === "IT" && Finance === "" && Healthcare === "Healthcare") {
-            return testtype(rows, "it").concat(testtype(rows, "healthcare"));
-        }
-
-        else if (IT === "" && Finance === "Finance" && Healthcare === "") {
-            return testtype(rows, "finance");
-        } else {
-            return rows;
-        }
-        
-    }
+    
     function smthI(og) {
         if (IT === "") {
             return og;
@@ -191,7 +178,7 @@ function LoggedOppoPage() {
         if (og === changed) {
             if (Education === "Education") {
                 return og.filter((row) => row.Type.toLowerCase().indexOf("education") > -1);
-            } else if (Healthcare === "") {
+            } else if (Education === "") {
                 return og;
             }
 
@@ -203,45 +190,143 @@ function LoggedOppoPage() {
             }
         }
     }
-    //Education
-    //smthH(row,smthF(row,smthI(row)))
+
+    function smthCusService(og, changed) {
+        if (og === changed) {
+            if (cusService === "Customer Service") {
+                return og.filter((row) => row.Type.toLowerCase().indexOf("customer service") > -1);
+            } else if (cusService === "") {
+                return og;
+            }
+
+        } else if (og !== changed) {
+            if (cusService === "Customer Service") {
+                return changed.concat(og.filter((row) => row.Type.toLowerCase().indexOf("Customer service") > -1));
+            } else if (cusService === "") {
+                return changed;
+            }
+        }
+    }
+
+    function smthEngineer(og, changed) {
+        if (og === changed) {
+            if (Engineering === "Engineering") {
+                return og.filter((row) => row.Type.toLowerCase().indexOf("engineering") > -1);
+            } else if (Engineering === "") {
+                return og;
+            }
+
+        } else if (og !== changed) {
+            if (Engineering === "Engineering") {
+                return changed.concat(og.filter((row) => row.Type.toLowerCase().indexOf("engineering") > -1));
+            } else if (Engineering === "") {
+                return changed;
+            }
+        }
+    }
+    function smthArt(og, changed) {
+        if (og === changed) {
+            if (Art === "Art") {
+                return og.filter((row) => row.Type.toLowerCase().indexOf("art") > -1);
+            } else if (Art === "") {
+                return og;
+            }
+
+        } else if (og !== changed) {
+            if (Art === "Engineering") {
+                return changed.concat(og.filter((row) => row.Type.toLowerCase().indexOf("art") > -1));
+            } else if (Art === "") {
+                return changed;
+            }
+        }
+    }
+    function smthEvent(og, changed) {
+        if (og === changed) {
+            if (Event === "Event") {
+                return og.filter((row) => row.Type.toLowerCase().indexOf("event") > -1);
+            } else if (Event === "") {
+                return og;
+            }
+
+        } else if (og !== changed) {
+            if (Event === "Event") {
+                return changed.concat(og.filter((row) => row.Type.toLowerCase().indexOf("event") > -1));
+            } else if (Event === "") {
+                return changed;
+            }
+        }
+    }
+    function smthFNB(og, changed) {
+        if (og === changed) {
+            if (FNB === "fnb") {
+                return og.filter((row) => row.Type.toLowerCase().indexOf("f&b") > -1);
+            } else if (FNB === "") {
+                return og;
+            }
+
+        } else if (og !== changed) {
+            if (FNB === "fnb") {
+                return changed.concat(og.filter((row) => row.Type.toLowerCase().indexOf("f&b") > -1));
+            } else if (FNB === "") {
+                return changed;
+            }
+        }
+    }
+    function smthTourism(og, changed) {
+        if (og === changed) {
+            if (Tourism === "Tourism") {
+                return og.filter((row) => row.Type.toLowerCase().indexOf("tourism") > -1);
+            } else if (Tourism === "") {
+                return og;
+            }
+
+        } else if (og !== changed) {
+            if (Tourism === "Tourism") {
+                return changed.concat(og.filter((row) => row.Type.toLowerCase().indexOf("tourism") > -1));
+            } else if (Tourism === "") {
+                return changed;
+            }
+        }
+    }
+    function smthRetail(og, changed) {
+        if (og === changed) {
+            if (Retail === "Retail") {
+                return og.filter((row) => row.Type.toLowerCase().indexOf("retail") > -1);
+            } else if (Tourism === "") {
+                return og;
+            }
+
+        } else if (og !== changed) {
+            if (Retail === "Retail") {
+                return changed.concat(og.filter((row) => row.Type.toLowerCase().indexOf("retail") > -1));
+            } else if (Retail === "") {
+                return changed;
+            }
+        }
+    }
+    function smthMarketing(og, changed) {
+        if (og === changed) {
+            if (Marketing === "Marketing") {
+                return og.filter((row) => row.Type.toLowerCase().indexOf("marketing") > -1);
+            } else if (Marketing === "") {
+                return og;
+            }
+
+        } else if (og !== changed) {
+            if (Marketing === "Marketing") {
+                return changed.concat(og.filter((row) => row.Type.toLowerCase().indexOf("marketing") > -1));
+            } else if (Marketing === "") {
+                return changed;
+            }
+        }
+    }
+
     function filterType(row) {
-        return search(smthEdu(row, smthH(row, smthF(row, smthI(row)))))
+        return search(smthEvent(row,smthMarketing(row,smthRetail(row,smthTourism(row,smthFNB(row, smthArt(row, smthEngineer(row, smthCusService(row, smthEdu(row, smthH(row, smthF(row, smthI(row)))))))))))) )
     }
-    //location[x]
     
-    //function failed(rows) {
-        
-        
-    //    if (North === "" && South === "" && East === "" && West === "" && Central === "") {
-    //        return rows;
-    //    } else {
-     //       var x = 0;
-     //       var final = [];
-     //       while (x < 5) {
-     //           if (returnConst(x) === "") {
-      //              x += 1;
-     //           } else {
-      //              final.concat(testlocation(rows, check[x]))
-     //               x += 1;
-    //            }
-     //       }
-    //        return final;
-    //    }
-    //    
-  //  }
-    
-    function testtype(rows,filter) {
-
-        return rows.filter((row) => row.Type.toLowerCase().indexOf(filter) > -1
-        );
-    }
-
-    function testlocation(rows, filter) {
-
-        return rows.filter((row) => row.Location.toLowerCase().indexOf(filter) > -1
-        );
-    }
+//===============================================================================================================    
+   
     function smthC(og) {
         if (Central === "") {
             return og;
@@ -354,6 +439,54 @@ function LoggedOppoPage() {
             } else {
                 setEducation("");
             }
+        } else if (val === "Customer Service") {
+            if (boo == true) {
+                setCusService(val);
+            } else {
+                setCusService("");
+            }
+        } else if (val === "Engineering") {
+            if (boo == true) {
+                setEngineering(val);
+            } else {
+                setEngineering("");
+            }
+        } else if (val === "Art") {
+            if (boo == true) {
+                setArt(val);
+            } else {
+                setArt("");
+            }
+        } else if (val === "Event") {
+            if (boo == true) {
+                setEvent(val);
+            } else {
+                setEvent("");
+            }
+        } else if (val === "fnb") {
+            if (boo == true) {
+                setFNB(val);
+            } else {
+                setFNB("");
+            }
+        } else if (val === "Tourism") {
+            if (boo == true) {
+                setTourism(val);
+            } else {
+                setTourism("");
+            }
+        } else if (val === "Retail") {
+            if (boo == true) {
+                setRetail(val);
+            } else {
+                setRetail("");
+            }
+        } else if (val === "Marketing") {
+            if (boo == true) {
+                setMarketing(val);
+            } else {
+                setMarketing("");
+            }
         } else if (val === "Central") {
             if (boo == true) {
                 setCentral(val);
@@ -391,6 +524,14 @@ function LoggedOppoPage() {
        
         return ;
     }
+    function toggleMoreCheckbox() {
+        if (showMoreCheckBox === false) {
+            setShowMoreCheckBox(true)
+        } else {
+            setShowMoreCheckBox(false)
+        }
+        
+    }
     return (
         //onSubmit={ilterdata(OppoList)}
         //
@@ -411,12 +552,21 @@ function LoggedOppoPage() {
                         <form>
                             <h4>Job Categories</h4>
 
+                            
                             <input type="checkbox" id="IT" name="IT" value="IT" onChange={(e) => changeState(e.target.checked, "IT")} /> IT<br />
                             <input type="checkbox" id="Finance" name="Finance" value="Finance" onChange={(e) => changeState(e.target.checked, "Finance")} /> Finance<br />
                             <input type="checkbox" id="Healthcare" name="Healthcare" value="Healthcare" onChange={(e) => changeState(e.target.checked, "Healthcare")} /> Healthcare<br />
                             <input type="checkbox" id="Education" name="Education" value="Education" onChange={(e) => changeState(e.target.checked, "Education")} /> Education<br />
+                            <input type="checkbox" id="Customer Service" name="Customer Service" value="Customer Service" onChange={(e) => changeState(e.target.checked, "Customer Service")} /> Customer Service<br />
+                            <input type="checkbox" id="Engineering" name="Engineering" value="Engineering" onChange={(e) => changeState(e.target.checked, "Engineering")} /> Engineering<br />
+                            <input type="checkbox" id="Art" name="Art" value="Art" onChange={(e) => changeState(e.target.checked, "Art")} /> Art<br />
+                            <input type="checkbox" id="Event" name="Event" value="Event" onChange={(e) => changeState(e.target.checked, "Event")} /> Event<br />
+                            <input type="checkbox" id="fnb" name="fnb" value="fnb" onChange={(e) => changeState(e.target.checked, "fnb")} /> F&B<br />
+                            <input type="checkbox" id="Tourism" name="Tourism" value="Tourism" onChange={(e) => changeState(e.target.checked, "Tourism")} /> Tourism<br />
+                            <input type="checkbox" id="Retail" name="Retail" value="Retail" onChange={(e) => changeState(e.target.checked, "Retail")} /> Retail<br />
+                            <input type="checkbox" id="Marketing" name="Marketing" value="Marketing" onChange={(e) => changeState(e.target.checked, "Marketing")} /> Marketing<br />
 
-
+                            <button onclick={toggleMoreCheckbox}>Show More</button>
 
 
                             <h4>Region</h4>

@@ -134,9 +134,9 @@ export default function LoggedDatatable({ data }) {
             <tr>
                 <th>Job Code</th>
                 <th>Job Name</th>
-                <th>Description</th>
+                
                 <th>Region</th>
-                <th>Address</th>
+                
                 <th>Job Categories</th>
                 <th>Diploma</th>
                 <th>Pay</th>
@@ -144,11 +144,15 @@ export default function LoggedDatatable({ data }) {
                 
 
             </tr>
-            {data.map(row => <tr>
-                {
-                    columns.map(column => <td style={{ textAlign: 'left' }}>{row[column]}</td>)
+            {data.map((row,key) => <tr>
+                    <td style={{ textAlign: 'left' }}>{row["OppID"]}</td>
+                    <td style={{ textAlign: 'left' }}><a href={"/Oppo/"+row["OppID"]}>{row["Name"]}</a></td>
                     
-                }
+                    <td style={{ textAlign: 'left' }}>{row["Location"]}</td>
+                    
+                    <td style={{ textAlign: 'left' }}>{row["Type"]}</td>
+                    <td style={{ textAlign: 'left' }}>{row["Qualification"]}</td>
+                    <td style={{ textAlign: 'left' }}>{row["Pay"]}</td>
                 <td><FontAwesomeIcon icon={faStar} color={colourFav(row[columns[0]]) ? colors.orange : colors.grey} onClick={() => addFav( testing(row[columns[0]]) , row[columns[0]]  )}>{row[columns[0]]} {test}</FontAwesomeIcon></td>
 
             </tr>)}
@@ -158,6 +162,8 @@ export default function LoggedDatatable({ data }) {
             
         );
 }
+//<td style={{ textAlign: 'left' }}>{row["Description"]}</td>
+//<td style={{ textAlign: 'left' }}>{row["Address"]}</td>
 //, checkFavListFunction(row[columns[0]])
 //<td><button>{row[columns[0]]}</button></td>
 //addFav(checkFav(getFav()))

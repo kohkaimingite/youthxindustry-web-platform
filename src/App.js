@@ -24,6 +24,7 @@ import NotAllowed from './NotAllowed';
 
 import LoggedHome from './HomePage/LoggedHome';
 import Favourites from './OppoPage/Favourites';
+import OneOppo from './OppoPage/OneOppo';
 import EditUserNumber from './Manage/EditUserNumber';
 import MakingReview from './ReviewPage/MakingReview';
 import ReviewSuccess from './ReviewPage/ReviewSuccess';
@@ -204,7 +205,7 @@ function App() {
 
                     <Route path='/ReviewSuccess' element={<ReviewSuccess />} />
                     <Route path='/ReviewNoSuccess' element={<ReviewNoSuccess />} />
-                    
+                    <Route path='/Oppo/:id' element={<OneOppo />} />
                     
                 </Route>
 
