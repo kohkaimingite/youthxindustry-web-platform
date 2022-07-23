@@ -93,13 +93,13 @@ app.post("/login", (req, res, next) => {
                     res.send({ err: err });
                 }
 
-                if (result.length > 0 && result[0].Confirmed == 1) {
+                if (result.length > 0 && result[0].Confirmed === 1) {
                     req.session.user = result;
                     res.send(result);
                     console.log(req.session.user);
                     next();
 
-                } else if (result.length > 0 && result[0].Confirmed == 0) {
+                } else if (result.length > 0 && result[0].Confirmed === 0) {
                     res.send({ message: "This account has not been verified yet!" });
                 }
 
