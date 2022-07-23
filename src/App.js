@@ -199,7 +199,6 @@ function App() {
                     <Route path='/EditUserResume' element={<EditUserResume />} />
                     <Route path='/RegisterUser' element={< RegisterUser />} />
                     <Route path='/EditUserBio' element={<EditUserBio />} />
-                    <Route path='/MyApplications' element={< MyApplication />} />
                     <Route path='/EditUserNumber' element={<EditUserNumber />} />
                     <Route path='/Status' element={<ViewOppoStatus />} />
 
@@ -217,7 +216,7 @@ function App() {
                 <Route path='/Company' element={<CompanyPage />} />
                 <Route path='/Profile' element={<ProfilePage />} />
                 <Route path='/EditCompanyNumber' element={<EditCompanyNumber />} />
-                
+                <Route path='/MyApplications' element={< MyApplication />} />
                 <Route path='/EditCompanyBio' element={<EditCompanyBio />} />
                 <Route path='/SubmitApplication' element={<SubmitApplication />} />
                 </Route>

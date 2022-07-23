@@ -1,6 +1,6 @@
 // JavaScript source code
 // JavaScript source code
-import NavBar from '../components/NavBar'
+import PartnerNavBar from '../components/PartnerNavBar'
 import { React, useState, useEffect } from "react";
 import TextField from "@mui/material/TextField";
 import List from "../Some test data/List";
@@ -9,6 +9,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Collapsible from '../components/Collapsible';
 import { Route, Link } from 'react-router-dom';
 import axios from 'axios';
+import ApplicationDataTable from './ApplicationDataTable'
 
 function MyApplication() {
     const [AppList, setAppList] = useState([]);
@@ -26,8 +27,9 @@ function MyApplication() {
     });
     return (
 
-        <div>
-
+        <div className="App">
+            <PartnerNavBar/>
+            <ApplicationDataTable data={AppList}/>
         </div>
 
     )

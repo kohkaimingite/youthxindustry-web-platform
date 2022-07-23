@@ -114,7 +114,7 @@ app.get('/Company', (req, res) => {
 })
 
 app.get('/Applications', (req, res) => {
-    db.query("SELECT OppID, Status, Name, Location FROM application INNER JOIN Opportunities ON application.OppID = opportunities.OppID WHERE UserID = 1;",
+    db.query("SELECT OppID, Status, Name, Location FROM application INNER JOIN Opportunities ON application.OppID = opportunities.OppID WHERE application.UserID = 1;",
         (err, result) => {
             if (err) {
                 console.log(err);

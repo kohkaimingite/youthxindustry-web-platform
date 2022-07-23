@@ -1,5 +1,4 @@
 // JavaScript source code
-import NavBar from '../components/NavBar'
 import { React, useState, useEffect } from "react";
 import TextField from "@mui/material/TextField";
 import List from "../Some test data/List";
@@ -50,7 +49,7 @@ export default function LogAppTable({ data }) {
             </tr>
             {data.map(row => <tr>
                 {
-                    columns.map(column => <td style={{ textAlign: 'left' }}>{row{column}}</td>)
+                    columns.map(column => <td style={{ textAlign: 'left' }}>{row[column]}</td>)
 
                 }
                 <td><FontAwesomeIcon icon={faCheck} onClick={() => Accept(row[columns[0]])}> </FontAwesomeIcon></td>
@@ -59,5 +58,4 @@ export default function LogAppTable({ data }) {
         </table>
         )
 
-    }
 }
