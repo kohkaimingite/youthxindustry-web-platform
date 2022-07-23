@@ -126,7 +126,18 @@ app.get("/login", function (req, res) {
 });
 
 app.get("/logout", function (req, res) {
-    db.query('UPDATE users SET LastLogged = curdate() WHERE UserID = ?;', [req.session.user[0].UserID])
+    if (req.session.user) {
+        db.query("UPDATE users SET LastLogged = curdate() WHERE UserID = ?;",
+            [req.session.user[0].UserID],
+
+            (err, result) => {
+                if (err) {
+                    console.log(err);
+                } else {
+                    res.send(result);
+                }
+            });
+    }
     req.session.destroy(err => {
         if (err) {
             return console.log(err);
