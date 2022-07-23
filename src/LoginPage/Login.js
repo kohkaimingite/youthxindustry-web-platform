@@ -36,7 +36,7 @@ export default function Login() {
             });
     };
 
-    const logout = () => {
+    /*const logout = () => {
         Axios.get("http://localhost:3001/logout")
             .then((response) => {
 
@@ -46,7 +46,7 @@ export default function Login() {
                 }
             });
     };
-
+*/
 
 
     useEffect(() => {

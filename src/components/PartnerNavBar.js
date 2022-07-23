@@ -7,7 +7,21 @@ import axios from 'axios';
 //import zIndex from '@mui/material/styles/zIndex';
 // <button>About Us</button> 
 //
+
+
+
 const PartnerNavBar = () => {
+
+    const [currentUserName, setCurrentUserName] = useState('');
+    useEffect(() => {
+        axios.get("http://localhost:3001/login").then((response) => {
+            if (response.data.loggedIn === true) {
+                setCurrentUserName(response.data.user[0].Name);
+
+            }
+        });
+    }, []);
+
     return (
         <header class='header' style={test}>
             <h1 style={brandName}>CYC</h1>
@@ -20,6 +34,7 @@ const PartnerNavBar = () => {
                 <a href="/EditCompanyNumber">Edit Company Number</a>              
                 <a href="/EditCompanyBio">Edit Bio</a>
                 <a href="/SubmitApplication">Submit Oppo</a>
+                <p>{currentUserName}</p>
                 <button onClick={logout}>Logout</button>
 
 
@@ -29,6 +44,9 @@ const PartnerNavBar = () => {
 
     )
 }
+
+
+
 const logout = () => {
     axios.get("http://localhost:3001/logout")
     setTimeout(function () {
