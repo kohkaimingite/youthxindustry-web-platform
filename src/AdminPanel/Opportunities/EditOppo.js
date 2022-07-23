@@ -6,11 +6,12 @@ import "../Opportunities/EditOppo.css";
 import axios from 'axios';
 
 const EditOppo = () => {
+    let { errorCheck } = '';
     const initialState = { name: "", description: "", location: "", address: "", type: "", qualification: "", pay: "", oppID: "" };
     const [formValues, setFormValues] = useState(initialState);
     const [formErrors, setFormErrors] = useState({});
-    const [isSubmit, setIsSubmit] = useState(false);
     const {name, description, location, address, type, qualification, pay, oppID} = formValues;
+    const [isSubmit, setIsSubmit] = useState(false);
 
     const handleChange = (e) => {
         const {name, value} = e.target;
@@ -18,30 +19,92 @@ const EditOppo = () => {
         console.log(formValues);
     }
     
+    const validate = (values) => {
+        const errors = {};
+        if (!values.oppID) {
+            errorCheck = 1;
+            errors.oppID = "OppID is required";
+        }
+        if (!values.name) {
+            errorCheck = 1;
+            errors.name = "Name is required";
+        } else if (values.name.length > 50) {
+            errorCheck = 1;
+            errors.name = "Name cannot exceed 50 characters";
+        }
+        if (!values.description) {
+            errorCheck = 1;
+            errors.description = "Description is required";
+        } else if (values.description.length > 255) {
+            errorCheck = 1;
+            errors.description = "Description cannot exceed 255 characters";
+        }
+        if (!values.location) {
+            errorCheck = 1;
+            errors.location = "Area is required";
+        } else if (values.location.length > 255) {
+            errorCheck = 1;
+            errors.location = "Area cannot exceed 255 characters";
+        }
+        if (!values.address) {
+            errorCheck = 1;
+            errors.address = "Address is required";
+        } else if (values.address.length > 255) {
+            errorCheck = 1;
+            errors.address = "Address cannot exceed 255 characters";
+        }
+        if (!values.type) {
+            errorCheck = 1;
+            errors.type = "Job category is required";
+        } else if (values.type.length > 50) {
+            errorCheck = 1;
+            errors.type = "Job category cannot exceed 50 characters";
+        }
+        if (!values.qualification) {
+            errorCheck = 1;
+            errors.qualification = "Qualification is required";
+        } else if (values.qualification.length > 50) {
+            errorCheck = 1;
+            errors.qualification = "Qualification cannot exceed 50 characters";
+        }
+        if (!values.pay) {
+            errorCheck = 1;
+            errors.pay = "Pay is required";
+        }
+        return errors;
+    }
+
     const submitFormData = (e) => {
         e.preventDefault();
         setFormErrors(validate(formValues));
-        setIsSubmit(true);
-        {
-            axios.post("http://localhost:3001/oppoEdit", {
-                OppID: oppID,
-                name: name,
-                description: description,
-                location: location,
-                address: address,
-                type: type,
-                qualification: qualification,
-                pay: pay,
-            })
-                .then((response) => {
-                    console.log(response);
-                    setFormValues({ name: "", description: "", location: "", address: "", type: "", qualification: "", pay: "", oppID: "" })
-                    console.log("Successfully updated");
+        if (errorCheck == 1) {
+            console.log(errorCheck);
+            console.log("Error");
+        } else {
+            console.log(errorCheck);
+            setIsSubmit(true);
+            {
+                axios.post("http://localhost:3001/oppoEdit", {
+                    OppID: oppID,
+                    name: name,
+                    description: description,
+                    location: location,
+                    address: address,
+                    type: type,
+                    qualification: qualification,
+                    pay: pay,
                 })
-                .catch(() => {
-                    console.log("Failed to update");
-                });
+                    .then((response) => {
+                        console.log(response);
+                        setFormValues({ name: "", description: "", location: "", address: "", type: "", qualification: "", pay: "", oppID: "" })
+                        console.log("Successfully updated");
+                    })
+                    .catch(() => {
+                        console.log("Failed to update");
+                    });
+            }
         }
+
     };
 
     useEffect(() => {
@@ -49,45 +112,7 @@ const EditOppo = () => {
         if (Object.keys(formErrors).length === 0 && isSubmit) {
             console.log(formValues);
         }
-    })
-
-    const validate = (values) => {
-        const errors = {}
-        if (!values.name) {
-            errors.name = "Name required";
-        } else if (values.name.length > 50) {
-            errors.name = "Name cannot exceed 50 characters";
-        }
-        if (!values.description) {
-            errors.description = "Description required";
-        } else if (values.description.length > 255) {
-            errors.description = "Description cannot exceed 255 characters";
-        }
-        if (!values.location) {
-            errors.location = "Area required";
-        } else if (values.location.length > 255) {
-            errors.location = "Area cannot exceed 255 characters";
-        }
-        if (!values.address) {
-            errors.address = "Address required";
-        } else if (values.address.length > 255) {
-            errors.address = "Address cannot exceed 255 characters";
-        }
-        if (!values.type) {
-            errors.type = "Job Category required";
-        } else if (values.type.length > 50) {
-            errors.type = "Job category cannot exceed 50 characters";
-        }
-        if (!values.qualification) {
-            errors.qualification = "Qualification required";
-        } else if (values.qualification.length > 50) {
-            errors.qualification = "Qualification cannot exceed 50 characters";
-        }
-        if (!values.pay) {
-            errors.pay = "Pay required";
-        }
-        return errors;
-    }
+    }, [formErrors])
 
     return (
         <div className="App">
@@ -106,7 +131,7 @@ const EditOppo = () => {
             }}>
                 <label>Job Code</label>
                 <input type="adminInput" name="oppID" placeholder="Job Code ..." value={formValues.OppID} onChange={handleChange}></input>
-              
+                <p className="adminErrorMsg">{formErrors.oppID}</p>
 
                 <label>Name</label>
                 <input type="adminInput" name="name" placeholder="Name ..." value={formValues.name} onChange={handleChange}></input>

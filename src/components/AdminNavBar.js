@@ -7,7 +7,6 @@ const AdminNavBar = () => {
         <header class='header' style={test}>
             <h1 style={brandName}>CYC</h1>
             <div class="containerNavBar borderYtoX">
-                <a href="/AdminPanel">Admin Panel</a>
                 <a href="/ViewUser">Users</a>
                 <a href="/ViewOppo">Opportunities</a>
                 <a href="/ViewPartner">Partners</a>

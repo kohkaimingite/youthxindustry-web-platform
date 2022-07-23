@@ -6,12 +6,12 @@ import "../Users/EditUser.css";
 import axios from 'axios';
 
 const EditUser = () => {
+    let { errorCheck } = '';
     const initialState = { roleID: "", name: "", password: "", email: "", age: "", gender: "", userBio: "", contactNumber: "", userID: "" };
     const [formValues, setFormValues] = useState(initialState);
     const [formErrors, setFormErrors] = useState({});
-    const [isSubmit, setIsSubmit] = useState(false);
     const {roleID, name, password, email, age, gender, userBio, contactNumber, userID} = formValues;
-    let { errorCheck } = '';
+    const [isSubmit, setIsSubmit] = useState(false);
 
     const handleChange = (e) => {
         const {name, value} = e.target;
@@ -35,6 +35,9 @@ const EditUser = () => {
         if (!values.roleID) {
             errorCheck = 1;
             errors.roleID = "RoleID is required";
+        } else if (values.roleID != 1 || values.roleID != 2 || values.roleID != 3) {
+            errorCheck = 1;
+            errors.roleID = "Only allow 1 (User), 2 (Partner), or 3 (Admin)";
         }
         if (!values.name) {
             errorCheck = 1;
@@ -42,7 +45,7 @@ const EditUser = () => {
         } else if (values.name.length > 50) {
             errorCheck = 1;
             errors.name = "Name cannot exceed 50 characters";
-        }
+        } 
         if (!values.password) {
             errorCheck = 1;
             errors.password = "Password is required";
