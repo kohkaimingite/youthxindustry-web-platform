@@ -30,7 +30,7 @@ const LoggedNavBar = () => {
                 <a href="/Status">Status</a>
                 <a href="/AddReview">Add Review</a>
                 <a href="/Profile">Profile</a>
-                <p>{currentUserName}</p>
+                <a>{currentUserName}</a>
                 <button onClick={logout}>Logout</button>
               
 
