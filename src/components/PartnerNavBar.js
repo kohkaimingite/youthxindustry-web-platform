@@ -17,11 +17,10 @@ const PartnerNavBar = () => {
                 <a href="/OppoPage">OppoPage</a>
                 <a href="/Company">Company</a>
                 <a href="/Profile">Profile</a>
-                <a href="/EditCompanyNumber">Edit Company Number</a>
-                
+                <a href="/EditCompanyNumber">Edit Company Number</a>              
                 <a href="/EditCompanyBio">Edit Bio</a>
                 <a href="/SubmitApplication">Submit Oppo</a>
-                
+                <button onClick={logout}>Logout</button>
 
 
             </div>
@@ -32,10 +31,9 @@ const PartnerNavBar = () => {
 }
 const logout = () => {
     axios.get("http://localhost:3001/logout")
-        .then((response) => {
-
-            
-        });
+    setTimeout(function () {
+        window.location.reload();
+    }, 1000);
 };
 
 const brandName = {

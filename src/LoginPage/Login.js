@@ -26,7 +26,6 @@ export default function Login() {
                     setStatus(response.data.message);
 
                 } else {
-                    setStatus(response.data[0].Name);
                     navigate("/Home")
                     setTimeout(function () {
                         window.location.reload();
@@ -52,10 +51,7 @@ export default function Login() {
 
     useEffect(() => {
         Axios.get("http://localhost:3001/login").then((response) => {
-            if (response.data.loggedIn == true) {
-                setStatus(response.data.user[0].Name);
-
-            }
+          
         });
     }, []);
 
@@ -88,7 +84,6 @@ export default function Login() {
                 />
 
                 <button onClick={login}>Login <FontAwesomeIcon icon={faSignIn}/></button>
-                <button onClick={logout}>Logout</button>
                 <p>{status}</p>
             </div>
         </div>

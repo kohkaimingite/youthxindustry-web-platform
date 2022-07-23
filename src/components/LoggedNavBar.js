@@ -19,7 +19,7 @@ const LoggedNavBar = () => {
                 <a href="/Status">Status</a>
                 <a href="/AddReview">Add Review</a>
                 <a href="/Profile">Profile</a>
-                
+                <button onClick={logout}>Logout</button>
 
 
 
@@ -31,10 +31,9 @@ const LoggedNavBar = () => {
 }
 const logout = () => {
     axios.get("http://localhost:3001/logout")
-        .then((response) => {
-
-            
-        });
+    setTimeout(function () {
+        window.location.reload();
+    }, 1000);
 };
 
 const brandName = {
