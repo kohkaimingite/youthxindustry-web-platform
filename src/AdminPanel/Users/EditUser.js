@@ -21,9 +21,6 @@ const EditUser = () => {
     const submitFormData = (e) => {
         e.preventDefault();
         setFormErrors(validate(formValues));
-        if (formErrors != "") {
-            return;
-        }
         setIsSubmit(true);
         {
             axios.post("http://localhost:3001/userEdit", {
@@ -68,8 +65,6 @@ const EditUser = () => {
         }
         if (!values.roleID) {
             errors.roleID = "RoleID is required";
-        } else if (values.roleID != 1|2|3) {
-            errors.roleID = "Only allow 1 (User), 2 (Partner), or 3 (Admin)";
         }
         if (!values.name) {
             errors.name = "Name is required";
