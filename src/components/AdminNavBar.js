@@ -1,32 +1,42 @@
 // JavaScript source code
-import React from 'react';
-import { Route, Link } from 'react-router-dom';
-import classes from '../components/AdminNavBar.module.css'
+import { React } from "react";
+import axios from 'axios';
 
 const AdminNavBar = () => {
     return (
-        <div className={classes.AdminNavBar}>
-            <nav>
-                <ul>
-                    <li>
-                        <Link to="/AdminPanel">Admin Panel</Link>
-                    </li>
+        <header class='header' style={test}>
+            <h1 style={brandName}>CYC</h1>
+            <div class="containerNavBar borderYtoX">
+                <a href="/AdminPanel">Admin Panel</a>
+                <a href="/ViewUser">Users</a>
+                <a href="/ViewOppo">Opportunities</a>
+                <a href="/ViewPartner">Partners</a>
+                <a href="/ConfirmPartner">Confirmation</a>
+                <button onClick={logout}>Logout</button>
 
-                    <li>
-                        <Link to="/ViewUser">Edit Users</Link>
-                    </li>
 
-                    <li>
-                        <Link to="/ViewOppo">Edit Opportunities</Link>
-                    </li>
 
-                    <li>
-                        <Link to="/ViewPartner">Manage Partners</Link>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    );
+            </div>
+
+        </header>
+
+    )
+}
+const logout = () => {
+    axios.get("http://localhost:3001/logout")
+    setTimeout(function () {
+        window.location.reload();
+    }, 1000);
+};
+
+const brandName = {
+    color: "white",
+
+}
+
+const test = {
+
+    backgroundColor: '#FFD700'
 }
 
 export default AdminNavBar
