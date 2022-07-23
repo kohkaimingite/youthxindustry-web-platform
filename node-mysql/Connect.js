@@ -561,7 +561,7 @@ app.get('/Company', (req, res) => {
 })
 
 app.get('/Applications', (req, res) => {
-    db.query("SELECT application.AppID, opportunities.OppID, opportunities.Name, users.ContactNumber, users.Email, application.Description, application.Status FROM application INNER JOIN opportunities ON application.OppID = opportunities.OppID INNER JOIN users ON application.UserID = users.UserID INNER JOIN partner_have_opp ON partner_have_opp.OppID = application.OppID WHERE partner_have_opp.UserID = ?;",
+    db.query("SELECT application.AppID, opportunities.OppID, opportunities.Name, users.ContactNumber, users.Email, application.Description, application.Status FROM application INNER JOIN opportunities ON application.OppID = opportunities.OppID INNER JOIN users ON application.UserID = users.UserID INNER JOIN partner_have_opp ON partner_have_opp.OppID = application.OppID WHERE partner_have_opp.UserID = ? AND application.status='Pending';",
         [req.session.user[0].UserID],
         (err, result) => {
             if (err) {
@@ -618,34 +618,34 @@ app.post('/SubmitApplication', (req, res) => {
 }
 )
 
+
 app.post('/AcceptApplication', (req, res) => {
-    const AppID = req.body.AppID
-    db.query("UPDATE application SET Status = 'Success' WHERE AppID = ?"),
+    const AppID = req.body.AppID;
+    db.query("UPDATE application SET Status = 'Success' WHERE AppID = ?;",
         [AppID],
         (err, result) => {
             if (err) {
                 console.log(err);
             } else {
-                res.send("");
-            }
-        }
-}
-)
+                res.send(result)
+            };
+
+        });
+});
 
 app.post('/RejectApplication', (req, res) => {
-    const AppID = req.body.AppID
-    db.query("UPDATE application SET Status = 'Rejected' WHERE AppID = ?"),
+    const AppID = req.body.AppID;
+    db.query("UPDATE application SET Status = 'Rejected' WHERE AppID = ?;",
         [AppID],
         (err, result) => {
             if (err) {
                 console.log(err);
             } else {
-                res.send("");
-            }
-        }
-}
-)
+                res.send(result)
+            };
 
+        });
+});
 
 
 //Zhi Wei

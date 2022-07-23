@@ -15,21 +15,31 @@ export default function LogAppTable({ data }) {
     const columns = data[0] && Object.keys(data[0]);
 
     function Accept(appID) {
-        axios.post("http://localhost:3001/AcceptApplication", {
-            AppID: parseInt(appID)
-        }).then((response) => {
-            console.log("Updated Sucessfully");
-            alert("Accepted!")
-        });
-    }
+        if (window.confirm("Accept Application?")) {
 
+            axios.post("http://localhost:3001/AcceptApplication", {
+                AppID: parseInt(appID),
+            }).then((response) => {
+                console.log("Updated Sucessfully");
+                alert("Accepted!")
+            });
+        } else {
+            alert("Application not Accepted")
+        }
+    }
+    
     function Reject(appID) {
-        axios.post("http://localhost:3001/RejectApplication", {
-            AppID: parseInt(appID)
-        }).then((response) => {
-            console.log("Updated Sucessfully");
-            alert("Rejected!")
-        });
+        if (window.confirm("Reject Application?")) {
+
+            axios.post("http://localhost:3001/RejectApplication", {
+                AppID: parseInt(appID),
+            }).then((response) => {
+                console.log("Updated Sucessfully");
+                alert("Rejected!")
+            });
+        } else {
+            alert("Application not rejected")
+        }
     }
 
     return (
@@ -44,6 +54,8 @@ export default function LogAppTable({ data }) {
                 <th>Status</th>
                 <th>Accept</th>
                 <th>Reject</th>
+                <th>test</th>
+
 
 
             </tr>
@@ -54,6 +66,8 @@ export default function LogAppTable({ data }) {
                 }
                 <td><FontAwesomeIcon icon={faCheck} onClick={() => Accept(row[columns[0]])}> </FontAwesomeIcon></td>
                 <td><FontAwesomeIcon icon={faX} onClick={() => Reject(row[columns[0]])}> </FontAwesomeIcon></td>
+                <td>{row[columns[0]]}</td>
+                
             </tr>)}
         </table>
         )

@@ -46,7 +46,6 @@ function UserProfile() {
                     </div>
                     <div className="AlignMiddle">
                     <form action="/action_page.php" method="post">
-                        <h3>Testing</h3>
                         {ProfList.map((val, key) => {
                             return <text align="Left">{val.Name}</text>;
                         })}<br />
