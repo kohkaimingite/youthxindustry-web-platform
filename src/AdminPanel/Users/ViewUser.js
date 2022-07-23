@@ -1,7 +1,7 @@
 // JavaScript source code
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import NavBar from '../../components/NavBar';
+import AdminNavBar from '../../components/AdminNavBar';
 import "../Users/ViewUser.css";
 import axios from 'axios';
 
@@ -49,7 +49,7 @@ const ViewUser = () => {
 
     return (
         <div className="App">
-            <NavBar />
+            <AdminNavBar />
             <Link to="/AdminPanel">
                 <button className="btn backButton">Go Back to Admin Panel</button>
             </Link>

@@ -12,7 +12,7 @@ const AdminNavBar = () => {
                 <a href="/ViewOppo">Opportunities</a>
                 <a href="/ViewPartner">Partners</a>
                 <a href="/ConfirmPartner">Confirmation</a>
-                <button onClick={logout}>Logout</button>
+                <a href="/logout">Logout</a>
 
 
 
