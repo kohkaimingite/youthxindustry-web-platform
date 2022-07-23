@@ -126,13 +126,11 @@ app.get("/login", function (req, res) {
 });
 
 app.get("/logout", function (req, res) {
-    var loggedOutName = req.session.user[0].Name
+    db.query('UPDATE users SET LastLogged = curdate() WHERE UserID = ?;', [req.session.user[0].UserID])
     req.session.destroy(err => {
         if (err) {
             return console.log(err);
         }
-        res.send({ message: loggedOutName + " is logged out!" });
-
 
     });
 });
@@ -295,16 +293,18 @@ app.post('/getOneOppo', function (req, res) {
     )
 })
 app.get('/getCurrentUserRole', function (req, res) {
-    db.query("SELECT RoleID FROM users WHERE UserID = ?;",
-        [req.session.user[0].UserID],
+    if (req.session.user) {
+        db.query("SELECT RoleID FROM users WHERE UserID = ?;",
+            [req.session.user[0].UserID],
 
-        (err, result) => {
-            if (err) {
-                console.log(err);
-            } else {
-                res.send(result);
-            }
-        });
+            (err, result) => {
+                if (err) {
+                    console.log(err);
+                } else {
+                    res.send(result);
+                }
+            });
+    }
 });
 
 app.post('/getOppoStatus', function (req, res) {
