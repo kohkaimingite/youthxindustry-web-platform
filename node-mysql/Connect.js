@@ -588,26 +588,11 @@ app.post('/EditUResume', (req, res) => {
 
 })
 
-app.post('/DeleteApplication', (req, res) => {
-    const ID = req.body.ID
-    db.query("DELETE FROM application WHERE UserID = 1 AND AppID = ?",
-        [ID],
-        (err, result) => {
-            if (err) {
-                console.log(err);
-            } else {
-                res.send("Updated Resume!");
-            }
-        }
-    )
-})
-
 app.post('/SubmitApplication', (req, res) => {
     const desc = req.body.desc
     const OppID = req.body.OppID
-    const UserID = req.body.UserID
     db.query("INSERT INTO application (OppID, UserID, Description, Status) VALUES (?, ?, ?, 'pending')"),
-        [OppID, UserID, desc],
+        [OppID, req.session.user[0].UserID, desc],
         (err, result) => {
             if (err) {
                 console.log(err);

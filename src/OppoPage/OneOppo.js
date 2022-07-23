@@ -94,7 +94,7 @@ function OneOppo() {
                             {oneOppoCompany.map((row, key) => <button style={{ marginTop: "50px" }} ><a href={"/ViewCompanyProfile/" + row["Name"]}>View Company profile</a></button>)}
                             <div style={{ marginBottom: "10px" }}>
                                 
-                                <button style={{ marginTop: "10px" }} >Apply Now</button>
+                                {oneOppo.map((row, key) => <button style={{ marginTop: "10px" }} ><a href={"/SubmitApplication/" + row["OppID"]}>Apply Now</a></button>)}
                                 </div>  
                         </company>
                     </topSection>

@@ -10,6 +10,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Collapsible from '../components/Collapsible';
 import axios from 'axios';
 import LoggedDatatable from './LoggedDatatable';
+import OppoViewFormat from './OppoViewFormat';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUpLong } from "@fortawesome/free-solid-svg-icons";
 require('es6-promise').polyfill();
@@ -586,7 +587,7 @@ function LoggedOppoPage() {
 
                 </div>
                 
-                <LoggedDatatable data={filterAll(OppoList)} />
+                <OppoViewFormat data={filterAll(OppoList)} />
                 <button id="scrollUp" class="scrollToTop" onClick={scrollToTop} style={{ opacity: showScrollBtn ? 100 : 0 }}><FontAwesomeIcon icon={faArrowUpLong} class="arrowUp" /></button>
             </div>
             
@@ -597,6 +598,7 @@ function LoggedOppoPage() {
 
     );
 }
+//OppoViewFormat LoggedDatatable
 //isVisible ? 'opacity-100' : 'opacity-0'
                 //opacity: showScrollBtn ? 100 : 0 
                 //opacity: showScrollBtn ? 100 : 0 

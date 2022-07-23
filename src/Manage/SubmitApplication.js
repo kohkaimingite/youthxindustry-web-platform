@@ -6,15 +6,17 @@ import List from "../Some test data/List";
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Collapsible from '../components/Collapsible';
-import { Route, Link } from 'react-router-dom';
+import { Route, Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 
 
 function SubmitApplication() {
     const [ProfList, setProfList] = useState([]);
     const [desc, setdesc] = useState("");
+    const [OppID, setOppID] = useState(0);
     const [Chars, setChars] = useState(0);
     const columns = ProfList[0] && Object.keys(ProfList[0]);
+    const { id } = useParams();
     const getProfile = () => {
 
     };
@@ -68,11 +70,12 @@ function SubmitApplication() {
 
     function submit() {
         axios.post("http://localhost:3001/SubmitApplication", {
-                desc: desc
+            desc: desc,
+            OppID : OppID
         }).then(() => {
             console.log("Test");
             /*setCheck(response.data);*/
-            window.location = "http://localhost:3000/MyApplications";
+            window.location = "http://localhost:3000/Status";
         });
     }
 }

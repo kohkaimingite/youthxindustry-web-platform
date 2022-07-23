@@ -5,6 +5,7 @@ import List from "../Some test data/List";
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Collapsible from '../components/Collapsible';
+import profile from './profile.css';
 import { Route, Link } from 'react-router-dom';
 import axios from 'axios';
 import { faPencil } from "@fortawesome/free-solid-svg-icons";
@@ -33,6 +34,40 @@ function UserProfile() {
             <LoggedNavBar />
                 <div className="main">
                 <h1>Profile</h1>
+                <h4>ew ds gay</h4>
+                <topSection>
+                    <jobHeader style={{ textAlign: 'left' }}>
+                        <text>Full Name:</text><br />
+                        <text>Email:</text><br />
+                        <text>Mobile Number:</text><br />
+                        <text>Bio: </text><br />
+                        <text>Resume: </text><br />
+                    </jobHeader>
+                    <company style={{ textAlign: 'left' }}>
+                        
+                        <form action="/action_page.php" method="post">
+                            {ProfList.map((val, key) => {
+                                return <text>{val.Name}</text>;
+                            })}<br />
+                            {ProfList.map((val, key) => {
+                                return <text>{val.Email}</text>;
+                            })}<br />
+                            {ProfList.map((val, key) => {
+                                return <text>{val.ContactNumber}</text>;
+                            })}<a href="/EditUserNumber"> <FontAwesomeIcon icon={faPencil}></FontAwesomeIcon> </a><br />
+                            {ProfList.map((val, key) => {
+                                return <text>{val.UserBio}</text>;
+                            })}<a href="/EditUserBio"> <FontAwesomeIcon icon={faPencil}></FontAwesomeIcon> </a><br />
+                            {/*{ProfList.map((val, key) => {*/}
+                            {/*    return <text align="Left">{val.Resume}</text>;*/}
+                            {/*})}<br />*/}<a href="/EditUserResume"> <FontAwesomeIcon icon={faPencil}></FontAwesomeIcon> </a><br />
+
+
+
+
+                        </form>
+                    </company>
+                </topSection>
                     <div className="AlignLeft">
                     <h3>Details:</h3>
                     <form action="/action_page.php" method="post">

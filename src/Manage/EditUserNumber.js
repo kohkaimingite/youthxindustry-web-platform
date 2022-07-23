@@ -1,5 +1,5 @@
 // JavaScript source code
-import NavBar from '../components/NavBar'
+import LoggedNavBar from '../components/LoggedNavBar'
 import { React, useState, useEffect } from "react";
 import TextField from "@mui/material/TextField";
 import List from "../Some test data/List";
@@ -33,7 +33,7 @@ function EditProfile() {
 
     return (
         <div className="App">
-            <NavBar />
+            <LoggedNavBar />
             <div className="main">
                 <h1>Profile</h1>
                 <div className="AlignLeft">
