@@ -63,7 +63,7 @@ export default function AddOppoPartner() {
         ) {
             setError(true);
         } else {
-            Axios.post("http://localhost:3001/addOppPartner", {
+            Axios.post("http://localhost:3001/NewOppo", {
                 name: name,
                 description: description,
                 location: location,
