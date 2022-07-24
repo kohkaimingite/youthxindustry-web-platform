@@ -24,7 +24,7 @@ function MyApplication() {
             setAppList(response.data);
 
         });
-    });
+    }, []);
     return (
 
         <div className="App">

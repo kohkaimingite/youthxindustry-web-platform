@@ -100,25 +100,31 @@ export default function OppoPartner() {
         const index = oppList.findIndex((opp) => opp.OppID === oppId);
         newOppo.splice(index, 1);
         setOppList(newOppo);
+        if (
+            window.confirm("Confirm Deletion of Job Code: " + oppId + " ?")
+        ) {
+            Axios.post("http://localhost:3001/deleteOppPartner", {
+                oppId: oppId
+            }).then(() => {
+                console.log("Successfully Deleted.");
+            })
+                .catch(() => {
+                    console.log("Not successfuly deleted.");
+                });
+        } else {
+            window.alert("Action cancelled")
+        }
+    };
 
-        Axios.post("http://localhost:3001/deleteOppPartner", {
-            oppId: oppId
-        }).then(() => {
-            console.log("Deleted sucessfully!");
-        });
-    }
 
-
-
-
-    useEffect(() => {
+    
+    useEffect(() =>  {
         Axios.get("http://localhost:3001/oppListing").then((response) => {
 
-            console.log(response);
             setOppList(response.data);
 
         });
-    });
+    }, [oppList]);
 
 
     const styleButton = {
@@ -140,16 +146,16 @@ export default function OppoPartner() {
                     <table class="OppoPartnerTable">
 
                         <tr>
-                            <th>Job Code</th>
-                            <th>Job Name</th>
-                            <th>Description</th>
-                            <th>Location</th>
-                            <th>Address</th>
-                            <th>Job Categories</th>
-                            <th>Qualification</th>
-                            <th>Pay (SGD) </th>
-                            <th>Edit</th>
-                            <th>Delete</th>
+                            <th style={{ textAlign: "left" }}>Job Code</th>
+                            <th style={{ textAlign: "left" }}>Job Name</th>
+                            <th style={{ textAlign: "left" }}>Description</th>
+                            <th style={{ textAlign: "left" }}>Location</th>
+                            <th style={{ textAlign: "left" }}>Address</th>
+                            <th style={{ textAlign: "left" }}>Job Categories</th>
+                            <th style={{ textAlign: "left" }}>Qualification</th>
+                            <th style={{ textAlign: "left" }}>Pay (SGD) </th>
+                            <th style={{ textAlign: "left" }}>Edit</th>
+                            <th style={{ textAlign: "left" }}>Delete</th>
 
                         </tr>
                         {oppList.map((opp) => (

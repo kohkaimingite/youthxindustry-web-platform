@@ -33,8 +33,8 @@ function UserProfile() {
         <div className="App">
             <LoggedNavBar />
                 <div className="main">
-                <h1>Profile</h1>
-                <h4>ew ds gay</h4>
+                <h1 >Profile</h1>
+                
                 <topSection>
                     <jobHeader style={{ textAlign: 'left' }}>
                         <text>Full Name:</text><br />

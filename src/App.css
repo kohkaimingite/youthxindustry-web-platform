@@ -185,8 +185,8 @@ ul li {
 }
 @import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
 .oppoTable {
-    width: 79%;
     border-collapse: collapse;
+    width: 79%;
     margin-right: 2%;
     margin-left: auto;
     border-radius: 10px 10px 0 0;
@@ -194,8 +194,6 @@ ul li {
     box-shadow: 0 0 20px rgba(0,0,0,0.15);
     font-family: 'Rubik', sans-serif;
     font-weight: 400;
-    
-    
 }
 .oppoTable th,td {
     padding: 0.25em 0.5em 0.25em 1em;
@@ -229,15 +227,15 @@ ul li {
     overflow: auto;
 
 }
-
+/*90px*/
 
 .sidenav {
     width: 17%;
     position: fixed;
     z-index: 1;
-    top: 90px;
+    top: 80px;
     left: 0px;
-    bottom:0px;
+    bottom: 0px;
     background: #eee;
     overflow-x: hidden;
     padding: 8px 0;
