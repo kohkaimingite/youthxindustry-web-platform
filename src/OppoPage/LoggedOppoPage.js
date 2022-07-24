@@ -587,7 +587,7 @@ function LoggedOppoPage() {
 
                 </div>
                 
-                <OppoViewFormat data={filterAll(OppoList)} />
+                <LoggedDatatable data={filterAll(OppoList)} />
                 <button id="scrollUp" class="scrollToTop" onClick={scrollToTop} style={{ opacity: showScrollBtn ? 100 : 0 }}><FontAwesomeIcon icon={faArrowUpLong} class="arrowUp" /></button>
             </div>
             

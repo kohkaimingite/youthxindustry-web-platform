@@ -8,7 +8,7 @@ import Collapsible from '../components/Collapsible';
 import OppoViewFormat from './OppoViewFormat.css';
 import axios from 'axios';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { faStar,faLocationDot,faHeart } from "@fortawesome/free-solid-svg-icons";
 
 export default function LoggedDatatable({ data }) {
     const [OppoList, setOppoList] = useState([]);
@@ -125,48 +125,90 @@ export default function LoggedDatatable({ data }) {
 
     const colors = {
         orange: "#FFBA5A",
-        grey: "#a9a9a9"
+        grey: "#a9a9a9",
+        red:"#f04f4f"
 
     };
     return (
         <div >
-            <div class="card">
-                <h6>Jobid</h6>
-                <h2>Job name</h2>
+            
+            
+            <div style={{height:"120px", backgroundColor: "red", borderRadius: "5px", marginLeft: "auto", marginRight: "2%", marginBottom: "20px", width: "79%"}} >
+                <div class="badCard">
+                    <div class="content">
+                        <h6 style={{ textAlign: 'left'}}>Job ID <FontAwesomeIcon icon={faStar} ></FontAwesomeIcon></h6>
+
+                        <h4 class="job-title" style={{ textAlign: 'left' }}>Job name</h4>
+                        <h5 class="company" style={{ textAlign: 'left' }}><FontAwesomeIcon icon={faLocationDot} ></FontAwesomeIcon> Location</h5>
+                        
+                        
+                    </div>
+                </div>
+
             </div>
-        <table class="oppoTable">
 
-            <tr>
-                <th>Job Code</th>
-                <th>Job Name</th>
-                
-                <th>Region</th>
-                
-                <th>Job Categories</th>
-                <th>Diploma</th>
-                <th>Pay</th>
-                <th>Favourite</th>
-                
+            <div style={{ height: "120px", borderRadius: "5px", marginLeft: "auto", marginRight: "2%", marginBottom: "20px", width: "79%" }} >
+                <div class="badCard">
+                    <div class="content">
+                        <h6 style={{ textAlign: 'left' }}>Job ID <FontAwesomeIcon icon={faStar} ></FontAwesomeIcon></h6>
+                        <a class="sideCard">test</a>
+                        <h4 class="job-title" style={{ textAlign: 'left' }}>Job name</h4>
+                        
+                        <h5 class="company" style={{ textAlign: 'left' }}><FontAwesomeIcon icon={faLocationDot} ></FontAwesomeIcon> Location</h5>
 
-            </tr>
-            {data.map((row,key) => <tr>
-                    <td style={{ textAlign: 'left' }}>{row["OppID"]}</td>
-                    <td style={{ textAlign: 'left' }}><a href={"/Oppo/"+row["OppID"]}>{row["Name"]}</a></td>
-                    
-                    <td style={{ textAlign: 'left' }}>{row["Location"]}</td>
-                    
-                    <td style={{ textAlign: 'left' }}>{row["Type"]}</td>
-                    <td style={{ textAlign: 'left' }}>{row["Qualification"]}</td>
-                    <td style={{ textAlign: 'left' }}>{row["Pay"]}</td>
-                <td><FontAwesomeIcon icon={faStar} color={colourFav(row[columns[0]]) ? colors.orange : colors.grey} onClick={() => addFav( testing(row[columns[0]]) , row[columns[0]]  )}>{row[columns[0]]} {test}</FontAwesomeIcon></td>
 
-            </tr>)}
-        </table>
+                    </div>
+                </div>
+
+            </div>
+            
+
+            
+        <div class="test">
+
+            
+                
+                {data.map((row, key) =>
+                    <div style={{ height: "120px", borderRadius: "5px", marginLeft: "auto", marginRight: "2%", marginBottom: "20px", width: "79%" }} >
+                        <div class="badCard">
+                            <div class="content">
+                                <h6 style={{ textAlign: 'left' }}>Job ID : {row["OppID"]}  <FontAwesomeIcon icon={faHeart} size="lg" color={colourFav(row[columns[0]]) ? colors.red : colors.grey} onClick={() => addFav(testing(row[columns[0]]), row[columns[0]])}>{row[columns[0]]} {test}</FontAwesomeIcon></h6>
+                                <a class="sideCard">{row["Type"]}</a>
+                                <h4 class="job-title" style={{ textAlign: 'left' }}><a href={"/Oppo/" + row["OppID"]}>{row["Name"]}</a></h4>
+
+                                <h5 class="company" style={{ textAlign: 'left' }}><FontAwesomeIcon icon={faLocationDot} ></FontAwesomeIcon> {row["Location"]}</h5>
+
+
+                            </div>
+                        </div>
+
+                    </div>
+                )}
+            
+            
+        </div>
         </div>
 
             
         );
 }
+//{<table class="oppoTable">
+//    data.map((row, key) => <tr>
+//        <td style={{ textAlign: 'left' }}>{row["OppID"]}</td>
+//        <td style={{ textAlign: 'left' }}><a href={"/Oppo/" + row["OppID"]}>{row["Name"]}</a></td>
+
+//        <td style={{ textAlign: 'left' }}>{row["Location"]}</td>
+
+//        <td style={{ textAlign: 'left' }}>{row["Type"]}</td>
+//        <td style={{ textAlign: 'left' }}>{row["Qualification"]}</td>
+//        <td style={{ textAlign: 'left' }}>{row["Pay"]}</td>
+//        <td><FontAwesomeIcon icon={faStar} color={colourFav(row[columns[0]]) ? colors.orange : colors.grey} onClick={() => addFav(testing(row[columns[0]]), row[columns[0]])}>{row[columns[0]]} {test}</FontAwesomeIcon></td>
+
+//    </tr>)</table>
+//}
+
+
+
 //<td style={{ textAlign: 'left' }}>{row["Description"]}</td>
 //<td style={{ textAlign: 'left' }}>{row["Address"]}</td>
 //, checkFavListFunction(row[columns[0]])
