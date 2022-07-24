@@ -6,19 +6,19 @@ const ReadOnlyRow = ({ opp, handleEditClick, handleDeleteClick }) => {
 
     return (
         <tr>
-            <td>{opp.OppID}</td>
-            <td >{opp.Name}</td>
-            <td>{opp.Description}</td>
-            <td>{opp.Location}</td>
-            <td>{opp.Address}</td>
-            <td>{opp.Type}</td>
-            <td>{opp.Qualification}</td>
-            <td>${opp.Pay}</td>
+            <td style={{ textAlign:"left" }}>{opp.OppID}</td>
+            <td style={{ textAlign:"left" }}>{opp.Name}</td>
+            <td style={{ textAlign:"left" }}>{opp.Description}</td>
+            <td style={{ textAlign:"left" }}> {opp.Location}</td>
+            <td style={{ textAlign:"left" }}>{opp.Address}</td>
+            <td style={{ textAlign:"left" }}>{opp.Type}</td>
+            <td style={{ textAlign:"left" }}>{opp.Qualification}</td>
+            <td style={{ textAlign:"left" }}>${opp.Pay}</td>
             <td>
-                <button style={{ color: '#FFFFFF', backgroundColor: '#008000' }} type="button" onClick={(event) => handleEditClick(event, opp)}> <FontAwesomeIcon icon={faPencil} /></button>
+                <button type="button" onClick={(event) => handleEditClick(event, opp)}> <FontAwesomeIcon icon={faPencil} /></button>
             </td>
             <td>
-                <button style={{ color: '#FFFFFF', backgroundColor: '#B22222' }} type="button" onClick={() => handleDeleteClick(opp.OppID)}><FontAwesomeIcon icon={faTrash} /></button>
+                <button type="button" onClick={() => handleDeleteClick(opp.OppID)}><FontAwesomeIcon icon={faTrash} /></button>
             </td>
         </tr>
     )
