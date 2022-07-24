@@ -83,8 +83,6 @@ function Home() {
 
                 <RegisterSet />
 
-                <AdminNavBar />
-
             </div>
 
 
@@ -106,8 +104,6 @@ function Home() {
 
                 <RegisterSet />
 
-                <AdminNavBar />
-
             </div>
 
 
@@ -116,6 +112,7 @@ function Home() {
         return (
 
             <div className="App">
+                <AdminNavBar />
 
                 <AdminPanel />
 

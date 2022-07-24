@@ -22,6 +22,10 @@
     border-bottom: 1px solid #dddddd;
 }
 
+.User-Table tbody tr:hover {
+  background-color: #DBDBDB;
+}
+
 .styled-table tbody tr:nth-of-type(even) {
     background-color: #f3f3f3;
   }

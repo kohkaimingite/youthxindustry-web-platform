@@ -23,7 +23,7 @@
 }
 
 .User-Table tbody tr:hover {
-  background-color: #D3D3D3;
+  background-color: #DBDBDB;
 }
 
 .styled-table tbody tr:nth-of-type(even) {

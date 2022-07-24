@@ -1,16 +1,17 @@
 // JavaScript source code
 import React, { useState, useEffect } from "react";
 import { Route, Link } from 'react-router-dom';
-import NavBar from '../../components/NavBar';
+import AdminNavBar from '../../components/AdminNavBar';
 import "../Partners/EditPartner.css";
 import axios from 'axios';
 
 const EditPartner = () => {
+    let { errorCheck } = '';
     const initialState = { roleID: "", name: "", password: "", email: "", userBio: "", contactNumber: "", userID: "" };
     const [formValues, setFormValues] = useState(initialState);
     const [formErrors, setFormErrors] = useState({});
-    const [isSubmit, setIsSubmit] = useState(false);
     const {roleID, name, password, email, userBio, contactNumber, userID} = formValues;
+    const [isSubmit, setIsSubmit] = useState(false);
 
     const handleChange = (e) => {
         const {name, value} = e.target;
@@ -18,29 +19,97 @@ const EditPartner = () => {
         console.log(formValues);
     }
     
+    const validate = (values) => {
+        const errors = {}
+        const pwRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+        const pnumRegex = /[6|8|9]\d{7}/;
+        if (!values.userID) {
+            errorCheck = 1;
+            errors.userID = "UserID is required";
+        }
+        if (!values.roleID) {
+            errorCheck = 1;
+            errors.roleID = "RoleID is required";
+        } else if (values.roleID == 1|2|3) {
+            errorCheck = 1;
+            errors.roleID = "Only allow 1 (User), 2 (Partner), or 3 (Admin)";
+        }
+        if (!values.name) {
+            errorCheck = 1;
+            errors.name = "Name is required";
+        } else if (values.name.length > 50) {
+            errorCheck = 1;
+            errors.name = "Name cannot exceed 50 characters";
+        }
+        if (!values.password) {
+            errorCheck = 1;
+            errors.password = "Password is required";
+        } else if (!pwRegex.test(values.password)) {
+            errorCheck = 1;
+            errors.password = "Password has to be at least 8 characters, at least 1 letter, and 1 number";
+        } else if (values.password > 50) {
+            errorCheck = 1;
+            errors.password = "Password cannot exceed 50 characters";
+        }
+        if (!values.email) {
+            errorCheck = 1;
+            errors.email = "Email is required";
+        } else if (!emailRegex.test(values.email)) {
+            errorCheck = 1;
+            errors.email = "Email must be a valid email address";
+        } else if (values.email.length > 50) {
+            errorCheck = 1;
+            errors.email = "Email cannot exceed 50 characters";
+        }
+        if (values.userBio.length > 255) {
+            errorCheck = 1;
+            errors.userBio = "Biography cannot exceed 255 characters";
+        }
+        if (!values.contactNumber) {
+            errorCheck = 1;
+            errors.contactNumber = "Contact number is required";
+        } else if (!pnumRegex.test(values.contactNumber)) {
+            errorCheck = 1;
+            errors.contactNumber = "Contact number must be a valid number";
+        } else if (values.contactNumber > 8) {
+            errorCheck = 1;
+            errors.contactNumber = "Contact number cannot exceed 8 characters";
+        }
+
+        return errors;
+    }
+
     const submitFormData = (e) => {
         e.preventDefault();
         setFormErrors(validate(formValues));
-        setIsSubmit(true);
-        {
-            axios.post("http://localhost:3001/partnerEdit", {
-                UserID: userID,
-                RoleID: roleID,
-                name: name,
-                password: password,
-                email: email,
-                userBio: userBio,
-                contactNumber: contactNumber,
-            })
-                .then((response) => {
-                    console.log(response);
-                    setFormValues({ roleID: "", name: "", password: "", email: "", userBio: "", contactNumber: "", userID: "" })
-                    console.log("Successfully updated");
+        if (errorCheck == 1) {
+            console.log(errorCheck);
+            console.log("Error");
+        } else {
+            console.log(errorCheck);
+            setIsSubmit(true);
+            {
+                axios.post("http://localhost:3001/partnerEdit", {
+                    UserID: userID,
+                    RoleID: roleID,
+                    name: name,
+                    password: password,
+                    email: email,
+                    userBio: userBio,
+                    contactNumber: contactNumber,
                 })
-                .catch(() => {
-                    console.log("Failed to update");
-                });
+                    .then((response) => {
+                        console.log(response);
+                        setFormValues({ roleID: "", name: "", password: "", email: "", userBio: "", contactNumber: "", userID: "" })
+                        console.log("Successfully updated");
+                    })
+                    .catch(() => {
+                        console.log("Failed to update");
+                    });
+            }
         }
+        
     }
 
     useEffect(() => {
@@ -48,57 +117,11 @@ const EditPartner = () => {
         if (Object.keys(formErrors).length === 0 && isSubmit) {
             console.log(formValues);
         }
-    })
-
-    const validate = (values) => {
-        const errors = {}
-        const pwRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-        const pnumRegex = /[6|8|9]\d{7}/;
-        if (!values.userID) {
-            errors.userID = "UserID is required";
-        }
-        if (!values.roleID) {
-            errors.roleID = "RoleID is required";
-        } else if (values.roleID == 1|2|3) {
-            errors.roleID = "Only allow 1 (User), 2 (Partner), or 3 (Admin)";
-        }
-        if (!values.name) {
-            errors.name = "Name is required";
-        } else if (values.name.length > 50) {
-            errors.name = "Name cannot exceed 50 characters";
-        }
-        if (!values.password) {
-            errors.password = "Password is required";
-        } else if (!pwRegex.test(values.password)) {
-            errors.password = "Password has to be at least 8 characters, at least 1 letter, and 1 number";
-        } else if (values.password > 50) {
-            errors.password = "Password cannot exceed 50 characters";
-        }
-        if (!values.email) {
-            errors.email = "Email is required";
-        } else if (!emailRegex.test(values.email)) {
-            errors.email = "Email must be a valid email address";
-        } else if (values.email.length > 50) {
-            errors.email = "Email cannot exceed 50 characters";
-        }
-        if (values.userBio.length > 255) {
-            errors.userBio = "Biography cannot exceed 255 characters";
-        }
-        if (!values.contactNumber) {
-            errors.contactNumber = "Contact number is required";
-        } else if (!pnumRegex.test(values.contactNumber)) {
-            errors.contactNumber = "Contact number must be a valid number";
-        } else if (values.contactNumber > 8) {
-            errors.contactNumber = "Contact number cannot exceed 8 characters";
-        }
-
-        return errors;
-    }
+    }, [formErrors])
 
     return (
         <div className="App">
-            <NavBar />
+            <AdminNavBar />
             {Object.keys(formErrors).length === 0 && isSubmit ? (<div className="ui-message-success">Signed in successfully</div>
             ) : (
                 <pre>{JSON.stringify(formValues, undefined, 2)}</pre>
