@@ -65,10 +65,11 @@ function SubmitApplication() {
                             return <text align="Left">{val.ContactNumber}</text>;
                         })}<br />
                             
-                        <textarea placeholder="Briefly Describe Why You Want This Opportunity... (250 characters)" id="desc" name="desc" value={desc} onChange={e => { setdesc(e.target.value); setChars(e.target.value.length) }} /*style={styles.textArea}*/ maxLength="250"> </textarea>
+                        <textarea placeholder="Briefly Describe Why You Want This Opportunity... (250 characters)" id="desc" name="desc" value={desc} onChange={e => { setdesc(e.target.value); setChars(e.target.value.length) }} maxLength="250"> </textarea>
                         <h4>Characters typed: {Chars}</h4>
                         <button onClick={submit}> Confirm </button>
                     </form>
+                    <h2>{desc}</h2>
                 </div>
                 <div className="AlignRight">
                     <Row>
@@ -100,8 +101,7 @@ function SubmitApplication() {
             desc: desc,
             OppID : id
         }).then(() => {
-            console.log("Test");
-            /*setCheck(response.data);*/
+            console.log("test");
             window.location = "http://localhost:3000/Status";
         });
     }

@@ -604,17 +604,16 @@ app.post('/EditUResume', (req, res) => {
 app.post('/SubmitApplication', (req, res) => {
     const desc = req.body.desc
     const OppID = req.body.OppID
-    db.query("INSERT INTO application (OppID, UserID, Description, Status) VALUES (?, ?, ?, 'pending')"),
-        [OppID, req.session.user[0].UserID, desc],
+    db.query("INSERT INTO application (UserID, OppID, Description, Status) VALUES (?, ?, ?, 'Pending')",
+        [req.session.user[0].UserID, OppID, desc],
         (err, result) => {
             if (err) {
                 console.log(err);
             } else {
                 res.send("Submitted Application!");
             }
-        }
-}
-)
+        });
+});
 
 
 app.post('/AcceptApplication', (req, res) => {
