@@ -658,6 +658,26 @@ app.post('/GetOppo1', (req, res) => {
         });
 });
 
+app.post('/NewOppo', (req, res) => {
+    const name = req.body.name;
+    const description = req.body.description;
+    const location = req.body.location;
+    const address = req.body.address;
+    const type = req.body.type;
+    const qualification = req.body.qualification;
+    const pay = req.body.pay;
+    db.query("INSERT INTO opportunities (Name,Description,Location,Address,Type, Qualification, Pay, confirmation, posted) VALUES (?, ?, ?, ?, ?, ?, ?, 1, 1",
+        [name, description, location, address, type, qualification, pay],
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send(result)
+            };
+
+        });
+});
+
 //Zhi Wei
 
 app.get('/user', (req, res) => {
