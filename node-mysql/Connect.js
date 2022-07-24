@@ -147,16 +147,18 @@ app.get("/logout", function (req, res) {
 });
 
 app.get("/oppListing", function (req, res) {
-    db.query("SELECT * FROM opportunities INNER JOIN partner_have_opp ON opportunities.OppID = partner_have_opp.OppID WHERE partner_have_opp.UserID = ? ORDER BY opportunities.OppID;",
-        [req.session.user[0].UserID],
+    if (req.session.user) {
+        db.query("SELECT * FROM opportunities INNER JOIN partner_have_opp ON opportunities.OppID = partner_have_opp.OppID WHERE partner_have_opp.UserID = ? ORDER BY opportunities.OppID;",
+            [req.session.user[0].UserID],
 
-        (err, result) => {
-            if (err) {
-                console.log(err);
-            } else {
-                res.send(result);
-            }
-        });
+            (err, result) => {
+                if (err) {
+                    console.log(err);
+                } else {
+                    res.send(result);
+                }
+            });
+    }
 });
 
 

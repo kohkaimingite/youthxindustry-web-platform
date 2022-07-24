@@ -15,8 +15,6 @@ function ViewCompanyProfile() {
     const [storeUser, setStoreUser] = useState([]);
     const [storeOpp, setStoreOpp] = useState([]);
     const [storeReviewRating, setStoreReviewRating] = useState([]);
-    const [error, setError] = useState(false);
-    let { storeUserName } = '';
     let { storeUserID } = '';
     let { Name } = useParams();
 
@@ -61,44 +59,19 @@ function ViewCompanyProfile() {
         });
     }, [storeReviewRating]);
 
-    useEffect(() => {
-        Axios.post("http://localhost:3001/getReviewRatingForCompany", {
-            UserID: parseInt(storeUserID)
-
-        }).then((response) => {
-            setStoreReviewRating(response.data);
-
-        });
-    }, [storeReviewRating]);
-
-
-    /*  useEffect(() => {
-         
-              if (!storeUserName === Name) {
-                  setError();
-              
-              } else {
-                  setError(true);
-              }
-          }, [Name]);*/
+    const filteredRR = storeReviewRating.filter(reviewRating => {                 //Store the data that has ratings so that it can be displayer ltr
+        return reviewRating.Rating !== null;
+    });
 
     return (
-        <>
-            {error ? (
-                <section>
-                    <h1>No company found</h1>
-                    <br />
-                </section>
-            ) : (
-                <section>
+    
                     <div className="App">
                         <NavBar />
                         <div className="CreateCompanyProfile">
                             {
                                 storeUser.filter(company => company.Name === Name).map((company) => {
                                     storeUserID = company.UserID;
-                                    storeUserName = company.Name;
-
+                                  
                                     return (
 
                                         <h1>{company.Name}</h1>
@@ -141,9 +114,9 @@ function ViewCompanyProfile() {
                                                             <Card border="dark" style={{ width: '18 rem' }}>
                                                                 <Card.Header style={{ textAlign: 'left' }}>{opp.OppID}</Card.Header>
                                                                 <Card.Body>
-                                                                    <Card.Title style={{ textAlign: 'left' }}>{opp.Name}</Card.Title>
+                                                                    <Card.Title style={{ textAlign: 'left' }}><a href={"/Oppo/" + opp.OppID}>{opp.Name}</a></Card.Title>
                                                                     <Card.Subtitle style={{ textAlign: 'left', color: 'grey' }} >{opp.Type}</Card.Subtitle>
-                                                                    <Card.Text style={{ textAlign: 'left', fontSize: "16px" }} ><FontAwesomeIcon icon={faGraduationCap} /> {opp.Qualification}</Card.Text>
+                                                                    <Card.Text style={{ textAlign: 'left', fontSize: "16px" }} ><FontAwesomeIcon icon={faGraduationCap} fontSize="11px" /> {opp.Qualification}</Card.Text>
                                                                     <Card.Text style={{ textAlign: 'left', fontSize: "16px" }} > <FontAwesomeIcon icon={faMapMarkerAlt} /> {opp.Location}</Card.Text>
                                                                     <Card.Text style={{ textAlign: 'left', fontSize: "16px" }} > <FontAwesomeIcon icon={faDollarSign} /> {opp.Pay}</Card.Text>
                                                                 </Card.Body>
@@ -161,10 +134,10 @@ function ViewCompanyProfile() {
                                                     textAlign: "left",
                                                     paddingTop: "40px",
                                                     fontSize: "26px",
-                                                }}>Number of Review/Rating: {storeReviewRating.length}</h1>
+                                                }}>Number of Review/Rating: {filteredRR.length}</h1>
                                                 <Row>
                                                     {
-                                                        storeReviewRating.map((rr, k) => {
+                                                        filteredRR.map((rr, k) => {
                                                             return (
                                                                 <Col key={k} xs={12} md={4} lg={8} style={{ paddingTop: '50px' }}>
                                                                     <Card border="dark" style={{ width: '18 rem', height: '200px' }}>
@@ -196,10 +169,6 @@ function ViewCompanyProfile() {
 
                     </div>
 
-                </section>
-            )
-            }
-        </>
     )
 }
 
