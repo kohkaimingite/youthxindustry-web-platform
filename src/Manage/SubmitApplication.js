@@ -15,7 +15,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 function SubmitApplication() {
     const [ProfList, setProfList] = useState([]);
     const [desc, setdesc] = useState("");
-    const [OppID, setOppID] = useState(0);
     const [Chars, setChars] = useState(0);
     const [OppList, setOppList] = useState([]);
     const columns = ProfList[0] && Object.keys(ProfList[0]);
@@ -32,11 +31,12 @@ function SubmitApplication() {
         });
     });
     useEffect(() => {
-        axios.get("http://localhost:3001/getOppCards").then((response) => {
+        axios.post("http://localhost:3001/GetOppo1",
+            { OppID: id }).then((response) => {
             console.log(response);
             setOppList(response.data);
         });
-    });
+    }, []);
     return (
         <div className="App">
             <PartnerNavBar />
@@ -55,7 +55,6 @@ function SubmitApplication() {
             
                 <div className="AlignMiddle">
                     <form action="/action_page.php" method="post">
-                        <h3>Testing</h3>
                         {ProfList.map((val, key) => {
                             return <text align="Left">{val.Name}</text>;
                         })}<br />
@@ -72,25 +71,23 @@ function SubmitApplication() {
                     </form>
                 </div>
                 <div className="AlignRight">
-                    <Container>
-                        <Row>
-                            {OppID.map((opp, k) => (
+                    <Row>
+                        {OppList.map((opp, k) => (
 
-                                <Col key={k} xs={12} md={4} lg={4} style={{ paddingTop: "50px", }}>
-                                    <Card border="dark" style={{ width: '18 rem' }}>
-                                        <Card.Header style={{ textAlign: 'left' }}>{opp.OppID}</Card.Header>
-                                        <Card.Body>
-                                            <Card.Title style={{ textAlign: 'left' }}>{opp.Name}</Card.Title>
-                                            <Card.Subtitle style={{ textAlign: 'left', color: 'grey' }} >{opp.Type}</Card.Subtitle>
-                                            <Card.Text style={{ textAlign: 'left', fontSize: "16px" }} ><FontAwesomeIcon icon={faGraduationCap} /> {opp.Qualification}</Card.Text>
-                                            <Card.Text style={{ textAlign: 'left', fontSize: "16px" }} > <FontAwesomeIcon icon={faMapMarkerAlt} /> {opp.Location}</Card.Text>
-                                            <Card.Text style={{ textAlign: 'left', fontSize: "16px" }} > <FontAwesomeIcon icon={faDollarSign} /> {opp.Pay}</Card.Text>
-                                        </Card.Body>
-                                    </Card>
-                                </Col>
-                            ))}
-                        </Row>
-                    </Container>
+                                <Card border="dark" style={{ float: 'right' }}>
+                                    <Card.Header style={{ textAlign: 'left' }}>{opp.OppID}</Card.Header>
+                                    <Card.Body>
+                                        <Card.Title style={{ textAlign: 'left' }}><a href={"/Oppo/" + opp.OppID}>{opp.Name}</a></Card.Title>
+                                        <Card.Subtitle style={{ textAlign: 'left', color: 'grey' }} >{opp.Type}</Card.Subtitle>
+                                        <Card.Text style={{ textAlign: 'left', fontSize: "16px" }} ><FontAwesomeIcon icon={faGraduationCap} fontSize="11px" /> {opp.Qualification}</Card.Text>
+                                        <Card.Text style={{ textAlign: 'left', fontSize: "16px" }} > <FontAwesomeIcon icon={faMapMarkerAlt} /> {opp.Location}</Card.Text>
+                                        <Card.Text style={{ textAlign: 'left', fontSize: "16px" }} > <FontAwesomeIcon icon={faDollarSign} /> {opp.Pay}</Card.Text>
+                                    </Card.Body>
+                                </Card>
+
+                        ))}
+                    </Row>
+                            
                 </div>
             </div>
         </div>
@@ -101,7 +98,7 @@ function SubmitApplication() {
     function submit() {
         axios.post("http://localhost:3001/SubmitApplication", {
             desc: desc,
-            OppID : OppID
+            OppID : id
         }).then(() => {
             console.log("Test");
             /*setCheck(response.data);*/

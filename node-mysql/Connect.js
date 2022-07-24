@@ -645,6 +645,19 @@ app.post('/RejectApplication', (req, res) => {
         });
 });
 
+app.post('/GetOppo1', (req, res) => {
+    const OppID = req.body.OppID;
+    db.query("SELECT * FROM opportunities WHERE OppID = ? AND confirmation = 1 AND posted = 1",
+        [OppID],
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send(result)
+            };
+
+        });
+});
 
 //Zhi Wei
 
