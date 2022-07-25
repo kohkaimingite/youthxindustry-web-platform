@@ -15,7 +15,7 @@ const ViewPartner = () => {
     let { storeUserID } = '';
 
     useEffect(() => {
-        axios.get("http://localhost:3001/partner").then((response) => {
+        axios.get("http://localhost:3001/apPartner").then((response) => {
 
             console.log(response);
             setData(response.data);
@@ -35,7 +35,7 @@ const ViewPartner = () => {
         if (
             window.confirm("Are you sure you want to delete this partner?")
         ) {
-            axios.post("http://localhost:3001/partnerDelete", {
+            axios.post("http://localhost:3001/apPartnerDelete", {
                 UserID: UserID,
                 adminUserID: parseInt(storeUserID)
             }).then(() => {

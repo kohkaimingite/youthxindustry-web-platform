@@ -121,7 +121,7 @@ function App() {
     //const [userTest, setUserTest] = useState(2);
     //alert(user);
 
-    const [loading,setLoading] = useState(true)
+    const [loading,setLoading] = useState(false)
     useLayoutEffect(() => {
         
         axios.get("http://localhost:3001/getCurrentUserRole").then((response) => {

@@ -362,7 +362,9 @@ parent {
 }
 
 .AlignRight {
-    left: 80%;
+    position: absolute;
+    right: 100px;
+    width:300px;
 }
 
 div.borderYtoX a:before, div.borderYtoX a:after {
