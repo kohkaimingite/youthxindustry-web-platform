@@ -335,18 +335,19 @@ app.post('/getOneOppo', function (req, res) {
     )
 })
 app.get('/getCurrentUserRole', function (req, res) {
-    if (req.session.user) { 
+    
     db.query("SELECT RoleID FROM users WHERE UserID = ?;",
         [req.session.user[0].UserID],
 
         (err, result) => {
             if (err) {
                 console.log(err);
+                res.send(err);
             } else {
                 res.send(result);
             }
         });
-}
+
 });
 
 app.post('/getOppoStatus', function (req, res) {

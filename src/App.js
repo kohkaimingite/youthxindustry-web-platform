@@ -121,29 +121,29 @@ function App() {
     //const [userTest, setUserTest] = useState(2);
     //alert(user);
 
-    const [loading,setLoading] = useState(false)
+    const [loading,setLoading] = useState(true)
     useLayoutEffect(() => {
         
         axios.get("http://localhost:3001/getCurrentUserRole").then((response) => {
             
             if (response !== null) {
                 setLoading(false)
-
+                /*alert(response.data[0].RoleID)*/
                 return setUser(parseInt(response.data[0].RoleID));
                 
 
             } else {
+                
                 setLoading(false)
                 setUser(0);
             }
         }, (err) => {
-            setLoading(false)
+            setLoading(true)
             setUser(0);
         });
 
-    },[]);
+    });
     if (loading===true) {
-        
         if (window.location.pathname.toLowerCase() === "/Login".toLowerCase()) {
             return <div className="App">
                 <Login />
@@ -165,6 +165,7 @@ function App() {
 
             </div>
         }
+        
     }
     return (
         <div className="App">
