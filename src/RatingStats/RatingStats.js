@@ -4,6 +4,7 @@ import NavBar from '../components/NavBar';
 import { PieChart, Pie, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Label, Legend, Tooltip, Cell, } from 'recharts';
 import "./RatingStats.css";
 import { Card } from 'react-bootstrap'
+import PartnerNavBar from "../components/PartnerNavBar";
 
 
 const RatingStats = () => {
@@ -69,7 +70,7 @@ const RatingStats = () => {
     return (
 
         <div className="DisplayInfoOfCharts">
-            <NavBar />
+            <PartnerNavBar />
              <>
                 {!success ? (                            //If no rating were received, display page informing user that not enough data 
                     <section>

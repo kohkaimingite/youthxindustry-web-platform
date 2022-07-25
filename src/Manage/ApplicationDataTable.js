@@ -10,6 +10,9 @@ import axios from 'axios';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { faX } from "@fortawesome/free-solid-svg-icons";
+import emailjs from '@emailjs/browser';
+
+
 
 export default function LogAppTable({ data }) {
     const columns = data[0] && Object.keys(data[0]);
@@ -22,6 +25,19 @@ export default function LogAppTable({ data }) {
             }).then((response) => {
                 console.log("Updated Sucessfully");
                 alert("Accepted!")
+                /*const formData = new FormData();
+                for (let key in form) {
+                    data.isArray(form[key])
+                        ? form[key].forEach(value => formData.append(key + '[]', value))
+                        : formData.append(key, form[key]);
+                }
+
+                emailjs.sendForm('service_nqak4rb', 'template_ej4c4sk', formData, 'EOze04zGTBzzoGFXp')
+                    .then((result) => {
+                        console.log(result.text);
+                    }, (error) => {
+                        console.log(error.text);
+                    });*/
             });
         } else {
             alert("Application not Accepted")

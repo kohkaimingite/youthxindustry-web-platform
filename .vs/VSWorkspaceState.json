@@ -2,11 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\src",
-    "\\src\\CompanyProfile",
-    "\\src\\components",
-    "\\src\\JobConfirmation",
-    "\\src\\OppoPage",
-    "\\src\\ReviewPage"
+    "\\src\\components"
   ],
+  "SelectedNode": "\\src\\components\\PartnerNavBar.js",
   "PreviewInSolutionExplorer": false
 }

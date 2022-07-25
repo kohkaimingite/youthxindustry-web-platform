@@ -8,6 +8,7 @@ import Tab from 'react-bootstrap/Tab';
 import { useParams } from "react-router-dom";
 import { faGraduationCap, faDollarSign, faStar, faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import LoggedNavBar from "../components/LoggedNavBar";
 
 
 function ViewCompanyProfile() {
@@ -65,8 +66,8 @@ function ViewCompanyProfile() {
 
     return (
     
-                    <div className="App">
-                        <NavBar />
+        <div className="App">
+            <LoggedNavBar />
                         <div className="CreateCompanyProfile">
                             {
                                 storeUser.filter(company => company.Name === Name).map((company) => {

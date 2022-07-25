@@ -7,6 +7,7 @@ import EditableRows from './EditableRows';
 import "./ForOppoPartner.css";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import PartnerNavBar from '../components/PartnerNavBar';
 
 
 export default function OppoPartner() {
@@ -136,7 +137,7 @@ export default function OppoPartner() {
 
     return (
         <div>
-            <NavBar />
+            <PartnerNavBar />
             <div style={styleButton}>
                 <p style={{ paddingRight: '40px' }}>Number of Opportunities: {oppList.length}</p>
                 <Link to="/AddOppoPartner" style={{ width: '10%', height: '100%' }}><FontAwesomeIcon icon={faPlus} />Add Opportunity  </Link>
