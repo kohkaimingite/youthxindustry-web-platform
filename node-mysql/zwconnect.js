@@ -126,7 +126,7 @@ app.get("/logout", function (req, res) {
 
 //================================================================================
 
-app.get('/user', (req, res) => {
+app.get('/apUser', (req, res) => {
     db.query("SELECT * from users INNER JOIN roles ON roles.RoleID = users.RoleID WHERE users.RoleID = 1 AND users.Confirmed = 1",
     (err, result) => {
         if (err) {
@@ -137,7 +137,7 @@ app.get('/user', (req, res) => {
     });
 });
 
-app.post('/userEdit', (req, res) => {
+app.post('/apUserEdit', (req, res) => {
     const RoleID = req.body.RoleID;
     const Name = req.body.name;
     const Password = req.body.password;
@@ -155,13 +155,13 @@ app.post('/userEdit', (req, res) => {
                     message: err.message || "Some error occurred while retrieving user."
                 });
             } else {
-                res.send("userEdit success.");
+                res.send("User edit success.");
             }
         }
     )
 })
 
-app.post('/userDelete', (req, res) => {
+app.post('/apUserDelete', (req, res) => {
     const UserID = req.body.UserID;
     db.query("DELETE FROM users_have_opp WHERE UserID = ?; DELETE FROM users_have_fav WHERE UserID = ?; DELETE FROM partner_have_opp WHERE UserID = ?; DELETE FROM application WHERE UserID = ?; DELETE FROM users WHERE UserID = ?;",
         [UserID, UserID, UserID, UserID, UserID],
@@ -171,13 +171,13 @@ app.post('/userDelete', (req, res) => {
                     message: err.message || "Some error occurred while retrieving user."
                 });
             } else {
-                res.send("User Information Deleted.");
+                res.send("User delete success.");
             }
         }
     )
 })
 
-app.get('/oppo', (req, res) => {
+app.get('/apOppo', (req, res) => {
     db.query("SELECT * FROM opportunities",
     (err, result) => {
         if (err) {
@@ -188,7 +188,7 @@ app.get('/oppo', (req, res) => {
     });
 });
 
-app.post('/oppoEdit', (req, res) => {
+app.post('/apOppoEdit', (req, res) => {
     const Name = req.body.name;
     const Description = req.body.description;
     const Location = req.body.location;
@@ -205,13 +205,13 @@ app.post('/oppoEdit', (req, res) => {
                     message: err.message || "Some error occurred while retrieving opportunity."
                 });
             } else {
-                res.send("Updated Opportunity Information.");
+                res.send("Oppo edit success.");
             }
         }
     )
 })
 
-app.post('/oppoDelete', (req, res) => {
+app.post('/apOppoDelete', (req, res) => {
     const OppID = req.body.OppID;
     db.query("DELETE FROM users_have_opp WHERE OppID = ?; DELETE FROM users_have_fav WHERE OppID = ?; DELETE FROM partner_have_opp WHERE OppID = ?; DELETE FROM opp_have_application WHERE OppID = ?; DELETE FROM opportunities WHERE OppID = ?;",
         [OppID, OppID, OppID, OppID, OppID],
@@ -221,14 +221,14 @@ app.post('/oppoDelete', (req, res) => {
                     message: err.message || "Some error occurred while retrieving opportunity."
                 });
             } else {
-                res.send("Deleted Opportunity Information.");
+                res.send("Oppo delete success.");
             }
         }
     )
     
 })
 
-app.get('/partner', (req, res) => {
+app.get('/apPartner', (req, res) => {
     db.query("SELECT * from users INNER JOIN roles ON roles.RoleID = users.RoleID WHERE users.RoleID = 2 AND users.Confirmed = 1",
     (err, result) => {
         if (err) {
@@ -239,7 +239,7 @@ app.get('/partner', (req, res) => {
     });
 });
 
-app.get('/partnerConfirm', (req, res) => {
+app.get('/apPartnerConfirm', (req, res) => {
     db.query("SELECT * from users INNER JOIN roles ON roles.RoleID = users.RoleID WHERE users.RoleID = 2 AND users.Confirmed = 0",
     (err, result) => {
         if (err) {
@@ -250,7 +250,7 @@ app.get('/partnerConfirm', (req, res) => {
     });
 });
 
-app.post('/confirmRegistration', (req, res) => {
+app.post('/apConfirmRegistration', (req, res) => {
     const UserID = req.body.UserID;
     db.query("UPDATE users SET Confirmed = 1 WHERE UserID = ?",
     [UserID],
@@ -265,7 +265,7 @@ app.post('/confirmRegistration', (req, res) => {
     });
 });
 
-app.post('/partnerEdit', (req, res) => {
+app.post('/apPartnerEdit', (req, res) => {
     const RoleID = req.body.RoleID;
     const Name = req.body.name;
     const Password = req.body.password;
@@ -287,7 +287,7 @@ app.post('/partnerEdit', (req, res) => {
     )
 })
 
-app.post('/partnerDelete', (req, res) => {
+app.post('/apPartnerDelete', (req, res) => {
     const UserID = req.body.UserID;
     db.query("DELETE FROM users_have_opp WHERE UserID = ?; DELETE FROM users_have_fav WHERE UserID = ?; DELETE FROM partner_have_opp WHERE UserID = ?; DELETE FROM application WHERE UserID = ?; DELETE FROM users WHERE UserID = ?;",
         [UserID, UserID, UserID, UserID, UserID],

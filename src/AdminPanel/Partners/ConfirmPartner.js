@@ -15,7 +15,7 @@ const ConfirmPartner = () => {
     let { storeUserID } = '';
 
     useEffect(() => {
-        axios.get("http://localhost:3001/partnerConfirm").then((response) => {
+        axios.get("http://localhost:3001/apPartnerConfirm").then((response) => {
 
             console.log(response);
             setData(response.data);
@@ -35,7 +35,7 @@ const ConfirmPartner = () => {
         if (
             window.confirm("Are you sure you want to confirm registration for this partner?")
         ) {
-            axios.post("http://localhost:3001/confirmRegistration", {
+            axios.post("http://localhost:3001/apConfirmRegistration", {
                 UserID: UserID,
                 adminUserID: parseInt(storeUserID)
             }).then(() => {

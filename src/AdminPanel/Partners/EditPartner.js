@@ -2,20 +2,20 @@
 import React, { useState, useEffect } from "react";
 import { Route, Link } from 'react-router-dom';
 import AdminNavBar from '../../components/AdminNavBar';
-import "../Partners/EditPartner.css";
+import "../Styling/editStyling.css";
 import axios from 'axios';
 
 const EditPartner = () => {
-    let { errorCheck } = '';
     const initialState = { roleID: "", name: "", password: "", email: "", userBio: "", contactNumber: "", userID: "" };
     const [formValues, setFormValues] = useState(initialState);
     const [formErrors, setFormErrors] = useState({});
-    const {roleID, name, password, email, userBio, contactNumber, userID} = formValues;
+    const { roleID, name, password, email, userBio, contactNumber, userID } = formValues;
     const [isSubmit, setIsSubmit] = useState(false);
+    const [check, setCheck] = useState(false);
 
     const handleChange = (e) => {
-        const {name, value} = e.target;
-        setFormValues({...formValues, [name]: value});
+        const { name, value } = e.target;
+        setFormValues({ ...formValues, [name]: value });
         console.log(formValues);
     }
     
@@ -25,56 +25,44 @@ const EditPartner = () => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
         const pnumRegex = /[6|8|9]\d{7}/;
         if (!values.userID) {
-            errorCheck = 1;
             errors.userID = "UserID is required";
         }
         if (!values.roleID) {
-            errorCheck = 1;
             errors.roleID = "RoleID is required";
         } else if (values.roleID == 1|2|3) {
-            errorCheck = 1;
             errors.roleID = "Only allow 1 (User), 2 (Partner), or 3 (Admin)";
         }
         if (!values.name) {
-            errorCheck = 1;
             errors.name = "Name is required";
         } else if (values.name.length > 50) {
-            errorCheck = 1;
             errors.name = "Name cannot exceed 50 characters";
         }
         if (!values.password) {
-            errorCheck = 1;
             errors.password = "Password is required";
         } else if (!pwRegex.test(values.password)) {
-            errorCheck = 1;
             errors.password = "Password has to be at least 8 characters, at least 1 letter, and 1 number";
         } else if (values.password > 50) {
-            errorCheck = 1;
             errors.password = "Password cannot exceed 50 characters";
         }
         if (!values.email) {
-            errorCheck = 1;
             errors.email = "Email is required";
         } else if (!emailRegex.test(values.email)) {
-            errorCheck = 1;
             errors.email = "Email must be a valid email address";
         } else if (values.email.length > 50) {
-            errorCheck = 1;
             errors.email = "Email cannot exceed 50 characters";
         }
         if (values.userBio.length > 255) {
-            errorCheck = 1;
             errors.userBio = "Biography cannot exceed 255 characters";
         }
         if (!values.contactNumber) {
-            errorCheck = 1;
             errors.contactNumber = "Contact number is required";
         } else if (!pnumRegex.test(values.contactNumber)) {
-            errorCheck = 1;
             errors.contactNumber = "Contact number must be a valid number";
         } else if (values.contactNumber > 8) {
-            errorCheck = 1;
             errors.contactNumber = "Contact number cannot exceed 8 characters";
+        }
+        else {
+            setCheck(true);
         }
 
         return errors;
@@ -82,15 +70,11 @@ const EditPartner = () => {
 
     const submitFormData = (e) => {
         e.preventDefault();
+        setIsSubmit(true);
         setFormErrors(validate(formValues));
-        if (errorCheck == 1) {
-            console.log(errorCheck);
-            console.log("Error");
-        } else {
-            console.log(errorCheck);
-            setIsSubmit(true);
+        if (check === true) {
             {
-                axios.post("http://localhost:3001/partnerEdit", {
+                axios.post("http://localhost:3001/apPartnerEdit", {
                     UserID: userID,
                     RoleID: roleID,
                     name: name,
@@ -102,12 +86,18 @@ const EditPartner = () => {
                     .then((response) => {
                         console.log(response);
                         setFormValues({ roleID: "", name: "", password: "", email: "", userBio: "", contactNumber: "", userID: "" })
-                        console.log("Successfully updated");
+                        console.log("Successfully updated partner information.");
                     })
                     .catch(() => {
-                        console.log("Failed to update");
+                        console.log("Failed to update partner information.");
                     });
             }
+            console.log("POST success");
+            setCheck(false);
+            setIsSubmit(false);
+        }
+        else {
+            console.log("POST error");
         }
         
     }
@@ -135,31 +125,31 @@ const EditPartner = () => {
                 alignContent: "center"
             }}>
                 <label>UserID</label>
-                <input type="adminInput" name="userID" placeholder="UserID" value={formValues.UserID} onChange={handleChange}></input>
+                <input type="text" className="adminInput" name="userID" placeholder="UserID" value={formValues.UserID} onChange={handleChange}></input>
                 <p className="adminErrorMsg">{formErrors.userID}</p>
 
                 <label>RoleID</label>
-                <input type="adminInput" name="roleID" placeholder="Your RoleID ..." value={formValues.RoleID} onChange={handleChange}></input>
+                <input type="number" className="adminInput" name="roleID" min="1" max="3" placeholder="Your RoleID ..." value={formValues.RoleID} onChange={handleChange}></input>
                 <p className="adminErrorMsg">{formErrors.roleID}</p>
 
                 <label>Name</label>
-                <input type="adminInput" name="name" placeholder="Your Name ..." value={formValues.name} onChange={handleChange}></input>
+                <input type="text" className="adminInput" name="name" placeholder="Your Name ..." value={formValues.name} onChange={handleChange}></input>
                 <p className="adminErrorMsg">{formErrors.name}</p>
 
                 <label>Password</label>
-                <input className="aPassword" type="password" name="password" placeholder="Your Password ..." value={formValues.password} onChange={handleChange}></input>
+                <input type="password" className="adminInput" name="password" placeholder="Your Password ..." value={formValues.password} onChange={handleChange}></input>
                 <p className="adminErrorMsg">{formErrors.password}</p>
 
                 <label>Email</label>
-                <input type="adminInput" name="email" placeholder="Your Email ..." value={formValues.email} onChange={handleChange}></input>
+                <input type="email" className="adminInput" name="email" placeholder="Your Email ..." value={formValues.email} onChange={handleChange}></input>
                 <p className="adminErrorMsg">{formErrors.email}</p>
 
                 <label>UserBio</label>
-                <input type="adminInput" name="userBio" placeholder="Your User Biography ..." value={formValues.userBio} onChange={handleChange}></input>
+                <input type="text" className="adminInput" name="userBio" placeholder="Your User Biography ..." value={formValues.userBio} onChange={handleChange}></input>
                 <p className="adminErrorMsg">{formErrors.userBio}</p>
 
                 <label>Contact</label>
-                <input type="adminInput" name="contactNumber" placeholder="Your Contact Number ..." value={formValues.contactNumber} onChange={handleChange}></input>
+                <input type="text" className="adminInput" name="contactNumber" placeholder="Your Contact Number ..." value={formValues.contactNumber} onChange={handleChange}></input>
                 <p className="adminErrorMsg">{formErrors.contactNumber}</p>
 
                 <button className="btn submitButton">Submit</button>

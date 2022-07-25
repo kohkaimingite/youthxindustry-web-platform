@@ -15,7 +15,7 @@ const ViewOppo = () => {
     let { storeOppID } = '';
 
     useEffect(() => {
-        axios.get("http://localhost:3001/oppo").then((response) => {
+        axios.get("http://localhost:3001/apOppo").then((response) => {
 
             console.log(response);
             setData(response.data);
@@ -35,7 +35,7 @@ const ViewOppo = () => {
         if (
             window.confirm("Are you sure you want to delete this opportunity?")
         ) {
-            axios.post("http://localhost:3001/oppoDelete", {
+            axios.post("http://localhost:3001/apOppoDelete", {
                 OppID: OppID,
                 adminOppID: parseInt(storeOppID)
             }).then(() => {

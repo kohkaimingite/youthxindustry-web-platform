@@ -15,7 +15,7 @@ const ViewUser = () => {
     let { storeUserID } = '';
 
     useEffect(() => {
-        axios.get("http://localhost:3001/user").then((response) => {
+        axios.get("http://localhost:3001/apUser").then((response) => {
 
             console.log(response);
             setData(response.data);
@@ -35,7 +35,7 @@ const ViewUser = () => {
         if (
             window.confirm("Are you sure you want to delete this user?")
         ) {
-            axios.post("http://localhost:3001/userDelete", {
+            axios.post("http://localhost:3001/apUserDelete", {
                 UserID: UserID,
                 adminUserID: parseInt(storeUserID)
             }).then(() => {

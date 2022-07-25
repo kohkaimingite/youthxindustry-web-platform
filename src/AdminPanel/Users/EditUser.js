@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { Route, Link } from 'react-router-dom';
 import AdminNavBar from '../../components/AdminNavBar';
-import "../Users/EditUser.css";
+import "../Styling/editStyling.css";
 import axios from 'axios';
 
 const EditUser = () => {
@@ -32,6 +32,8 @@ const EditUser = () => {
         }
         if (!values.roleID) {
             errors.roleID = "RoleID is required";
+        } else if (values.roleID.length < 1 || values.roleID.length > 3) {
+            errors.roleID = "Only allow 1 (User), 2 (Partner), 3 (Admin)";
         }
         if (!values.name) {
             errors.name = "Name is required";
@@ -96,7 +98,7 @@ const EditUser = () => {
         setFormErrors(validate(formValues));
         if (check === true) {
             {
-                axios.post("http://localhost:3001/userEdit", {
+                axios.post("http://localhost:3001/apUserEdit", {
                     UserID: userID,
                     RoleID: roleID,
                     name: name,

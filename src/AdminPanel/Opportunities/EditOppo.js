@@ -2,89 +2,75 @@
 import React, { useState, useEffect } from "react";
 import { Route, Link } from 'react-router-dom';
 import AdminNavBar from '../../components/AdminNavBar';
-import "../Opportunities/EditOppo.css";
+import "../Styling/editStyling.css";
 import axios from 'axios';
 
 const EditOppo = () => {
-    let { errorCheck } = '';
     const initialState = { name: "", description: "", location: "", address: "", type: "", qualification: "", pay: "", oppID: "" };
     const [formValues, setFormValues] = useState(initialState);
     const [formErrors, setFormErrors] = useState({});
-    const {name, description, location, address, type, qualification, pay, oppID} = formValues;
+    const { name, description, location, address, type, qualification, pay, oppID } = formValues;
     const [isSubmit, setIsSubmit] = useState(false);
+    const [check, setCheck] = useState(false);
 
     const handleChange = (e) => {
-        const {name, value} = e.target;
-        setFormValues({...formValues, [name]: value});
+        const { name, value } = e.target;
+        setFormValues({ ...formValues, [name]: value });
         console.log(formValues);
     }
     
     const validate = (values) => {
         const errors = {};
         if (!values.oppID) {
-            errorCheck = 1;
             errors.oppID = "OppID is required";
         }
         if (!values.name) {
-            errorCheck = 1;
             errors.name = "Name is required";
         } else if (values.name.length > 50) {
-            errorCheck = 1;
             errors.name = "Name cannot exceed 50 characters";
         }
         if (!values.description) {
-            errorCheck = 1;
             errors.description = "Description is required";
         } else if (values.description.length > 255) {
-            errorCheck = 1;
             errors.description = "Description cannot exceed 255 characters";
         }
         if (!values.location) {
-            errorCheck = 1;
             errors.location = "Area is required";
         } else if (values.location.length > 255) {
-            errorCheck = 1;
             errors.location = "Area cannot exceed 255 characters";
         }
         if (!values.address) {
-            errorCheck = 1;
             errors.address = "Address is required";
         } else if (values.address.length > 255) {
-            errorCheck = 1;
             errors.address = "Address cannot exceed 255 characters";
         }
         if (!values.type) {
-            errorCheck = 1;
             errors.type = "Job category is required";
         } else if (values.type.length > 50) {
-            errorCheck = 1;
             errors.type = "Job category cannot exceed 50 characters";
         }
         if (!values.qualification) {
-            errorCheck = 1;
             errors.qualification = "Qualification is required";
         } else if (values.qualification.length > 50) {
-            errorCheck = 1;
             errors.qualification = "Qualification cannot exceed 50 characters";
         }
         if (!values.pay) {
-            errorCheck = 1;
             errors.pay = "Pay is required";
         }
+        else {
+            setCheck(true);
+        }
+
         return errors;
     }
 
     const submitFormData = (e) => {
         e.preventDefault();
+        setIsSubmit(true);
         setFormErrors(validate(formValues));
-        if (errorCheck == 1) {
-            console.log(errorCheck);
-            console.log("Error");
-        } else {
-            console.log(errorCheck);
-            setIsSubmit(true);
+        if (check === true) {
             {
-                axios.post("http://localhost:3001/oppoEdit", {
+                axios.post("http://localhost:3001/apOppoEdit", {
                     OppID: oppID,
                     name: name,
                     description: description,
@@ -97,12 +83,18 @@ const EditOppo = () => {
                     .then((response) => {
                         console.log(response);
                         setFormValues({ name: "", description: "", location: "", address: "", type: "", qualification: "", pay: "", oppID: "" })
-                        console.log("Successfully updated");
+                        console.log("Successfully updated opportunity information.");
                     })
                     .catch(() => {
-                        console.log("Failed to update");
+                        console.log("Failed to update opportunity information.");
                     });
             }
+            console.log("POST success");
+            setCheck(false);
+            setIsSubmit(false);
+        }
+        else {
+            console.log("POST error");
         }
 
     };
@@ -130,35 +122,35 @@ const EditOppo = () => {
                 alignContent: "center"
             }}>
                 <label>Job Code</label>
-                <input type="adminInput" name="oppID" placeholder="Job Code ..." value={formValues.OppID} onChange={handleChange}></input>
+                <input type="text" className="adminInput" name="oppID" placeholder="Job Code ..." value={formValues.OppID} onChange={handleChange}></input>
                 <p className="adminErrorMsg">{formErrors.oppID}</p>
 
                 <label>Name</label>
-                <input type="adminInput" name="name" placeholder="Name ..." value={formValues.name} onChange={handleChange}></input>
+                <input type="text" className="adminInput" name="name" placeholder="Name ..." value={formValues.name} onChange={handleChange}></input>
                 <p className="adminErrorMsg">{formErrors.name}</p>
 
                 <label>Description</label>
-                <input type="adminInput" name="description" placeholder="Description ..." value={formValues.description} onChange={handleChange}></input>
+                <input type="text" className="adminInput" name="description" placeholder="Description ..." value={formValues.description} onChange={handleChange}></input>
                 <p className="adminErrorMsg">{formErrors.description}</p>
 
                 <label>Area</label>
-                <input type="adminInput" name="location" placeholder="Area ..." value={formValues.location} onChange={handleChange}></input>
+                <input type="text" className="adminInput" name="location" placeholder="Area ..." value={formValues.location} onChange={handleChange}></input>
                 <p className="adminErrorMsg">{formErrors.location}</p>
 
                 <label>Address</label>
-                <input type="adminInput" name="address" placeholder="Address ..." value={formValues.address} onChange={handleChange}></input>
+                <input type="text" className="adminInput" name="address" placeholder="Address ..." value={formValues.address} onChange={handleChange}></input>
                 <p className="adminErrorMsg">{formErrors.address}</p>
 
                 <label>Job Category</label>
-                <input type="adminInput" name="type" placeholder="Job Category ..." value={formValues.type} onChange={handleChange}></input>
+                <input type="text" className="adminInput" name="type" placeholder="Job Category ..." value={formValues.type} onChange={handleChange}></input>
                 <p className="adminErrorMsg">{formErrors.type}</p>
 
                 <label>Qualification</label>
-                <input type="adminInput" name="qualification" placeholder="Qualification ..." value={formValues.qualification} onChange={handleChange}></input>
+                <input type="text" className="adminInput" name="qualification" placeholder="Qualification ..." value={formValues.qualification} onChange={handleChange}></input>
                 <p className="adminErrorMsg">{formErrors.qualification}</p>
 
                 <label>Pay</label>
-                <input type="adminInput" name="pay" placeholder="Pay ..." value={formValues.pay} onChange={handleChange}></input>
+                <input type="text" className="adminInput" name="pay" placeholder="Pay ..." value={formValues.pay} onChange={handleChange}></input>
                 <p className="adminErrorMsg">{formErrors.pay}</p>
 
                 <button className="btn submitButton">Submit</button>
