@@ -192,17 +192,6 @@ function App() {
                 <Route path='/RegisterPartner' element={< RegisterPartner />} />
                 <Route path='/RegisterUser' element={< RegisterUser />} />
                 <Route path='/EditCompanyBio' element={<EditCompanyBio />} />
-             
-                <Route path='/AdminPanel' element={<AdminPanel />} />
-                <Route path='/ViewUser' element={<ViewUser />} />
-                <Route path='/EditUser' element={<EditUser />} />
-                <Route path='/ViewOppo' element={<ViewOppo />} />
-                <Route path='/EditOppo' element={<EditOppo />} />
-                <Route path='/ViewPartner' element={<ViewPartner />} />
-                <Route path='/EditPartner' element={<EditPartner />} />
-                <Route path='/ConfirmPartner' element={<ConfirmPartner />} />
-
-
 
                 <Route element={<ProtectedRouteLog user={user} />}>
                     
@@ -252,18 +241,16 @@ function App() {
 
 
                 <Route element={<ProtectedRouteAdmin user={user} />}>
-                    {/* <Route path='/AdminPanel' element={<AdminPanel />} />
+                    <Route path='/AdminPanel' element={<AdminPanel />} />
                     <Route path='/ViewUser' element={<ViewUser />} />
                     <Route path='/EditUser' element={<EditUser />} />
                     <Route path='/ViewOppo' element={<ViewOppo />} />
                     <Route path='/EditOppo' element={<EditOppo />} />
-                    <Route path='/EditOppo2' element={<EditOppo2 />} />
                     <Route path='/ViewPartner' element={<ViewPartner />} />
-                    <Route path='/ConfirmPartner' element={<ConfirmPartner />} /> */}
-                    
-
+                    <Route path='/EditPartner' element={<EditPartner />} />
+                    <Route path='/ConfirmPartner' element={<ConfirmPartner />} />
                 </Route>
-                </Routes>
+            </Routes>
         </div>
     );
 
