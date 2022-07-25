@@ -13,6 +13,7 @@ const RatingStats = () => {
 
     const [showData, setShowData] = useState([]);
     const [showDataWithNull, setShowDataWithNull] = useState([]);
+    const [success, setSuccess] = useState('');                           //so that if there is no data found no stats will be displayed
 
     const filteredRating = showData
         .map(dataItem => dataItem.Rating) // get all Ratings
@@ -42,14 +43,19 @@ const RatingStats = () => {
     };
 
     let renderLabelPercent = function (entry) {                             //Label to display percentage of rating on chart
-        return entry.rating + " star: " + entry.percentage + "%";
+        return entry.rating + " star: " + entry.percentage.toFixed(2) + "%";
     };
 
 
     useEffect(() => {
         Axios.get("http://localhost:3001/getCompanyRatingStats").then((response) => {
-            setShowData(response.data);
-
+            if (response.data.length > 0) {
+                setShowData(response.data);
+                setSuccess(true);
+            } else {
+                setSuccess(false);
+            }
+            
         });
     }, []);
     useEffect(() => {
@@ -64,7 +70,15 @@ const RatingStats = () => {
 
         <div className="DisplayInfoOfCharts">
             <NavBar />
+             <>
+                {!success ? (                            //If no rating were received, display page informing user that not enough data 
+                    <section>
 
+                        <h1>Not enough data to create statistics</h1>
+                        <p style={{color:"red"}}>*There are no ratings received for your opportunities</p>     
+                    </section>
+                ) : (
+                    <section>
             <h1 style={{ textAlign: 'left' }}>My Statistics</h1>
             <div style={{ display: 'flex' }}>
                 <Card style={{ width: '15%', paddingTop: '50px', paddingBottom: '50px', marginLeft: "50px", marginTop: "50px" }}>
@@ -87,7 +101,7 @@ const RatingStats = () => {
 
                 <Card style={{ width: '15%', paddingTop: '50px', paddingBottom: '50px', marginLeft: "50px", marginTop: "50px" }}>
                     <Card.Body>
-                        <Card.Title>Opportunities that has received rating</Card.Title>
+                        <Card.Title>Users that has given rating</Card.Title>
                         <Card.Text>
                             <p style={{ color: 'limegreen' }}>
                                 {Math.round(oppWithRating)}%
@@ -98,7 +112,7 @@ const RatingStats = () => {
 
                 <Card style={{ width: '15%', paddingTop: '50px', paddingBottom: '50px', marginLeft: "50px", marginTop: "50px" }}>
                     <Card.Body>
-                        <Card.Title>Opportunities yet to received rating</Card.Title>
+                        <Card.Title>Users that has not given rating</Card.Title>
                         <Card.Text>
                             <p style={{ color: 'red' }}>
                                 {Math.round(oppWithoutRating)}%
@@ -114,7 +128,7 @@ const RatingStats = () => {
             <div className="Charts">
                 <div className="DonutChartShowRating">
                     <h2>Percentage of rating:</h2>
-                    <ResponsiveContainer width={500} height={400}>
+                    <ResponsiveContainer width={600} height={400}>
                         <PieChart >
                             <Pie label={renderLabelPercent} data={counts} dataKey="count" outerRadius={150} innerRadius={100}  >
                                 <Label
@@ -152,9 +166,10 @@ const RatingStats = () => {
 
                     </ResponsiveContainer>
                 </div>
-
-
-            </div>
+                            </div>
+                    </section>
+                )}
+            </>
         </div>
     );
 }
