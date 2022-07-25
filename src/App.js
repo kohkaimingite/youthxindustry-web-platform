@@ -159,9 +159,14 @@ function App() {
                 <RegisterPartner />
 
             </div>
-        } else {
+        } else if (window.location.pathname.toLowerCase() === "/".toLowerCase()) {
             return <div className="App">
                 <Home />
+
+            </div>
+        } else {
+            return <div className="App">
+                <Login />
 
             </div>
         }
