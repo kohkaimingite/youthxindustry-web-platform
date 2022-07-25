@@ -39,10 +39,16 @@ jobId {
 }
 .job-title {
     margin-top: 0.6rem;
+
 }
 
 .company {
-    
+    display: block;
+    margin-top: 1.33em;
+    margin-bottom: 1.33em;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: bold;
 }
 .badCard {
     background: #fff;
@@ -55,7 +61,6 @@ jobId {
     transition: all 0.3s ease 0s;
     display: flex;
     flex-direction:column;
-    flex-wrap:wrap;
     height:140px;
 }
     .badCard:hover {

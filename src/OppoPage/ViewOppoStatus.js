@@ -10,6 +10,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Collapsible from '../components/Collapsible';
 import axios from 'axios';
 import StatusDatatable from './StatusDatatable';
+import OppoCardsFormat from './OppoCardsFormat';
 import TabsColourActive from './TabsColourActive.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUpLong } from "@fortawesome/free-solid-svg-icons";
@@ -643,6 +644,7 @@ function ViewOppoStatus() {
 
     );
 }
+//OppoCardsFormat StatusDatatable
 //isVisible ? 'opacity-100' : 'opacity-0'
                 //opacity: showScrollBtn ? 100 : 0 
                 //opacity: showScrollBtn ? 100 : 0 

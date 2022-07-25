@@ -137,16 +137,34 @@ function App() {
                 setUser(0);
             }
         }, (err) => {
-            setLoading(true)
+            setLoading(false)
             setUser(0);
         });
 
     },[]);
     if (loading===true) {
-        return <div className="App">
-            <Login/>
-            
-        </div>
+        
+        if (window.location.pathname.toLowerCase() === "/Login".toLowerCase()) {
+            return <div className="App">
+                <Login />
+
+            </div>
+        } else if (window.location.pathname.toLowerCase() === "/RegisterUser".toLowerCase()) {
+            return <div className="App">
+                <RegisterUser />
+
+            </div>
+        } else if (window.location.pathname.toLowerCase() === "/RegisterPartner".toLowerCase()) {
+            return <div className="App">
+                <RegisterPartner />
+
+            </div>
+        } else {
+            return <div className="App">
+                <Home />
+
+            </div>
+        }
     }
     return (
         <div className="App">

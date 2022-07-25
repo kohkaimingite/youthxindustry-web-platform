@@ -10,7 +10,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Collapsible from '../components/Collapsible';
 import axios from 'axios';
 import LoggedDatatable from './LoggedDatatable';
-import OppoViewFormat from './OppoViewFormat';
+import OppoCardsFormat from './OppoCardsFormat';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUpLong } from "@fortawesome/free-solid-svg-icons";
 require('es6-promise').polyfill();

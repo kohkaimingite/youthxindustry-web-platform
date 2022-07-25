@@ -10,6 +10,7 @@ import Collapsible from '../components/Collapsible';
 import axios from 'axios';
 import Datatable from './Datatable';
 import DatatableFav from './DatatableFav';
+import FavCardsFormat from './FavCardsFormat';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUpLong } from "@fortawesome/free-solid-svg-icons";
 require('es6-promise').polyfill();
@@ -635,7 +636,7 @@ function Favourites() {
 
     );
 }
-
+//FavCardsFormat DatatableFav
 
 
 export default Favourites;

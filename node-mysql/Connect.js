@@ -274,9 +274,25 @@ app.get("/getCompanyRatingStats", function (req, res) {
 });
 
 //Andrea
+app.post('/getSuggestedJobByType', function (req, res) {
+    const OppID = req.body.OppID;
+    const Type = req.body.Type;
+    db.query("SELECT Name, Location, Pay,OppID FROM opportunities WHERE OppID != ? AND confirmation = 1 AND posted = 1 AND Type = ? LIMIT 3;",
+        [OppID,Type],
+
+        (err, result) => {
+            if (err) {
+                console.log(err)
+                res.send(result);
+            } else {
+                res.send(result);
+            }
+        }
+    )
+})
 app.post('/getOneOppoCompany', function (req, res) {
     const OppID = req.body.OppID;
-    db.query("SELECT users.Name, users.UserBio, users.ContactNumber FROM opportunities INNER JOIN partner_have_opp ON partner_have_opp.OppID = opportunities.OppID INNER JOIN users ON users.UserID = partner_have_opp.UserID  WHERE opportunities.OppID = ?;",
+    db.query("SELECT users.Name, users.UserBio, users.ContactNumber FROM opportunities INNER JOIN partner_have_opp ON partner_have_opp.OppID = opportunities.OppID INNER JOIN users ON users.UserID = partner_have_opp.UserID  WHERE opportunities.OppID = ? AND opportunities.confirmation = 1 AND opportunities.posted = 1;",
         [OppID],
 
         (err, result) => {
@@ -292,7 +308,7 @@ app.post('/getOneOppoCompany', function (req, res) {
 
 app.post('/getOneOppo', function (req, res) {
     const OppID = req.body.OppID;
-    db.query("SELECT * FROM opportunities WHERE OppID = ?;",
+    db.query("SELECT * FROM opportunities WHERE OppID = ? AND opportunities.confirmation = 1 AND opportunities.posted = 1;",
         [OppID],
 
         (err, result) => {
@@ -306,18 +322,18 @@ app.post('/getOneOppo', function (req, res) {
     )
 })
 app.get('/getCurrentUserRole', function (req, res) {
-    if (req.session.user) {
-        db.query("SELECT RoleID FROM users WHERE UserID = ?;",
-            [req.session.user[0].UserID],
+    if (req.session.user) { 
+    db.query("SELECT RoleID FROM users WHERE UserID = ?;",
+        [req.session.user[0].UserID],
 
-            (err, result) => {
-                if (err) {
-                    console.log(err);
-                } else {
-                    res.send(result);
-                }
-            });
-    }
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send(result);
+            }
+        });
+}
 });
 
 app.post('/getOppoStatus', function (req, res) {
@@ -364,7 +380,7 @@ app.get('/getOppoStatusCount', function (req, res) {
 })
 app.post('/topOppo', (req, res) => {
     const topType = req.body.topType;
-    db.query("SELECT*FROM opportunities WHERE TYPE = ?  UNION SELECT*FROM opportunities WHERE TYPE != ?;",
+    db.query("SELECT*FROM opportunities WHERE TYPE = ?  UNION SELECT*FROM opportunities WHERE TYPE != ? AND confirmation = 1 AND posted = 1  ;",
         [topType, topType],
         (err, result) => {
             if (err) {
@@ -375,7 +391,7 @@ app.post('/topOppo', (req, res) => {
 });
 app.post('/sortedOppo', (req, res) => {
     const topType = req.body.topType;
-    db.query("SELECT*FROM opportunities WHERE TYPE != ? ORDER BY OppID",
+    db.query("SELECT*FROM opportunities WHERE TYPE != ? ORDER BY OppID  AND confirmation = 1 AND posted = 1  ",
         [topType],
         (err, result) => {
             if (err) {
@@ -386,7 +402,7 @@ app.post('/sortedOppo', (req, res) => {
 });
 
 app.get('/Oppo', (req, res) => {
-    db.query("SELECT OppID, Name, Location, Type, Qualification, Pay FROM opportunities ORDER BY OppID", (err, result) => {
+    db.query("SELECT OppID, Name, Location, Type, Qualification, Pay FROM opportunities WHERE   confirmation = 1 AND posted = 1  ORDER BY OppID", (err, result) => {
         if (err) {
             console.log(err);
         } else { res.send(result) };
@@ -396,7 +412,7 @@ app.get('/Oppo', (req, res) => {
 
 app.post('/FavOppo', (req, res) => {
     const UserID = req.body.UserID;
-    db.query("SELECT opportunities.OppID, Name, Description, Location, Address, Type, Qualification, Pay FROM opportunities INNER JOIN users_have_fav ON opportunities.OppID = users_have_fav.OppID WHERE users_have_fav.UserID = ? ORDER BY opportunities.OppID;",
+    db.query("SELECT opportunities.OppID, Name, Description, Location, Address, Type, Qualification, Pay FROM opportunities INNER JOIN users_have_fav ON opportunities.OppID = users_have_fav.OppID WHERE users_have_fav.UserID = ?  AND opportunities.confirmation = 1 AND opportunities.posted = 1  ORDER BY opportunities.OppID;",
         [req.session.user[0].UserID],
         (err, result) => {
             if (err) {
@@ -409,7 +425,7 @@ app.post('/FavOppo', (req, res) => {
 app.post('/CheckFavOppo', (req, res) => {
     const UserID = req.body.UserID;
     const OppID = req.body.OppID;
-    db.query("SELECT * FROM users_have_fav  WHERE UserID = 2 AND OppID = 0 ;",
+    db.query("SELECT * FROM users_have_fav  WHERE UserID = ? AND OppID = ? AND opportunities.confirmation = 1 AND opportunities.posted = 1;",
         [req.session.user[0].UserID, OppID],
         (err, result) => {
             if (err) {
@@ -420,14 +436,7 @@ app.post('/CheckFavOppo', (req, res) => {
 });
 
 
-app.get('/Check123FavOppo', (req, res) => {
-    db.query("SELECT * FROM users_have_fav  WHERE EXISTS( SELECT users_have_fav WHERE UserID = 2 AND OppID = 696969 );", (err, result) => {
-        if (err) {
-            console.log(err);
-        } else { res.send(result) };
 
-    });
-});
 app.post('/deleteFav', (req, res) => {
     const OppID = req.body.OppID;
     const UserID = req.body.UserID;
@@ -462,7 +471,7 @@ app.post('/addFav', (req, res) => {
 
 });
 app.get('/getReview', (req, res) => {
-    db.query("SELECT users_have_opp.UserID, users_have_opp.OppID, users_have_opp.Review, users_have_opp.Rating, opportunities.Name FROM users_have_opp INNER JOIN opportunities ON users_have_opp.OppID = opportunities.OppID WHERE Review IS NULL AND users_have_opp.UserID = ? ORDER BY OppID",
+    db.query("SELECT users_have_opp.UserID, users_have_opp.OppID, users_have_opp.Review, users_have_opp.Rating, opportunities.Name FROM users_have_opp INNER JOIN opportunities ON users_have_opp.OppID = opportunities.OppID WHERE Review IS NULL AND users_have_opp.UserID = ? AND opportunities.confirmation = 1 AND opportunities.posted = 1 ORDER BY OppID",
         [req.session.user[0].UserID],
         (err, result) => {
             if (err) {

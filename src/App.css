@@ -108,6 +108,14 @@ ul li {
     cursor: pointer;
 }
 .viewStatusTabs {
+    width: 65%;
+    margin-right: 12%;
+    margin-left: auto;
+    padding-left: 31px;
+    outline: none;
+    border-color: #04AA6D;
+}
+.viewStatusTabstest {
     width: 79%;
     margin-right: 2%;
     margin-left: auto;
@@ -227,13 +235,13 @@ ul li {
     overflow: auto;
 
 }
-/*90px*/
+/*90px 80px*/
 
 .sidenav {
     width: 17%;
     position: fixed;
     z-index: 1;
-    top: 80px;
+    top: 90px;
     left: 0px;
     bottom: 0px;
     background: #eee;

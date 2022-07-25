@@ -31,7 +31,7 @@ const LoggedNavBar = () => {
                 <a href="/AddReview">Add Review</a>
                 <a href="/Profile">Profile</a>
                 <a>{currentUserName}</a>
-                <button onClick={logout}>Logout</button>
+                <a onClick={logout}>Logout</a>
               
 
             </div>

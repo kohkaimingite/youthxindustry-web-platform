@@ -10,6 +10,13 @@ jobHeader {
     background: #ccc;
     padding: 20px 180px 20px;
 }
+jobHeaderTEST {
+    float: left;
+    width: 60%;
+    height: 800px; /* only for demonstration, should be removed */
+    /*background: #ccc;*/
+    /*padding: 20px 0px 20px 10px;*/
+}
 company {
     float: left;
     padding: 20px;
@@ -17,7 +24,18 @@ company {
     background-color: #f1f1f1;
     height: 300px; /* only for demonstration, should be removed */
 }
+companyTEST {
+    float: left;
+    width: 40%;
+    /*background-color: #f1f1f1;*/
+    height: 800px; /* only for demonstration, should be removed */
+}
 topSection::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+topSectionTEST::after {
     content: "";
     display: table;
     clear: both;
@@ -30,4 +48,131 @@ bottomSection {
     width: 100%;
     padding: 20px 180px 20px;
     /* only for demonstration, should be removed */
+}
+.group{
+
+}
+.testreal {
+    width: auto;
+    margin-right: 20%;
+    margin-left: 20%;
+    overflow: auto;
+    height: 1000px;
+}
+.test {
+    width: 1000px;
+    margin-right: 2%;
+    margin-left: auto;
+    overflow: auto;
+}
+.cardJobTtitle {
+    background: #fff;
+    border: 1px solid #d7e2e9;
+    border-radius: 6px;
+    padding: 24px 32px;
+    margin-bottom: 16px;
+    float: left;
+    width: 97%;
+    transition: all 0.3s ease 0s;
+    display: flex;
+    flex-direction: column;
+    height: 230px;
+    border-left: 5px solid #58a9a7;
+}
+
+    .cardJobTtitle:hover {
+        box-shadow: 8px 8px 5px lightblue;
+    }
+.cardJobDetail {
+    background: #fff;
+    border: 1px solid #d7e2e9;
+    border-radius: 6px;
+    padding: 24px 32px;
+    margin-bottom: 16px;
+    float: left;
+    width: 97%;
+    transition: all 0.3s ease 0s;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    border-left: 5px solid #58a9a7;
+}
+
+    .cardJobDetail:hover {
+        box-shadow: 8px 8px 5px lightblue;
+    }
+
+.cardCompany {
+    background: #fff;
+    border: 1px solid #d7e2e9;
+    border-radius: 6px;
+    padding: 24px 32px;
+    margin-bottom: 16px;
+    float: left;
+    width: 97%;
+    transition: all 0.3s ease 0s;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    /*border-top: 5px solid #58a9a7;*/
+}
+
+    .cardCompany:hover {
+        box-shadow: 8px 8px 5px lightblue;
+    }
+.cardSuggest {
+    background: #fff;
+    border: 1px solid #d7e2e9;
+    border-radius: 6px;
+    /*    padding: 24px 32px;
+*/ margin-bottom: 16px;
+    float: left;
+    width: 97%;
+    transition: all 0.3s ease 0s;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+}
+
+    .cardSuggest:hover {
+        box-shadow: 8px 8px 5px lightblue;
+    }
+
+.cardSuggestJobs {
+    background: #fff;
+    border: 1px solid #d7e2e9;
+    border-radius: 6px;
+    padding: 24px 32px;
+    margin-bottom: 16px;
+    float: left;
+    width: 97%;
+    transition: all 0.3s ease 0s;
+    display: flex;
+    flex-direction: column;
+    height: 230px;
+}
+
+    .cardSuggestJobs:hover {
+        box-shadow: 8px 8px 5px lightblue;
+    }
+.cardSuggestTitle {
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    padding: 20px;
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 24px 32px;
+    background-color: lightblue;
+}
+.cardSuggestJobs {
+    font-size: 20px;
+}
+
+.cardCompanyTitle {
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    font-size: 20px;
+    padding: 24px 32px;
+    background-color: lightblue;
 }

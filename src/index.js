@@ -15,8 +15,6 @@ import Register from './Register/Register';
 import SearchCompanyProfile from './CompanyProfile/SearchCompanyProfile';
 
 
-import OneJob from './OppoPage/OneJob';
-
 
 
 
