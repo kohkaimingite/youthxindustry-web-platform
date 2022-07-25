@@ -35,7 +35,7 @@ const PartnerNavBar = () => {
                 <a href="/EditCompanyBio">Edit Bio</a>
                 <a href="/SubmitApplication">Submit Oppo</a>
                 <a>{currentUserName}</a>
-                <button onClick={logout}>Logout</button>
+                <a onClick={logout}>Logout</a>
 
 
             </div>

@@ -50,7 +50,7 @@ function SearchCompanyProfile() {
                     </div>
                     {filteredData.length != 0 && (
                         <div className="dataResult">
-                            {filteredData.slice(0, 5).map((user, k) => {
+                            {filteredData.slice(0, 10).map((user, k) => {
                                 return (
                                     <a className="dataItem" href={'/ViewCompanyProfile/' + user.Name}>
                                         <p>{user.Name}</p>
