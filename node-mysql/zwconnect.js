@@ -155,7 +155,7 @@ app.post('/userEdit', (req, res) => {
                     message: err.message || "Some error occurred while retrieving user."
                 });
             } else {
-                res.send("Updated User Information.");
+                res.send("userEdit success.");
             }
         }
     )

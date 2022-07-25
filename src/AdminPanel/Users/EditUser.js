@@ -110,18 +110,18 @@ const EditUser = () => {
                     .then((response) => {
                         console.log(response);
                         setFormValues({ roleID: "", name: "", password: "", email: "", age: "", gender: "", userBio: "", contactNumber: "", userID: "" })
-                        console.log("Successfully updated");
+                        console.log("Successfully updated user information.");
                     })
                     .catch(() => {
-                        console.log("Failed to update");
+                        console.log("Failed to update user information.");
                     });
             }
-            console.log("Successful")
+            console.log("POST success");
             setCheck(false);
             setIsSubmit(false);
         }
         else {
-            console.log("Error");
+            console.log("POST error");
         }
 
     }
@@ -149,45 +149,43 @@ const EditUser = () => {
                     alignContent: "center"
                 }}>
                 <label>UserID</label>
-                <input type="text" name="userID" placeholder="UserID ..." value={formValues.UserID} onChange={handleChange}></input>
+                <input type="text" className="adminInput" name="userID" placeholder="UserID ..." value={formValues.UserID} onChange={handleChange}></input>
                 <p className="adminErrorMsg">{formErrors.userID}</p>
 
                 <label>RoleID</label>
-                <input type="text" name="roleID" placeholder="RoleID ..." value={formValues.RoleID} onChange={handleChange}></input>
+                <input type="number" className="adminInput" name="roleID" min="1" max="3" placeholder="RoleID ..." value={formValues.RoleID} onChange={handleChange}></input>
                 <p className="adminErrorMsg">{formErrors.roleID}</p>
 
                 <label>Name</label>
-                <input type="text" name="name" placeholder="Your Name ..." value={formValues.name} onChange={handleChange}></input>
+                <input type="text" className="adminInput" name="name" placeholder="Your Name ..." value={formValues.name} onChange={handleChange}></input>
                 <p className="adminErrorMsg">{formErrors.name}</p>
 
                 <label>Password</label>
-                <input className="aPassword" type="password" name="password" placeholder="Your Password ..." value={formValues.password} onChange={handleChange}></input>
+                <input type="password" className="adminInput" name="password" placeholder="Your Password ..." value={formValues.password} onChange={handleChange}></input>
                 <p className="adminErrorMsg">{formErrors.password}</p>
 
                 <label>Email</label>
-                <input type="email" name="email" placeholder="Your Email ..." value={formValues.email} onChange={handleChange}></input>
+                <input type="email" className="adminInput" name="email" placeholder="Your Email ..." value={formValues.email} onChange={handleChange}></input>
                 <p className="adminErrorMsg">{formErrors.email}</p>
 
                 <label>Age</label>
-                <input type="number" name="age" placeholder="Your Age ..." value={formValues.age} onChange={handleChange}></input>
+                <input type="number" className="adminInput" name="age" min="1" max="100" placeholder="Your Age ..." value={formValues.age} onChange={handleChange}></input>
                 <p className="adminErrorMsg">{formErrors.age}</p>
 
                 <label>Gender</label>
-                <select type="text" className="gender" name="gender" value={formValues.gender} onChange={handleChange}>
-                    <option value="M"> Male </option>
-                    <option value="F"> Female </option>
+                <select type="text" className="adminInput" name="gender" value={formValues.gender} onChange={handleChange}>
+                    <option value="" disabled selected>Your gender ...</option>
+                    <option value="M">Male</option>
+                    <option value="F">Female</option>
                 </select>
-
-
-                {/* <input type="adminInput" name="gender" placeholder="Your Gender ..." value={formValues.gender} onChange={handleChange}></input> */}
                 <p className="adminErrorMsg">{formErrors.gender}</p>
 
                 <label>UserBio</label>
-                <input type="text" name="userBio" placeholder="Your User Biography ..." value={formValues.userBio} onChange={handleChange}></input>
+                <input type="text" className="adminInput" name="userBio" placeholder="Your User Biography ..." value={formValues.userBio} onChange={handleChange}></input>
                 <p className="adminErrorMsg">{formErrors.userBio}</p>
 
                 <label>Contact</label>
-                <input type="text" name="contactNumber" placeholder="Your Contact Number ..." value={formValues.contactNumber} onChange={handleChange}></input>
+                <input type="text" className="adminInput" name="contactNumber" placeholder="Your Contact Number ..." value={formValues.contactNumber} onChange={handleChange}></input>
                 <p className="adminErrorMsg">{formErrors.contactNumber}</p>
 
                 <button className="btn submitButton">Submit</button>
