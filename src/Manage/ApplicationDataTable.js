@@ -93,19 +93,17 @@ export default function LogAppTable({ data }) {
                 <th>Status</th>
                 <th>Accept</th>
                 <th>Reject</th>
-                <th>test</th>
 
 
 
             </tr>
             {data.map(row => <tr>
                 {
-                    columns.map(column => <td style={{ textAlign: 'left' }}>{row[column]}</td>)
+                    columns.map(column => <td style={{ textAlign: 'center' }}>{row[column]}</td>)
 
                 }
                 <td><FontAwesomeIcon icon={faCheck} onClick={() => Accept(row[columns[0]])}> </FontAwesomeIcon></td>
                 <td><FontAwesomeIcon icon={faX} onClick={() => Reject(row[columns[0]])}> </FontAwesomeIcon></td>
-                <td>{row[columns[0]]}</td>
 
             </tr>)}
         </table>

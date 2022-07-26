@@ -15,6 +15,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 function UserProfile() {
     const [ProfList, setProfList] = useState([]);
     const columns = ProfList[0] && Object.keys(ProfList[0]);
+    //const [Res, setRes] = useState();
+    //var bufferBase64 = new Buffer(Res, 'binary').toString('base64');
     const getProfile = () => {
 
     };
@@ -32,7 +34,7 @@ function UserProfile() {
 
         <div className="App">
             <LoggedNavBar />
-                <div className="main">
+                <div className="main2">
                 <h1 >Profile</h1>
                 
                 <topSection>
@@ -60,50 +62,17 @@ function UserProfile() {
                             })}<a href="/EditUserBio"> <FontAwesomeIcon icon={faPencil}></FontAwesomeIcon> </a><br />
                             {/*{ProfList.map((val, key) => {*/}
                             {/*    return <text align="Left">{val.Resume}</text>;*/}
+                            
                             {/*})}<br />*/}<a href="/EditUserResume"> <FontAwesomeIcon icon={faPencil}></FontAwesomeIcon> </a><br />
-
+                            
 
 
 
                         </form>
+                        
                     </company>
                 </topSection>
-                    <div className="AlignLeft">
-                    <h3>Details:</h3>
-                    <form action="/action_page.php" method="post">
-                        <text>Full Name:</text><br />
-                        <text>Email:</text><br />
-                        <text>Mobile Number:</text><br />
-                        <text>Bio: </text><br />
-                        <text>Resume: </text><br />
-                    </form>
-                    
-                    </div>
-                    <div className="AlignMiddle">
-                    <form action="/action_page.php" method="post">
-                        {ProfList.map((val, key) => {
-                            return <text align="Left">{val.Name}</text>;
-                        })}<br />
-                        {ProfList.map((val, key) => {
-                            return <text align="Left">{val.Email}</text>;
-                        })}<br />
-                        {ProfList.map((val, key) => {
-                            return <text align="Left">{val.ContactNumber}</text>;
-                        })}<a href="/EditUserNumber"> <FontAwesomeIcon icon={faPencil}></FontAwesomeIcon> </a><br />
-                        {ProfList.map((val, key) => {
-                            return <text align="Left">{val.UserBio}</text>;
-                        })}<a href="/EditUserBio"> <FontAwesomeIcon icon={faPencil}></FontAwesomeIcon> </a><br />
-                        {/*{ProfList.map((val, key) => {*/}
-                        {/*    return <text align="Left">{val.Resume}</text>;*/}
-                        {/*})}<br />*/}<a href="/EditUserResume"> <FontAwesomeIcon icon={faPencil}></FontAwesomeIcon> </a><br />
-                        
-                        
-
-                        
-                    </form>
-
-
-                </div>
+                   
                 <div className="AlignRight">
                     <form action="/action_page.php" method="post">
                     </form>

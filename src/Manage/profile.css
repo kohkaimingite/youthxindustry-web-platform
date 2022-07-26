@@ -1,6 +1,6 @@
-﻿body
-{
+﻿body {
 }
+
 jobHeader {
     float: left;
     width: 50%;
@@ -8,6 +8,7 @@ jobHeader {
     height: 300px; /* only for demonstration, should be removed */
     background: #ccc;
 }
+
 company {
     float: left;
     width: 50%;
@@ -15,8 +16,18 @@ company {
     height: 300px; /* only for demonstration, should be removed */
     background-color: #f1f1f1;
 }
+
 topSection::after {
     content: "";
     display: table;
     clear: both;
+    width: 500px;
+}
+.main2 {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    align-items: center;
+    flex-direction: column;
+    row-gap: 20px;
 }
