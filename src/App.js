@@ -243,11 +243,11 @@ function App() {
                 <Route element={<ProtectedRouteAdmin user={user} />}>
                     <Route path='/AdminPanel' element={<AdminPanel />} />
                     <Route path='/ViewUser' element={<ViewUser />} />
-                    <Route path='/EditUser' element={<EditUser />} />
+                    <Route path='/EditUser/:UserID' element={<EditUser />} />
                     <Route path='/ViewOppo' element={<ViewOppo />} />
-                    <Route path='/EditOppo' element={<EditOppo />} />
+                    <Route path='/EditOppo/:OppID' element={<EditOppo />} />
                     <Route path='/ViewPartner' element={<ViewPartner />} />
-                    <Route path='/EditPartner' element={<EditPartner />} />
+                    <Route path='/EditPartner/:UserID' element={<EditPartner />} />
                     <Route path='/ConfirmPartner' element={<ConfirmPartner />} />
                 </Route>
             </Routes>

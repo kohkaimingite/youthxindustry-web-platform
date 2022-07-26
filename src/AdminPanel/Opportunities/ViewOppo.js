@@ -98,7 +98,7 @@ const ViewOppo = () => {
                                 <td> {User.Qualification} </td>
                                 <td> {User.Pay} </td>
                                 <td>
-                                    <Link to="/EditOppo">
+                                    <Link to={"/EditOppo/"+User.OppID}>
                                         <button className="btn editButton">Edit</button>
                                     </Link>
 
