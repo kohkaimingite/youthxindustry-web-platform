@@ -880,6 +880,7 @@ app.post('/apPartnerDelete', (req, res) => {
     )
 })
 
-app.listen(3001, () => {
-    console.log("running server");
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => {
+    console.log(`Server is currently running on port ${PORT}.`);
 });
