@@ -23,7 +23,7 @@ const EditPartner = () => {
         const errors = {}
         const spRegex = /^\S*$/;
         const pwRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-        const pnumRegex = /[6|8|9]\d{7}/;
+        const pnumRegex = /(^[689]{1}\d{7}$)/;
         if (!values.userID) {
             errors.userID = "UserID is required";
         } else if (!spRegex.test(values.userID)) {
@@ -43,7 +43,7 @@ const EditPartner = () => {
             errors.password = "Password is required";
         } else if (!pwRegex.test(values.password)) {
             errors.password = "Password has to be at least 8 characters, at least 1 letter, and 1 number";
-        } else if (values.password > 50) {
+        } else if (values.password.length > 50) {
             errors.password = "Password cannot exceed 50 characters";
         }
         if (!values.email) {
@@ -62,7 +62,7 @@ const EditPartner = () => {
             errors.contactNumber = "Enter only in number";
         } else if (!pnumRegex.test(values.contactNumber)) {
             errors.contactNumber = "Contact number must be a valid number";
-        } else if (values.contactNumber > 8) {
+        } else if (values.contactNumber.length > 8) {
             errors.contactNumber = "Contact number cannot exceed 8 characters";
         }
         else {
@@ -162,7 +162,7 @@ const EditPartner = () => {
                 <p className="adminErrorMsg">{formErrors.contactNumber}</p>
 
                 <button className="btn submitButton">Submit</button>
-                <Link to="/ViewUser">
+                <Link to="/ViewPartner">
                     <button className="btn backButton">Go Back to View All Partners</button>
                 </Link>
             </form>

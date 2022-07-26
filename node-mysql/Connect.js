@@ -816,7 +816,7 @@ app.post('/apOppoEdit', (req, res) => {
 
 app.post('/apOppoDelete', (req, res) => {
     const OppID = req.body.OppID;
-    db.query("DELETE FROM users_have_opp WHERE OppID = ?; DELETE FROM users_have_fav WHERE OppID = ?; DELETE FROM partner_have_opp WHERE OppID = ?; DELETE FROM opp_have_application WHERE OppID = ?; DELETE FROM opportunities WHERE OppID = ?;",
+    db.query("DELETE FROM users_have_opp WHERE OppID = ?; DELETE FROM users_have_fav WHERE OppID = ?; DELETE FROM partner_have_opp WHERE OppID = ?; DELETE FROM application WHERE OppID = ?; DELETE FROM opportunities WHERE OppID = ?;",
         [OppID, OppID, OppID, OppID, OppID],
         (err, result) => {
             if (err) {
@@ -874,10 +874,10 @@ app.post('/apPartnerEdit', (req, res) => {
     const Password = req.body.password;
     const Email = req.body.email;
     const UserBio = req.body.userBio;
-    const MobileNumber = req.body.mobileNumber;
+    const ContactNumber = req.body.contactNumber;
     const UserID = req.body.UserID;
     db.query("UPDATE users SET RoleID = ?, Name = ?, Password = ?, Email = ?, UserBio = ?, ContactNumber = ? WHERE UserID = ?",
-        [RoleID, Name, Password, Email, UserBio, MobileNumber, UserID],
+        [RoleID, Name, Password, Email, UserBio, ContactNumber, UserID],
         (err, result) => {
             if (err) {
                 res.status(500).send({
