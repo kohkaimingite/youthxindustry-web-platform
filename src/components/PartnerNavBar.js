@@ -26,16 +26,18 @@ const PartnerNavBar = () => {
         <header class='header' style={test}>
             <h1 style={brandName}>CYC</h1>
             <div class="containerNavBar borderYtoX">
-                <a href="/Home">Home</a>
-                
-                <a href="/OppoPage">OppoPage</a>
+                <a href="/Home">Home</a> 
+               {/* <a href="/OppoPage">OppoPage</a>*/}
+                <a href="/OppoPartner" >My Opportunities</a>
+                <a href="/RatingStats" >My Stats</a>
+                <a href="/MyApplications" >User Applications</a>
                 <a href="/Company">Company</a>
                 <a href="/Profile">Profile</a>
                 <a href="/EditCompanyNumber">Edit Company Number</a>              
                 <a href="/EditCompanyBio">Edit Bio</a>
                 <a href="/SubmitApplication">Submit Oppo</a>
                 <a>{currentUserName}</a>
-                <button onClick={logout}>Logout</button>
+                <a onClick={logout}>Logout</a>
 
 
             </div>

@@ -21,8 +21,14 @@ const EditOppo = () => {
     
     const validate = (values) => {
         const errors = {};
+        const spRegex = /^\S*$/;
+        const qRegex = /\b(GCE O Level|GCE A Level|Diploma)\b/;
         if (!values.oppID) {
             errors.oppID = "OppID is required";
+        } else if (!spRegex.test(values.oppID)) {
+            errors.oppID = "OppID cannot contain spacing";
+        } else if (values.oppID.length > 6) {
+            errors.oppID = "OppID cannot exceed 6 digits";
         }
         if (!values.name) {
             errors.name = "Name is required";
@@ -36,11 +42,11 @@ const EditOppo = () => {
         }
         if (!values.location) {
             errors.location = "Area is required";
-        } else if (values.location.length > 255) {
-            errors.location = "Area cannot exceed 255 characters";
         }
         if (!values.address) {
             errors.address = "Address is required";
+        } else if (values.address.includes("Singapore") == false) {
+            errors.address = "Only addresses in Singapore are allowed";
         } else if (values.address.length > 255) {
             errors.address = "Address cannot exceed 255 characters";
         }
@@ -51,6 +57,8 @@ const EditOppo = () => {
         }
         if (!values.qualification) {
             errors.qualification = "Qualification is required";
+        } else if (!qRegex.test(values.qualification)) {
+            errors.qualification = "Qualification must be a valid academic qualification";
         } else if (values.qualification.length > 50) {
             errors.qualification = "Qualification cannot exceed 50 characters";
         }
@@ -134,7 +142,14 @@ const EditOppo = () => {
                 <p className="adminErrorMsg">{formErrors.description}</p>
 
                 <label>Area</label>
-                <input type="text" className="adminInput" name="location" placeholder="Area ..." value={formValues.location} onChange={handleChange}></input>
+                <select type="text" className="adminInput" name="location" value={formValues.location} onChange={handleChange}>
+                    <option value="" disabled selected>Area ...</option>
+                    <option value="Central">Central</option>
+                    <option value="North">North</option>
+                    <option value="South">South</option>
+                    <option value="East">East</option>
+                    <option value="West">West</option>
+                </select>
                 <p className="adminErrorMsg">{formErrors.location}</p>
 
                 <label>Address</label>
@@ -150,7 +165,7 @@ const EditOppo = () => {
                 <p className="adminErrorMsg">{formErrors.qualification}</p>
 
                 <label>Pay</label>
-                <input type="text" className="adminInput" name="pay" placeholder="Pay ..." value={formValues.pay} onChange={handleChange}></input>
+                <input type="number" className="adminInput" name="pay" min="1" placeholder="Pay ..." value={formValues.pay} onChange={handleChange}></input>
                 <p className="adminErrorMsg">{formErrors.pay}</p>
 
                 <button className="btn submitButton">Submit</button>

@@ -67,7 +67,11 @@ const ViewPartner = () => {
                 </thead>
                 <tbody>
                     {data.filter((User) => {
+                        var strUserID = '' + User.UserID;
+
                         if (searchInput == "") {
+                            return User
+                        } else if (strUserID.includes(searchInput)) {
                             return User
                         } else if (User.Name.toLowerCase().includes(searchInput.toLowerCase())) {
                             return User
@@ -84,7 +88,7 @@ const ViewPartner = () => {
                                 <td> {User.UserBio} </td>
                                 <td> {User.ContactNumber} </td>
                                 <td>
-                                    <Link to="/EditPartner">
+                                    <Link to={"/EditPartner/"+User.UserID}>
                                         <button className="btn editButton">Edit</button>
                                     </Link>
 

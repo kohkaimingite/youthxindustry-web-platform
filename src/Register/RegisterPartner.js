@@ -5,17 +5,7 @@ import Axios from 'axios';
 import './RegisterPage.css';
 import { faUsers, faSpinner} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-/*import emailjs from '@emailjs/browser';*/
-/* function EmailJS() {
-        emailjs.sendForm('service_nqak4rb', 'template_0fcbuq9', 'EOze04zGTBzzoGFXp')
-    .then(function(response) {
-       console.log('SUCCESS!', response.status, response.text);
-    }, function(error) {
-       console.log('FAILED...', error);
-    });
-    }*/
-/*EmailJS();*/
+import emailjs from '@emailjs/browser';
 
 export default function RegisterPartner() {
 
@@ -24,7 +14,6 @@ export default function RegisterPartner() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [success, setSuccess] = useState(false);
-
 
     const handleEmail = (e) => {
         setEmail(e.target.value);
@@ -37,6 +26,13 @@ export default function RegisterPartner() {
     };
     const submitFormData = (e) => {
         e.preventDefault();
+
+        emailjs.sendForm('service_nqak4rb', 'template_0fcbuq9', e.target, 'EOze04zGTBzzoGFXp')
+      .then(function(response) {
+          console.log('SUCCESS!', response.status, response.text);
+      }, function(error) {
+          console.log('FAILED...', error);
+      });
 
         Axios.post("http://localhost:3001/registerPartner", {
             name: name,

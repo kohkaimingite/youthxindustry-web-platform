@@ -21,19 +21,21 @@ const EditPartner = () => {
     
     const validate = (values) => {
         const errors = {}
+        const spRegex = /^\S*$/;
         const pwRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-        const pnumRegex = /[6|8|9]\d{7}/;
+        const pnumRegex = /(^[689]{1}\d{7}$)/;
         if (!values.userID) {
             errors.userID = "UserID is required";
+        } else if (!spRegex.test(values.userID)) {
+            errors.userID = "UserID cannot contain spacing";
         }
         if (!values.roleID) {
             errors.roleID = "RoleID is required";
-        } else if (values.roleID == 1|2|3) {
-            errors.roleID = "Only allow 1 (User), 2 (Partner), or 3 (Admin)";
         }
         if (!values.name) {
             errors.name = "Name is required";
+        } else if (!isNaN(values.name)) {
+            errors.name = "Enter only in words"
         } else if (values.name.length > 50) {
             errors.name = "Name cannot exceed 50 characters";
         }
@@ -41,13 +43,11 @@ const EditPartner = () => {
             errors.password = "Password is required";
         } else if (!pwRegex.test(values.password)) {
             errors.password = "Password has to be at least 8 characters, at least 1 letter, and 1 number";
-        } else if (values.password > 50) {
+        } else if (values.password.length > 50) {
             errors.password = "Password cannot exceed 50 characters";
         }
         if (!values.email) {
             errors.email = "Email is required";
-        } else if (!emailRegex.test(values.email)) {
-            errors.email = "Email must be a valid email address";
         } else if (values.email.length > 50) {
             errors.email = "Email cannot exceed 50 characters";
         }
@@ -56,9 +56,13 @@ const EditPartner = () => {
         }
         if (!values.contactNumber) {
             errors.contactNumber = "Contact number is required";
+        } else if (!spRegex.test(values.contactNumber)) {
+            errors.contactNumber = "Contact number cannot contain spacing";
+        } else if (isNaN(values.contactNumber)) {
+            errors.contactNumber = "Enter only in number";
         } else if (!pnumRegex.test(values.contactNumber)) {
             errors.contactNumber = "Contact number must be a valid number";
-        } else if (values.contactNumber > 8) {
+        } else if (values.contactNumber.length > 8) {
             errors.contactNumber = "Contact number cannot exceed 8 characters";
         }
         else {
@@ -129,31 +133,36 @@ const EditPartner = () => {
                 <p className="adminErrorMsg">{formErrors.userID}</p>
 
                 <label>RoleID</label>
-                <input type="number" className="adminInput" name="roleID" min="1" max="3" placeholder="Your RoleID ..." value={formValues.RoleID} onChange={handleChange}></input>
+                <select type="text" className="adminInput" name="roleID" value={formValues.roleID} onChange={handleChange}>
+                    <option value="" disabled selected>RoleID ...</option>
+                    <option value="1">User</option>
+                    <option value="2">Partner</option>
+                    <option value="3">Admin</option>
+                </select>
                 <p className="adminErrorMsg">{formErrors.roleID}</p>
 
                 <label>Name</label>
-                <input type="text" className="adminInput" name="name" placeholder="Your Name ..." value={formValues.name} onChange={handleChange}></input>
+                <input type="text" className="adminInput" name="name" placeholder="Name ..." value={formValues.name} onChange={handleChange}></input>
                 <p className="adminErrorMsg">{formErrors.name}</p>
 
                 <label>Password</label>
-                <input type="password" className="adminInput" name="password" placeholder="Your Password ..." value={formValues.password} onChange={handleChange}></input>
+                <input type="password" className="adminInput" name="password" placeholder="Password ..." value={formValues.password} onChange={handleChange}></input>
                 <p className="adminErrorMsg">{formErrors.password}</p>
 
                 <label>Email</label>
-                <input type="email" className="adminInput" name="email" placeholder="Your Email ..." value={formValues.email} onChange={handleChange}></input>
+                <input type="email" className="adminInput" name="email" placeholder="Email ..." value={formValues.email} onChange={handleChange}></input>
                 <p className="adminErrorMsg">{formErrors.email}</p>
 
                 <label>UserBio</label>
-                <input type="text" className="adminInput" name="userBio" placeholder="Your User Biography ..." value={formValues.userBio} onChange={handleChange}></input>
+                <input type="text" className="adminInput" name="userBio" placeholder="User Biography ..." value={formValues.userBio} onChange={handleChange}></input>
                 <p className="adminErrorMsg">{formErrors.userBio}</p>
 
                 <label>Contact</label>
-                <input type="text" className="adminInput" name="contactNumber" placeholder="Your Contact Number ..." value={formValues.contactNumber} onChange={handleChange}></input>
+                <input type="text" className="adminInput" name="contactNumber" placeholder="Contact Number ..." value={formValues.contactNumber} onChange={handleChange}></input>
                 <p className="adminErrorMsg">{formErrors.contactNumber}</p>
 
                 <button className="btn submitButton">Submit</button>
-                <Link to="/ViewUser">
+                <Link to="/ViewPartner">
                     <button className="btn backButton">Go Back to View All Partners</button>
                 </Link>
             </form>

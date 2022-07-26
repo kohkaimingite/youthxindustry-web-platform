@@ -30,6 +30,7 @@ const LoggedNavBar = () => {
                 <a href="/Status">Status</a>
                 <a href="/AddReview">Add Review</a>
                 <a href="/Profile">Profile</a>
+                <a href="/ViewCompanyProfile">Company Profile</a>
                 <a>{currentUserName}</a>
                 <a onClick={logout}>Logout</a>
               

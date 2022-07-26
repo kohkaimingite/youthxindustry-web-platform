@@ -67,11 +67,20 @@ const ConfirmPartner = () => {
                 </thead>
                 <tbody>
                     {data.filter((User) => {
+                        var strUserID = '' + User.UserID;
+                        var strContactNumber = '' + User.ContactNumber;
+
                         if (searchInput == "") {
+                            return User
+                        } else if (strUserID.includes(searchInput)) {
                             return User
                         } else if (User.Name.toLowerCase().includes(searchInput.toLowerCase())) {
                             return User
                         } else if (User.Email.toLowerCase().includes(searchInput.toLowerCase())) {
+                            return User
+                        } else if (User.UserBio.toLowerCase().includes(searchInput.toLowerCase())) {
+                            return User
+                        } else if (strContactNumber.includes(searchInput)) {
                             return User
                         }
                     }).map((User, key) => {

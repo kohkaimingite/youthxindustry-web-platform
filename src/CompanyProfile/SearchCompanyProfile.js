@@ -4,6 +4,7 @@ import "./SearchCompanyProfile.css";
 import { faSearch, faX } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import NavBar from '../components/NavBar';
+import LoggedNavBar from '../components/LoggedNavBar';
 
 function SearchCompanyProfile() {
 
@@ -40,7 +41,7 @@ function SearchCompanyProfile() {
 
     return (
         <div className="SearchCompanyProfileDiv" >
-            <NavBar />
+            <LoggedNavBar />
             <div className="search" >
                 <div className="searchInputs" >
                     <p style={{ marginRight: '330px' }}>Search</p>
@@ -50,7 +51,7 @@ function SearchCompanyProfile() {
                     </div>
                     {filteredData.length != 0 && (
                         <div className="dataResult">
-                            {filteredData.slice(0, 5).map((user, k) => {
+                            {filteredData.slice(0, 10).map((user, k) => {
                                 return (
                                     <a className="dataItem" href={'/ViewCompanyProfile/' + user.Name}>
                                         <p>{user.Name}</p>

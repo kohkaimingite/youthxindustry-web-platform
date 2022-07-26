@@ -185,32 +185,13 @@ function App() {
                 
                 <Route path='/Login' element={<Login />} />
                 <Route path='/Register' element={<Register />} />
-                
-                <Route path='/ViewCompanyProfile' element={<SearchCompanyProfile />} />
-                <Route exact path='/ViewCompanyProfile/:Name' element={<ViewCompanyProfile />} />
-                <Route path='/RatingStats' element={<RatingStats />} />
-                <Route path='/JobConfirmation' element={<JobConfirmation />} />
+
 
                 <Route path='/Profile' element={<ProfilePage />} />
                 <Route path='/EditCompanyNumber' element={<EditCompanyNumber />} />
                 <Route path='/RegisterPartner' element={< RegisterPartner />} />
                 <Route path='/RegisterUser' element={< RegisterUser />} />
                 <Route path='/EditCompanyBio' element={<EditCompanyBio />} />
-                
-                <Route path='/OppoPartner' element={<OppoPartner />} />
-                <Route path='/AddOppoPartner' element={<AddOppoPartner />} />
-
-
-                <Route path='/AdminPanel' element={<AdminPanel />} />
-                <Route path='/ViewUser' element={<ViewUser />} />
-                <Route path='/EditUser' element={<EditUser />} />
-                <Route path='/ViewOppo' element={<ViewOppo />} />
-                <Route path='/EditOppo' element={<EditOppo />} />
-                <Route path='/ViewPartner' element={<ViewPartner />} />
-                <Route path='/EditPartner' element={<EditPartner />} />
-                <Route path='/ConfirmPartner' element={<ConfirmPartner />} />
-
-
 
                 <Route element={<ProtectedRouteLog user={user} />}>
                     
@@ -228,6 +209,9 @@ function App() {
                     <Route path='/SubmitApplication' element={<SubmitApplication />} />
                     <Route exact path='/SubmitApplication/:id' element={<SubmitApplication />} />
 
+                    <Route path='/ViewCompanyProfile' element={<SearchCompanyProfile />} />
+                    <Route exact path='/ViewCompanyProfile/:Name' element={<ViewCompanyProfile />} />
+
                     <Route path='/ReviewSuccess' element={<ReviewSuccess />} />
                     <Route path='/ReviewNoSuccess' element={<ReviewNoSuccess />} />
                     <Route path='/Oppo/:id' element={<OneOppo />} />
@@ -237,8 +221,12 @@ function App() {
                 
                 
                 <Route element={<ProtectedRoutepartner user={user} />}>
-                
-                <Route path='/OppoPage' element={<EditOppo />} />
+                <Route path='/OppoPartner' element={<OppoPartner />} />
+                <Route path='/AddOppoPartner' element={<AddOppoPartner />} />
+                <Route path='/RatingStats' element={<RatingStats />} />
+                <Route path='/JobConfirmation' element={<JobConfirmation />} />
+                    {/*<Route path='/OppoPage' element={<EditOppo />} />*/}
+
                 <Route path='/Company' element={<CompanyPage />} />
                 <Route path='/Profile' element={<ProfilePage />} />
                 <Route path='/EditCompanyNumber' element={<EditCompanyNumber />} />
@@ -253,18 +241,16 @@ function App() {
 
 
                 <Route element={<ProtectedRouteAdmin user={user} />}>
-                    {/* <Route path='/AdminPanel' element={<AdminPanel />} />
+                    <Route path='/AdminPanel' element={<AdminPanel />} />
                     <Route path='/ViewUser' element={<ViewUser />} />
-                    <Route path='/EditUser' element={<EditUser />} />
+                    <Route path='/EditUser/:UserID' element={<EditUser />} />
                     <Route path='/ViewOppo' element={<ViewOppo />} />
-                    <Route path='/EditOppo' element={<EditOppo />} />
-                    <Route path='/EditOppo2' element={<EditOppo2 />} />
+                    <Route path='/EditOppo/:OppID' element={<EditOppo />} />
                     <Route path='/ViewPartner' element={<ViewPartner />} />
-                    <Route path='/ConfirmPartner' element={<ConfirmPartner />} /> */}
-                    
-
+                    <Route path='/EditPartner/:UserID' element={<EditPartner />} />
+                    <Route path='/ConfirmPartner' element={<ConfirmPartner />} />
                 </Route>
-                </Routes>
+            </Routes>
         </div>
     );
 

@@ -23,7 +23,6 @@ const EditUser = () => {
         const errors = {};
         const spRegex = /^\S*$/;
         const pwRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
         const pnumRegex = /(^[689]{1}\d{7}$)/;
         if (!values.userID) {
             errors.userID = "UserID is required";
@@ -32,18 +31,16 @@ const EditUser = () => {
         }
         if (!values.roleID) {
             errors.roleID = "RoleID is required";
-        } else if (values.roleID.length < 1 || values.roleID.length > 3) {
-            errors.roleID = "Only allow 1 (User), 2 (Partner), 3 (Admin)";
         }
         if (!values.name) {
             errors.name = "Name is required";
+        } else if (!isNaN(values.name)) {
+            errors.name = "Enter only in words"
         } else if (values.name.length > 50) {
             errors.name = "Name cannot exceed 50 characters";
         }
         if (!values.password) {
             errors.password = "Password is required";
-        } else if (!spRegex.test(values.password)) {
-            errors.password = "Password cannot contain spacing";
         } else if (!pwRegex.test(values.password)) {
             errors.password = "Password has to be at least 8 characters with at least 1 letter, and 1 number";
         } else if (values.password.length > 50) {
@@ -51,24 +48,14 @@ const EditUser = () => {
         }
         if (!values.email) {
             errors.email = "Email is required";
-        } else if (!spRegex.test(values.email)) {
-            errors.email = "Email cannot contain spacing";
-        } else if (!emailRegex.test(values.email)) {
-            errors.email = "Email must be a valid email address";
         } else if (values.email.length > 50) {
             errors.email = "Email cannot exceed 50 characters";
         }
         if (!values.age) {
             errors.age = "Age is required";
-        } else if (!spRegex.test(values.age)) {
-            errors.age = "Age cannot contain spacing";
-        } else if (values.age > 100) {
-            errors.age = "Maximum age is 100";
         }
         if (!values.gender) {
             errors.gender = "Gender is required";
-        } else if (values.gender.length > 1) {
-            errors.gender = "Gender only accepts 'M' and 'F' characters";
         }
         if (values.userBio.length > 255) {
             errors.userBio = "Biography cannot exceed 255 characters";
@@ -79,10 +66,10 @@ const EditUser = () => {
             errors.contactNumber = "Contact number cannot contain spacing";
         } else if (isNaN(values.contactNumber)) {
             errors.contactNumber = "Enter only in number";
-        } else if (values.contactNumber.length > 8) {
-            errors.contactNumber = "Contact number cannot exceed 8 characters";
         } else if (!pnumRegex.test(values.contactNumber)) {
             errors.contactNumber = "Contact number must be a valid number";
+        } else if (values.contactNumber.length > 8) {
+            errors.contactNumber = "Contact number cannot exceed 8 characters";
         }
         else {
             setCheck(true);
@@ -155,39 +142,44 @@ const EditUser = () => {
                 <p className="adminErrorMsg">{formErrors.userID}</p>
 
                 <label>RoleID</label>
-                <input type="number" className="adminInput" name="roleID" min="1" max="3" placeholder="RoleID ..." value={formValues.RoleID} onChange={handleChange}></input>
+                <select type="text" className="adminInput" name="roleID" value={formValues.roleID} onChange={handleChange}>
+                    <option value="" disabled selected>RoleID ...</option>
+                    <option value="1">User</option>
+                    <option value="2">Partner</option>
+                    <option value="3">Admin</option>
+                </select>
                 <p className="adminErrorMsg">{formErrors.roleID}</p>
 
                 <label>Name</label>
-                <input type="text" className="adminInput" name="name" placeholder="Your Name ..." value={formValues.name} onChange={handleChange}></input>
+                <input type="text" className="adminInput" name="name" placeholder="Name ..." value={formValues.name} onChange={handleChange}></input>
                 <p className="adminErrorMsg">{formErrors.name}</p>
 
                 <label>Password</label>
-                <input type="password" className="adminInput" name="password" placeholder="Your Password ..." value={formValues.password} onChange={handleChange}></input>
+                <input type="password" className="adminInput" name="password" placeholder="Password ..." value={formValues.password} onChange={handleChange}></input>
                 <p className="adminErrorMsg">{formErrors.password}</p>
 
                 <label>Email</label>
-                <input type="email" className="adminInput" name="email" placeholder="Your Email ..." value={formValues.email} onChange={handleChange}></input>
+                <input type="email" className="adminInput" name="email" placeholder="Email ..." value={formValues.email} onChange={handleChange}></input>
                 <p className="adminErrorMsg">{formErrors.email}</p>
 
                 <label>Age</label>
-                <input type="number" className="adminInput" name="age" min="1" max="100" placeholder="Your Age ..." value={formValues.age} onChange={handleChange}></input>
+                <input type="number" className="adminInput" name="age" min="1" max="100" placeholder="Age ..." value={formValues.age} onChange={handleChange}></input>
                 <p className="adminErrorMsg">{formErrors.age}</p>
 
                 <label>Gender</label>
                 <select type="text" className="adminInput" name="gender" value={formValues.gender} onChange={handleChange}>
-                    <option value="" disabled selected>Your gender ...</option>
+                    <option value="" disabled selected>Gender ...</option>
                     <option value="M">Male</option>
                     <option value="F">Female</option>
                 </select>
                 <p className="adminErrorMsg">{formErrors.gender}</p>
 
                 <label>UserBio</label>
-                <input type="text" className="adminInput" name="userBio" placeholder="Your User Biography ..." value={formValues.userBio} onChange={handleChange}></input>
+                <input type="text" className="adminInput" name="userBio" placeholder="User Biography ..." value={formValues.userBio} onChange={handleChange}></input>
                 <p className="adminErrorMsg">{formErrors.userBio}</p>
 
                 <label>Contact</label>
-                <input type="text" className="adminInput" name="contactNumber" placeholder="Your Contact Number ..." value={formValues.contactNumber} onChange={handleChange}></input>
+                <input type="text" className="adminInput" name="contactNumber" placeholder="Contact Number ..." value={formValues.contactNumber} onChange={handleChange}></input>
                 <p className="adminErrorMsg">{formErrors.contactNumber}</p>
 
                 <button className="btn submitButton">Submit</button>

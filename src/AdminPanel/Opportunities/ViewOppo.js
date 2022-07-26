@@ -70,7 +70,12 @@ const ViewOppo = () => {
                 </thead>
                 <tbody>
                     {data.filter((User) => {
+                        var strOppID = '' + User.OppID;
+                        var strPay = '' + User.Pay;
+
                         if (searchInput == "") {
+                            return User
+                        } else if (strOppID.includes(searchInput)) {
                             return User
                         } else if (User.Name.toLowerCase().includes(searchInput.toLowerCase())) {
                             return User
@@ -83,6 +88,8 @@ const ViewOppo = () => {
                         } else if (User.Type.toLowerCase().includes(searchInput.toLowerCase())) {
                             return User
                         } else if (User.Qualification.toLowerCase().includes(searchInput.toLowerCase())) {
+                            return User
+                        } else if (strPay.includes(searchInput)) {
                             return User
                         }
                     }).map((User, key) => {
@@ -98,7 +105,7 @@ const ViewOppo = () => {
                                 <td> {User.Qualification} </td>
                                 <td> {User.Pay} </td>
                                 <td>
-                                    <Link to="/EditOppo">
+                                    <Link to={"/EditOppo/"+User.OppID}>
                                         <button className="btn editButton">Edit</button>
                                     </Link>
 
