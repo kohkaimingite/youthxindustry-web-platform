@@ -624,7 +624,7 @@ function Favourites() {
                 </div>
                 
 
-                <DatatableFav data={filterAll(OppoList)} />
+                <FavCardsFormat data={filterAll(OppoList)} />
                 <button id="scrollUp" class="scrollToTop" onClick={scrollToTop} style={{ opacity: showScrollBtn ? 100 : 0 }}><FontAwesomeIcon icon={faArrowUpLong} class="arrowUp" /></button>
 
             </div>
@@ -636,7 +636,7 @@ function Favourites() {
 
     );
 }
-//FavCardsFormat DatatableFav
+//FavCardsFormat DatatableFav OppoCardsFormat
 
 
 export default Favourites;

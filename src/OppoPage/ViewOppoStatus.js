@@ -633,7 +633,7 @@ function ViewOppoStatus() {
                     })}
                 </div>
                 
-                <StatusDatatable data={filterAll(OppoStatusList)} />
+                <OppoCardsFormat data={filterAll(OppoStatusList)} />
                 <button id="scrollUp" class="scrollToTop" onClick={scrollToTop} style={{ opacity: showScrollBtn ? 100 : 0 }}><FontAwesomeIcon icon={faArrowUpLong} class="arrowUp" /></button>
             </div>
             

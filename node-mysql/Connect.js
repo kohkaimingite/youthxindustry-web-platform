@@ -287,6 +287,8 @@ app.get("/getCompanyRatingStatsWithNull", function (req, res) {
 });
 
 //Andrea
+
+
 app.post('/getSuggestedJobByType', function (req, res) {
     const OppID = req.body.OppID;
     const Type = req.body.Type;

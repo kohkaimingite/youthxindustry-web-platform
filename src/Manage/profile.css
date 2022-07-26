@@ -5,18 +5,95 @@ jobHeader {
     float: left;
     width: 50%;
     padding: 20px;
-    height: 300px; /* only for demonstration, should be removed */
+    height: 500px; /* only for demonstration, should be removed */
     background: #ccc;
+    border-radius: 0px 0px 0px 20px;
+    background-color: lightcyan;
 }
 company {
     float: left;
     width: 50%;
     padding: 20px;
-    height: 300px; /* only for demonstration, should be removed */
+    height: 500px; /* only for demonstration, should be removed */
     background-color: #f1f1f1;
+    border-radius: 0px 0px 20px 0px;
+    background-color: lightcyan;
 }
 topSection::after {
     content: "";
     display: table;
     clear: both;
+
+    width:450px;
+}
+
+/*titleSection {
+    text-align: left;
+    align-content: start;
+    background-color: #e0dede;
+    float: left;
+    width: 450px;
+    padding: 20px 180px 20px;
+    margin-bottom:0px;*/
+    /* only for demonstration, should be removed */
+/*}*/
+
+
+titleSection {
+    align-content: start;
+    /*background-color: #e0dede;*/
+    /*background-color: lightcyan;*/
+    float: left;
+    width: 100%;
+    padding: 20px 180px 20px;
+    display: table;
+    border-radius: 20px 20px 0px 0px;
+    margin-bottom: 20px;
+    border: 1px solid #d7e2e9;
+    border-radius: 8px 8px 8px 8px;
+    border-left: 5px solid #236F21;
+    /* only for demonstration, should be removed */
+}
+
+nameSection {
+    text-align: center;
+    align-content: start;
+    /*background-color: #e0dede;*/
+
+    float: left;
+    width: 100%;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 10px;
+    display: table;
+    border: 1px solid #d7e2e9;
+    border-radius: 8px 8px 8px 8px;
+    border-left: 5px solid #236F21;
+    /*background-color:*/
+    /* only for demonstration, should be removed #58a9a7 */ margin-bottom: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+.cardTitle {
+    background-color: lightgreen;
+    width: 450px;
+    border-radius: 10px 10px 0px 0px;
+    text-align: center;
+    align-content: center;
+}
+.wholeProfile {
+    width: auto;
+    margin-right: 30%;
+    margin-left: 30%;
+    overflow: auto;
+    height: auto;
 }

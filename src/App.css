@@ -202,6 +202,7 @@ ul li {
     box-shadow: 0 0 20px rgba(0,0,0,0.15);
     font-family: 'Rubik', sans-serif;
     font-weight: 400;
+    text-align: left;
 }
 .oppoTable th,td {
     padding: 0.25em 0.5em 0.25em 1em;
@@ -222,19 +223,29 @@ ul li {
 .oppoTable th {
     padding-top: 12px;
     padding-bottom: 12px;
-    text-align: center;
+    text-align: left;
     background-color: #DAA520;
     color: white;
     position: sticky;
     top: 0;
     z-index: 2;
 
-}
 
-.oppoTable td{
-    overflow: auto;
+
 
 }
+
+    .oppoTable td {
+        overflow: auto;
+        text-align: left;
+        align-content: start;
+        list-style-position: inside;
+        text-align-last: left;
+        overflow: auto;
+        text-indent:0px;
+
+    }
+    
 /*90px 80px*/
 
 .sidenav {

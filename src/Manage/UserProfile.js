@@ -31,84 +31,55 @@ function UserProfile() {
 
 
         <div className="App">
+            
             <LoggedNavBar />
-                <div className="main">
-                <h1 >Profile</h1>
-                
-                <topSection>
-                    <jobHeader style={{ textAlign: 'left' }}>
-                        <text>Full Name:</text><br />
-                        <text>Email:</text><br />
-                        <text>Mobile Number:</text><br />
-                        <text>Bio: </text><br />
-                        <text>Resume: </text><br />
-                    </jobHeader>
-                    <company style={{ textAlign: 'left' }}>
-                        
-                        <form action="/action_page.php" method="post">
-                            {ProfList.map((val, key) => {
-                                return <text>{val.Name}</text>;
-                            })}<br />
-                            {ProfList.map((val, key) => {
-                                return <text>{val.Email}</text>;
-                            })}<br />
-                            {ProfList.map((val, key) => {
-                                return <text>{val.ContactNumber}</text>;
-                            })}<a href="/EditUserNumber"> <FontAwesomeIcon icon={faPencil}></FontAwesomeIcon> </a><br />
-                            {ProfList.map((val, key) => {
-                                return <text>{val.UserBio}</text>;
-                            })}<a href="/EditUserBio"> <FontAwesomeIcon icon={faPencil}></FontAwesomeIcon> </a><br />
-                            {/*{ProfList.map((val, key) => {*/}
-                            {/*    return <text align="Left">{val.Resume}</text>;*/}
-                            {/*})}<br />*/}<a href="/EditUserResume"> <FontAwesomeIcon icon={faPencil}></FontAwesomeIcon> </a><br />
-
-
-
-
-                        </form>
-                    </company>
-                </topSection>
-                    <div className="AlignLeft">
-                    <h3>Details:</h3>
-                    <form action="/action_page.php" method="post">
-                        <text>Full Name:</text><br />
-                        <text>Email:</text><br />
-                        <text>Mobile Number:</text><br />
-                        <text>Bio: </text><br />
-                        <text>Resume: </text><br />
-                    </form>
+            <div class="wholeProfile">
+                <titleSection>
+                    <h1>Profile</h1>
                     
-                    </div>
-                    <div className="AlignMiddle">
-                    <form action="/action_page.php" method="post">
-                        {ProfList.map((val, key) => {
-                            return <text align="Left">{val.Name}</text>;
-                        })}<br />
-                        {ProfList.map((val, key) => {
-                            return <text align="Left">{val.Email}</text>;
-                        })}<br />
-                        {ProfList.map((val, key) => {
-                            return <text align="Left">{val.ContactNumber}</text>;
-                        })}<a href="/EditUserNumber"> <FontAwesomeIcon icon={faPencil}></FontAwesomeIcon> </a><br />
-                        {ProfList.map((val, key) => {
-                            return <text align="Left">{val.UserBio}</text>;
-                        })}<a href="/EditUserBio"> <FontAwesomeIcon icon={faPencil}></FontAwesomeIcon> </a><br />
-                        {/*{ProfList.map((val, key) => {*/}
-                        {/*    return <text align="Left">{val.Resume}</text>;*/}
-                        {/*})}<br />*/}<a href="/EditUserResume"> <FontAwesomeIcon icon={faPencil}></FontAwesomeIcon> </a><br />
-                        
-                        
+                </titleSection>
+                <nameSection style={{ textAlign: 'left' }}>
+                    <text style={{ fontSize: "20px" }}>Full Name:</text><br />
+                    {ProfList.map((val, key) => {
+                        return <h6 style={{ fontSize: "20px" }}>{val.Name}</h6>;
+                    })}
+                </nameSection>
+                <nameSection style={{ textAlign: 'left' }}>
+                    <text style={{ fontSize: "20px" }}>Email:</text><br />
+                    {ProfList.map((val, key) => {
+                        return <h6 style={{ fontSize: "20px" }}>{val.Email}</h6>;
+                    })}
+                </nameSection>
+                <nameSection style={{ textAlign: 'left' }}>
+                    <text style={{ fontSize: "20px" }}>Mobile Number:</text><br />
+                    {ProfList.map((val, key) => {
+                        return <text style={{ fontSize: "20px" }}>{val.ContactNumber} </text>;
+                    })}<a href="/EditUserNumber"> <FontAwesomeIcon icon={faPencil}></FontAwesomeIcon> </a><br />
+                </nameSection>
+                <nameSection style={{ textAlign: 'left' }}>
+                    <text style={{ fontSize: "20px" }}>Bio: </text><br />
+                    {ProfList.map((val, key) => {
+                        return <text style={{ fontSize: "20px" }}>{val.UserBio} </text>;
+                    })}<a href="/EditUserBio"> <FontAwesomeIcon icon={faPencil}></FontAwesomeIcon> </a><br />
+                </nameSection>
+                
+                <nameSection style={{ textAlign: 'left' }}>
+                    <text style={{ fontSize: "20px" }}>Resume: </text><br />
+                    <a href="/EditUserResume"> <FontAwesomeIcon icon={faPencil}></FontAwesomeIcon> </a><br />
+                </nameSection>
+                
 
-                        
-                    </form>
 
 
+
+
+
+
+                
+                
+                    
                 </div>
-                <div className="AlignRight">
-                    <form action="/action_page.php" method="post">
-                    </form>
-                </div>
-                </div>
+            
         </div>
     )
 

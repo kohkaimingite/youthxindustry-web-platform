@@ -48,6 +48,14 @@ bottomSection {
     width: 100%;
     padding: 20px 180px 20px;
     /* only for demonstration, should be removed */
+}bottomSection {
+    text-align: left;
+    align-content: start;
+    background-color: #e0dede;
+    float: left;
+    width: 100%;
+    padding: 20px 180px 20px;
+    /* only for demonstration, should be removed */
 }
 .group{
 

@@ -587,7 +587,7 @@ function LoggedOppoPage() {
 
                 </div>
                 
-                <LoggedDatatable data={filterAll(OppoList)} />
+                <OppoCardsFormat data={filterAll(OppoList)} />
                 <button id="scrollUp" class="scrollToTop" onClick={scrollToTop} style={{ opacity: showScrollBtn ? 100 : 0 }}><FontAwesomeIcon icon={faArrowUpLong} class="arrowUp" /></button>
             </div>
             
@@ -598,7 +598,7 @@ function LoggedOppoPage() {
 
     );
 }
-//OppoViewFormat LoggedDatatable
+//OppoViewFormat LoggedDatatable OppoCardsFormat
 //isVisible ? 'opacity-100' : 'opacity-0'
                 //opacity: showScrollBtn ? 100 : 0 
                 //opacity: showScrollBtn ? 100 : 0 

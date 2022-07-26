@@ -151,7 +151,7 @@ export default function LoggedDatatable({ data }) {
                     <td style={{ textAlign: 'left' }}>{row["Location"]}</td>
                     
                     <td style={{ textAlign: 'left' }}>{row["Type"]}</td>
-                    <td style={{ textAlign: 'left' }}>{row["Qualification"]}</td>
+                    <td style={{ textAlign: 'left'}}>{row["Qualification"]}</td>
                     <td style={{ textAlign: 'left' }}>{row["Pay"]}</td>
                 <td><FontAwesomeIcon icon={faStar} color={colourFav(row[columns[0]]) ? colors.orange : colors.grey} onClick={() => addFav( testing(row[columns[0]]) , row[columns[0]]  )}>{row[columns[0]]} {test}</FontAwesomeIcon></td>
 
