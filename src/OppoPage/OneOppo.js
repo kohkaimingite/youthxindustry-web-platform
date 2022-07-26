@@ -170,7 +170,7 @@ function OneOppo() {
 
                                     
                                     <div style={{ marginBottom: "10px" }}>
-                                        {oneOppoCompany.map((row, key) => <button class="btn btn-primary" style={{ marginTop: "20px", textAlign: "left" }} ><a style={{ color: "white", fontWeight: "500", textDecoration: "none",paddingLeft:"7px" ,paddingRight:"7px"}} href={"/ViewCompanyProfile/" + row["Name"]}>View Company profile</a></button>)}
+                                        {oneOppoCompany.map((row, key) => <button class="btn btn-primary" style={{ marginTop: "20px", textAlign: "left" }} ><a style={{ color: "white", fontWeight: "500", textDecoration: "none",paddingLeft:"7px" ,paddingRight:"7px"}} href={"/ViewCompanyProfile/" + row["Name"]}>View Company profile</a></button>)}<br/>
                                         {oneOppo.map((row, key) => <button class="btn btn-primary" style={{ marginTop: "10px" }} ><a style={{ color: "white", fontWeight: "500", textDecoration: "none", paddingLeft: "7px", paddingRight: "7px"}} href={"/SubmitApplication/" + row["OppID"]}>Apply Now</a></button>)}
                                     </div>
                                 </div>
