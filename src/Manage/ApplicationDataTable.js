@@ -17,6 +17,41 @@ import emailjs from '@emailjs/browser';
 export default function LogAppTable({ data }) {
     const columns = data[0] && Object.keys(data[0]);
 
+
+    //Kai Ming Job confirmation function
+    const emailInfo = {
+        OppID: '',
+        Company: '',
+        JobName: '',
+        Email: ''
+
+    };
+
+    function EmailConfirmation(appID) {
+        axios.post("http://localhost:3001/AppForEmailConfirmation", {
+            AppID: parseInt(appID),
+        }).then((response) => {
+            emailInfo.OppID = response.data[0].OppID;
+            emailInfo.JobName = response.data[0].Name;
+            emailInfo.Email = response.data[0].Email;
+            axios.post("http://localhost:3001/OppForEmailConfirmation", {
+                OppID: parseInt(emailInfo.OppID),
+            }).then((response) => {
+                emailInfo.Company = response.data[0].Name;
+                console.log(emailInfo);
+                emailjs.send('service_nqak4rb', 'template_ej4c4sk', emailInfo, 'EOze04zGTBzzoGFXp')
+                    .then((result) => {
+                        console.log(result.text);
+                    }, (error) => {
+                        console.log(error.text);
+                    });
+            });
+
+        });
+    }
+    //////////////////////////////////////////////////
+
+
     function Accept(appID) {
         if (window.confirm("Accept Application?")) {
 
@@ -24,26 +59,14 @@ export default function LogAppTable({ data }) {
                 AppID: parseInt(appID),
             }).then((response) => {
                 console.log("Updated Sucessfully");
-                alert("Accepted!")
-                /*const formData = new FormData();
-                for (let key in form) {
-                    data.isArray(form[key])
-                        ? form[key].forEach(value => formData.append(key + '[]', value))
-                        : formData.append(key, form[key]);
-                }
-
-                emailjs.sendForm('service_nqak4rb', 'template_ej4c4sk', formData, 'EOze04zGTBzzoGFXp')
-                    .then((result) => {
-                        console.log(result.text);
-                    }, (error) => {
-                        console.log(error.text);
-                    });*/
+                alert("Accepted!");
+                { EmailConfirmation(appID) }
             });
         } else {
             alert("Application not Accepted")
         }
     }
-    
+
     function Reject(appID) {
         if (window.confirm("Reject Application?")) {
 
@@ -83,9 +106,9 @@ export default function LogAppTable({ data }) {
                 <td><FontAwesomeIcon icon={faCheck} onClick={() => Accept(row[columns[0]])}> </FontAwesomeIcon></td>
                 <td><FontAwesomeIcon icon={faX} onClick={() => Reject(row[columns[0]])}> </FontAwesomeIcon></td>
                 <td>{row[columns[0]]}</td>
-                
+
             </tr>)}
         </table>
-        )
+    )
 
 }
