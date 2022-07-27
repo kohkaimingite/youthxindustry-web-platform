@@ -6,7 +6,7 @@ import "../Styling/editStyling.css";
 import axios from 'axios';
 
 const EditUser = () => {
-    const initialState = { roleID: "", name: "", password: "", email: "", age: "", gender: "", userBio: "", contactNumber: "", userID: "" };
+    const initialState = { roleID: 0, name: "", password: "", email: "", age: 0, gender: "", userBio: "", contactNumber: 0, userID: 0 };
     const [formValues, setFormValues] = useState(initialState);
     const [formErrors, setFormErrors] = useState({});
     const { roleID, name, password, email, age, gender, userBio, contactNumber, userID } = formValues;
@@ -67,9 +67,7 @@ const EditUser = () => {
         } else if (isNaN(values.contactNumber)) {
             errors.contactNumber = "Enter only in number";
         } else if (!pnumRegex.test(values.contactNumber)) {
-            errors.contactNumber = "Contact number must be a valid number";
-        } else if (values.contactNumber.length > 8) {
-            errors.contactNumber = "Contact number cannot exceed 8 characters";
+            errors.contactNumber = "Contact number must be a valid number and cannot exceed 8 characters";
         }
         else {
             setCheck(true);
@@ -83,7 +81,32 @@ const EditUser = () => {
         e.preventDefault();
         setIsSubmit(true);
         setFormErrors(validate(formValues));
-        if (check === true) {
+        const spRegex = /^\S*$/;
+        const pwRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+        const pnumRegex = /(^[689]{1}\d{7}$)/;
+        if (
+            !formValues.userID ||
+            // !formValues.roleID ||
+            !formValues.name ||
+            !formValues.password ||
+            !formValues.email ||
+            !formValues.age ||
+            !formValues.gender ||
+            !formValues.contactNumber ||
+            !spRegex.test(formValues.userID) ||
+            !isNaN(formValues.name) ||
+            formValues.name.length > 50 ||
+            !pwRegex.test(formValues.password) ||
+            formValues.password.length > 50 ||
+            formValues.email.length > 50 ||
+            formValues.userBio.length > 255 ||
+            !spRegex.test(formValues.contactNumber) ||
+            isNaN(formValues.contactNumber) ||
+            !pnumRegex.test(formValues.contactNumber) 
+        ) {
+            console.log("POST error");
+        }
+        else if (check === true) {
             {
                 axios.post("http://localhost:3001/apUserEdit", {
                     UserID: userID,
@@ -110,7 +133,7 @@ const EditUser = () => {
             setIsSubmit(false);
         }
         else {
-            console.log("POST error");
+            console.log("ELSE error");
         }
 
     }
@@ -138,16 +161,12 @@ const EditUser = () => {
                     alignContent: "center"
                 }}>
                 <label>UserID</label>
-                <input type="text" className="adminInput" name="userID" placeholder="UserID ..." value={formValues.UserID} onChange={handleChange}></input>
+                <input type="text" className="adminInput" name="userID" placeholder="UserID ..." value={formValues.userID} onChange={handleChange}></input>
                 <p className="adminErrorMsg">{formErrors.userID}</p>
 
                 <label>RoleID</label>
-                <select type="text" className="adminInput" name="roleID" value={formValues.roleID} onChange={handleChange}>
-                    <option value="" disabled selected>RoleID ...</option>
-                    <option value="1">User</option>
-                    <option value="2">Partner</option>
-                    <option value="3">Admin</option>
-                </select>
+                <input type="number" className="adminInput" name="roleID" placeholder="Role 1 = User, Role 2 = Partner, Role 3 = Admin" 
+                value={formValues.roleID} onChange={handleChange} min="1" max="3"></input>
                 <p className="adminErrorMsg">{formErrors.roleID}</p>
 
                 <label>Name</label>
