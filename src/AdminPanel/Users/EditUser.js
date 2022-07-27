@@ -86,7 +86,7 @@ const EditUser = () => {
         const pnumRegex = /(^[689]{1}\d{7}$)/;
         if (
             !formValues.userID ||
-            // !formValues.roleID ||
+            !formValues.roleID ||
             !formValues.name ||
             !formValues.password ||
             !formValues.email ||
