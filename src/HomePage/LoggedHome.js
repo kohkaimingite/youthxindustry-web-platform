@@ -1,12 +1,10 @@
 import NavBar from '../components/NavBar'
 import LoggedNavBar from '../components/LoggedNavBar'
-import AboutmeSet from './AboutmeSet'
 import LoginPageSet from './LoginPageSet'
 import OppoPageSet from './OppoPageSet'
 import ContactPageSet from './ContactPageSet'
 import { Route, Link } from 'react-router-dom';
 import '../App.css';
-import AboutPage from '../AboutPage/AboutPage';
 import React, { Component, useLayoutEffect, useState } from 'react';
 import RegisterSet from './RegisterSet';
 import AdminNavBar from '../components/AdminNavBar'
@@ -73,8 +71,6 @@ function Home() {
 
                 <LoggedNavBar />
 
-                <AboutmeSet />
-
                 <OppoPageSet />
 
                 <ContactPageSet />
@@ -93,8 +89,6 @@ function Home() {
             <div className="App">
 
                 <PartnerNavBar />
-
-                <AboutmeSet />
 
                 <OppoPageSet />
 

@@ -1,10 +1,8 @@
 import NavBar from './components/NavBar'
-import AboutmeSet from './HomePage/AboutmeSet'
 import LoginPageSet from './HomePage/LoginPageSet'
 import OppoPageSet from './HomePage/OppoPageSet'
 import ContactPageSet from './HomePage/ContactPageSet'
 import './App.css';
-import AboutPage from './AboutPage/AboutPage';
 import React from 'react';
 import { Component, useState, useEffect, useLayoutEffect} from 'react';
 import RegisterSet from './HomePage/RegisterSet';
@@ -194,8 +192,6 @@ function App() {
                 <Route path='/EditCompanyBio' element={<EditCompanyBio />} />
 
                 <Route element={<ProtectedRouteLog user={user} />}>
-                    
-                    <Route path='/AboutUs' element={<AboutPage />} />
                     <Route path='/Opportunities' element={<LoggedOppoPage />} />
                     <Route path='/Favourites' element={<Favourites />} />
                     <Route path='/AddReview' element={<MakingReview />} />

@@ -70,8 +70,6 @@ const ViewUser = () => {
                 <tbody>
                     {data.filter((User) => {
                         var strUserID = '' + User.UserID;
-                        var strAge = '' + User.Age;
-                        var strContactNumber = '' + User.ContactNumber;
 
                         if (searchInput == "") {
                             return User
@@ -80,14 +78,6 @@ const ViewUser = () => {
                         } else if (User.Name.toLowerCase().includes(searchInput.toLowerCase())) {
                             return User
                         } else if (User.Email.toLowerCase().includes(searchInput.toLowerCase())) {
-                            return User
-                        } else if (strAge.includes(searchInput)) {
-                            return User
-                        } else if (User.Gender.toLowerCase().includes(searchInput.toLowerCase())) {
-                            return User
-                        } else if (User.UserBio.toLowerCase().includes(searchInput.toLowerCase())) {
-                            return User
-                        } else if (strContactNumber.includes(searchInput)) {
                             return User
                         }
                     }).map((User, key) => {
