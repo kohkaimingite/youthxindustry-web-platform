@@ -785,13 +785,13 @@ app.get('/getBlob', async function (req, res) {
 //Zhi Wei
 
 app.get('/apUser', (req, res) => {
-    db.query("SELECT * from users INNER JOIN roles ON roles.RoleID = users.RoleID WHERE users.RoleID = 1 AND users.Confirmed = 1",
+    db.query("SELECT * FROM users INNER JOIN roles ON roles.RoleID = users.RoleID WHERE users.RoleID = 1 AND users.Confirmed = 1",
     (err, result) => {
         if (err) {
             console.log(err);
         } else {
             res.send(result)
-        };
+        }
     });
 });
 
@@ -815,9 +815,8 @@ app.post('/apUserEdit', (req, res) => {
             } else {
                 res.send("User edit success.");
             }
-        }
-    )
-})
+    });
+});
 
 app.post('/apUserDelete', (req, res) => {
     const UserID = req.body.UserID;
@@ -831,9 +830,8 @@ app.post('/apUserDelete', (req, res) => {
             } else {
                 res.send("User delete success.");
             }
-        }
-    )
-})
+    });
+});
 
 app.get('/apOppo', (req, res) => {
     db.query("SELECT * FROM opportunities",
@@ -842,7 +840,7 @@ app.get('/apOppo', (req, res) => {
             console.log(err);
         } else {
             res.send(result);
-        };
+        }
     });
 });
 
@@ -865,9 +863,8 @@ app.post('/apOppoEdit', (req, res) => {
             } else {
                 res.send("Oppo edit success.");
             }
-        }
-    )
-})
+    });
+});
 
 app.post('/apOppoDelete', (req, res) => {
     const OppID = req.body.OppID;
@@ -881,30 +878,28 @@ app.post('/apOppoDelete', (req, res) => {
             } else {
                 res.send("Oppo delete success.");
             }
-        }
-    )
-    
-})
+    });
+});
 
 app.get('/apPartner', (req, res) => {
-    db.query("SELECT * from users INNER JOIN roles ON roles.RoleID = users.RoleID WHERE users.RoleID = 2 AND users.Confirmed = 1",
+    db.query("SELECT * FROM users INNER JOIN roles ON roles.RoleID = users.RoleID WHERE users.RoleID = 2 AND users.Confirmed = 1",
     (err, result) => {
         if (err) {
             console.log(err);
         } else {
             res.send(result);
-        };
+        }
     });
 });
 
 app.get('/apPartnerConfirm', (req, res) => {
-    db.query("SELECT * from users INNER JOIN roles ON roles.RoleID = users.RoleID WHERE users.RoleID = 2 AND users.Confirmed = 0",
+    db.query("SELECT * FROM users INNER JOIN roles ON roles.RoleID = users.RoleID WHERE users.RoleID = 2 AND users.Confirmed = 0",
     (err, result) => {
         if (err) {
             console.log(err);
         } else {
             res.send(result);
-        };
+        }
     });
 });
 
@@ -919,7 +914,7 @@ app.post('/apConfirmRegistration', (req, res) => {
             });
         } else {
             res.send("Updated Partner Registration.");
-        };
+        }
     });
 });
 
@@ -941,9 +936,8 @@ app.post('/apPartnerEdit', (req, res) => {
             } else {
                 res.send("Updated Partner Information.");
             }
-        }
-    )
-})
+    });
+});
 
 app.post('/apPartnerDelete', (req, res) => {
     const UserID = req.body.UserID;
@@ -957,9 +951,8 @@ app.post('/apPartnerDelete', (req, res) => {
             } else {
                 res.send("Partner Information Deleted.");
             }
-        }
-    )
-})
+    });
+});
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
