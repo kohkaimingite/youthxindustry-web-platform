@@ -22,6 +22,7 @@ const EditOppo = () => {
     const validate = (values) => {
         const errors = {};
         const spRegex = /^\S*$/;
+        const txtRegex = /^[a-zA-Z\s]*$/;
         const qRegex = /\b(GCE O Level|GCE A Level|Diploma)\b/;
         if (!values.oppID) {
             errors.oppID = "OppID is required";
@@ -32,6 +33,8 @@ const EditOppo = () => {
         }
         if (!values.name) {
             errors.name = "Name is required";
+        } else if (!txtRegex.test(values.name)) {
+            errors.name = "Enter only in words"
         } else if (values.name.length > 50) {
             errors.name = "Name cannot exceed 50 characters";
         }
@@ -77,6 +80,7 @@ const EditOppo = () => {
         setIsSubmit(true);
         setFormErrors(validate(formValues));
         const spRegex = /^\S*$/;
+        const txtRegex = /^[a-zA-Z\s]*$/;
         const qRegex = /\b(GCE O Level|GCE A Level|Diploma)\b/;
         if (
             !formValues.oppID ||
@@ -88,6 +92,7 @@ const EditOppo = () => {
             !formValues.qualification ||
             !formValues.pay ||
             !spRegex.test(formValues.oppID) ||
+            !txtRegex.test(formValues.name) ||
             formValues.oppID.length > 6 ||
             formValues.name.length > 50 ||
             formValues.description.length > 255 ||

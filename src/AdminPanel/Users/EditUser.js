@@ -22,6 +22,7 @@ const EditUser = () => {
     const validate = (values) => {
         const errors = {};
         const spRegex = /^\S*$/;
+        const txtRegex = /^[a-zA-Z\s]*$/;
         const pwRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
         const pnumRegex = /(^[689]{1}\d{7}$)/;
         if (!values.userID) {
@@ -34,7 +35,7 @@ const EditUser = () => {
         }
         if (!values.name) {
             errors.name = "Name is required";
-        } else if (!isNaN(values.name)) {
+        } else if (!txtRegex.test(values.name)) {
             errors.name = "Enter only in words"
         } else if (values.name.length > 50) {
             errors.name = "Name cannot exceed 50 characters";
@@ -82,6 +83,7 @@ const EditUser = () => {
         setIsSubmit(true);
         setFormErrors(validate(formValues));
         const spRegex = /^\S*$/;
+        const txtRegex = /^[a-zA-Z\s]*$/;
         const pwRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
         const pnumRegex = /(^[689]{1}\d{7}$)/;
         if (
@@ -94,7 +96,7 @@ const EditUser = () => {
             !formValues.gender ||
             !formValues.contactNumber ||
             !spRegex.test(formValues.userID) ||
-            !isNaN(formValues.name) ||
+            !txtRegex.test(formValues.name) ||
             formValues.name.length > 50 ||
             !pwRegex.test(formValues.password) ||
             formValues.password.length > 50 ||

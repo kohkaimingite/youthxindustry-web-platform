@@ -7,11 +7,42 @@ import axios from 'axios';
 
 const ViewOppo = () => {
     const [searchInput, setSearchInput] = useState('');
-
     const [data, setData] = useState([]);
-
     const [oppList, setOppList] = useState([]);
+    const [order, setOrder] = useState("ascending");
+    const sortWord = (col) => {
+        if (order === "ascending") {
+            const sorted = [...data].sort((a, b) =>
+                a[col].toLowerCase() > b[col].toLowerCase ? 1 : -1
+            );
+            setData(sorted);
+            setOrder("descending");
+        }
+        if (order === "descending") {
+            const sorted = [...data].sort((a, b) =>
+                a[col].toLowerCase() < b[col].toLowerCase ? 1 : -1
+            );
+            setData(sorted);
+            setOrder("ascending");
+        }
+    }
 
+    const sortNum = (col) => {
+        if (order === "ascending") {
+            const sorted = [...data].sort((a, b) =>
+                a[col] - b[col]
+            );
+            setData(sorted);
+            setOrder("descending");
+        }
+        if (order === "descending") {
+            const sorted = [...data].sort((a, b) =>
+                b[col] - a[col]
+            );
+            setData(sorted);
+            setOrder("ascending");
+        }
+    }
     let { storeOppID } = '';
 
     useEffect(() => {
@@ -57,14 +88,14 @@ const ViewOppo = () => {
             <table className="User-Table">
                 <thead>
                     <tr>
-                        <th style={{textAlign: "center"}}> Job Code </th>
-                        <th style={{textAlign: "center"}}> Job Name </th>
-                        <th style={{textAlign: "center"}}> Description </th>
-                        <th style={{textAlign: "center"}}> Area </th>
-                        <th style={{textAlign: "center"}}> Address </th>
-                        <th style={{textAlign: "center"}}> Category(-ies) </th>
-                        <th style={{textAlign: "center"}}> Qualification </th>
-                        <th style={{textAlign: "center"}}> Pay </th>
+                        <th style={{textAlign: "center"}} onClick={()=>sortNum("OppID")}> Job Code </th>
+                        <th style={{textAlign: "center"}} onClick={()=>sortWord("Name")}> Job Name </th>
+                        <th style={{textAlign: "center"}} onClick={()=>sortWord("Description")}> Description </th>
+                        <th style={{textAlign: "center"}} onClick={()=>sortWord("Location")}> Area </th>
+                        <th style={{textAlign: "center"}} onClick={()=>sortWord("Address")}> Address </th>
+                        <th style={{textAlign: "center"}} onClick={()=>sortWord("Type")}> Category(-ies) </th>
+                        <th style={{textAlign: "center"}} onClick={()=>sortWord("Qualification")}> Qualification </th>
+                        <th style={{textAlign: "center"}} onClick={()=>sortNum("Pay")}> Pay </th>
                         <th style={{textAlign: "center"}}> Actions </th>
                     </tr>
                 </thead>

@@ -7,11 +7,42 @@ import axios from 'axios';
 
 const ViewPartner = () => {
     const [searchInput, setSearchInput] = useState('');
-
     const [data, setData] = useState([]);
-
     const [partnerList, setPartnerList] = useState([]);
+    const [order, setOrder] = useState("ascending");
+    const sortWord = (col) => {
+        if (order === "ascending") {
+            const sorted = [...data].sort((a, b) =>
+                a[col].toLowerCase() > b[col].toLowerCase ? 1 : -1
+            );
+            setData(sorted);
+            setOrder("descending");
+        }
+        if (order === "descending") {
+            const sorted = [...data].sort((a, b) =>
+                a[col].toLowerCase() < b[col].toLowerCase ? 1 : -1
+            );
+            setData(sorted);
+            setOrder("ascending");
+        }
+    }
 
+    const sortNum = (col) => {
+        if (order === "ascending") {
+            const sorted = [...data].sort((a, b) =>
+                a[col] - b[col]
+            );
+            setData(sorted);
+            setOrder("descending");
+        }
+        if (order === "descending") {
+            const sorted = [...data].sort((a, b) =>
+                b[col] - a[col]
+            );
+            setData(sorted);
+            setOrder("ascending");
+        }
+    }
     let { storeUserID } = '';
 
     useEffect(() => {
@@ -57,9 +88,9 @@ const ViewPartner = () => {
             <table className="User-Table">
                 <thead>
                     <tr>
-                        <th style={{textAlign: "center"}}> ID </th>
-                        <th style={{textAlign: "center"}}> Name </th>
-                        <th style={{textAlign: "center"}}> Email </th>
+                        <th style={{textAlign: "center"}} onClick={()=>sortNum("UserID")}> ID </th>
+                        <th style={{textAlign: "center"}} onClick={()=>sortWord("Name")}> Name </th>
+                        <th style={{textAlign: "center"}} onClick={()=>sortWord("Email")}> Email </th>
                         <th style={{textAlign: "center"}}> UserBio </th>
                         <th style={{textAlign: "center"}}> Contact </th>
                         <th style={{textAlign: "center"}}> Actions </th>
