@@ -14,10 +14,7 @@ import axios from 'axios';
 function EditProfile() {
     /*const Regex = new RegExp('*@*.com');*/
     const [Check, setCheck] = useState("");
-    const [Bio, setBio] = useState("");
-    const [EmailCheck, setEmailCheck] = useState("test");
     const [Number, setNumber] = useState("");
-    const [Email, setEmail] = useState("");
     const [NumberCheck, setNumberCheck] = useState("");
     const [ProfList, setProfList] = useState([]);
     const columns = ProfList[0] && Object.keys(ProfList[0]);
@@ -91,8 +88,6 @@ function EditProfile() {
     function submit() {
         axios.post("http://localhost:3001/EditUNumber", {
             Number: parseInt(Number),
-            Email: Email,
-            Bio: Bio
         }).then(() => {
             console.log("Test");
             /*setCheck(response.data);*/

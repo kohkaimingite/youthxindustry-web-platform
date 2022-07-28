@@ -8,6 +8,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Collapsible from '../components/Collapsible';
 import { Route, Link } from 'react-router-dom';
 import axios from 'axios';
+import { faPencil } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
 function UserProfile() {
@@ -26,6 +28,39 @@ function UserProfile() {
     return (
         <div className="App">
             <PartnerNavBar />
+            <div class="wholeProfile">
+                <titleSection>
+                    <h1>Profile</h1>
+
+                </titleSection>
+                <nameSection style={{ textAlign: 'left' }}>
+                    <text style={{ fontSize: "20px" }}>Company Name:</text><br />
+                    {CompList.map((val, key) => {
+                        return <h6 style={{ fontSize: "20px" }}>{val.Name}</h6>;
+                    })}
+                </nameSection>
+                <nameSection style={{ textAlign: 'left' }}>
+                    <text style={{ fontSize: "20px" }}>Company Email:</text><br />
+                    {CompList.map((val, key) => {
+                        return <h6 style={{ fontSize: "20px" }}>{val.Email}</h6>;
+                    })}
+                </nameSection>
+                <nameSection style={{ textAlign: 'left' }}>
+                    <text style={{ fontSize: "20px" }}>Contact Number:</text><br />
+                    {CompList.map((val, key) => {
+                        return <text style={{ fontSize: "20px" }}>{val.ContactNumber} </text>;
+                    })}<a href="/EditCompanyNumber"> <FontAwesomeIcon icon={faPencil}></FontAwesomeIcon> </a><br />
+                </nameSection>
+                <nameSection style={{ textAlign: 'left' }}>
+                    <text style={{ fontSize: "20px" }}>Bio: </text><br />
+                    {CompList.map((val, key) => {
+                        return <text style={{ fontSize: "20px" }}>{val.UserBio} </text>;
+                    })}<a href="/EditCompanyBio"> <FontAwesomeIcon icon={faPencil}></FontAwesomeIcon> </a><br />
+                </nameSection>
+
+
+            </div>
+
             <div className="main">
                 <h1>Profile</h1>
                 <div className="AlignLeft">

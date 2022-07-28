@@ -1,7 +1,5 @@
 import LoggedNavBar from '../components/LoggedNavBar'
 import { React, useState, useEffect } from "react";
-import TextField from "@mui/material/TextField";
-import List from "../Some test data/List";
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Collapsible from '../components/Collapsible';
@@ -10,11 +8,13 @@ import { Route, Link } from 'react-router-dom';
 import axios from 'axios';
 import { faPencil } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
+/*const fs = require('fs');*/
 
 function UserProfile() {
+    
     const [ProfList, setProfList] = useState([]);
     const columns = ProfList[0] && Object.keys(ProfList[0]);
+    const [Resume, setResume] = useState();
     const getProfile = () => {
 
     };
@@ -25,7 +25,15 @@ function UserProfile() {
             setProfList(response.data);
 
         });
-    });
+    },[]);
+
+    useEffect(() => {
+        axios.get("http://getBlob").then((response) => {
+
+            console.log(response);
+            setResume(response.data);
+        })
+    }, []);
     
     return (
 
@@ -65,6 +73,7 @@ function UserProfile() {
                 
                 <nameSection style={{ textAlign: 'left' }}>
                     <text style={{ fontSize: "20px" }}>Resume: </text><br />
+                    {/*<button onClick={getResume(Resume)}>Download Resume</button>*/}
                     <a href="/EditUserResume"> <FontAwesomeIcon icon={faPencil}></FontAwesomeIcon> </a><br />
                 </nameSection>
                 
@@ -82,6 +91,12 @@ function UserProfile() {
             
         </div>
     )
+
+    //function getResume(file) {
+    //    const bitmap = fs.readFileSync(file);
+    //    const buf = new Buffer(bitmap);
+    //    return buf;
+    //}
 
     //SQL statement = "SELECT name, email, MobileNumber FROM users WHERE UserID = "id";
     //SQL Update Statement ="UPDATE user SET name = newname, email = newEmail, MobileNumber = newNumber WHERE UserID = "id";
