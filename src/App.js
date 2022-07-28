@@ -246,7 +246,7 @@ function App() {
                     <Route path='/EditOppo/:OppID' element={<EditOppo />} />
                     <Route path='/ViewPartner' element={<ViewPartner />} />
                     <Route path='/EditPartner/:UserID' element={<EditPartner />} />
-                    <Route path='/ConfirmPartner1' element={<ConfirmPartner1 />} />
+                    <Route path='/ConfirmPartner' element={<ConfirmPartner />} />
                 </Route>
             </Routes>
         </div>
