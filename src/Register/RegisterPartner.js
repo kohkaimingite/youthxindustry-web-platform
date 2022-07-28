@@ -5,7 +5,7 @@ import Axios from 'axios';
 import './RegisterPage.css';
 import { faUsers, faSpinner} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import emailjs from '@emailjs/browser';
+import emailjs from '@emailjs/browser'; //Zhi Wei email to confirm partner function
 
 export default function RegisterPartner() {
 
@@ -27,6 +27,7 @@ export default function RegisterPartner() {
     const submitFormData = (e) => {
         e.preventDefault();
 
+        //Zhi Wei email to confirm partner function
         emailjs.sendForm('service_nqak4rb', 'template_0fcbuq9', e.target, 'EOze04zGTBzzoGFXp')
       .then(function(response) {
           console.log('SUCCESS!', response.status, response.text);
