@@ -80,7 +80,7 @@ const RatingStats = () => {
                     </section>
                 ) : (
                     <section>
-            <h1 style={{ textAlign: 'left' }}>My Statistics</h1>
+            <h1 style={{ textAlign: 'left' }}>Company Statistics</h1>
             <div style={{ display: 'flex' }}>
                 <Card style={{ width: '15%', paddingTop: '50px', paddingBottom: '50px', marginLeft: "50px", marginTop: "50px" }}>
                     <Card.Body>

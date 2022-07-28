@@ -118,14 +118,14 @@ export default function OppoPartner() {
     };
 
 
-    
-    useEffect(() =>  {
+
+    useEffect(() => {
         Axios.get("http://localhost:3001/oppListing").then((response) => {
 
             setOppList(response.data);
-
+            console.log(response.data);
         });
-    }, [oppList]);
+    }, [editOppId]);
 
 
     const styleButton = {
@@ -139,9 +139,11 @@ export default function OppoPartner() {
         <div>
             <PartnerNavBar />
             <div style={styleButton}>
-                <p style={{ paddingRight: '40px' }}>Number of Opportunities: {oppList.length}</p>
+                <p style={{ paddingRight: '40px' }}>Number of Approved Opportunities: {oppList.length}</p>
                 <Link to="/AddOppoPartner" style={{ width: '10%', height: '100%' }}><FontAwesomeIcon icon={faPlus} />Add Opportunity  </Link>
+                <Link to="/AddOppoPartnerApproved" style={{ width: '10%', height: '100%' }}><FontAwesomeIcon icon={faPlus} />Add Approved Opportunities  </Link>
             </div>
+
             <div className="OppoPartner">
                 <form onSubmit={handleEditFormSubmit}>
                     <table class="OppoPartnerTable">

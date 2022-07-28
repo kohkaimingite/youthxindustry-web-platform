@@ -6,7 +6,7 @@ import "../Styling/editStyling.css";
 import axios from 'axios';
 
 const EditOppo = () => {
-    const initialState = { name: "", description: "", location: "", address: "", type: "", qualification: "", pay: "", oppID: "" };
+    const initialState = { name: "", description: "", location: "", address: "", type: "", qualification: "", pay: 0, oppID: 0 };
     const [formValues, setFormValues] = useState(initialState);
     const [formErrors, setFormErrors] = useState({});
     const { name, description, location, address, type, qualification, pay, oppID } = formValues;
@@ -76,7 +76,30 @@ const EditOppo = () => {
         e.preventDefault();
         setIsSubmit(true);
         setFormErrors(validate(formValues));
-        if (check === true) {
+        const spRegex = /^\S*$/;
+        const qRegex = /\b(GCE O Level|GCE A Level|Diploma)\b/;
+        if (
+            !formValues.oppID ||
+            !formValues.name ||
+            !formValues.description ||
+            !formValues.location ||
+            !formValues.address ||
+            !formValues.type ||
+            !formValues.qualification ||
+            !formValues.pay ||
+            !spRegex.test(formValues.oppID) ||
+            formValues.oppID.length > 6 ||
+            formValues.name.length > 50 ||
+            formValues.description.length > 255 ||
+            formValues.address.includes("Singapore") == false ||
+            formValues.address.length > 255 ||
+            formValues.type.length > 50 ||
+            !qRegex.test(formValues.qualification) ||
+            formValues.qualification.length > 50
+        ) {
+            console.log("POST error");
+        }
+        else if (check === true) {
             {
                 axios.post("http://localhost:3001/apOppoEdit", {
                     OppID: oppID,
@@ -102,7 +125,7 @@ const EditOppo = () => {
             setIsSubmit(false);
         }
         else {
-            console.log("POST error");
+            console.log("ELSE error");
         }
 
     };
@@ -130,7 +153,7 @@ const EditOppo = () => {
                 alignContent: "center"
             }}>
                 <label>Job Code</label>
-                <input type="text" className="adminInput" name="oppID" placeholder="Job Code ..." value={formValues.OppID} onChange={handleChange}></input>
+                <input type="text" className="adminInput" name="oppID" placeholder="Job Code ..." value={formValues.oppID} onChange={handleChange}></input>
                 <p className="adminErrorMsg">{formErrors.oppID}</p>
 
                 <label>Name</label>

@@ -1,10 +1,8 @@
 import NavBar from './components/NavBar'
-import AboutmeSet from './HomePage/AboutmeSet'
 import LoginPageSet from './HomePage/LoginPageSet'
 import OppoPageSet from './HomePage/OppoPageSet'
 import ContactPageSet from './HomePage/ContactPageSet'
 import './App.css';
-import AboutPage from './AboutPage/AboutPage';
 import React from 'react';
 import { Component, useState, useEffect, useLayoutEffect} from 'react';
 import RegisterSet from './HomePage/RegisterSet';
@@ -57,7 +55,7 @@ import AddOppoPartner from './OppoPartner/AddOppoPartner';
 import SubmitApplication from './Manage/SubmitApplication';
 import RatingStats from './RatingStats/RatingStats';
 import JobConfirmation from './JobConfirmation/JobConfirmation';
-
+import AddOppoPartnerApproved from './OppoPartner/AddOppoPartnerApproved';
 import Protection from './Protection';
 import { BrowserRouter as Router, Routes, Route,Link, Navigate, Outlet, } from 'react-router-dom';
 
@@ -161,7 +159,7 @@ function App() {
             </div>
         } else if (window.location.pathname.toLowerCase() === "/".toLowerCase()) {
             return <div className="App">
-                <Home />
+                <Login />
 
             </div>
         } else {
@@ -177,13 +175,13 @@ function App() {
 
             
             <Routes>
-                <Route path='/' element={<Home />} />
+                <Route path='/' element={<Login />} />
 
                 <Route path='/NotAllowed' element={<NotAllowed />} />
                 <Route path='/NoAccess' element={<NotAllowedLog />} />
                 
                 
-                <Route path='/Login' element={<Login />} />
+                
                 <Route path='/Register' element={<Register />} />
 
 
@@ -194,8 +192,6 @@ function App() {
                 <Route path='/EditCompanyBio' element={<EditCompanyBio />} />
 
                 <Route element={<ProtectedRouteLog user={user} />}>
-                    
-                    <Route path='/AboutUs' element={<AboutPage />} />
                     <Route path='/Opportunities' element={<LoggedOppoPage />} />
                     <Route path='/Favourites' element={<Favourites />} />
                     <Route path='/AddReview' element={<MakingReview />} />
@@ -208,6 +204,7 @@ function App() {
                     <Route path='/Status' element={<ViewOppoStatus />} />
                     <Route path='/SubmitApplication' element={<SubmitApplication />} />
                     <Route exact path='/SubmitApplication/:id' element={<SubmitApplication />} />
+                    
 
                     <Route path='/ViewCompanyProfile' element={<SearchCompanyProfile />} />
                     <Route exact path='/ViewCompanyProfile/:Name' element={<ViewCompanyProfile />} />
@@ -224,7 +221,8 @@ function App() {
                 <Route path='/OppoPartner' element={<OppoPartner />} />
                 <Route path='/AddOppoPartner' element={<AddOppoPartner />} />
                 <Route path='/RatingStats' element={<RatingStats />} />
-                <Route path='/JobConfirmation' element={<JobConfirmation />} />
+                    <Route path='/JobConfirmation' element={<JobConfirmation />} />
+                    <Route path='/AddOppoPartnerApproved' element={<AddOppoPartnerApproved />} />
                     {/*<Route path='/OppoPage' element={<EditOppo />} />*/}
 
                 <Route path='/Company' element={<CompanyPage />} />

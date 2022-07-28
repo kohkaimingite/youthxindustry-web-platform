@@ -53,7 +53,7 @@ export default function LogAppTable({ data }) {
 
 
     function Accept(appID) {
-        if (window.confirm("Accept Application?")) {
+        if (window.confirm("Accept Application? An email will be send to the applicant")) {
 
             axios.post("http://localhost:3001/AcceptApplication", {
                 AppID: parseInt(appID),
