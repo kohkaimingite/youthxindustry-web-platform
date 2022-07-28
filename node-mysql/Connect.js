@@ -312,6 +312,36 @@ app.post('/OppForEmailConfirmation', (req, res) => {
             }
         });
 });
+
+app.get("/oppListingWithStatus", function (req, res) {
+    if (req.session.user) {
+        db.query("SELECT opportunities.OppID, opportunities.Name, opportunities.Confirmed, Posted FROM opportunities INNER JOIN partner_have_opp ON opportunities.OppID = partner_have_opp.OppID WHERE partner_have_opp.UserID = ? && Posted = 0 ORDER BY opportunities.OppID;",
+            [req.session.user[0].UserID],
+
+            (err, result) => {
+                if (err) {
+                    console.log(err);
+                } else {
+                    res.send(result);
+                }
+            });
+    }
+});
+
+app.post("/postApprovedOppo", function (req, res) {
+        const OppID = req.body.OppID;
+        db.query("UPDATE opportunities SET Posted = 1 WHERE OppID = ?;",
+            [OppID],
+            (err, result) => {
+                if (err) {
+                    console.log(err);
+                } else {
+                    res.send(result);
+                }
+            });  
+});
+
+
 //Andrea
 
 
