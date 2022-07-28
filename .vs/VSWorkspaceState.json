@@ -1,13 +1,16 @@
 {
   "ExpandedNodes": [
     "",
+    "\\node-mysql",
     "\\src",
     "\\src\\CompanyProfile",
     "\\src\\components",
+    "\\src\\HomePage",
     "\\src\\JobConfirmation",
+    "\\src\\Manage",
     "\\src\\OppoPage",
     "\\src\\ReviewPage"
   ],
-  "SelectedNode": "\\src\\OppoPage\\OneOppo.js",
+  "SelectedNode": "\\src\\HomePage\\OppoPageSet.js",
   "PreviewInSolutionExplorer": false
 }

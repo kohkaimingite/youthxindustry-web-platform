@@ -208,6 +208,7 @@ function App() {
                     <Route path='/Status' element={<ViewOppoStatus />} />
                     <Route path='/SubmitApplication' element={<SubmitApplication />} />
                     <Route exact path='/SubmitApplication/:id' element={<SubmitApplication />} />
+                    
 
                     <Route path='/ViewCompanyProfile' element={<SearchCompanyProfile />} />
                     <Route exact path='/ViewCompanyProfile/:Name' element={<ViewCompanyProfile />} />
