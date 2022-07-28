@@ -348,8 +348,9 @@ app.post("/postApprovedOppo", function (req, res) {
 app.post('/getSuggestedJobByType', function (req, res) {
     const OppID = req.body.OppID;
     const Type = req.body.Type;
-    db.query("SELECT Name, Location, Pay,OppID FROM opportunities WHERE OppID != ? AND confirmation = 1 AND posted = 1 AND Type = ? LIMIT 3;",
-        [OppID,Type],
+    const Pay = req.body.Pay;
+    db.query("SELECT Name, Location, Pay,OppID, ABS( Pay - ? ) AS Difference FROM opportunities WHERE OppID != ? AND confirmation = 1 AND posted = 1 AND Type = ? ORDER BY Difference LIMIT 3;",
+        [Pay,OppID,Type],
 
         (err, result) => {
             if (err) {

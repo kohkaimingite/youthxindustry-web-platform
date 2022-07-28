@@ -35,8 +35,8 @@ function OneOppo() {
     const [oneOppoType, setOneOppoType] = useState("");
     const [oneOppoCompany, setOneOppoCompany] = useState([]);
     const [suggestedOpp, setSuggestedOpp] = useState([]);
-    
-    
+    const [pay, setPay] = useState(0);
+
     
 
     // display file name if file has been selected
@@ -50,18 +50,20 @@ function OneOppo() {
         axios.post("http://localhost:3001/getoneOppo", {
             OppID: id
         }).then((response) => {
-            console.log("got one oppo!");
+            console.log(response.data);
             setOneOppo(response.data);
             setOneOppoType(response.data[0].Type)
+            setPay(response.data[0].Pay)
             return oneOppo;
         });
     });
     useEffect(() => {
         axios.post("http://localhost:3001/getSuggestedJobByType", {
             OppID: id,
-            Type: oneOppoType
+            Type: oneOppoType,
+            Pay: pay
         }).then((response) => {
-            console.log("got suggested oppo!");
+            console.log(response.data);
             setSuggestedOpp(response.data);
             return setSuggestedOpp;
         });
