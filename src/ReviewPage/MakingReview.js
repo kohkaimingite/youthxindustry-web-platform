@@ -20,7 +20,7 @@ const colors = {
 };
 
 function MakingReview() {
-    
+    const { id } = useParams();
     const [currentValue, setCurrentValue] = useState(0);
     const [hoverValue, setHoverValue] = useState(undefined);
     const stars = Array(5).fill(0)
