@@ -29,7 +29,7 @@ const PartnerNavBar = () => {
                 <a href="/Home">Home</a> 
                {/* <a href="/OppoPage">OppoPage</a>*/}
                 <a href="/OppoPartner" >My Opportunities</a>
-                <a href="/RatingStats" >My Stats</a>
+                <a href="/RatingStats" >Company Stats</a>
                 <a href="/MyApplications" >User Applications</a>
                 <a href="/Company">Company</a>
                 <a href="/Profile">Profile</a>
