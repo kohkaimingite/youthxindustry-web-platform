@@ -127,7 +127,7 @@ app.get("/logout", function (req, res) {
 //================================================================================
 
 app.get('/apUser', (req, res) => {
-    db.query("SELECT * from users INNER JOIN roles ON roles.RoleID = users.RoleID WHERE users.RoleID = 1 AND users.Confirmed = 1",
+    db.query("SELECT * FROM users INNER JOIN roles ON roles.RoleID = users.RoleID WHERE users.RoleID = 1 AND users.Confirmed = 1",
     (err, result) => {
         if (err) {
             console.log(err);
@@ -213,7 +213,7 @@ app.post('/apOppoEdit', (req, res) => {
 
 app.post('/apOppoDelete', (req, res) => {
     const OppID = req.body.OppID;
-    db.query("DELETE FROM users_have_opp WHERE OppID = ?; DELETE FROM users_have_fav WHERE OppID = ?; DELETE FROM partner_have_opp WHERE OppID = ?; DELETE FROM opp_have_application WHERE OppID = ?; DELETE FROM opportunities WHERE OppID = ?;",
+    db.query("DELETE FROM users_have_opp WHERE OppID = ?; DELETE FROM users_have_fav WHERE OppID = ?; DELETE FROM partner_have_opp WHERE OppID = ?; DELETE FROM application WHERE OppID = ?; DELETE FROM opportunities WHERE OppID = ?;",
         [OppID, OppID, OppID, OppID, OppID],
         (err, result) => {
             if (err) {
@@ -229,7 +229,7 @@ app.post('/apOppoDelete', (req, res) => {
 })
 
 app.get('/apPartner', (req, res) => {
-    db.query("SELECT * from users INNER JOIN roles ON roles.RoleID = users.RoleID WHERE users.RoleID = 2 AND users.Confirmed = 1",
+    db.query("SELECT * FROM users INNER JOIN roles ON roles.RoleID = users.RoleID WHERE users.RoleID = 2 AND users.Confirmed = 1",
     (err, result) => {
         if (err) {
             console.log(err);
@@ -240,7 +240,7 @@ app.get('/apPartner', (req, res) => {
 });
 
 app.get('/apPartnerConfirm', (req, res) => {
-    db.query("SELECT * from users INNER JOIN roles ON roles.RoleID = users.RoleID WHERE users.RoleID = 2 AND users.Confirmed = 0",
+    db.query("SELECT * FROM users INNER JOIN roles ON roles.RoleID = users.RoleID WHERE users.RoleID = 2 AND users.Confirmed = 0",
     (err, result) => {
         if (err) {
             console.log(err);
@@ -271,10 +271,10 @@ app.post('/apPartnerEdit', (req, res) => {
     const Password = req.body.password;
     const Email = req.body.email;
     const UserBio = req.body.userBio;
-    const MobileNumber = req.body.mobileNumber;
+    const ContactNumber = req.body.contactNumber;
     const UserID = req.body.UserID;
     db.query("UPDATE users SET RoleID = ?, Name = ?, Password = ?, Email = ?, UserBio = ?, ContactNumber = ? WHERE UserID = ?",
-        [RoleID, Name, Password, Email, UserBio, MobileNumber, UserID],
+        [RoleID, Name, Password, Email, UserBio, ContactNumber, UserID],
         (err, result) => {
             if (err) {
                 res.status(500).send({

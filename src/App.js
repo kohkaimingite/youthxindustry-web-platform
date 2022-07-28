@@ -42,6 +42,7 @@ import EditOppo from './AdminPanel/Opportunities/EditOppo';
 import ViewPartner from './AdminPanel/Partners/ViewPartner';
 import EditPartner from './AdminPanel/Partners/EditPartner';
 import ConfirmPartner from './AdminPanel/Partners/ConfirmPartner';
+import ConfirmPartner1 from './AdminPanel/Partners/ConfirmPartner1';
 import ProfilePage from './Manage/UserProfile';
 import CompanyPage from './Manage/CompanyProfile';
 import EditCompanyNumber from './Manage/EditCompanyNumber';
@@ -245,7 +246,7 @@ function App() {
                     <Route path='/EditOppo/:OppID' element={<EditOppo />} />
                     <Route path='/ViewPartner' element={<ViewPartner />} />
                     <Route path='/EditPartner/:UserID' element={<EditPartner />} />
-                    <Route path='/ConfirmPartner' element={<ConfirmPartner />} />
+                    <Route path='/ConfirmPartner1' element={<ConfirmPartner1 />} />
                 </Route>
             </Routes>
         </div>
