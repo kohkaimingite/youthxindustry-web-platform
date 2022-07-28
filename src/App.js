@@ -159,7 +159,7 @@ function App() {
             </div>
         } else if (window.location.pathname.toLowerCase() === "/".toLowerCase()) {
             return <div className="App">
-                <Home />
+                <Login />
 
             </div>
         } else {
@@ -175,13 +175,13 @@ function App() {
 
             
             <Routes>
-                <Route path='/' element={<Home />} />
+                <Route path='/' element={<Login />} />
 
                 <Route path='/NotAllowed' element={<NotAllowed />} />
                 <Route path='/NoAccess' element={<NotAllowedLog />} />
                 
                 
-                <Route path='/Login' element={<Login />} />
+                
                 <Route path='/Register' element={<Register />} />
 
 
