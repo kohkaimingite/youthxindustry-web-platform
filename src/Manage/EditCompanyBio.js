@@ -52,8 +52,6 @@ function EditCompany() {
 
                 <div className="AlignMiddle">
                     <h3> Changes: </h3>
-                    <br />
-                    <br />
                     <label>New Bio</label>
                     <input type="text" id="bio" placeholder="Enter a Bio..." onChange={e => setBio(e.target.value)}></input><br />
                     <button onClick={submit}> Confirm </button>

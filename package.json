@@ -24,6 +24,8 @@
     "cookie-parser": "^1.4.6",
     "es6-promise": "^4.2.8",
     "express-session": "^1.17.3",
+    "fileserver": "^0.2.2",
+    "fs": "^0.0.1-security",
     "isomorphic-fetch": "^3.0.0",
     "material": "^0.4.3",
     "mdbreact": "^5.2.0",

@@ -4,12 +4,12 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
-
 const app = express();
+
 
 app.use(express.json());
 app.use(cors({
-    origin: ["http://localhost:3000"],
+    origin: ["http://localhost:3000"], 
     methods: ["GET", "POST"],
     credentials: true
 
@@ -577,7 +577,9 @@ app.post('/addReview', (req, res) => {
 
 app.get('/Profile', (req, res) => {
     const emailcheck = req.body.emailcheck;
-    db.query("SELECT Userid, Name, Email, ContactNumber, Resume, UserBio FROM users WHERE UserID = 2", (err, result) => {
+    db.query("SELECT Userid, Name, Email, ContactNumber, Resume, UserBio FROM users WHERE UserID = ?",
+        [req.session.user[0].UserID],
+        (err, result) => {
         if (err) {
             console.log(err);
         } else { res.send(result) };
@@ -587,8 +589,8 @@ app.get('/Profile', (req, res) => {
 
 app.post('/EditUBio', (req, res) => {
     const Bio = req.body.Bio;
-    db.query('UPDATE users SET Userbio = ? WHERE userid = 2;',
-        [Bio],
+    db.query('UPDATE users SET Userbio = ? WHERE userid = ?;',
+        [Bio, req.session.user[0].UserID],
         (err, result) => {
             if (err) {
                 console.log(err);
@@ -601,8 +603,8 @@ app.post('/EditUBio', (req, res) => {
 
 app.post('/EditUNumber', (req, res) => {
     const Number = req.body.Number;
-    db.query('UPDATE users SET ContactNumber = ? WHERE userid = 2;',
-        [Number],
+    db.query('UPDATE users SET ContactNumber = ? WHERE userid = ?;',
+        [Number, req.session.user[0].UserID],
         (err, result) => {
             if (err) {
                 console.log(err);
@@ -615,8 +617,8 @@ app.post('/EditUNumber', (req, res) => {
 
 app.post('/EditCBio', (req, res) => {
     const Bio = req.body.Bio;
-    db.query('UPDATE users UserBio = ? WHERE UserID = 1;',
-        [Bio],
+    db.query('UPDATE users UserBio = ? WHERE UserID = ?;',
+        [Bio, req.session.user[0].UserID],
         (err, result) => {
             if (err) {
                 console.log(err);
@@ -629,8 +631,8 @@ app.post('/EditCBio', (req, res) => {
 
 app.post('/EditCNumber', (req, res) => {
     const Number = req.body.Number;
-    db.query('UPDATE users SET ContactNumber = ? WHERE UserID = 1;',
-        [Number],
+    db.query('UPDATE users SET ContactNumber = ? WHERE UserID = ?;',
+        [Number, req.session.user[0].UserID],
         (err, result) => {
             if (err) {
                 console.log(err);
@@ -643,7 +645,8 @@ app.post('/EditCNumber', (req, res) => {
 
 
 app.get('/Company', (req, res) => {
-    db.query("SELECT UserID, Name, Email, UserBio, ContactNumber FROM users WHERE UserID = 1;",
+    db.query("SELECT UserID, Name, Email, UserBio, ContactNumber FROM users WHERE UserID = ?;",
+        [req.session.user[0].UserID],
         (err, result) => {
             if (err) {
                 console.log(err);
@@ -669,8 +672,8 @@ app.get('/Applications', (req, res) => {
 
 app.post('/EditUResume', (req, res) => {
     const Resume = req.body.Resume
-    db.query("UPDATE users SET Resume = ? WHERE UserID = 2;",
-        [Resume],
+    db.query("UPDATE users SET Resume = ? WHERE UserID = ?;",
+        [Resume, req.session.user[0].UserID],
         (err, result) => {
             if (err) {
                 console.log(err);
@@ -758,6 +761,25 @@ app.post('/NewOppo', (req, res) => {
 
         });
 });
+
+const outputfile = "Resume.docx";
+
+
+app.get('/getBlob', async function (req, res) {
+    db.query("SELECT Resume FROM users WHERE userID = ?",
+        [req.session.user[0].UserID],
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                const data = result.data;
+                const buf = new Buffer(data, "binary");
+                fs.writeFileSync(outputfile, buf);
+                console.log("New Output File: ", outputfile)
+            };
+        });
+});
+
 
 //Zhi Wei
 
