@@ -26,27 +26,18 @@ function EditCompany() {
             setCompList(response.data);
 
         });
-    });
+    },[]);
 
     return (
         <div className="App">
             <PartnerNavBar />
             <div className="Main">
-                <h1>Edit Company Profile </h1>
+                <h1>Edit Company Number </h1>
                 <div className="AlignLeft">
                     <h3> Details: </h3>
                     <form method="post">
                         {CompList.map((val, key) => {
-                            return <text align="Left">Name: {val.Name}</text>;
-                        })}<br />
-                        {CompList.map((val, key) => {
-                            return <text align="Left">Email: {val.Email}</text>;
-                        })}<br />
-                        {CompList.map((val, key) => {
                             return <text align="Left">Contact Number: {val.ContactNumber}</text>;
-                        })}<br />
-                        {CompList.map((val, key) => {
-                            return <text align="Left">Company Bio: {val.PartnerBio}</text>;
                         })}<br />
 
 
@@ -57,13 +48,9 @@ function EditCompany() {
                 <div className="AlignMiddle">
                     <h3> Changes: </h3>
                     <br />
-                    <label>New Email</label>
-                    <input type="email" id="email" placeholder="Enter an Email..." onChange={e => setEmail(e.target.value)}></input><br />
                     <label>New Contact Number</label>
                     <input type="text" id="number" placeholder="Enter a Contact Number..." onChange={e => setNumber(e.target.value)}></input><br />
-                    <label>New Bio</label>
-                    <input type="text" id="bio" placeholder="Enter a Bio..." onChange={e => setBio(e.target.value)}></input><br />
-                    <button onClick={submit}> Confirm </button>
+
                 </div>
 
 
