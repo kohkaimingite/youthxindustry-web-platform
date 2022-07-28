@@ -21,7 +21,7 @@ function UserProfile() {
             setCompList(response.data);
 
         });
-    });
+    },[]);
 
 
 
@@ -30,7 +30,7 @@ function UserProfile() {
             <PartnerNavBar />
             <div class="wholeProfile">
                 <titleSection>
-                    <h1>Profile</h1>
+                    <h1>Company Profile</h1>
 
                 </titleSection>
                 <nameSection style={{ textAlign: 'left' }}>
@@ -61,36 +61,7 @@ function UserProfile() {
 
             </div>
 
-            <div className="main">
-                <h1>Profile</h1>
-                <div className="AlignLeft">
-                    <h3> Details: </h3>
-                    <form method="post">
-                        <text align="Left">Company Name: </text><br />
-                        <text align="Left">Company Email: </text><br />
-                        <text align="Left">Company Contact Number: </text><br />
-                        <text align="Left">Company Bio: </text><br />
-                    </form>
-
-                </div>
-                <div className="AlignMiddle">
-                    <form action="/action_page.php" method="post">
-                        <h3>Information</h3>
-                        {CompList.map((val, key) => {
-                            return <text align="Left">{val.Name}</text>;
-                        })}<br />
-                        {CompList.map((val, key) => {
-                            return <text align="Left">{val.Email}</text>;
-                        })}<br />
-                        {CompList.map((val, key) => {
-                            return <text align="Left">{val.ContactNumber}</text>;
-                        })}<br />
-                        {CompList.map((val, key) => {
-                            return <text align="Left">{val.UserBio}</text>;
-                        })}<br />
-                    </form>
-                </div>
-            </div>
+           
         </div>
     )
 

@@ -22,7 +22,7 @@ function EditCompany() {
             setCompList(response.data);
 
         });
-    });
+    },[]);
 
     return (
         <div className="App">
@@ -32,15 +32,6 @@ function EditCompany() {
                 <div className="AlignLeft">
                     <h3> Details: </h3>
                     <form method="post">
-                        {CompList.map((val, key) => {
-                            return <text align="Left">Name: {val.Name}</text>;
-                        })}<br />
-                        {CompList.map((val, key) => {
-                            return <text align="Left">Email: {val.Email}</text>;
-                        })}<br />
-                        {CompList.map((val, key) => {
-                            return <text align="Left">Contact Number: {val.ContactNumber}</text>;
-                        })}<br />
                         {CompList.map((val, key) => {
                             return <text align="Left">Company Bio: {val.PartnerBio}</text>;
                         })}<br />
@@ -54,6 +45,7 @@ function EditCompany() {
                     <h3> Changes: </h3>
                     <label>New Bio</label>
                     <input type="text" id="bio" placeholder="Enter a Bio..." onChange={e => setBio(e.target.value)}></input><br />
+                    <br />
                     <button onClick={submit}> Confirm </button>
                 </div>
 
