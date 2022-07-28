@@ -116,8 +116,7 @@ function App() {
     const [user, setUser] = useState(0);
     const [testuserRole, setTestuserRole] = useState(3);
     
-    //const [userTest, setUserTest] = useState(2);
-    //alert(user);
+    
 
     const [loading,setLoading] = useState(true)
     useLayoutEffect(() => {
