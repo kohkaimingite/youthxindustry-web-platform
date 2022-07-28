@@ -21,7 +21,7 @@ function AdminPanel() {
                 <Link to="/MakingReview">
                     <div className="btn linkButton">Reviews</div>
                 </Link>
-                <Link to="/ConfirmPartner">
+                <Link to="/ConfirmPartner1">
                     <div className="btn linkButton">Confirmation</div>
                 </Link>
             </form>
