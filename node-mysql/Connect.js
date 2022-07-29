@@ -993,6 +993,17 @@ app.post('/apPartnerDelete', (req, res) => {
     });
 });
 
+app.get('/apReview', (req, res) => {
+    db.query("SELECT * FROM users_have_opp",
+    (err, result) => {
+        if (err) {
+            console.log(err);
+        } else {
+            res.send(result);
+        }
+    });
+});
+
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
     console.log(`Server is currently running on port ${PORT}.`);

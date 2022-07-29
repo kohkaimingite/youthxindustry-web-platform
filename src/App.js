@@ -246,6 +246,7 @@ function App() {
                     <Route path='/ViewUser/EditUser' element={<EditUser />} />
                     <Route path='/ViewOppo' element={<ViewOppo />} />
                     <Route path='/ViewOppo/EditOppo' element={<EditOppo />} />
+                    <Route path='/ConfirmOppo' element={<CheckOppo />} />
                     <Route path='/ViewPartner' element={<ViewPartner />} />
                     <Route path='/ViewPartner/EditPartner' element={<EditPartner />} />
                     <Route path='/ConfirmPartner' element={<ConfirmPartner />} />
