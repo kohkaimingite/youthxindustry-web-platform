@@ -6,30 +6,28 @@ import AdminNavBar from '../../components/AdminNavBar';
 import axios from 'axios';
 import emailjs from '@emailjs/browser';
 
-export default function ConfirmPartner1({ data }) {
+export default function ConfirmPartnerTable({ data }) {
     const columns = data[0] && Object.keys(data[0]);
 
-
-    //Kai Ming Job confirmation function
     const emailInfo = {
+        userID: '',
         name: '',
         email: ''
 
     };
 
     function EmailConfirmation() {
-        emailInfo.name = data[0].UserID;
+        emailInfo.userID = data[0].UserID;
+        emailInfo.name = data[0].Name;
         emailInfo.email = data[0].Email;
         console.log(emailInfo)
-        emailjs.sendForm('service_nqak4rb', 'template_0fcbuq9', emailInfo, 'EOze04zGTBzzoGFXp')
+        emailjs.send('service_nqak4rb', 'template_035bo0i', emailInfo, 'EOze04zGTBzzoGFXp')
             .then((result) => {
                 console.log(result.text);
             }, (error) => {
                 console.log(error.text);
             });
     }
-    //////////////////////////////////////////////////
-
 
     function Confirm(UserID) {
         if (window.confirm("Are you sure you want to confirm registration for this partner?")) {
@@ -39,7 +37,7 @@ export default function ConfirmPartner1({ data }) {
             }).then((response) => {
                 console.log("Successfully Registered");
                 alert("Registered");
-                { EmailConfirmation() }
+                { EmailConfirmation(UserID) }
             });
         } else {
             alert("Failed to register")

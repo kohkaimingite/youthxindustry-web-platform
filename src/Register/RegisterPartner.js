@@ -76,6 +76,7 @@ export default function RegisterPartner() {
                                     style={{ width: "200px" }}
                                     name="email"
                                     type="email"
+                                    maxLength="50"
                                     required
                                     placeholder="Email"
                                     input onChange={handleEmail}
@@ -87,7 +88,7 @@ export default function RegisterPartner() {
                                     style={{ width: "200px" }}
                                     name="name"
                                     type="text"
-                                    maxlength="20"
+                                    maxLength="50"
                                     required
                                     placeholder="Name"
                                     input onChange={handleName}
@@ -99,10 +100,11 @@ export default function RegisterPartner() {
                                     style={{ width: "200px" }}
                                     name="password"
                                     type="password"
+                                    maxLength="50"
                                     required
                                     pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
                                     placeholder="Password"
-                                    autofocus required title="Minumum 8 characters, 1 number and 1 letter"
+                                    autoFocus required title="Minumum 8 characters, 1 number and 1 letter"
                                     input onChange={handlePassword}
                                     value={password}
                                 />
