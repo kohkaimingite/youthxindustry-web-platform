@@ -34,7 +34,7 @@ export default function LogAppTable({ data }) {
             }).then((response) => {
                 emailInfo.Company = response.data[0].Name;
                 console.log(emailInfo);
-                emailjs.send('service_nqak4rb', 'template_ej4c4sk', emailInfo, 'EOze04zGTBzzoGFXp')
+                emailjs.send('service_x7yymg6', 'template_6artrdu', emailInfo, 'IsHv-S74WPDFFkoTT')
                     .then((result) => {
                         console.log(result.text);
                     }, (error) => {
@@ -55,7 +55,8 @@ export default function LogAppTable({ data }) {
             }).then((response) => {
                 console.log("Updated Sucessfully");
                 alert("Accepted!");
-                { EmailConfirmation(appID) }
+                 { EmailConfirmation(appID) }
+                window.location.reload();
             });
         } else {
             alert("Application not Accepted")
@@ -70,6 +71,7 @@ export default function LogAppTable({ data }) {
             }).then((response) => {
                 console.log("Updated Sucessfully");
                 alert("Rejected!")
+                window.location.reload();
             });
         } else {
             alert("Application not rejected")
