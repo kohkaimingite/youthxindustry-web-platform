@@ -23,7 +23,8 @@ const EditOppo = () => {
         const errors = {};
         const spRegex = /^\S*$/;
         const txtRegex = /^[a-zA-Z\s]*$/;
-        const qRegex = /\b(GCE O Level|GCE A Level|Diploma)\b/;
+        const addRegex = /\b(Singapore)\b/;
+        const qRegex = /\b(PSLE|GCE O Level|GCE A Level|Diploma in|Bachelor of|Master of)\b/;
         if (!values.oppID) {
             errors.oppID = "OppID is required";
         } else if (!spRegex.test(values.oppID)) {
@@ -48,7 +49,7 @@ const EditOppo = () => {
         }
         if (!values.address) {
             errors.address = "Address is required";
-        } else if (values.address.includes("Singapore") == false) {
+        } else if (!addRegex.test(values.address)) {
             errors.address = "Only addresses in Singapore are allowed";
         } else if (values.address.length > 255) {
             errors.address = "Address cannot exceed 255 characters";
@@ -81,7 +82,8 @@ const EditOppo = () => {
         setFormErrors(validate(formValues));
         const spRegex = /^\S*$/;
         const txtRegex = /^[a-zA-Z\s]*$/;
-        const qRegex = /\b(GCE O Level|GCE A Level|Diploma)\b/;
+        const addRegex = /\b(Singapore)\b/;
+        const qRegex = /\b(PSLE|GCE O Level|GCE A Level|Diploma in|Bachelor of|Master of)\b/;
         if (
             !formValues.oppID ||
             !formValues.name ||
@@ -96,7 +98,7 @@ const EditOppo = () => {
             formValues.oppID.length > 6 ||
             formValues.name.length > 50 ||
             formValues.description.length > 255 ||
-            formValues.address.includes("Singapore") == false ||
+            !addRegex.test(formValues.address) ||
             formValues.address.length > 255 ||
             formValues.type.length > 50 ||
             !qRegex.test(formValues.qualification) ||

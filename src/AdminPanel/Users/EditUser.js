@@ -23,7 +23,7 @@ const EditUser = () => {
         const errors = {};
         const spRegex = /^\S*$/;
         const txtRegex = /^[a-zA-Z\s]*$/;
-        const pwRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+        const pwRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*?[!?`~;:@#$%^&*+=])[A-Za-z\d]{8,}$/;
         const pnumRegex = /(^[689]{1}\d{7}$)/;
         if (!values.userID) {
             errors.userID = "UserID is required";
@@ -43,7 +43,7 @@ const EditUser = () => {
         if (!values.password) {
             errors.password = "Password is required";
         } else if (!pwRegex.test(values.password)) {
-            errors.password = "Password has to be at least 8 characters with at least 1 letter, and 1 number";
+            errors.password = "Password has to be at least 8 characters with at least 1 letter and 1 number";
         } else if (values.password.length > 50) {
             errors.password = "Password cannot exceed 50 characters";
         }
@@ -84,7 +84,7 @@ const EditUser = () => {
         setFormErrors(validate(formValues));
         const spRegex = /^\S*$/;
         const txtRegex = /^[a-zA-Z\s]*$/;
-        const pwRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+        const pwRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*?[!?`~;:@#$%^&*+=])[A-Za-z\d]{8,}$/;
         const pnumRegex = /(^[689]{1}\d{7}$)/;
         if (
             !formValues.userID ||
