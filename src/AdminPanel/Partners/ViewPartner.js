@@ -71,6 +71,7 @@ const ViewPartner = () => {
                 adminUserID: parseInt(storeUserID)
             }).then(() => {
                 console.log("Successfully Deleted.");
+                window.location.reload();
             })
             .catch(() => {
                 console.log("Failed to delete.");

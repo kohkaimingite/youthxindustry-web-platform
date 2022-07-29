@@ -31,6 +31,7 @@ export default function LogConfirmPartner({ data }) {
                         console.log(error.text);
                     });
                 alert("Registered");
+                window.location.reload();
             });
         } else {
             alert("Failed to register")

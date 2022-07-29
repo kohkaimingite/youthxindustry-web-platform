@@ -71,6 +71,7 @@ const ViewOppo = () => {
                 adminOppID: parseInt(storeOppID)
             }).then(() => {
                 console.log("Successfully Deleted.");
+                window.location.reload();
             })
             .catch(() => {
                 console.log("Failed to delete.");
