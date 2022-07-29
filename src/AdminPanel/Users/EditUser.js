@@ -110,7 +110,7 @@ const EditUser = () => {
         }
         else if (check === true) {
             {
-                axios.post("http://localhost:3001/apUserEdit", {
+                axios.post("http://localhost:3001/apUser", {
                     UserID: userID,
                     RoleID: roleID,
                     name: name,

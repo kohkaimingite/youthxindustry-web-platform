@@ -795,7 +795,7 @@ app.get('/apUser', (req, res) => {
     });
 });
 
-app.post('/apUserEdit', (req, res) => {
+app.post('/apUser', (req, res) => {
     const RoleID = req.body.RoleID;
     const Name = req.body.name;
     const Password = req.body.password;
