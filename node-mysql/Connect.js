@@ -100,18 +100,18 @@ app.post("/login", (req, res, next) => {
                     next();
 
                 } else if (result.length > 0 && result[0].Confirmed === 0) {
-                    res.send({ message: "This account has not been verified yet!" });
+                    res.send({ message: "Account has not been verified yet" });
                 }
 
                 else {
-                    res.send({ message: "Incorrect Combination!" });
+                    res.send({ message: "Incorrect Combination" });
                 }
 
 
             }
         )
     } else {
-        res.send({ message: "Please enter email and password!" });
+        res.send({ message: "Enter email and password" });
     }
 
 });

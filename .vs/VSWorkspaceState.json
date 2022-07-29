@@ -1,14 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\node-mysql",
     "\\src",
-    "\\src\\CompanyProfile",
-    "\\src\\Manage",
-    "\\src\\OppoPage",
-    "\\src\\OppoPartner",
-    "\\src\\Some test data"
+    "\\src\\OppoPartner"
   ],
-  "SelectedNode": "\\package.json",
   "PreviewInSolutionExplorer": false
 }

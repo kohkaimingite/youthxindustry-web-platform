@@ -3,7 +3,7 @@ import Axios from 'axios';
 import NavBar from '../components/NavBar';
 import './Login.css';
 import { useNavigate } from 'react-router-dom';
-import { faSignIn,faUserLock } from "@fortawesome/free-solid-svg-icons";
+import { faSignIn, faUserLock, faTriangleExclamation} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function Login() {
@@ -23,8 +23,9 @@ export default function Login() {
             .then((response) => {
 
                 if (response.data.message) {
-                    setStatus(response.data.message);
 
+                    setStatus(response.data.message);
+                   
                 } else {
                     navigate("/Home")
                     setTimeout(function () {
@@ -36,18 +37,7 @@ export default function Login() {
             });
     };
 
-    /*const logout = () => {
-        Axios.get("http://localhost:3001/logout")
-            .then((response) => {
-
-                if (response.data.message) {
-                    setStatus(response.data.message);
-
-                }
-            });
-    };
-*/
-
+    
 
     useEffect(() => {
         Axios.get("http://localhost:3001/login").then((response) => {
@@ -83,7 +73,8 @@ export default function Login() {
                     }}
                 />
 
-                <button onClick={login}>Login <FontAwesomeIcon icon={faSignIn}/></button>
+
+                <button onClick={login}>Login <FontAwesomeIcon icon={faSignIn} /></button>
                 <p>{status}</p>
             </div>
         </div>

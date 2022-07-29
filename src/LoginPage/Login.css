@@ -6,32 +6,50 @@
     align-items: center;
     justify-content: space-between;
     width: 400px;
-    box-shadow: rgb(128 128 128) 3px 1px 30px;
+    box-shadow: rgb(128 128 128) 0px 0px 8px;
     padding-top: 30px;
     padding-bottom: 20px;
     border-radius: 8px;
     background-color: white;
     margin: auto;
     margin-top: 100px;
+ 
 }
 
     .login label {
         font-weight: 600;
+        padding: 5px;
     }
 
     .login input {
         margin-bottom: 10px;
+        border: none;
+        border-bottom: 1px solid #2691d9;
+        background: transparent;
+        outline: none;
+        padding-bottom: 10px;
     }
 
     .login button {
+        margin-top: 20px;
         width: 190px;
+        border-radius: 25px;
+        background: #2691d9;
+        font-size: 18px;
+        color: #e9f4fb;
+        font-weight: 700;
+        border: 1px solid;
     }
 
+    .login button:hover {
+        border-color: #2691d9;
+       transition: .5s;
+    }
     .login h1 {
         font-size: 30px;
     }
 
     .login p {
-        font-size: 20px;
+        font-size: 16px;
         color: red;
     }
