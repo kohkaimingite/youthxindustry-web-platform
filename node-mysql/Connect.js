@@ -932,7 +932,7 @@ app.get('/apPartner', (req, res) => {
 });
 
 app.get('/apPartnerConfirm', (req, res) => {
-    db.query("SELECT * FROM users INNER JOIN roles ON roles.RoleID = users.RoleID WHERE users.RoleID = 2 AND users.Confirmed = 0",
+    db.query("SELECT users.UserID, users.Name, users.Email, users.UserBio, users.ContactNumber FROM users INNER JOIN roles ON roles.RoleID = users.RoleID WHERE users.RoleID = 2 AND users.Confirmed = 0",
     (err, result) => {
         if (err) {
             console.log(err);
