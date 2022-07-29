@@ -106,10 +106,7 @@ function Home() {
         return (
 
             <div className="App">
-                <AdminNavBar />
-
                 <AdminPanel />
-
             </div>
 
 
