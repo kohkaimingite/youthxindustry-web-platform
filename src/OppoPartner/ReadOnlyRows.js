@@ -15,10 +15,10 @@ const ReadOnlyRow = ({ opp, handleEditClick, handleDeleteClick }) => {
             <td style={{ textAlign:"left" }}>{opp.Qualification}</td>
             <td style={{ textAlign:"left" }}>${opp.Pay}</td>
             <td>
-                <button type="button" onClick={(event) => handleEditClick(event, opp)}> <FontAwesomeIcon icon={faPencil} /></button>
+                <div type="button" onClick={(event) => handleEditClick(event, opp)}> <FontAwesomeIcon icon={faPencil} /></div>
             </td>
             <td>
-                <button type="button" onClick={() => handleDeleteClick(opp.OppID)}><FontAwesomeIcon icon={faTrash} /></button>
+                <div type="button" onClick={() => handleDeleteClick(opp.OppID)}><FontAwesomeIcon icon={faTrash} /></div>
             </td>
         </tr>
     )
