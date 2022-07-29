@@ -27,7 +27,7 @@ export default function RegisterPartner() {
     const submitFormData = (e) => {
         e.preventDefault();
 
-        //Zhi Wei email to confirm partner function
+        //Zhi Wei's email for pending partner account creation
         emailjs.sendForm('service_x7yymg6', 'template_pwtqqew', e.target, 'IsHv-S74WPDFFkoTT')
       .then(function(response) {
           console.log('SUCCESS!', response.status, response.text);
