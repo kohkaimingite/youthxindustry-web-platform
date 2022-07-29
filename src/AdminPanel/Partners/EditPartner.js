@@ -101,7 +101,7 @@ const EditPartner = () => {
         }
         else if (check === true) {
             {
-                axios.post("http://localhost:3001/apPartnerEdit", {
+                axios.post("http://localhost:3001/apPartner", {
                     UserID: userID,
                     RoleID: roleID,
                     name: name,

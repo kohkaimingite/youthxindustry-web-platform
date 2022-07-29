@@ -106,7 +106,7 @@ const EditOppo = () => {
         }
         else if (check === true) {
             {
-                axios.post("http://localhost:3001/apOppoEdit", {
+                axios.post("http://localhost:3001/apOppo", {
                     OppID: oppID,
                     name: name,
                     description: description,

@@ -883,7 +883,7 @@ app.get('/apOppo', (req, res) => {
     });
 });
 
-app.post('/apOppoEdit', (req, res) => {
+app.post('/apOppo', (req, res) => {
     const Name = req.body.name;
     const Description = req.body.description;
     const Location = req.body.location;
@@ -957,7 +957,7 @@ app.post('/apConfirmRegistration', (req, res) => {
     });
 });
 
-app.post('/apPartnerEdit', (req, res) => {
+app.post('/apPartner', (req, res) => {
     const RoleID = req.body.RoleID;
     const Name = req.body.name;
     const Password = req.body.password;
