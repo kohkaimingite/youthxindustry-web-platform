@@ -31,9 +31,8 @@ const PartnerNavBar = () => {
                 <a href="/OppoPartner" >My Opportunities</a>
                 <a href="/RatingStats" >Company Stats</a>
                 <a href="/MyApplications" >User Applications</a>
-                <a href="/Company">Profile</a>
                 <a href="/SubmitApplication">Submit Oppo</a>
-                <a>{currentUserName}</a>
+                <a href="/Company">{currentUserName}</a>
                 <a onClick={logout}>Logout</a>
 
 
