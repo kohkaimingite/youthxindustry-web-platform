@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import NavBar from '../components/NavBar';
-import Axios from 'axios';
+import axios from 'axios';
 import validator from "validator";
 
 
@@ -50,38 +50,6 @@ export default function AddOppoPartner() {
         setPay(e.target.value);
     };
 
-    const submitFormData = (e) => {
-        e.preventDefault();
-        if (
-            validator.isEmpty(name) ||
-            validator.isEmpty(description) ||
-            validator.isEmpty(location) ||
-            validator.isEmpty(address) ||
-            validator.isEmpty(type) ||
-            validator.isEmpty(qualification) ||
-            validator.isEmpty(pay)
-        ) {
-            setError(true);
-        } else {
-            Axios.post("http://localhost:3001/NewOppo", {
-                name: name,
-                description: description,
-                location: location,
-                address: address,
-                type: type,
-                qualification: qualification,
-                pay: pay
-
-            })
-                .then(() => {
-                    setStatus({ type: 'success' });
-                })
-                .catch((error) => {
-                    setStatus({ type: 'error', error });
-                });
-        }
-    };
-
     const styleDiv = {
         display: "flex",
         alignItems: 'center',
@@ -90,12 +58,26 @@ export default function AddOppoPartner() {
         flexDirection: "column",
     };
 
+    function submit() {
+        axios.post("http://localhost:3001/NewOppo", {
+            name: name,
+            description: description,
+            location: location,
+            address: address,
+            type: type,
+            qualification: qualification,
+            pay: pay
+        }).then(() => {
+            console.log("Test");
+            window.location = "http://localhost:3000/Company";
+        });
+    }
+
     return (
         <div className="AddOppoPartner">
             <NavBar />
             <h1 style={{ color: "yellow" }}>Add Opportunity</h1>
             <div style={styleDiv}>
-                <Form onSubmit={submitFormData}>
 
                     <Form.Group className="mb-2">
                         <Form.Label>Name</Form.Label>
@@ -188,14 +170,11 @@ export default function AddOppoPartner() {
                     </Form.Group>
 
 
-                    <Button variant="primary" type="submit">
-                        Add
-                    </Button>
+                <Button variant="primary" type="submit" onClick={submit}>Add</Button>
                     <p>
                         {status?.type === 'success' && <a href="/OppoPartner"> Successfully added!</a>}
                         {status?.type === 'error' && <p>Not successfully added</p>}
                     </p>
-                </Form>
             </div>
         </div>
     )

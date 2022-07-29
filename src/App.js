@@ -32,7 +32,7 @@ import EditUserBio from './Manage/EditUserBio';
 import MyApplication from './Manage/MyApplication'; 
 import LoggedOppoPage from './OppoPage/LoggedOppoPage';
 import ViewOppoStatus from './OppoPage/ViewOppoStatus';
-
+import CheckOppo from './Manage/CheckOppo';
 
 import AdminPanel from './AdminPanel/AdminPanel';
 import ViewUser from './AdminPanel/Users/ViewUser';
@@ -61,6 +61,7 @@ import Protection from './Protection';
 import { BrowserRouter as Router, Routes, Route,Link, Navigate, Outlet, } from 'react-router-dom';
 
 
+{/*<Route path='/ConfirmOppo' element={<CheckOppo />} />*/ }
 
 // Idea:
 //top will be buttons "About" - "opportunities(have sub)" - "contact us" - "login"
@@ -196,7 +197,7 @@ function App() {
                     <Route path='/Favourites' element={<Favourites />} />
                     <Route path='/AddReview' element={<MakingReview />} />
                     <Route path='/ContactUs' element={<ContactPage />} />
-
+                    
                     <Route path='/EditUserResume' element={<EditUserResume />} />
                     <Route path='/RegisterUser' element={< RegisterUser />} />
                     <Route path='/EditUserBio' element={<EditUserBio />} />

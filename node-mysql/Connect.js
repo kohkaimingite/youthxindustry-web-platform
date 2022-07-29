@@ -751,7 +751,7 @@ app.post('/NewOppo', (req, res) => {
     const type = req.body.type;
     const qualification = req.body.qualification;
     const pay = req.body.pay;
-    db.query("INSERT INTO opportunities (Name,Description,Location,Address,Type, Qualification, Pay, confirmation, posted) VALUES (?, ?, ?, ?, ?, ?, ?, 1, 1",
+    db.query("INSERT INTO opportunities (Name,Description,Location,Address,Type, Qualification, Pay, confirmation, posted) VALUES (?, ?, ?, ?, ?, ?, ?, 0, 0)",
         [name, description, location, address, type, qualification, pay],
         (err, result) => {
             if (err) {
@@ -794,7 +794,7 @@ app.get('/CheckOppo', (req, res) => {
 
 app.post('/AcceptOppo', (req, res) => {
     const OppID = req.body.OppID;
-    db.query("UPDATE opportunities SET confirmed = 2 WHERE OppID = ?;",
+    db.query("UPDATE opportunities SET confirmation = 1 WHERE OppID = ?;",
         [OppID],
         (err, result) => {
             if (err) {
@@ -802,13 +802,13 @@ app.post('/AcceptOppo', (req, res) => {
             } else {
                 res.send(result)
             };
-
+            
         });
 });
 
 app.post('/RejectOppo', (req, res) => {
     const OppID = req.body.OppID;
-    db.query("UPDATE opportunities SET confirmed = 1 WHERE OppID = ?;",
+    db.query("UPDATE opportunities SET confirmation = 2 WHERE OppID = ?;",
         [OppID],
         (err, result) => {
             if (err) {
