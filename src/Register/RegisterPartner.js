@@ -28,7 +28,7 @@ export default function RegisterPartner() {
         e.preventDefault();
 
         //Zhi Wei email to confirm partner function
-        emailjs.sendForm('service_nqak4rb', 'template_0fcbuq9', e.target, 'EOze04zGTBzzoGFXp')
+        emailjs.sendForm('service_x7yymg6', 'template_pwtqqew', e.target, 'IsHv-S74WPDFFkoTT')
       .then(function(response) {
           console.log('SUCCESS!', response.status, response.text);
       }, function(error) {

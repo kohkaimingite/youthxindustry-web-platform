@@ -24,7 +24,7 @@ export default function LogConfirmPartner({ data }) {
                 emailInfo.name = data[0].Name;
                 emailInfo.email = data[0].Email;
                 console.log(emailInfo)
-                emailjs.send('service_nqak4rb', 'template_035bo0i', emailInfo, 'EOze04zGTBzzoGFXp')
+                emailjs.send('service_x7yymg6', 'template_xybwe6e', emailInfo, 'IsHv-S74WPDFFkoTT')
                     .then((result) => {
                         console.log(result.text);
                     }, (error) => {
