@@ -9,21 +9,8 @@ function AdminPanel() {
         <div className="App">
             <AdminNavBar />
             <form>
-                <Link to="/ViewUser">
-                    <div className="btn linkButton">Users</div>
-                </Link>
-                <Link to="/ViewOppo">
-                    <div className="btn linkButton">Opportunities</div>
-                </Link>
-                <Link to="/ViewPartner">
-                    <div className="btn linkButton">Partners</div>
-                </Link>
-                <Link to="/MakingReview">
-                    <div className="btn linkButton">Reviews</div>
-                </Link>
-                <Link to="/ConfirmPartner">
-                    <div className="btn linkButton">Confirmation</div>
-                </Link>
+                <h1>Admin Panel</h1>
+                <h1>^ navigate by clicking the links on top ^</h1>
             </form>
         </div>
     );
