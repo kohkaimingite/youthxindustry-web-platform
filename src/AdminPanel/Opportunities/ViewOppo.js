@@ -43,6 +43,7 @@ const ViewOppo = () => {
             setOrder("ascending");
         }
     }
+    
     let { storeOppID } = '';
 
     useEffect(() => {
