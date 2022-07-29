@@ -185,8 +185,8 @@ app.get("/oppListing", function (req, res) {
 app.post("/deleteOppPartner", (req, res) => {
     const oppId = req.body.oppId;
 
-    db.query("DELETE FROM partner_have_opp WHERE OppID = ? AND UserID = ?; DELETE FROM opportunities WHERE OppID = ?;",
-        [oppId, req.session.user[0].UserID, oppId],
+    db.query("DELETE FROM partner_have_opp WHERE OppID = ? AND UserID = ?; DELETE FROM opportunities WHERE OppID = ?;DELETE FROM application WHERE OppID =?",
+        [oppId, req.session.user[0].UserID, oppId, oppId],
         (err, result) => {
             if (err) {
                 console.log(err);

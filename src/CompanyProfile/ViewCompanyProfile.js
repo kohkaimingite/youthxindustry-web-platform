@@ -46,7 +46,7 @@ function ViewCompanyProfile() {
 
         }).then((response) => {
             setStoreOpp(response.data);
-
+            console.log(response.data);
 
         });
     }, [storeUser]);
@@ -57,6 +57,7 @@ function ViewCompanyProfile() {
 
         }).then((response) => {
             setStoreReviewRating(response.data);
+            console.log(response.data);
 
         });
     }, [storeUser]);

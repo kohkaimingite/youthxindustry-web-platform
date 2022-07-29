@@ -114,6 +114,7 @@ export default function OppoPartner() {
                 });
         } else {
             window.alert("Action cancelled")
+            window.location.reload();
         }
     };
 
