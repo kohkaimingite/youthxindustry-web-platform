@@ -1,6 +1,6 @@
 // JavaScript source code
 import { React } from "react";
-// import "../Partners/ConfirmPartner.css";
+import "../Partners/ConfirmPartner.css";
 import axios from 'axios';
 import emailjs from '@emailjs/browser';
 
@@ -38,28 +38,30 @@ export default function LogConfirmPartner({ data }) {
     }
 
     return (
-        <table class="User-Table">
-            <tr>
-                <th> ID </th>
-                <th> Name </th>
-                <th> Email </th>
-                <th> UserBio </th>
-                <th> Contact </th>
-                <th> Actions </th>
+        <table className="User-Table">
+            <thead>
+                <tr>
+                    <th> ID </th>
+                    <th> Name </th>
+                    <th> Email </th>
+                    <th> UserBio </th>
+                    <th> Contact </th>
+                    <th> Actions </th>
+                </tr>
+            </thead>
+            <tbody>
+                {data.map(row => <tr>
+                    {
+                        columns.map(column => <td style={{ textAlign: 'center' }}>{row[column]}</td>)
 
-
-
-            </tr>
-            {data.map(row => <tr>
-                {
-                    columns.map(column => <td style={{ textAlign: 'center' }}>{row[column]}</td>)
-
-                }
-                <button className="btn confirmButton" onClick={() => confirmAccount(row[columns[0]])}> </button>
-
-
-            </tr>)}
+                    }
+                    <td>
+                        <button className="btn confirmButton" onClick={() => confirmAccount(row[columns[0]])}>
+                            Confirm
+                        </button>
+                    </td>
+                </tr>)}
+            </tbody>
         </table>
-    )
-
+    );
 }
