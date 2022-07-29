@@ -533,3 +533,52 @@ div.containerNavBar {
     color: black;
     border: 2px solid #4CAF50;
 }
+
+.AppTable1 {
+    border-collapse: collapse;
+    width: 90%;
+    margin-right: 100px;
+    margin-left: 100px;
+    border-radius: 10px 10px 0 0;
+    overflow: auto;
+    box-shadow: 0 0 20px rgba(0,0,0,0.15);
+    font-family: 'Rubik', sans-serif;
+    font-weight: 400;
+    text-align: left;
+}
+
+    .AppTable1 th, td {
+        padding: 0.25em 0.5em 0.25em 1em;
+        vertical-align: text-top;
+        text-align: left;
+        text-indent: -0.5em;
+    }
+
+    .AppTable1 tr:nth-of-type(even) {
+        background-color: #f3f3f3;
+    }
+
+    .AppTable1 tr:hover {
+        background-color: #edead5;
+    }
+
+    .AppTable1 th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #DAA520;
+        color: white;
+        position: sticky;
+        top: 0;
+        z-index: 2;
+    }
+
+    .AppTable1 td {
+        overflow: auto;
+        text-align: left;
+        align-content: start;
+        list-style-position: inside;
+        text-align-last: left;
+        overflow: auto;
+        text-indent: 0px;
+    }

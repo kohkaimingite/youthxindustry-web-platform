@@ -1,11 +1,6 @@
 // JavaScript source code
 import { React, useState, useEffect } from "react";
-import TextField from "@mui/material/TextField";
-import List from "../Some test data/List";
-import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Collapsible from '../components/Collapsible';
-import { Route, Link } from 'react-router-dom';
 import axios from 'axios';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
@@ -82,7 +77,7 @@ export default function LogAppTable({ data }) {
     }
 
     return (
-        <table class="oppoTable">
+        <table class="AppTable1">
             <tr>
                 <th>Application ID</th>
                 <th>Opportunity ID</th>

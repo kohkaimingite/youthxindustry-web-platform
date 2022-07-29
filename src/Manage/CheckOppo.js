@@ -5,16 +5,16 @@ import axios from 'axios';
 import ApplicationDataTable from './ApplicationDataTable'
 
 function MyApplication() {
-    const [AppList, setAppList] = useState([]);
+    const [OppList, setOppList] = useState([]);
     const columns = AppList[0] && Object.keys(AppList[0]);
     const getApplication = () => {
 
     };
     useEffect(() => {
-        axios.get("http://localhost:3001/Applications").then((response) => {
+        axios.get("http://localhost:3001/CheckOppo").then((response) => {
 
             console.log(response);
-            setAppList(response.data);
+            setOppList(response.data);
 
         });
     }, []);
@@ -22,8 +22,8 @@ function MyApplication() {
 
         <div className="App">
             <PartnerNavBar />
-            <h1>Pending Applications</h1>
-            <ApplicationDataTable data={AppList}/>
+            <h1>Pending Opportunities</h1>
+            <CheckOppoTable data={OppList} />
         </div>
 
     )

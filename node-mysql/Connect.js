@@ -781,6 +781,45 @@ app.get('/getBlob', async function (req, res) {
         });
 });
 
+app.get('/CheckOppo', (req, res) => {
+    db.query("SELECT * FROM opportunities WHERE confirmation = 0 ",
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send(result)
+            }
+        });
+});
+
+app.post('/AcceptOppo', (req, res) => {
+    const OppID = req.body.OppID;
+    db.query("UPDATE opportunities SET confirmed = 2 WHERE OppID = ?;",
+        [OppID],
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send(result)
+            };
+
+        });
+});
+
+app.post('/RejectOppo', (req, res) => {
+    const OppID = req.body.OppID;
+    db.query("UPDATE opportunities SET confirmed = 1 WHERE OppID = ?;",
+        [OppID],
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send(result)
+            };
+
+        });
+});
+
 
 //Zhi Wei
 
