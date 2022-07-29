@@ -1,43 +1,36 @@
 // JavaScript source code
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import AdminNavBar from '../../components/AdminNavBar';
+import { React } from "react";
 // import "../Partners/ConfirmPartner.css";
 import axios from 'axios';
 import emailjs from '@emailjs/browser';
 
-export default function ConfirmPartnerTable({ data }) {
+export default function LogConfirmPartner({ data }) {
     const columns = data[0] && Object.keys(data[0]);
 
     const emailInfo = {
         userID: '',
         name: '',
         email: ''
-
     };
 
-    function EmailConfirmation() {
-        emailInfo.userID = data[0].UserID;
-        emailInfo.name = data[0].Name;
-        emailInfo.email = data[0].Email;
-        console.log(emailInfo)
-        emailjs.send('service_nqak4rb', 'template_035bo0i', emailInfo, 'EOze04zGTBzzoGFXp')
-            .then((result) => {
-                console.log(result.text);
-            }, (error) => {
-                console.log(error.text);
-            });
-    }
-
-    function Confirm(UserID) {
+    function confirmAccount(UserID) {
         if (window.confirm("Are you sure you want to confirm registration for this partner?")) {
 
             axios.post("http://localhost:3001/apConfirmRegistration", {
                 UserID: parseInt(UserID),
             }).then((response) => {
                 console.log("Successfully Registered");
+                emailInfo.userID = data[0].UserID;
+                emailInfo.name = data[0].Name;
+                emailInfo.email = data[0].Email;
+                console.log(emailInfo)
+                emailjs.send('service_nqak4rb', 'template_035bo0i', emailInfo, 'EOze04zGTBzzoGFXp')
+                    .then((result) => {
+                        console.log(result.text);
+                    }, (error) => {
+                        console.log(error.text);
+                    });
                 alert("Registered");
-                { EmailConfirmation(UserID) }
             });
         } else {
             alert("Failed to register")
@@ -45,7 +38,7 @@ export default function ConfirmPartnerTable({ data }) {
     }
 
     return (
-        <table class="oppoTable">
+        <table class="User-Table">
             <tr>
                 <th> ID </th>
                 <th> Name </th>
@@ -62,7 +55,7 @@ export default function ConfirmPartnerTable({ data }) {
                     columns.map(column => <td style={{ textAlign: 'center' }}>{row[column]}</td>)
 
                 }
-                <button className="btn confirmButton" onClick={() => Confirm(row[columns[0]])}> </button>
+                <button className="btn confirmButton" onClick={() => confirmAccount(row[columns[0]])}> </button>
 
 
             </tr>)}

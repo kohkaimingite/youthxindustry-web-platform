@@ -1,14 +1,14 @@
 // JavaScript source code
-import AdminNavBar from '../../components/AdminNavBar'
 import { React, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import AdminNavBar from '../../components/AdminNavBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
-import CfmPartnerTable from './ConfirmPartnerDatatable';
+import LogConfirmPartner from './ConfirmPartnerDatatable';
 
 function ConfirmPartner() {
-    const [userList, setAppList] = useState([]);
-    const columns = userList[0] && Object.keys(userList[0]);
+    const [partnerList, setPartnerList] = useState([]);
+    const columns = partnerList[0] && Object.keys(partnerList[0]);
     useEffect(() => {
         axios.get("http://localhost:3001/apPartnerConfirm").then((response) => {
 
@@ -24,7 +24,7 @@ function ConfirmPartner() {
             <Link to="/AdminPanel">
                 <button className="btn backButton">Go Back to Admin Panel</button>
             </Link>
-            <CfmPartnerTable data={userList}/>
+            <LogConfirmPartner data={partnerList}/>
         </div>
 
     )

@@ -42,7 +42,7 @@ import EditOppo from './AdminPanel/Opportunities/EditOppo';
 import ViewPartner from './AdminPanel/Partners/ViewPartner';
 import EditPartner from './AdminPanel/Partners/EditPartner';
 // import ConfirmPartnerControl from './AdminPanel/Partners/ConfirmPartnerControl';
-import ConfirmPartners from './AdminPanel/Partners/ConfirmPartnerControl';
+import ConfirmPartner from './AdminPanel/Partners/ConfirmPartner';
 import ConfirmPartnerDatatable from './AdminPanel/Partners/ConfirmPartnerDatatable';
 import ProfilePage from './Manage/UserProfile';
 import CompanyPage from './Manage/CompanyProfile';
