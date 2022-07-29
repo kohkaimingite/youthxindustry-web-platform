@@ -3,6 +3,8 @@ import { Route, Link } from 'react-router-dom';
 import { Component } from 'react';
 import { React, useState, useEffect } from "react";
 import axios from 'axios';
+import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 //import zIndex from '@mui/material/styles/zIndex';
 // <button>About Us</button> 
@@ -33,7 +35,7 @@ const PartnerNavBar = () => {
                 <a href="/MyApplications" >User Applications</a>
                 <a href="/AddOppoPartner">Submit Oppo</a>
                 <a href="/Company">{currentUserName}</a>
-                <a onClick={logout}>Logout</a>
+                <a onClick={logout}><FontAwesomeIcon icon={faRightFromBracket} /></a>
 
 
             </div>
