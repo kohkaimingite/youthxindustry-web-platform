@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
-import NavBar from '../components/NavBar';
+import PartnerNavBar from '../components/PartnerNavBar';
 import axios from 'axios';
 import validator from "validator";
 
@@ -75,7 +75,7 @@ export default function AddOppoPartner() {
 
     return (
         <div className="AddOppoPartner">
-            <NavBar />
+            <PartnerNavBar />
             <h1 style={{ color: "yellow" }}>Add Opportunity</h1>
             <div style={styleDiv}>
 
