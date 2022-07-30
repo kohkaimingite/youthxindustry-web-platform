@@ -8,7 +8,6 @@ import axios from 'axios';
 const ViewReview = () => {
     const [searchInput, setSearchInput] = useState('');
     const [data, setData] = useState([]);
-    const [reviewList, setReviewList] = useState([]);
     const [order, setOrder] = useState("ascending");
     const sortWord = (col) => {
         if (order === "ascending") {
@@ -44,8 +43,6 @@ const ViewReview = () => {
         }
     }
 
-    let { storeUserID } = '';
-
     useEffect(() => {
         axios.get("http://localhost:3001/apReview").then((response) => {
 
@@ -57,28 +54,6 @@ const ViewReview = () => {
             console.log(error);
         })
     }, []);
-
-    const deleteReview = (OppID) => {
-        const newReview = [...userList];
-        const index = userList.findIndex((User) => User.UserID === UserID);
-        newUser.splice(index, 1);
-        setUserList(newUser);
-
-        if (
-            window.confirm("Are you sure you want to delete this user?")
-        ) {
-            axios.post("http://localhost:3001/apUserDelete", {
-                UserID: UserID,
-                adminUserID: parseInt(storeUserID)
-            }).then(() => {
-                console.log("Successfully Deleted.");
-                window.location.reload();
-            })
-            .catch(() => {
-                console.log("Failed to delete.");
-            });
-        }
-    };
 
     return (
         <div className="App">
@@ -92,47 +67,35 @@ const ViewReview = () => {
                     <tr>
                         <th style={{textAlign: "center"}} onClick={()=>sortNum("UserID")}> ID </th>
                         <th style={{textAlign: "center"}} onClick={()=>sortWord("Name")}> Name </th>
-                        <th style={{textAlign: "center"}} onClick={()=>sortWord("Email")}> Email </th>
-                        <th style={{textAlign: "center"}}> Age </th>
-                        <th style={{textAlign: "center"}}> Gender </th>
-                        <th style={{textAlign: "center"}}> UserBio </th>
-                        <th style={{textAlign: "center"}}> Contact </th>
-                        <th style={{textAlign: "center"}}> Actions </th>
+                        <th style={{textAlign: "center"}} onClick={()=>sortNum("OppID")}> Job Code </th>
+                        <th style={{textAlign: "center"}} onClick={()=>sortWord("Review")}> Review </th>
+                        <th style={{textAlign: "center"}} onClick={()=>sortNum("Rating")}> Rating </th>
                     </tr>
                 </thead>
                 <tbody>
                     {data.filter((User) => {
                         var strUserID = '' + User.UserID;
+                        var strOppID = '' + User.OppID;
 
                         if (searchInput == "") {
                             return User
                         } else if (strUserID.includes(searchInput)) {
                             return User
+                        } else if (strOppID.includes(searchInput)) {
+                            return User
                         } else if (User.Name.toLowerCase().includes(searchInput.toLowerCase())) {
                             return User
-                        } else if (User.Email.toLowerCase().includes(searchInput.toLowerCase())) {
+                        } else if (User.Review.toLowerCase().includes(searchInput.toLowerCase())) {
                             return User
                         }
                     }).map((User, key) => {
-                        storeUserID = User.UserID;
                         return (
                             <tr key={key}>
                                 <td> {User.UserID} </td>
                                 <td> {User.Name} </td>
-                                <td> {User.Email} </td>
-                                <td> {User.Age} </td>
-                                <td> {User.Gender} </td>
-                                <td> {User.UserBio} </td>
-                                <td> {User.ContactNumber} </td>
-                                <td>
-                                    <Link to={"/ViewUser/EditUser"}>
-                                        <button className="btn editButton">Edit</button>
-                                    </Link>
-
-                                    <button className="btn deleteButton" onClick={() => deleteUser(User.UserID)}>
-                                        Delete
-                                    </button>
-                                </td>
+                                <td> {User.OppID} </td>
+                                <td> {User.Review} </td>
+                                <td> {User.Rating} </td>
                             </tr>
                         )
                     })}

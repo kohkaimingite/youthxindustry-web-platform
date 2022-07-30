@@ -994,7 +994,7 @@ app.post('/apPartnerDelete', (req, res) => {
 });
 
 app.get('/apReview', (req, res) => {
-    db.query("SELECT * FROM users_have_opp",
+    db.query("SELECT users_have_opp.UserID, users.Name, users_have_opp.OppID, users_have_opp.Review, users_have_opp.Rating FROM users_have_opp INNER JOIN users on users.UserID = users_have_opp.UserID WHERE users_have_opp.Review IS NOT NULL AND users_have_opp.Rating IS NOT NULL;",
     (err, result) => {
         if (err) {
             console.log(err);
