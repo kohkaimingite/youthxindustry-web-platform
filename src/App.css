@@ -249,18 +249,18 @@ ul li {
 /*90px 80px top: 90px;*/
 
 .sidenav {
-    width: 17%;
+    width: auto;
     position: fixed;
     z-index: 1;
-    top: 90px;
-    height:630px;
+    top: 20%;
+    height: 630px;
     left: 0px;
     bottom: 0px;
     background: #eee;
     overflow-x: hidden;
     padding: 8px 0;
     text-align: left;
-    border-radius:10px;
+    border-radius: 10px;
 }
 
 .sidenav label {
