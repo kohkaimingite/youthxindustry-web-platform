@@ -40,7 +40,7 @@ export default function RegisterUser() {
             .catch((err) => {
 
                 if (err.response.status === 409) {
-                    setStatus("Email/Name taken!");
+                    setStatus("Email/Name taken");
                 } else {
                     setStatus("No server response!");
                 }
