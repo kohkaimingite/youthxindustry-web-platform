@@ -18,8 +18,8 @@ export default function LogAppTable({ data }) {
         OppID: '',
         Company: '',
         JobName: '',
-        Email: ''
-
+        Email: '',
+        Number: ''
     };
 
     function EmailConfirmation(appID) {
@@ -29,14 +29,16 @@ export default function LogAppTable({ data }) {
             emailInfo.OppID = response.data[0].OppID;
             emailInfo.JobName = response.data[0].Name;
             emailInfo.Email = response.data[0].Email;
+            emailInfo.Number = response.data[0].ContactNumber;
             axios.post("http://localhost:3001/OppForEmailConfirmation", {
                 OppID: parseInt(emailInfo.OppID),
             }).then((response) => {
                 emailInfo.Company = response.data[0].Name;
-                console.log(emailInfo);
+              
                 emailjs.send('service_x7yymg6', 'template_6artrdu', emailInfo, 'IsHv-S74WPDFFkoTT')
                     .then((result) => {
                         console.log(result.text);
+                        window.location.reload();
                     }, (error) => {
                         console.log(error.text);
                     });
@@ -55,9 +57,11 @@ export default function LogAppTable({ data }) {
             }).then((response) => {
                 console.log("Updated Sucessfully");
                 alert("Accepted!");
-                 { EmailConfirmation(appID) }
-                window.location.reload();
+                { EmailConfirmation(appID) }
+                console.log(emailInfo);
+                
             });
+           
         } else {
             alert("Application not Accepted")
         }

@@ -288,7 +288,7 @@ app.get("/getCompanyRatingStatsWithNull", function (req, res) {
 
 app.post('/AppForEmailConfirmation', (req, res) => {
     const AppID = req.body.AppID;
-    db.query("SELECT application.AppID, opportunities.OppID, opportunities.Name, users.Email FROM application INNER JOIN opportunities ON application.OppID = opportunities.OppID INNER JOIN users ON application.UserID = users.UserID INNER JOIN partner_have_opp ON partner_have_opp.OppID = application.OppID WHERE AppID = ?;",
+    db.query("SELECT application.AppID, opportunities.OppID, opportunities.Name, users.ContactNumber, users.Email FROM application INNER JOIN opportunities ON application.OppID = opportunities.OppID INNER JOIN users ON application.UserID = users.UserID INNER JOIN partner_have_opp ON partner_have_opp.OppID = application.OppID WHERE AppID = ?;",
         [AppID],
         (err, result) => {
             if (err) {
