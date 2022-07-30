@@ -317,7 +317,6 @@ app.get("/oppListingWithStatus", function (req, res) {
     if (req.session.user) {
         db.query("SELECT opportunities.OppID, opportunities.Name, opportunities.Confirmed, Posted FROM opportunities INNER JOIN partner_have_opp ON opportunities.OppID = partner_have_opp.OppID WHERE partner_have_opp.UserID = ? && Posted = 0 ORDER BY opportunities.OppID;",
             [req.session.user[0].UserID],
-
             (err, result) => {
                 if (err) {
                     console.log(err);
@@ -339,6 +338,38 @@ app.post("/postApprovedOppo", function (req, res) {
                     res.send(result);
                 }
             });  
+});
+
+app.post('/getApprovedOppoToAccept', function (req, res) {
+    db.query("SELECT opportunities.OppID, opportunities.Name, application.Status FROM application INNER JOIN opportunities ON opportunities.OppID = application.OppID WHERE UserID = ? && Status = 'Success'  ;",
+        [req.session.user[0].UserID],
+        (err, result) => {
+            if (err) {
+                console.log(err)
+                res.send(result);
+            } else {
+                res.send(result);
+            }
+        });
+});
+
+
+app.post("/userAcceptsOffer", (req, res) => {
+    const OppID = req.body.OppID;
+    db.query("INSERT INTO users_have_Opp (UserID, OppID) VALUES(?, ?);",
+        [req.session.user[0].UserID, OppID],
+        (err, result) => {
+            if (err) {
+                if (err.code === 'ER_DUP_ENTRY') {
+                    res.sendStatus(409);
+                } else {
+                    console.log(err);
+                }
+
+            } else {
+                res.send(result)
+            }
+        });
 });
 
 
