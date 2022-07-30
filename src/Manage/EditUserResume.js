@@ -9,11 +9,17 @@ import Collapsible from '../components/Collapsible';
 import { Route, Link } from 'react-router-dom';
 import axios from 'axios';
 
+
 function EditUserResume() {
     const [Check, setCheck] = useState("");
     const [Resume, setResume] = useState();
     const [ProfList, setProfList] = useState([]);
     const columns = ProfList[0] && Object.keys(ProfList[0]);
+    //const fileSelector = document.getElementById('resume');
+    //fileSelector.addEventListener('change', (event) => {
+    //    const fileList = event.target.files;
+    //    console.log(fileList);
+    //});
     const getProfile = () => {
 
     };
@@ -33,27 +39,84 @@ function EditUserResume() {
 
                 <div className="AlignMiddle">
 
-                    <form method="post">
+                <form>
                         <h3>New Resume: </h3>
 
                         <br />
-                        <label>Upload Your Resume: </label>
-                        <input type="file" id='Resume' placeholder="Upload file..." onChange={e => setResume(e.target.value)}></input><br />
-                        <button onClick={submit}> Confirm </button>
+                    <label>Upload Your Resume: </label>
+                    <input name="resume123" type="file" id='Resume' placeholder="Upload file..." onChange={e => setResume(e.target.value)}></input><br />
+                    <button onClick={submit}> Confirm </button>
                         <text align='left'>{Check}</text>
                     </form>
-                </div>
+            </div>
+
         </div>
     )
+    function stringToBinary(str) {
+        let strOut = "";
+        for (var i = 0; i < str.length; i++) {
+            strOut += str[i].charCodeAt(0).toString(2);
+        }
+        return strOut
+    }
+
+    function ArrayBufferToBinary(buffer) {
+        // Convert an array buffer to a string bit-representation: 0 1 1 0 0 0...
+        var dataView = new DataView(buffer);
+        var response = "", offset = (8 / 8);
+        for (var i = 0; i < dataView.byteLength; i += offset) {
+            response += dataView.getInt8(i).toString(2);
+        }
+        return response;
+    }
 
     function submit() {
-        axios.post("http://localhost:3001/EditUResume", {
-            Resume: Resume
-        }).then(() => {
-            console.log("Test");
-            /*setCheck(response.data);*/
-            window.location = "http://localhost:3000/Profile";
-        });
+       
+        //File theFile;   method="POST" action="/XIAOQUAN"
+        //theFile = new File(resume)
+        const file = new File([Resume], "Resume")
+
+
+        const file123 = document.getElementById('Resume').files[0];
+        const reader = new FileReader()
+        reader.readAsBinaryString(file123)
+        reader.onloadend = () => {
+            const binaryString = reader.result // Binary string.
+            var hexa = parseInt(binaryString, 2).toString(16).toUpperCase();
+            var asshoe = "x'"+hexa+"'"
+            const lol = reader.readAsText(file123);
+            const documentBlob = new Blob([file123], { type: 'application/pdf' })
+
+            axios.post("http://localhost:3001/EditUResume", {
+                Resume: reader.readAsText(documentBlob)
+            }).then(() => {
+                console.log("Test");
+                /*setCheck(response.data);*/
+                window.location = "http://localhost:3000/Profile";
+            });
+        }
+
+
+        
+        //reader.onload = function (e) {
+        //    const blob = new Blob([new Uint8Array(Resume)], { type: file.pdf });
+        //    console.log(blob instanceof Blob)
+            
+        //};
+
+        //const fileSelector = document.getElementById('file-selector');
+        //fileSelector.addEventListener('change', (event) => {
+        //    const fileList = event.target.files;
+        //    console.log(fileList);
+        //});
+        
+        //axios.post("http://localhost:3001/XIAOQUAN", {
+        //    Resume: file123.name
+        //}).then(() => {
+        //    console.log("Test");
+        //    /*setCheck(response.data);*/
+        //    /*window.location = "http://localhost:3000/Profile";*/
+        //});
     };
 }
 

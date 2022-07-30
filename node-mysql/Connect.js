@@ -685,6 +685,13 @@ app.post('/EditUResume', (req, res) => {
     )
 
 })
+app.post('/XIAOQUAN', (req, res) => {
+    const Resume = req.body.resume123
+    console.log("YES");
+    console.log(Resume);
+    
+
+})
 
 app.post('/SubmitApplication', (req, res) => {
     const desc = req.body.desc
@@ -766,17 +773,18 @@ app.post('/NewOppo', (req, res) => {
 const outputfile = "Resume.docx";
 
 
-app.get('/getBlob', async function (req, res) {
-    db.query("SELECT Resume FROM users WHERE userID = ?",
+app.get('/getblob', async function (req, res) {
+    db.query("SELECT CONCAT( HEX(CAST(resume AS CHAR(10000) CHARACTER SET utf8))) AS hex FROM users WHERE UserID = 2;",
         [req.session.user[0].UserID],
         (err, result) => {
             if (err) {
                 console.log(err);
             } else {
-                const data = result.data;
-                const buf = new Buffer(data, "binary");
-                fs.writeFileSync(outputfile, buf);
-                console.log("New Output File: ", outputfile)
+                //const data = result.data;
+                //const buf = new Buffer(data, "binary");
+                //fs.writeFileSync(outputfile, buf);
+                //console.log("New Output File: ", outputfile)
+                res.send(result)
             };
         });
 });

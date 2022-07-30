@@ -9,15 +9,32 @@ import axios from 'axios';
 import { faPencil } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 /*const fs = require('fs');*/
+import hexToArrayBuffer from 'hex-to-array-buffer'
+
+
+
 
 function UserProfile() {
     
     const [ProfList, setProfList] = useState([]);
     const columns = ProfList[0] && Object.keys(ProfList[0]);
     const [Resume, setResume] = useState();
+    const [test, setTest] = useState("");
+    const [testArray, setTestArray] = useState([]);
+
     const getProfile = () => {
 
     };
+
+    //const buffer = new Uint8Array(test.match(/[\da-f]{2}/gi).map(function (h) {
+    //    return parseInt(h, 16)
+    //}))
+    const buffer = hexToArrayBuffer(test)
+    //const blob = new buffer.Blob([buffer])
+    const blob = new Blob([buffer])
+    const blobURL = URL.createObjectURL(blob)
+
+
     useEffect(() => {
         axios.get("http://localhost:3001/profile").then((response) => {
 
@@ -28,10 +45,12 @@ function UserProfile() {
     },[]);
 
     useEffect(() => {
-        axios.get("http://getBlob").then((response) => {
+        axios.get("http://localhost:3001/getblob").then((response) => {
 
             console.log(response);
-            setResume(response.data);
+            setTestArray(response.data);
+            { testArray.map((row, key) => setTest(row["hex"]) )}
+
         })
     }, []);
     new File([Resume], "resumes")
@@ -81,8 +100,14 @@ function UserProfile() {
 
 
 
-
-
+                <h2>{test}</h2>
+                <h2>{blobURL}</h2>
+                <a download="hello.txt" href={URL.createObjectURL(blob)} id="link">Download</a>
+                {/*<h2>{buffer}</h2>*/}
+                {/*<h2>{row[0]}</h2>*/}
+                {/*{testArray.map((row, key) => <h2>{row[0]}</h2> )}*/}
+                
+                <img scr={blobURL} alt="Girl in a jacket"  width="500" height="600"/>
 
                 
                 
