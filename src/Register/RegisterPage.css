@@ -7,7 +7,7 @@
     align-items: center;
     justify-content: space-between;
     width: 400px;
-    box-shadow: rgb(128 128 128) 3px 1px 30px;
+    box-shadow: rgb(128 128 128) 0px 0px 8px;
     padding-bottom: 20px;
     padding-top: 30px;
     border-radius: 8px;
@@ -29,4 +29,14 @@
     .RegisterUserDiv button {
         margin-left: 120px;
         margin-top: 30px;
+        border-radius: 25px;
+        background: #2691d9;
+        font-size: 18px;
+        color: #e9f4fb;
+        font-weight: 700;
+        border: 1px solid;
     }
+.RegisterUserDiv p {
+    font-size: 16px;
+    color: red;
+}

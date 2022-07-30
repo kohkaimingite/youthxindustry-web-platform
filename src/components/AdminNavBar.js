@@ -9,8 +9,9 @@ const AdminNavBar = () => {
             <div class="containerNavBar borderYtoX">
                 <a href="/ViewUser">Users</a>
                 <a href="/ViewOppo">Opportunities</a>
+                <a href="/ConfirmOppo">Confirm Opportunities</a>
                 <a href="/ViewPartner">Partners</a>
-                <a href="/ConfirmPartner">Confirmation</a>
+                <a href="/ConfirmPartner">Confirm Partners</a>
                 <a onClick={logout}>Logout</a>
 
 

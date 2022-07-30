@@ -2,80 +2,47 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import AdminNavBar from '../../components/AdminNavBar';
-import "../Users/ViewUser.css";
+import "../Partners/ConfirmPartner.css";
 import axios from 'axios';
 
-const ViewUser = () => {
+const ConfirmPartners = () => {
     const [searchInput, setSearchInput] = useState('');
-    const [data, setData] = useState([]);
-    const [userList, setUserList] = useState([]);
-    const [order, setOrder] = useState("ascending");
-    const sortWord = (col) => {
-        if (order === "ascending") {
-            const sorted = [...data].sort((a, b) =>
-                a[col].toLowerCase() > b[col].toLowerCase ? 1 : -1
-            );
-            setData(sorted);
-            setOrder("descending");
-        }
-        if (order === "descending") {
-            const sorted = [...data].sort((a, b) =>
-                a[col].toLowerCase() < b[col].toLowerCase ? 1 : -1
-            );
-            setData(sorted);
-            setOrder("ascending");
-        }
-    }
 
-    const sortNum = (col) => {
-        if (order === "ascending") {
-            const sorted = [...data].sort((a, b) =>
-                a[col] - b[col]
-            );
-            setData(sorted);
-            setOrder("descending");
-        }
-        if (order === "descending") {
-            const sorted = [...data].sort((a, b) =>
-                b[col] - a[col]
-            );
-            setData(sorted);
-            setOrder("ascending");
-        }
-    }
+    const [data, setData] = useState([]);
+
+    const [partnerList, setPartnerList] = useState([]);
 
     let { storeUserID } = '';
 
     useEffect(() => {
-        axios.get("http://localhost:3001/apUser").then((response) => {
+        axios.get("http://localhost:3001/apPartnerConfirm").then((response) => {
 
             console.log(response);
             setData(response.data);
-            
+
         })
         .catch((error) => {
             console.log(error);
         })
     }, []);
 
-    const deleteUser = (UserID) => {
-        const newUser = [...userList];
-        const index = userList.findIndex((User) => User.UserID === UserID);
-        newUser.splice(index, 1);
-        setUserList(newUser);
+    const confirmPartner = (UserID) => {
+        const newPartner = [...partnerList];
+        const index = partnerList.findIndex((User) => User.UserID === UserID);
+        newPartner.splice(index, 1);
+        setPartnerList(newPartner);
 
         if (
-            window.confirm("Are you sure you want to delete this user?")
+            window.confirm("Are you sure you want to confirm registration for this partner?")
         ) {
-            axios.post("http://localhost:3001/apUserDelete", {
+            axios.post("http://localhost:3001/apConfirmRegistration", {
                 UserID: UserID,
                 adminUserID: parseInt(storeUserID)
             }).then(() => {
-                console.log("Successfully Deleted.");
-                window.location.reload();
+                console.log("Successfully Registered.");
             })
             .catch(() => {
-                console.log("Failed to delete.");
+                console.log("Failed to register.");
             });
         }
     };
@@ -90,11 +57,9 @@ const ViewUser = () => {
             <table className="User-Table">
                 <thead>
                     <tr>
-                        <th style={{textAlign: "center"}} onClick={()=>sortNum("UserID")}> ID </th>
-                        <th style={{textAlign: "center"}} onClick={()=>sortWord("Name")}> Name </th>
-                        <th style={{textAlign: "center"}} onClick={()=>sortWord("Email")}> Email </th>
-                        <th style={{textAlign: "center"}}> Age </th>
-                        <th style={{textAlign: "center"}}> Gender </th>
+                        <th style={{textAlign: "center"}}> ID </th>
+                        <th style={{textAlign: "center"}}> Name </th>
+                        <th style={{textAlign: "center"}}> Email </th>
                         <th style={{textAlign: "center"}}> UserBio </th>
                         <th style={{textAlign: "center"}}> Contact </th>
                         <th style={{textAlign: "center"}}> Actions </th>
@@ -103,6 +68,7 @@ const ViewUser = () => {
                 <tbody>
                     {data.filter((User) => {
                         var strUserID = '' + User.UserID;
+                        var strContactNumber = '' + User.ContactNumber;
 
                         if (searchInput == "") {
                             return User
@@ -112,6 +78,10 @@ const ViewUser = () => {
                             return User
                         } else if (User.Email.toLowerCase().includes(searchInput.toLowerCase())) {
                             return User
+                        } else if (User.UserBio.toLowerCase().includes(searchInput.toLowerCase())) {
+                            return User
+                        } else if (strContactNumber.includes(searchInput)) {
+                            return User
                         }
                     }).map((User, key) => {
                         storeUserID = User.UserID;
@@ -120,17 +90,11 @@ const ViewUser = () => {
                                 <td> {User.UserID} </td>
                                 <td> {User.Name} </td>
                                 <td> {User.Email} </td>
-                                <td> {User.Age} </td>
-                                <td> {User.Gender} </td>
                                 <td> {User.UserBio} </td>
                                 <td> {User.ContactNumber} </td>
                                 <td>
-                                    <Link to={"/ViewUser/EditUser"}>
-                                        <button className="btn editButton">Edit</button>
-                                    </Link>
-
-                                    <button className="btn deleteButton" onClick={() => deleteUser(User.UserID)}>
-                                        Delete
+                                    <button className="btn confirmButton" onClick={() => confirmPartner(User.UserID)}>
+                                        Confirm
                                     </button>
                                 </td>
                             </tr>
@@ -142,4 +106,4 @@ const ViewUser = () => {
     );
 }
 
-export default ViewUser;
+export default ConfirmPartners;

@@ -1,6 +1,4 @@
 import React from "react";
-import { faCheck, faTimes } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const EditableRows = ({ editFormData, handleEditFormChange, handleCancelClick }) => {
     return (
@@ -94,11 +92,11 @@ const EditableRows = ({ editFormData, handleEditFormChange, handleCancelClick })
             </td>
 
             <td>
-                <button style={{ backgroundColor: '#00FF00' }} type="submit">Save<FontAwesomeIcon icon={faCheck} /></button>
+                <button type="submit" style={{border:'none', background:'none', color: 'limegreen'}}>Save</button>
 
             </td>
             <td>
-                <button style={{ backgroundColor: '#FF0000' }} type="button" onClick={handleCancelClick}>Cancel<FontAwesomeIcon icon={faTimes} /></button>
+                <button type="button" style={{ border: 'none', background: 'none', color: 'orangered' }} onClick={handleCancelClick}>Cancel</button>
             </td>
         </tr>
 

@@ -1,11 +1,6 @@
 // JavaScript source code
 import { React, useState, useEffect } from "react";
-import TextField from "@mui/material/TextField";
-import List from "../Some test data/List";
-import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Collapsible from '../components/Collapsible';
-import { Route, Link } from 'react-router-dom';
 import axios from 'axios';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
@@ -23,8 +18,8 @@ export default function LogAppTable({ data }) {
         OppID: '',
         Company: '',
         JobName: '',
-        Email: ''
-
+        Email: '',
+        Number: ''
     };
 
     function EmailConfirmation(appID) {
@@ -34,14 +29,16 @@ export default function LogAppTable({ data }) {
             emailInfo.OppID = response.data[0].OppID;
             emailInfo.JobName = response.data[0].Name;
             emailInfo.Email = response.data[0].Email;
+            emailInfo.Number = response.data[0].ContactNumber;
             axios.post("http://localhost:3001/OppForEmailConfirmation", {
                 OppID: parseInt(emailInfo.OppID),
             }).then((response) => {
                 emailInfo.Company = response.data[0].Name;
-                console.log(emailInfo);
-                emailjs.send('service_nqak4rb', 'template_ej4c4sk', emailInfo, 'EOze04zGTBzzoGFXp')
+              
+                emailjs.send('service_x7yymg6', 'template_6artrdu', emailInfo, 'IsHv-S74WPDFFkoTT')
                     .then((result) => {
                         console.log(result.text);
+                        window.location.reload();
                     }, (error) => {
                         console.log(error.text);
                     });
@@ -61,7 +58,10 @@ export default function LogAppTable({ data }) {
                 console.log("Updated Sucessfully");
                 alert("Accepted!");
                 { EmailConfirmation(appID) }
+                console.log(emailInfo);
+                
             });
+           
         } else {
             alert("Application not Accepted")
         }
@@ -75,6 +75,7 @@ export default function LogAppTable({ data }) {
             }).then((response) => {
                 console.log("Updated Sucessfully");
                 alert("Rejected!")
+                window.location.reload();
             });
         } else {
             alert("Application not rejected")
@@ -82,7 +83,7 @@ export default function LogAppTable({ data }) {
     }
 
     return (
-        <table class="oppoTable">
+        <table class="AppTable1">
             <tr>
                 <th>Application ID</th>
                 <th>Opportunity ID</th>

@@ -1,13 +1,6 @@
-// JavaScript source code
-// JavaScript source code
 import PartnerNavBar from '../components/PartnerNavBar'
 import { React, useState, useEffect } from "react";
-import TextField from "@mui/material/TextField";
-import List from "../Some test data/List";
-import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Collapsible from '../components/Collapsible';
-import { Route, Link } from 'react-router-dom';
 import axios from 'axios';
 import ApplicationDataTable from './ApplicationDataTable'
 
@@ -28,7 +21,8 @@ function MyApplication() {
     return (
 
         <div className="App">
-            <PartnerNavBar/>
+            <PartnerNavBar />
+            <h1>Pending Applications</h1>
             <ApplicationDataTable data={AppList}/>
         </div>
 

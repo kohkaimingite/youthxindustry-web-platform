@@ -22,7 +22,9 @@ const EditOppo = () => {
     const validate = (values) => {
         const errors = {};
         const spRegex = /^\S*$/;
-        const qRegex = /\b(GCE O Level|GCE A Level|Diploma)\b/;
+        const txtRegex = /^[a-zA-Z\s]*$/;
+        const addRegex = /\b(Singapore)\b/;
+        const qRegex = /\b(PSLE|GCE O Level|GCE A Level|Diploma in|Bachelor of|Master of)\b/;
         if (!values.oppID) {
             errors.oppID = "OppID is required";
         } else if (!spRegex.test(values.oppID)) {
@@ -32,6 +34,8 @@ const EditOppo = () => {
         }
         if (!values.name) {
             errors.name = "Name is required";
+        } else if (!txtRegex.test(values.name)) {
+            errors.name = "Enter only in words"
         } else if (values.name.length > 50) {
             errors.name = "Name cannot exceed 50 characters";
         }
@@ -45,7 +49,7 @@ const EditOppo = () => {
         }
         if (!values.address) {
             errors.address = "Address is required";
-        } else if (values.address.includes("Singapore") == false) {
+        } else if (!addRegex.test(values.address)) {
             errors.address = "Only addresses in Singapore are allowed";
         } else if (values.address.length > 255) {
             errors.address = "Address cannot exceed 255 characters";
@@ -77,7 +81,9 @@ const EditOppo = () => {
         setIsSubmit(true);
         setFormErrors(validate(formValues));
         const spRegex = /^\S*$/;
-        const qRegex = /\b(GCE O Level|GCE A Level|Diploma)\b/;
+        const txtRegex = /^[a-zA-Z\s]*$/;
+        const addRegex = /\b(Singapore)\b/;
+        const qRegex = /\b(PSLE|GCE O Level|GCE A Level|Diploma in|Bachelor of|Master of)\b/;
         if (
             !formValues.oppID ||
             !formValues.name ||
@@ -88,10 +94,11 @@ const EditOppo = () => {
             !formValues.qualification ||
             !formValues.pay ||
             !spRegex.test(formValues.oppID) ||
+            !txtRegex.test(formValues.name) ||
             formValues.oppID.length > 6 ||
             formValues.name.length > 50 ||
             formValues.description.length > 255 ||
-            formValues.address.includes("Singapore") == false ||
+            !addRegex.test(formValues.address) ||
             formValues.address.length > 255 ||
             formValues.type.length > 50 ||
             !qRegex.test(formValues.qualification) ||
@@ -101,7 +108,7 @@ const EditOppo = () => {
         }
         else if (check === true) {
             {
-                axios.post("http://localhost:3001/apOppoEdit", {
+                axios.post("http://localhost:3001/apOppo", {
                     OppID: oppID,
                     name: name,
                     description: description,

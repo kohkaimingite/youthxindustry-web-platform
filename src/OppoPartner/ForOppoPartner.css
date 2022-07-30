@@ -1,12 +1,16 @@
 .OppoPartnerTable {
     table-layout: fixed;
-    width: 90%;
+    width: 85%;
     border-collapse: collapse;
     margin-left: 80px;
+    margin: auto;
     border-radius: 10px 10px 0 0;
     overflow: auto;
     box-shadow: 0 0 20px rgba(0,0,0,0.15);
     margin-top: 30px;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 400;
+    text-align: left;
 }
 
     .OppoPartnerTable th, td {
@@ -37,5 +41,9 @@
 
     .OppoPartnerTable td {
         overflow: auto;
+        text-align: left;
+        align-content: start;
+        list-style-position: inside;
+        text-align-last: left;
         text-indent: 0px;
     }

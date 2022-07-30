@@ -38,9 +38,8 @@ export default function AddOppoPartnerApproved() {
 	return (
 			<div>
 			<PartnerNavBar />
-			<h1 style={{ textAlign: "left" }}>Post Approved Opportunities </h1>
-			<p style={{ textAlign: "left", marginLeft: '12px', fontSize: '16px', color: 'blue' }}>*Opportunities have to be approved by admin before you are allowed to post</p>
-			<p style={{ textAlign: "left", marginLeft: '12px', fontSize: '16px', color: 'red' }}>*Unapproved post will not show up</p>
+			<h1 style={{ textAlign: "left" }}>Add Approved Opportunities </h1>
+			<p style={{ textAlign: "left", marginLeft: '12px', fontSize: '16px', color: 'red' }}>*Opportunities have to be approved by admin before you are allowed to post</p>
 			<div className="ApprovedTableDiv" >								
 				<table className="AddOppoPartnerApprovedTable">
 				<tr>
@@ -70,9 +69,9 @@ export default function AddOppoPartnerApproved() {
 						<Fragment>
 							{opp.Confirmed === 1 ?
 								(
-									<button type="button" class="btn btn-primary" onClick={() =>submitApprovedOppo(opp.OppID)}>Post</button>
+									<button type="button" class="btn btn-primary" onClick={() => submitApprovedOppo(opp.OppID)}>Post</button>
 								) : (
-									<button disabled type="button" class="btn btn-primary">Post</button>)}
+									<button disabled type="button" title="Button is enabled when status is approved" style={{ pointerEvents: 'auto'}} class="btn btn-primary">Post</button>)}
 						</Fragment>
 					</td>
 				</tr>

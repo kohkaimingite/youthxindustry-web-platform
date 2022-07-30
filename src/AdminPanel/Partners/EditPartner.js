@@ -22,7 +22,8 @@ const EditPartner = () => {
     const validate = (values) => {
         const errors = {}
         const spRegex = /^\S*$/;
-        const pwRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+        const txtRegex = /^[a-zA-Z\s]*$/;
+        const pwRegex = /(?=.*[A-Za-z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})/;
         const pnumRegex = /(^[689]{1}\d{7}$)/;
         if (!values.userID) {
             errors.userID = "UserID is required";
@@ -34,7 +35,7 @@ const EditPartner = () => {
         }
         if (!values.name) {
             errors.name = "Name is required";
-        } else if (!isNaN(values.name)) {
+        } else if (!txtRegex.test(values.name)) {
             errors.name = "Enter only in words"
         } else if (values.name.length > 50) {
             errors.name = "Name cannot exceed 50 characters";
@@ -42,7 +43,7 @@ const EditPartner = () => {
         if (!values.password) {
             errors.password = "Password is required";
         } else if (!pwRegex.test(values.password)) {
-            errors.password = "Password has to be at least 8 characters, at least 1 letter, and 1 number";
+            errors.password = "Password has to be at least 8 characters with at least 1 letter, 1 number, and 1 special character";
         } else if (values.password.length > 50) {
             errors.password = "Password cannot exceed 50 characters";
         }
@@ -75,7 +76,8 @@ const EditPartner = () => {
         setIsSubmit(true);
         setFormErrors(validate(formValues));
         const spRegex = /^\S*$/;
-        const pwRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+        const txtRegex = /^[a-zA-Z\s]*$/;
+        const pwRegex = /(?=.*[A-Za-z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})/;
         const pnumRegex = /(^[689]{1}\d{7}$)/;
         if (
             !formValues.userID ||
@@ -85,7 +87,7 @@ const EditPartner = () => {
             !formValues.email ||
             !formValues.contactNumber ||
             !spRegex.test(formValues.userID) ||
-            !isNaN(formValues.name) ||
+            !txtRegex.test(formValues.name) ||
             formValues.name.length > 50 ||
             !pwRegex.test(formValues.password) ||
             formValues.password.length > 50 ||
@@ -99,7 +101,7 @@ const EditPartner = () => {
         }
         else if (check === true) {
             {
-                axios.post("http://localhost:3001/apPartnerEdit", {
+                axios.post("http://localhost:3001/apPartner", {
                     UserID: userID,
                     RoleID: roleID,
                     name: name,
@@ -150,11 +152,11 @@ const EditPartner = () => {
                     alignContent: "center"
                 }}>
                 <label>UserID</label>
-                <input type="text" className="adminInput" name="userID" placeholder="UserID" value={formValues.userID} onChange={handleChange}></input>
+                <input type="text" className="adminInput" name="userID" placeholder="UserID ..." value={formValues.userID} onChange={handleChange}></input>
                 <p className="adminErrorMsg">{formErrors.userID}</p>
 
                 <label>RoleID</label>
-                <input type="number" className="adminInput" name="roleID" placeholder="Role 1 = User, Role 2 = Partner, Role 3 = Admin" 
+                <input type="number" className="adminInput" name="roleID" placeholder="1 = User, 2 = Partner, 3 = Admin" 
                 value={formValues.roleID} onChange={handleChange} min="1" max="3"></input>
                 <p className="adminErrorMsg">{formErrors.roleID}</p>
 

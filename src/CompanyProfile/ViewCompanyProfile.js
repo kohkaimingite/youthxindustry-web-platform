@@ -35,7 +35,7 @@ function ViewCompanyProfile() {
     useEffect(() => {
         Axios.get("http://localhost:3001/viewCompanyProfile").then((response) => {
             setStoreUser(response.data);
-
+            console.log(response.data);
         });
     }, []);
 
@@ -46,9 +46,10 @@ function ViewCompanyProfile() {
 
         }).then((response) => {
             setStoreOpp(response.data);
+            console.log(response.data);
 
         });
-    }, [storeOpp]);
+    }, [storeUser]);
 
     useEffect(() => {
         Axios.post("http://localhost:3001/getReviewRatingForCompany", {
@@ -56,9 +57,10 @@ function ViewCompanyProfile() {
 
         }).then((response) => {
             setStoreReviewRating(response.data);
+            console.log(response.data);
 
         });
-    }, [storeReviewRating]);
+    }, [storeUser]);
 
     const filteredRR = storeReviewRating.filter(reviewRating => {                 //Store the data that has ratings so that it can be displayer ltr
         return reviewRating.Rating !== null;

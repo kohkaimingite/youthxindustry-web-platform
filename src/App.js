@@ -32,7 +32,7 @@ import EditUserBio from './Manage/EditUserBio';
 import MyApplication from './Manage/MyApplication'; 
 import LoggedOppoPage from './OppoPage/LoggedOppoPage';
 import ViewOppoStatus from './OppoPage/ViewOppoStatus';
-
+import CheckOppo from './Manage/CheckOppo';
 
 import AdminPanel from './AdminPanel/AdminPanel';
 import ViewUser from './AdminPanel/Users/ViewUser';
@@ -41,8 +41,9 @@ import ViewOppo from './AdminPanel/Opportunities/ViewOppo';
 import EditOppo from './AdminPanel/Opportunities/EditOppo';
 import ViewPartner from './AdminPanel/Partners/ViewPartner';
 import EditPartner from './AdminPanel/Partners/EditPartner';
+// import ConfirmPartnerControl from './AdminPanel/Partners/ConfirmPartnerControl';
 import ConfirmPartner from './AdminPanel/Partners/ConfirmPartner';
-import ConfirmPartner1 from './AdminPanel/Partners/ConfirmPartner1';
+import ConfirmPartnerDatatable from './AdminPanel/Partners/ConfirmPartnerDatatable';
 import ProfilePage from './Manage/UserProfile';
 import CompanyPage from './Manage/CompanyProfile';
 import EditCompanyNumber from './Manage/EditCompanyNumber';
@@ -55,12 +56,12 @@ import OppoPartner from './OppoPartner/OppoPartner';
 import AddOppoPartner from './OppoPartner/AddOppoPartner';
 import SubmitApplication from './Manage/SubmitApplication';
 import RatingStats from './RatingStats/RatingStats';
-import JobConfirmation from './JobConfirmation/JobConfirmation';
 import AddOppoPartnerApproved from './OppoPartner/AddOppoPartnerApproved';
 import Protection from './Protection';
 import { BrowserRouter as Router, Routes, Route,Link, Navigate, Outlet, } from 'react-router-dom';
 
 
+{/*<Route path='/ConfirmOppo' element={<CheckOppo />} />*/ }
 
 // Idea:
 //top will be buttons "About" - "opportunities(have sub)" - "contact us" - "login"
@@ -196,7 +197,7 @@ function App() {
                     <Route path='/Favourites' element={<Favourites />} />
                     <Route path='/AddReview' element={<MakingReview />} />
                     <Route path='/ContactUs' element={<ContactPage />} />
-
+                    
                     <Route path='/EditUserResume' element={<EditUserResume />} />
                     <Route path='/RegisterUser' element={< RegisterUser />} />
                     <Route path='/EditUserBio' element={<EditUserBio />} />
@@ -221,8 +222,7 @@ function App() {
                 <Route path='/OppoPartner' element={<OppoPartner />} />
                 <Route path='/AddOppoPartner' element={<AddOppoPartner />} />
                 <Route path='/RatingStats' element={<RatingStats />} />
-                    <Route path='/JobConfirmation' element={<JobConfirmation />} />
-                    <Route path='/AddOppoPartnerApproved' element={<AddOppoPartnerApproved />} />
+                <Route path='/AddOppoPartnerApproved' element={<AddOppoPartnerApproved />} />
                     {/*<Route path='/OppoPage' element={<EditOppo />} />*/}
 
                 <Route path='/Company' element={<CompanyPage />} />
@@ -241,12 +241,13 @@ function App() {
                 <Route element={<ProtectedRouteAdmin user={user} />}>
                     <Route path='/AdminPanel' element={<AdminPanel />} />
                     <Route path='/ViewUser' element={<ViewUser />} />
-                    <Route path='/EditUser/:UserID' element={<EditUser />} />
+                    <Route path='/ViewUser/EditUser' element={<EditUser />} />
                     <Route path='/ViewOppo' element={<ViewOppo />} />
-                    <Route path='/EditOppo/:OppID' element={<EditOppo />} />
+                    <Route path='/ViewOppo/EditOppo' element={<EditOppo />} />
+                    <Route path='/ConfirmOppo' element={<CheckOppo />} />
                     <Route path='/ViewPartner' element={<ViewPartner />} />
-                    <Route path='/EditPartner/:UserID' element={<EditPartner />} />
-                    <Route path='/ConfirmPartner1' element={<ConfirmPartner1 />} />
+                    <Route path='/ViewPartner/EditPartner' element={<EditPartner />} />
+                    <Route path='/ConfirmPartner' element={<ConfirmPartner />} />
                 </Route>
             </Routes>
         </div>

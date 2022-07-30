@@ -100,18 +100,18 @@ app.post("/login", (req, res, next) => {
                     next();
 
                 } else if (result.length > 0 && result[0].Confirmed === 0) {
-                    res.send({ message: "This account has not been verified yet!" });
+                    res.send({ message: "Account has not been verified yet" });
                 }
 
                 else {
-                    res.send({ message: "Incorrect Combination!" });
+                    res.send({ message: "Incorrect Combination" });
                 }
 
 
             }
         )
     } else {
-        res.send({ message: "Please enter email and password!" });
+        res.send({ message: "Enter email and password" });
     }
 
 });
@@ -148,7 +148,7 @@ app.get("/logout", function (req, res) {
 
 app.get("/oppListing", function (req, res) {
     if (req.session.user) {
-        db.query("SELECT * FROM opportunities INNER JOIN partner_have_opp ON opportunities.OppID = partner_have_opp.OppID WHERE partner_have_opp.UserID = ? ORDER BY opportunities.OppID;",
+        db.query("SELECT * FROM opportunities INNER JOIN partner_have_opp ON opportunities.OppID = partner_have_opp.OppID WHERE partner_have_opp.UserID = ? && Posted = 1 ORDER BY opportunities.OppID;",
             [req.session.user[0].UserID],
 
             (err, result) => {
@@ -162,7 +162,7 @@ app.get("/oppListing", function (req, res) {
 });
 
 
-app.post("/addOppPartner", function (req, res) {
+/*app.post("/addOppPartner", function (req, res) {
     const name = req.body.name;
     const description = req.body.description;
     const location = req.body.location;
@@ -179,14 +179,14 @@ app.post("/addOppPartner", function (req, res) {
                 console.log(err);
             } else { res.send(result) };
         });
-});
+});*/
 
 
 app.post("/deleteOppPartner", (req, res) => {
     const oppId = req.body.oppId;
 
-    db.query("DELETE FROM partner_have_opp WHERE OppID = ? AND UserID = ?; DELETE FROM opportunities WHERE OppID = ?;",
-        [oppId, req.session.user[0].UserID, oppId],
+    db.query("DELETE FROM partner_have_opp WHERE OppID = ? AND UserID = ?; DELETE FROM opportunities WHERE OppID = ?;DELETE FROM application WHERE OppID =?",
+        [oppId, req.session.user[0].UserID, oppId, oppId],
         (err, result) => {
             if (err) {
                 console.log(err);
@@ -233,7 +233,7 @@ app.get("/viewCompanyProfile", (req, res) => {
 
 app.post("/getOppCards", (req, res) => {
     const UserID = req.body.UserID;
-    db.query("SELECT * FROM opportunities INNER JOIN partner_have_opp ON opportunities.OppID = partner_have_opp.OppID WHERE partner_have_opp.UserID = ? ORDER BY opportunities.OppID;",
+    db.query("SELECT * FROM opportunities INNER JOIN partner_have_opp ON opportunities.OppID = partner_have_opp.OppID WHERE partner_have_opp.UserID = ? && Posted = 1 ORDER BY opportunities.OppID;",
         [UserID],
         (err, result) => {
             if (err) {
@@ -288,7 +288,7 @@ app.get("/getCompanyRatingStatsWithNull", function (req, res) {
 
 app.post('/AppForEmailConfirmation', (req, res) => {
     const AppID = req.body.AppID;
-    db.query("SELECT application.AppID, opportunities.OppID, opportunities.Name, users.Email FROM application INNER JOIN opportunities ON application.OppID = opportunities.OppID INNER JOIN users ON application.UserID = users.UserID INNER JOIN partner_have_opp ON partner_have_opp.OppID = application.OppID WHERE AppID = ?;",
+    db.query("SELECT application.AppID, opportunities.OppID, opportunities.Name, users.ContactNumber, users.Email FROM application INNER JOIN opportunities ON application.OppID = opportunities.OppID INNER JOIN users ON application.UserID = users.UserID INNER JOIN partner_have_opp ON partner_have_opp.OppID = application.OppID WHERE AppID = ?;",
         [AppID],
         (err, result) => {
             if (err) {
@@ -751,7 +751,7 @@ app.post('/NewOppo', (req, res) => {
     const type = req.body.type;
     const qualification = req.body.qualification;
     const pay = req.body.pay;
-    db.query("INSERT INTO opportunities (Name,Description,Location,Address,Type, Qualification, Pay, confirmation, posted) VALUES (?, ?, ?, ?, ?, ?, ?, 1, 1",
+    db.query("INSERT INTO opportunities (Name,Description,Location,Address,Type, Qualification, Pay, confirmation, posted) VALUES (?, ?, ?, ?, ?, ?, ?, 0, 0)",
         [name, description, location, address, type, qualification, pay],
         (err, result) => {
             if (err) {
@@ -781,21 +781,60 @@ app.get('/getBlob', async function (req, res) {
         });
 });
 
+app.get('/CheckOppo', (req, res) => {
+    db.query("SELECT OppID, Name, Description, Location, Address, Type, Qualification, Pay FROM opportunities WHERE confirmation = 0 ",
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send(result)
+            }
+        });
+});
+
+app.post('/AcceptOppo', (req, res) => {
+    const OppID = req.body.OppID;
+    db.query("UPDATE opportunities SET confirmation = 1 WHERE OppID = ?;",
+        [OppID],
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send(result)
+            };
+            
+        });
+});
+
+app.post('/RejectOppo', (req, res) => {
+    const OppID = req.body.OppID;
+    db.query("UPDATE opportunities SET confirmation = 2 WHERE OppID = ?;",
+        [OppID],
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send(result)
+            };
+
+        });
+});
+
 
 //Zhi Wei
 
 app.get('/apUser', (req, res) => {
-    db.query("SELECT * from users INNER JOIN roles ON roles.RoleID = users.RoleID WHERE users.RoleID = 1 AND users.Confirmed = 1",
+    db.query("SELECT * FROM users INNER JOIN roles ON roles.RoleID = users.RoleID WHERE users.RoleID = 1 AND users.Confirmed = 1",
     (err, result) => {
         if (err) {
             console.log(err);
         } else {
             res.send(result)
-        };
+        }
     });
 });
 
-app.post('/apUserEdit', (req, res) => {
+app.post('/apUser', (req, res) => {
     const RoleID = req.body.RoleID;
     const Name = req.body.name;
     const Password = req.body.password;
@@ -815,9 +854,8 @@ app.post('/apUserEdit', (req, res) => {
             } else {
                 res.send("User edit success.");
             }
-        }
-    )
-})
+    });
+});
 
 app.post('/apUserDelete', (req, res) => {
     const UserID = req.body.UserID;
@@ -831,22 +869,21 @@ app.post('/apUserDelete', (req, res) => {
             } else {
                 res.send("User delete success.");
             }
-        }
-    )
-})
+    });
+});
 
 app.get('/apOppo', (req, res) => {
-    db.query("SELECT * FROM opportunities",
+    db.query("SELECT * FROM opportunities WHERE confirmation = 1",
     (err, result) => {
         if (err) {
             console.log(err);
         } else {
             res.send(result);
-        };
+        }
     });
 });
 
-app.post('/apOppoEdit', (req, res) => {
+app.post('/apOppo', (req, res) => {
     const Name = req.body.name;
     const Description = req.body.description;
     const Location = req.body.location;
@@ -865,9 +902,8 @@ app.post('/apOppoEdit', (req, res) => {
             } else {
                 res.send("Oppo edit success.");
             }
-        }
-    )
-})
+    });
+});
 
 app.post('/apOppoDelete', (req, res) => {
     const OppID = req.body.OppID;
@@ -881,30 +917,28 @@ app.post('/apOppoDelete', (req, res) => {
             } else {
                 res.send("Oppo delete success.");
             }
-        }
-    )
-    
-})
+    });
+});
 
 app.get('/apPartner', (req, res) => {
-    db.query("SELECT * from users INNER JOIN roles ON roles.RoleID = users.RoleID WHERE users.RoleID = 2 AND users.Confirmed = 1",
+    db.query("SELECT * FROM users INNER JOIN roles ON roles.RoleID = users.RoleID WHERE users.RoleID = 2 AND users.Confirmed = 1",
     (err, result) => {
         if (err) {
             console.log(err);
         } else {
             res.send(result);
-        };
+        }
     });
 });
 
 app.get('/apPartnerConfirm', (req, res) => {
-    db.query("SELECT * from users INNER JOIN roles ON roles.RoleID = users.RoleID WHERE users.RoleID = 2 AND users.Confirmed = 0",
+    db.query("SELECT users.UserID, users.Name, users.Email, users.UserBio, users.ContactNumber FROM users INNER JOIN roles ON roles.RoleID = users.RoleID WHERE users.RoleID = 2 AND users.Confirmed = 0",
     (err, result) => {
         if (err) {
             console.log(err);
         } else {
             res.send(result);
-        };
+        }
     });
 });
 
@@ -919,11 +953,11 @@ app.post('/apConfirmRegistration', (req, res) => {
             });
         } else {
             res.send("Updated Partner Registration.");
-        };
+        }
     });
 });
 
-app.post('/apPartnerEdit', (req, res) => {
+app.post('/apPartner', (req, res) => {
     const RoleID = req.body.RoleID;
     const Name = req.body.name;
     const Password = req.body.password;
@@ -941,9 +975,8 @@ app.post('/apPartnerEdit', (req, res) => {
             } else {
                 res.send("Updated Partner Information.");
             }
-        }
-    )
-})
+    });
+});
 
 app.post('/apPartnerDelete', (req, res) => {
     const UserID = req.body.UserID;
@@ -957,9 +990,19 @@ app.post('/apPartnerDelete', (req, res) => {
             } else {
                 res.send("Partner Information Deleted.");
             }
+    });
+});
+
+app.get('/apReview', (req, res) => {
+    db.query("SELECT * FROM users_have_opp",
+    (err, result) => {
+        if (err) {
+            console.log(err);
+        } else {
+            res.send(result);
         }
-    )
-})
+    });
+});
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
