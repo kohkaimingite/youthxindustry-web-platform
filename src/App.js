@@ -58,6 +58,7 @@ import AddOppoPartner from './OppoPartner/AddOppoPartner';
 import SubmitApplication from './Manage/SubmitApplication';
 import RatingStats from './RatingStats/RatingStats';
 import AddOppoPartnerApproved from './OppoPartner/AddOppoPartnerApproved';
+import AcceptJob from './AcceptJob/AcceptJob';
 import Protection from './Protection';
 import { BrowserRouter as Router, Routes, Route,Link, Navigate, Outlet, } from 'react-router-dom';
 
@@ -198,7 +199,7 @@ function App() {
                     <Route path='/Favourites' element={<Favourites />} />
                     <Route path='/AddReview' element={<MakingReview />} />
                     <Route path='/ContactUs' element={<ContactPage />} />
-                    
+                    <Route path='/AcceptJob' element={<AcceptJob />} />
                     <Route path='/EditUserResume' element={<EditUserResume />} />
                     <Route path='/RegisterUser' element={< RegisterUser />} />
                     <Route path='/EditUserBio' element={<EditUserBio />} />
@@ -224,8 +225,6 @@ function App() {
                 <Route path='/AddOppoPartner' element={<AddOppoPartner />} />
                 <Route path='/RatingStats' element={<RatingStats />} />
                 <Route path='/AddOppoPartnerApproved' element={<AddOppoPartnerApproved />} />
-                    {/*<Route path='/OppoPage' element={<EditOppo />} />*/}
-
                 <Route path='/Company' element={<CompanyPage />} />
                 <Route path='/Profile' element={<ProfilePage />} />
                 <Route path='/EditCompanyNumber' element={<EditCompanyNumber />} />
