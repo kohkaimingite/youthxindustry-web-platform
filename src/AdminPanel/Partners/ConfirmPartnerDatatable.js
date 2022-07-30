@@ -27,6 +27,7 @@ export default function LogConfirmPartner({ data }) {
                 emailjs.send('service_x7yymg6', 'template_xybwe6e', emailInfo, 'IsHv-S74WPDFFkoTT')
                     .then((result) => {
                         console.log(result.text);
+                        window.location.reload();
                     }, (error) => {
                         console.log(error.text);
                     });

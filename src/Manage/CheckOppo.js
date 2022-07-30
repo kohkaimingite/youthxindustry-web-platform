@@ -1,5 +1,6 @@
-import PartnerNavBar from '../components/PartnerNavBar'
 import { React, useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import AdminNavBar from '../components/AdminNavBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import CheckOppoTable from './CheckOppoTable'
@@ -22,7 +23,10 @@ function MyApplication() {
     return (
 
         <div className="App">
-            <PartnerNavBar />
+            <AdminNavBar />
+            <Link to="/AdminPanel">
+                <button className="btn backButton">Go Back to Admin Panel</button>
+            </Link>
             <h1>Pending Opportunities</h1>
             <CheckOppoTable data={OppList} />
         </div>

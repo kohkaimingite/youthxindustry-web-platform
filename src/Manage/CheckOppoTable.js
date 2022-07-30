@@ -1,7 +1,7 @@
 // JavaScript source code
 // JavaScript source code
 import { React, useState, useEffect } from "react";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "../AdminPanel/Partners/ConfirmPartner.css";
 import axios from 'axios';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
@@ -21,6 +21,7 @@ export default function LogAppTable({ data }) {
             }).then((response) => {
                 console.log("Updated Sucessfully");
                 alert("Accepted!");
+                window.location.reload();
             });
         } else {
             alert("Opportunity not Accepted")
@@ -35,6 +36,7 @@ export default function LogAppTable({ data }) {
             }).then((response) => {
                 console.log("Updated Sucessfully");
                 alert("Rejected!")
+                window.location.reload();
             });
         } else {
             alert("Opportunity not rejected")
@@ -42,32 +44,31 @@ export default function LogAppTable({ data }) {
     }
 
     return (
-        <table class="AppTable1">
-            <tr>
-                <th>Opportunity ID</th>
-                <th>Opportunity Name</th>
-                <th>Description</th>
-                <th>Location</th>
-                <th>Address</th>
-                <th>Category</th>
-                <th>Qualification</th>
-                <th>Pay</th>
-                <th>Accept</th>
-                <th>Reject</th>
+        <table className="User-Table">
+            <thead>
+                <tr>
+                    <th> Job Code </th>
+                    <th> Job Name </th>
+                    <th> Description </th>
+                    <th> Area </th>
+                    <th> Address </th>
+                    <th> Category(-ies) </th>
+                    <th> Qualification </th>
+                    <th> Pay </th>
+                    <th> Accept </th>
+                    <th> Reject </th>
+                </tr>
+            </thead>
+            <tbody>
+                {data.map(row => <tr>
+                    {
+                        columns.map(column => <td style={{ textAlign: 'center' }}>{row[column]}</td>)
 
-
-
-            </tr>
-            {data.map(row => <tr>
-                {
-                    columns.map(column => <td style={{ textAlign: 'center' }}>{row[column]}</td>)
-
-                }
-                <td><FontAwesomeIcon icon={faCheck} onClick={() => Accept(row[columns[0]])}> </FontAwesomeIcon></td>
-                <td><FontAwesomeIcon icon={faX} onClick={() => Reject(row[columns[0]])}> </FontAwesomeIcon></td>
-
-            </tr>)}
+                    }
+                    <td><FontAwesomeIcon icon={faCheck} onClick={() => Accept(row[columns[0]])}> </FontAwesomeIcon></td>
+                    <td><FontAwesomeIcon icon={faX} onClick={() => Reject(row[columns[0]])}> </FontAwesomeIcon></td>
+                </tr>)}
+            </tbody>
         </table>
     )
-
 }

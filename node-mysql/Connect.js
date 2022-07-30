@@ -782,7 +782,7 @@ app.get('/getBlob', async function (req, res) {
 });
 
 app.get('/CheckOppo', (req, res) => {
-    db.query("SELECT * FROM opportunities WHERE confirmation = 0 ",
+    db.query("SELECT OppID, Name, Description, Location, Address, Type, Qualification, Pay FROM opportunities WHERE confirmation = 0 ",
         (err, result) => {
             if (err) {
                 console.log(err);
@@ -873,7 +873,7 @@ app.post('/apUserDelete', (req, res) => {
 });
 
 app.get('/apOppo', (req, res) => {
-    db.query("SELECT * FROM opportunities",
+    db.query("SELECT * FROM opportunities WHERE confirmation = 1",
     (err, result) => {
         if (err) {
             console.log(err);
