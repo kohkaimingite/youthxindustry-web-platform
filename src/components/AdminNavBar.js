@@ -12,6 +12,7 @@ const AdminNavBar = () => {
                 <a href="/ConfirmOppo">Confirm Opportunities</a>
                 <a href="/ViewPartner">Partners</a>
                 <a href="/ConfirmPartner">Confirm Partners</a>
+                <a href="/ViewReview">Reviews</a>
                 <a onClick={logout}>Logout</a>
 
 

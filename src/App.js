@@ -44,6 +44,7 @@ import EditPartner from './AdminPanel/Partners/EditPartner';
 // import ConfirmPartnerControl from './AdminPanel/Partners/ConfirmPartnerControl';
 import ConfirmPartner from './AdminPanel/Partners/ConfirmPartner';
 import ConfirmPartnerDatatable from './AdminPanel/Partners/ConfirmPartnerDatatable';
+import ViewReview from './AdminPanel/Reviews/ViewReview';
 import ProfilePage from './Manage/UserProfile';
 import CompanyPage from './Manage/CompanyProfile';
 import EditCompanyNumber from './Manage/EditCompanyNumber';
@@ -248,6 +249,7 @@ function App() {
                     <Route path='/ViewPartner' element={<ViewPartner />} />
                     <Route path='/ViewPartner/EditPartner' element={<EditPartner />} />
                     <Route path='/ConfirmPartner' element={<ConfirmPartner />} />
+                    <Route path='/ViewReview' element={<ViewReview />} />
                 </Route>
             </Routes>
         </div>
