@@ -148,29 +148,30 @@ export default function OppoPartner() {
             <div className="OppoPartner">
                 <form onSubmit={handleEditFormSubmit}>
                     <table class="OppoPartnerTable">
+                        <tbody>
+                            <tr>
+                                <th style={{ textAlign: "left" }}>Job Code</th>
+                                <th style={{ textAlign: "left" }}>Job Name</th>
+                                <th style={{ textAlign: "left" }}>Description</th>
+                                <th style={{ textAlign: "left" }}>Location</th>
+                                <th style={{ textAlign: "left" }}>Address</th>
+                                <th style={{ textAlign: "left" }}>Job Categories</th>
+                                <th style={{ textAlign: "left" }}>Qualification</th>
+                                <th style={{ textAlign: "left" }}>Pay (SGD) </th>
+                                <th style={{ textAlign: "left" }}>Edit</th>
+                                <th style={{ textAlign: "left" }}>Delete</th>
 
-                        <tr>
-                            <th style={{ textAlign: "left" }}>Job Code</th>
-                            <th style={{ textAlign: "left" }}>Job Name</th>
-                            <th style={{ textAlign: "left" }}>Description</th>
-                            <th style={{ textAlign: "left" }}>Location</th>
-                            <th style={{ textAlign: "left" }}>Address</th>
-                            <th style={{ textAlign: "left" }}>Job Categories</th>
-                            <th style={{ textAlign: "left" }}>Qualification</th>
-                            <th style={{ textAlign: "left" }}>Pay (SGD) </th>
-                            <th style={{ textAlign: "left" }}>Edit</th>
-                            <th style={{ textAlign: "left" }}>Delete</th>
-
-                        </tr>
-                        {oppList.map((opp) => (
-                            <Fragment>
-                                {editOppId === opp.OppID ?
-                                    (
-                                        <EditableRows editFormData={editFormData} handleEditFormChange={handleEditFormChange} handleCancelClick={handleCancelClick} />
-                                    ) : (
-                                        <ReadOnlyRow opp={opp} handleEditClick={handleEditClick} handleDeleteClick={handleDeleteClick} />)}
-                            </Fragment>
-                        ))}
+                            </tr>
+                            {oppList.map((opp) => (
+                                <Fragment>
+                                    {editOppId === opp.OppID ?
+                                        (
+                                            <EditableRows editFormData={editFormData} handleEditFormChange={handleEditFormChange} handleCancelClick={handleCancelClick} />
+                                        ) : (
+                                            <ReadOnlyRow opp={opp} handleEditClick={handleEditClick} handleDeleteClick={handleDeleteClick} />)}
+                                </Fragment>
+                            ))}
+                        </tbody>
                     </table>
                 </form>
             </div>
