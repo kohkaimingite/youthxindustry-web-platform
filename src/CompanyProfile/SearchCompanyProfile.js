@@ -26,10 +26,10 @@ function SearchCompanyProfile() {
         }
     };
 
-    const clearInput = () => {
-        setFilteredData([]);
-        setWordEntered("");
-    };
+    /* const clearInput = () => {
+         setFilteredData([]);
+         setWordEntered("");
+     };*/
 
     useEffect(() => {
         Axios.get("http://localhost:3001/viewCompanyProfile").then((response) => {
@@ -44,16 +44,16 @@ function SearchCompanyProfile() {
             <LoggedNavBar />
             <div className="search" >
                 <div className="searchInputs" >
-                    <p style={{ marginRight: '330px' }}>Search</p>
+                    <p style={{ marginRight: '330px' }}>Search </p>
                     <input type="text" onChange={handleFilter} placeholder="Search Companies" value={wordEntered} style={{ width: "400px" }} />
-                    <div className="searchIcon">
+                    {/* <div className="searchIcon">
                         {filteredData.length === 0 ? <FontAwesomeIcon icon={faSearch} /> : <FontAwesomeIcon icon={faX} id="clearBtn" onClick={clearInput} />}
-                    </div>
+                    </div>*/}
                     {filteredData.length != 0 && (
                         <div className="dataResult">
                             {filteredData.slice(0, 10).map((user, k) => {
                                 return (
-                                    <a className="dataItem" href={'/ViewCompanyProfile/' + user.Name}>
+                                    <a className="dataItem" key={k} href={'/ViewCompanyProfile/' + user.Name}>
                                         <p>{user.Name}</p>
                                     </a>
                                 );
@@ -61,8 +61,9 @@ function SearchCompanyProfile() {
                         </div>
                     )}
                 </div>
-
             </div>
+
+
         </div>
     );
 }
