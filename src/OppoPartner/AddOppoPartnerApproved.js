@@ -22,17 +22,20 @@ export default function AddOppoPartnerApproved() {
     }, []);
 
     const submitApprovedOppo = (OppID) => {
-        Axios.post("http://localhost:3001/postApprovedOppo", {
-            OppID: OppID
-        }).then(() => {
-            console.log("Posted");
-            window.location.reload();
+        if (window.confirm("Add Opportunity?")) {
+            Axios.post("http://localhost:3001/postApprovedOppo", {
+                OppID: OppID
+            }).then(() => {
+                console.log("Posted");
+                window.location.reload();
 
-        })
-            .catch(() => {
-                console.log("Not posted");
-            });
-
+            })
+                .catch(() => {
+                    console.log("Not posted");
+                });
+        } else {
+            window.alert("Action Cancelled")
+        }
     }
 
     return (
