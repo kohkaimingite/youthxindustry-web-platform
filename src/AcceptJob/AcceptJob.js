@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState, useEffect } from "react";
 import Axios from 'axios';
 import LoggedNavBar from "../components/LoggedNavBar";
 import emailjs from '@emailjs/browser';
@@ -37,7 +37,7 @@ export default function AcceptJob() {
                     .then((result) => {
                         console.log(result.text);
                         console.log(emailInfo);
-                        setAcceptedText("Job Accepted! JobCode:" +OppID);
+                        setAcceptedText("Job Accepted! JobCode:" + OppID);
                     }, (error) => {
                         console.log(error.text);
                     });
@@ -61,11 +61,10 @@ export default function AcceptJob() {
         if (window.confirm("Accept Offer? You will no longer be able to accept another offer! An email will also be send to notify the company.")) {
             Axios.post("http://localhost:3001/userAcceptsOffer", {
                 OppID: parseInt(OppID),
-               
+
             }).then((response) => {
                 console.log("Accepted");
-           
-                { EmailAccept(OppID) }
+                EmailAccept(OppID);
 
 
             })
@@ -85,12 +84,12 @@ export default function AcceptJob() {
     return (
         <div>
             <LoggedNavBar />
-            <h1 style={{ textAlign: "left" }}>Accept Offers</h1>
+            <h1 style={{ textAlign: "left" }}>Accept Offer</h1>
             <p style={{ textAlign: "left", marginLeft: '12px', fontSize: '16px', color: 'red' }}>*Once an offer is accepted, you will no longer be able to accept other offers</p>
             <div className="ApprovedTableDiv" >
                 <h1 style={{ fontSize: '20px' }}>Offers received: {oppList.length}</h1>
+                <p style={{ color: 'limegreen' }}>{acceptedText}</p>
                 <p style={{ color: 'red' }}> {status}</p>
-                <p style={{color:'limegreen'}}>{acceptedText}</p>
                 <table className="AddOppoPartnerApprovedTable">
                     <tbody>
                         <tr>

@@ -14,6 +14,7 @@ function EditCompany() {
     const [Bio, setBio] = useState("");
     const [CompList, setCompList] = useState([]);
     const columns = CompList[0] && Object.keys(CompList[0]);
+    const [charCount, setCharCount] = useState(0);
 
     useEffect(() => {
         axios.get("http://localhost:3001/Company").then((response) => {
@@ -27,32 +28,20 @@ function EditCompany() {
     return (
         <div className="App">
             <PartnerNavBar />
-            <div className="Main">
-                <h1>Edit Company Profile </h1>
-                <div className="AlignLeft">
-                    <h3> Details: </h3>
-                    <form method="post">
-                        {CompList.map((val, key) => {
-                            return <text align="Left">Company Bio: {val.PartnerBio}</text>;
-                        })}<br />
-
-
-                    </form>
-
-                </div>
-
-                <div className="AlignMiddle">
-                    <h3> Changes: </h3>
-                    <label>New Bio</label>
-                    <input type="text" id="bio" placeholder="Enter a Bio..." onChange={e => setBio(e.target.value)}></input><br />
-                    <br />
-                    <button onClick={submit}> Confirm </button>
-                </div>
-
-
+            <div className="wholeProfile">
+                <titleSection2>
+                    <h1>Edit Company Bio</h1>
+                </titleSection2>
+                <leftSection style={{ textAlign: "left" }}>
+                    <text style={{ fontSize: "20px" }}>Current Bio:</text><br />
+                    {CompList.map((val, key) => {
+                        return <text style={{ fontSize: "20px" }}>{val.UserBio} </text>;
+                    })}
+                </leftSection>
+                <textarea placeholder="Provide A New Bio! Maximum of 500 Characters" id="Bio" name="Bio" value={Bio} onChange={e => { setBio(e.target.value); setCharCount(e.target.value.length) }} style={{ width: '700px' }} maxLength="500"> </textarea><br />
+                <text style={{ fontSize: "20px" }} > Current Characters: {charCount}</text><br />
+                <Button variant="primary" type="submit" onClick={submit}>Update Bio</Button>
             </div>
-
-
 
         </div>
     )

@@ -10,13 +10,9 @@ import { Route, Link } from 'react-router-dom';
 import axios from 'axios';
 
 function EditCompany() {
-    const [Check, setCheck] = useState("");
-    const [Bio, setBio] = useState("");
-    const [EmailCheck, setEmailCheck] = useState("test");
-    const [Number, setNumber] = useState("");
-    const [Email, setEmail] = useState("");
-    const [NumberCheck, setNumberCheck] = useState("");
+    const [Number, setNumber] = useState(0);
     const [CompList, setCompList] = useState([]);
+    const [Check, setCheck] = ("");
     const columns = CompList[0] && Object.keys(CompList[0]);
 
     useEffect(() => {
@@ -26,45 +22,30 @@ function EditCompany() {
             setCompList(response.data);
 
         });
-    },[]);
+    }, []);
 
     return (
         <div className="App">
             <PartnerNavBar />
-            <div className="Main">
-                <h1>Edit Company Number </h1>
-                <div className="AlignLeft">
-                    <h3> Details: </h3>
-                    <form method="post">
-                        {CompList.map((val, key) => {
-                            return <text align="Left">Contact Number: {val.ContactNumber}</text>;
-                        })}<br />
-
-
-                    </form>
-
-                </div>
-
-                <div className="AlignMiddle">
-                    <h3> Changes: </h3>
-                    <br />
-                    <label>New Contact Number</label>
-                    <input type="text" id="number" placeholder="Enter a Contact Number..." onChange={e => setNumber(e.target.value)}></input><br />
-
-                </div>
-
-
+            <div className="wholeProfile">
+                <titleSection2>
+                    <h1>Edit Company Number</h1>
+                </titleSection2>
+                <leftSection style={{ textAlign: "left" }}>
+                    <text style={{ fontSize: "20px" }}>Current Number:</text><br />
+                    {CompList.map((val, key) => {
+                        return <text style={{ fontSize: "20px" }}>{val.ContactNumber} </text>;
+                    })}
+                </leftSection>
+                <input type='Number' id='Number' name='Number' onChange={e => { setNumber(e.target.value);}} style={{ width: '200px' }}></input><br />
+                <Button variant="primary" type="submit" onClick={submit}>Update Contact Number</Button><br />
             </div>
 
-        
-        
         </div>
-        )
+    )
     function submit() {
         axios.post("http://localhost:3001/EditCNumber", {
             Number: parseInt(Number),
-            Email: Email,
-            Bio: Bio
         }).then(() => {
             console.log("Test");
             /*setCheck(response.data);*/
@@ -72,7 +53,6 @@ function EditCompany() {
         });
 
     };
-
 
 }
 

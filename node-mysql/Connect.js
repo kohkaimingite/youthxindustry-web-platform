@@ -378,7 +378,7 @@ app.post('/oppForEmailAcceptance', (req, res) => {
         [OppID],
         (err, result) => {
             if (err) {
-                console.log("problem");
+                console.log(err);
             } else {
                 res.send(result);
                 console.log(result);
@@ -391,7 +391,7 @@ app.post('/userForEmailAcceptance', function (req, res) {
         [req.session.user[0].UserID],
         (err, result) => {
             if (err) {
-                console.log("problem");
+                console.log(err);
             } else {
                 res.send(result);
                 console.log(result);
@@ -399,6 +399,17 @@ app.post('/userForEmailAcceptance', function (req, res) {
         });
 });
 
+app.get('/findOppForRecommendCompany', (req, res) => {
+    db.query("SELECT * FROM partner_have_opp;",
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send(result);
+                console.log(result);
+            }
+        });
+});
 
 //Andrea
 
@@ -676,7 +687,7 @@ app.post('/EditUNumber', (req, res) => {
 
 app.post('/EditCBio', (req, res) => {
     const Bio = req.body.Bio;
-    db.query('UPDATE users UserBio = ? WHERE UserID = ?;',
+    db.query('UPDATE users SET UserBio = ? WHERE UserID = ?;',
         [Bio, req.session.user[0].UserID],
         (err, result) => {
             if (err) {
@@ -891,8 +902,8 @@ app.post('/NewOppo', (req, res) => {
     const type = req.body.type;
     const qualification = req.body.qualification;
     const pay = req.body.pay;
-    db.query("INSERT INTO opportunities (Name,Description,Location,Address,Type, Qualification, Pay, Confirmed, Posted) VALUES (?, ?, ?, ?, ?, ?, ?, 0, 0)",
-        [name, description, location, address, type, qualification, pay],
+    db.query("INSERT INTO opportunities (Name,Description,Location,Address,Type, Qualification, Pay, Confirmed, Posted) VALUES (?, ?, ?, ?, ?, ?, ?, 0, 0); SET @id = LAST_INSERT_ID(); INSERT INTO partner_have_opp (UserID, OppID) VALUES (?, @id);"",
+    [name, description, location, address, type, qualification, pay, req.session.user[0].UserID],
         (err, result) => {
             if (err) {
                 console.log(err);
