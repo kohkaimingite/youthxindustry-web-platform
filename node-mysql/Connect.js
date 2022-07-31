@@ -602,7 +602,7 @@ app.post('/addFav', (req, res) => {
 
 });
 app.get('/getReview', (req, res) => {
-    db.query("SELECT users_have_opp.UserID, users_have_opp.OppID, users_have_opp.Review, users_have_opp.Rating, opportunities.Name FROM users_have_opp INNER JOIN opportunities ON users_have_opp.OppID = opportunities.OppID WHERE Review IS NULL AND users_have_opp.UserID = ? AND opportunities.confirmation = 1 AND opportunities.posted = 1 ORDER BY OppID",
+    db.query("SELECT users_have_opp.UserID, users_have_opp.OppID, users_have_opp.Review, users_have_opp.Rating, opportunities.Name FROM users_have_opp INNER JOIN opportunities ON users_have_opp.OppID = opportunities.OppID WHERE Review IS NULL AND users_have_opp.UserID = ? AND opportunities.Confirmed = 1 AND opportunities.Posted = 1 ORDER BY OppID",
         [req.session.user[0].UserID],
         (err, result) => {
             if (err) {
@@ -796,7 +796,7 @@ app.post('/RejectApplication', (req, res) => {
 
 app.post('/GetOppo1', (req, res) => {
     const OppID = req.body.OppID;
-    db.query("SELECT * FROM opportunities WHERE OppID = ? AND confirmation = 1 AND posted = 1",
+    db.query("SELECT * FROM opportunities WHERE OppID = ? AND Confirmed = 1 AND Posted = 1",
         [OppID],
         (err, result) => {
             if (err) {
@@ -816,7 +816,7 @@ app.post('/NewOppo', (req, res) => {
     const type = req.body.type;
     const qualification = req.body.qualification;
     const pay = req.body.pay;
-    db.query("INSERT INTO opportunities (Name,Description,Location,Address,Type, Qualification, Pay, confirmation, posted) VALUES (?, ?, ?, ?, ?, ?, ?, 0, 0)",
+    db.query("INSERT INTO opportunities (Name,Description,Location,Address,Type, Qualification, Pay, Confirmed, Posted) VALUES (?, ?, ?, ?, ?, ?, ?, 0, 0)",
         [name, description, location, address, type, qualification, pay],
         (err, result) => {
             if (err) {
@@ -848,7 +848,7 @@ app.get('/getblob', async function (req, res) {
 });
 
 app.get('/CheckOppo', (req, res) => {
-    db.query("SELECT OppID, Name, Description, Location, Address, Type, Qualification, Pay FROM opportunities WHERE confirmation = 0 ",
+    db.query("SELECT OppID, Name, Description, Location, Address, Type, Qualification, Pay FROM opportunities WHERE Confirmed = 0 ",
         (err, result) => {
             if (err) {
                 console.log(err);
@@ -860,7 +860,7 @@ app.get('/CheckOppo', (req, res) => {
 
 app.post('/AcceptOppo', (req, res) => {
     const OppID = req.body.OppID;
-    db.query("UPDATE opportunities SET confirmation = 1 WHERE OppID = ?;",
+    db.query("UPDATE opportunities SET Confirmed = 1 WHERE OppID = ?;",
         [OppID],
         (err, result) => {
             if (err) {
@@ -874,7 +874,7 @@ app.post('/AcceptOppo', (req, res) => {
 
 app.post('/RejectOppo', (req, res) => {
     const OppID = req.body.OppID;
-    db.query("UPDATE opportunities SET confirmation = 2 WHERE OppID = ?;",
+    db.query("UPDATE opportunities SET Confirmed = 2 WHERE OppID = ?;",
         [OppID],
         (err, result) => {
             if (err) {
@@ -939,7 +939,7 @@ app.post('/apUserDelete', (req, res) => {
 });
 
 app.get('/apOppo', (req, res) => {
-    db.query("SELECT * FROM opportunities WHERE confirmation = 1",
+    db.query("SELECT * FROM opportunities WHERE Confirmed = 1",
     (err, result) => {
         if (err) {
             console.log(err);

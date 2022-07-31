@@ -176,7 +176,7 @@ app.post('/apUserDelete', (req, res) => {
 });
 
 app.get('/apOppo', (req, res) => {
-    db.query("SELECT * FROM opportunities WHERE confirmation = 1",
+    db.query("SELECT * FROM opportunities WHERE Confirmed = 1",
     (err, result) => {
         if (err) {
             console.log(err);
