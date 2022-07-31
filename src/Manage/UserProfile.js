@@ -10,7 +10,7 @@ import { faPencil } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 /*const fs = require('fs');*/
 import hexToArrayBuffer from 'hex-to-array-buffer'
-
+const arrayBufferToHex = require('array-buffer-to-hex')
 
 
 
@@ -31,7 +31,8 @@ function UserProfile() {
     //}))
     const buffer = hexToArrayBuffer(test)
     //const blob = new buffer.Blob([buffer])
-    const blob = new Blob([buffer])
+    const blob = new Blob([buffer], { type: 'image/jpg' })
+    //const blob = new Blob([buffer], { type: 'application/pdf' })
     const blobURL = URL.createObjectURL(blob)
 
 
@@ -49,7 +50,9 @@ function UserProfile() {
 
             console.log(response);
             setTestArray(response.data);
-            { testArray.map((row, key) => setTest(row["hex"]) )}
+            setTest(response.data[0].hex);
+            //{ testArray.map((row, key) => setTest(row["hex"])) }
+            //{ testArray.map((row, key) => setTest(row["hex"])) }
 
         })
     }, []);
@@ -102,7 +105,7 @@ function UserProfile() {
 
                 <h2>{test}</h2>
                 <h2>{blobURL}</h2>
-                <a download="hello.txt" href={URL.createObjectURL(blob)} id="link">Download</a>
+                <a download="hello.jpg" href={URL.createObjectURL(blob)} id="link">Download</a>
                 {/*<h2>{buffer}</h2>*/}
                 {/*<h2>{row[0]}</h2>*/}
                 {/*{testArray.map((row, key) => <h2>{row[0]}</h2> )}*/}

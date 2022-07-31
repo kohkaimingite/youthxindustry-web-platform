@@ -8,6 +8,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Collapsible from '../components/Collapsible';
 import { Route, Link } from 'react-router-dom';
 import axios from 'axios';
+import hexToArrayBuffer from 'hex-to-array-buffer'
+const arrayBufferToHex = require('array-buffer-to-hex')
 
 
 function EditUserResume() {
@@ -72,15 +74,19 @@ function EditUserResume() {
 
     function submit() {
        
-        //File theFile;   method="POST" action="/XIAOQUAN"
+        //File theFile;   method="POST" action="/XIAOQUAN" reader.readAsText(documentBlob)
         //theFile = new File(resume)
         const file = new File([Resume], "Resume")
 
 
         const file123 = document.getElementById('Resume').files[0];
         const reader = new FileReader()
-        reader.readAsBinaryString(file123)
+        //reader.readAsBinaryString(file123)
+        //reader.readAsArrayBuffer(file123)
+        reader.readAsDataURL(file123)
         reader.onloadend = () => {
+            const butt = reader.result
+            const string = arrayBufferToHex(reader.result)
             const binaryString = reader.result // Binary string.
             var hexa = parseInt(binaryString, 2).toString(16).toUpperCase();
             var asshoe = "x'"+hexa+"'"
@@ -88,7 +94,8 @@ function EditUserResume() {
             const documentBlob = new Blob([file123], { type: 'application/pdf' })
 
             axios.post("http://localhost:3001/EditUResume", {
-                Resume: reader.readAsText(documentBlob)
+                //Resume: string
+                Resume: binaryString
             }).then(() => {
                 console.log("Test");
                 /*setCheck(response.data);*/
