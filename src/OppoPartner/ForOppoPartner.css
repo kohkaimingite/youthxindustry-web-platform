@@ -47,3 +47,15 @@
         text-align-last: left;
         text-indent: 0px;
     }
+
+.styleAddOppoPartnerApprovedButton{
+    display: flex;
+    justify-content: center;
+    height: 5vh;
+}
+
+    .styleAddOppoPartnerApprovedButton a {
+       
+       text-decoration: none;
+       
+    }
