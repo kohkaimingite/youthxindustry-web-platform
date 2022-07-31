@@ -78,7 +78,7 @@ function Home() {
 
                 <LoggedNavBar id='navbar'/>
                 <div>
-                <Carousel>
+                <Carousel >
                     <Carousel.Item>
                         <img
                             className="d-block w-100"
