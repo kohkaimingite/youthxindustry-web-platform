@@ -137,7 +137,7 @@ app.get('/apUser', (req, res) => {
     });
 });
 
-app.post('/apUserEdit', (req, res) => {
+app.post('/apUser', (req, res) => {
     const RoleID = req.body.RoleID;
     const Name = req.body.name;
     const Password = req.body.password;
@@ -176,7 +176,7 @@ app.post('/apUserDelete', (req, res) => {
 });
 
 app.get('/apOppo', (req, res) => {
-    db.query("SELECT * FROM opportunities",
+    db.query("SELECT * FROM opportunities WHERE confirmation = 1",
     (err, result) => {
         if (err) {
             console.log(err);
@@ -186,7 +186,7 @@ app.get('/apOppo', (req, res) => {
     });
 });
 
-app.post('/apOppoEdit', (req, res) => {
+app.post('/apOppo', (req, res) => {
     const Name = req.body.name;
     const Description = req.body.description;
     const Location = req.body.location;
@@ -235,7 +235,7 @@ app.get('/apPartner', (req, res) => {
 });
 
 app.get('/apPartnerConfirm', (req, res) => {
-    db.query("SELECT * FROM users INNER JOIN roles ON roles.RoleID = users.RoleID WHERE users.RoleID = 2 AND users.Confirmed = 0",
+    db.query("SELECT users.UserID, users.Name, users.Email, users.UserBio, users.ContactNumber FROM users INNER JOIN roles ON roles.RoleID = users.RoleID WHERE users.RoleID = 2 AND users.Confirmed = 0",
     (err, result) => {
         if (err) {
             console.log(err);
@@ -260,7 +260,7 @@ app.post('/apConfirmRegistration', (req, res) => {
     });
 });
 
-app.post('/apPartnerEdit', (req, res) => {
+app.post('/apPartner', (req, res) => {
     const RoleID = req.body.RoleID;
     const Name = req.body.name;
     const Password = req.body.password;
@@ -293,5 +293,16 @@ app.post('/apPartnerDelete', (req, res) => {
             } else {
                 res.send("Partner Information Deleted.");
             }
+    });
+});
+
+app.get('/apReview', (req, res) => {
+    db.query("SELECT users_have_opp.UserID, users.Name, users_have_opp.OppID, users_have_opp.Review, users_have_opp.Rating FROM users_have_opp INNER JOIN users on users.UserID = users_have_opp.UserID WHERE users_have_opp.Review IS NOT NULL AND users_have_opp.Rating IS NOT NULL;",
+    (err, result) => {
+        if (err) {
+            console.log(err);
+        } else {
+            res.send(result);
+        }
     });
 });
