@@ -52,8 +52,8 @@ const EditPartner = () => {
         } else if (values.email.length > 50) {
             errors.email = "Email cannot exceed 50 characters";
         }
-        if (values.userBio.length > 255) {
-            errors.userBio = "Biography cannot exceed 255 characters";
+        if (values.userBio.length > 500) {
+            errors.userBio = "Biography cannot exceed 500 characters";
         }
         if (!values.contactNumber) {
             errors.contactNumber = "Contact number is required";
@@ -92,7 +92,7 @@ const EditPartner = () => {
             !pwRegex.test(formValues.password) ||
             formValues.password.length > 50 ||
             formValues.email.length > 50 ||
-            formValues.userBio.length > 255 ||
+            formValues.userBio.length > 500 ||
             !spRegex.test(formValues.contactNumber) ||
             isNaN(formValues.contactNumber) ||
             !pnumRegex.test(formValues.contactNumber)

@@ -36,13 +36,13 @@ const EditOppo = () => {
             errors.name = "Name is required";
         } else if (!txtRegex.test(values.name)) {
             errors.name = "Enter only in words"
-        } else if (values.name.length > 50) {
-            errors.name = "Name cannot exceed 50 characters";
+        } else if (values.name.length > 150) {
+            errors.name = "Name cannot exceed 150 characters";
         }
         if (!values.description) {
             errors.description = "Description is required";
-        } else if (values.description.length > 255) {
-            errors.description = "Description cannot exceed 255 characters";
+        } else if (values.description.length > 500) {
+            errors.description = "Description cannot exceed 500 characters";
         }
         if (!values.location) {
             errors.location = "Area is required";
@@ -63,8 +63,8 @@ const EditOppo = () => {
             errors.qualification = "Qualification is required";
         } else if (!qRegex.test(values.qualification)) {
             errors.qualification = "Qualification must be a valid academic qualification";
-        } else if (values.qualification.length > 50) {
-            errors.qualification = "Qualification cannot exceed 50 characters";
+        } else if (values.qualification.length > 80) {
+            errors.qualification = "Qualification cannot exceed 80 characters";
         }
         if (!values.pay) {
             errors.pay = "Pay is required";
@@ -96,13 +96,13 @@ const EditOppo = () => {
             !spRegex.test(formValues.oppID) ||
             !txtRegex.test(formValues.name) ||
             formValues.oppID.length > 6 ||
-            formValues.name.length > 50 ||
-            formValues.description.length > 255 ||
+            formValues.name.length > 150 ||
+            formValues.description.length > 500 ||
             !addRegex.test(formValues.address) ||
             formValues.address.length > 255 ||
             formValues.type.length > 50 ||
             !qRegex.test(formValues.qualification) ||
-            formValues.qualification.length > 50
+            formValues.qualification.length > 80
         ) {
             console.log("POST error");
         }
