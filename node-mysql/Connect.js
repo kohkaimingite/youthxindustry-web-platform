@@ -544,7 +544,7 @@ app.post('/addFav', (req, res) => {
 
 });
 app.get('/getReview', (req, res) => {
-    db.query("SELECT users_have_opp.UserID, users_have_opp.OppID, users_have_opp.Review, users_have_opp.Rating, opportunities.Name FROM users_have_opp INNER JOIN opportunities ON users_have_opp.OppID = opportunities.OppID WHERE Review IS NULL AND users_have_opp.UserID = ? AND opportunities.confirmation = 1 AND opportunities.posted = 1 ORDER BY OppID",
+    db.query("SELECT users_have_opp.UserID, users_have_opp.OppID, users_have_opp.Review, users_have_opp.Rating, opportunities.Name FROM users_have_opp INNER JOIN opportunities ON users_have_opp.OppID = opportunities.OppID WHERE Review IS NULL AND users_have_opp.UserID = ? AND opportunities.confirmed = 1 AND opportunities.posted = 1 ORDER BY OppID",
         [req.session.user[0].UserID],
         (err, result) => {
             if (err) {

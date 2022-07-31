@@ -5,12 +5,10 @@
     "\\src",
     "\\src\\CompanyProfile",
     "\\src\\components",
-    "\\src\\HomePage",
-    "\\src\\JobConfirmation",
     "\\src\\Manage",
-    "\\src\\OppoPage",
-    "\\src\\ReviewPage"
+    "\\src\\OppoPartner",
+    "\\src\\Some test data"
   ],
-  "SelectedNode": "\\src\\OppoPage\\LoggedOppoPage.js",
+  "SelectedNode": "\\src\\Manage\\resume.js",
   "PreviewInSolutionExplorer": false
 }
