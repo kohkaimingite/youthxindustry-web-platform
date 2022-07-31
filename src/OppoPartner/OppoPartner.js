@@ -1,7 +1,5 @@
-import NavBar from '../components/NavBar';
 import Axios from 'axios';
 import { React, useState, useEffect, Fragment } from "react";
-import { Link } from "react-router-dom";
 import ReadOnlyRow from './ReadOnlyRows';
 import EditableRows from './EditableRows';
 import "./ForOppoPartner.css";
@@ -129,20 +127,13 @@ export default function OppoPartner() {
     }, [editOppId]);
 
 
-    const styleButton = {
-        display: 'flex',
-        justifyContent: 'center',
-        height: '5vh',
-
-    };
-
+    
     return (
         <div>
             <PartnerNavBar />
-            <div style={styleButton}>
-                <p style={{ paddingRight: '40px' }}>Number of Approved Opportunities: {oppList.length}</p>
-                <Link to="/AddOppoPartner" style={{ width: '10%', height: '100%' }}><FontAwesomeIcon icon={faPlus} />Add Opportunity  </Link>
-                <Link to="/AddOppoPartnerApproved" style={{ width: '10%', height: '100%' }}><FontAwesomeIcon icon={faPlus} />Add Approved Opportunities  </Link>
+            <div className ="styleAddOppoPartnerApprovedButton">
+                <p style={{ paddingRight: '40px' }}>Number of Opportunities: {oppList.length}</p>            
+                    <a href="/AddOppoPartnerApproved" style={{ width: '10%', height: '100%' }}><FontAwesomeIcon icon={faPlus} />Add Approved Opportunities  </a>
             </div>
 
             <div className="OppoPartner">

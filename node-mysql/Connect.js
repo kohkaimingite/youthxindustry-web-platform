@@ -372,6 +372,33 @@ app.post("/userAcceptsOffer", (req, res) => {
         });
 });
 
+app.post('/oppForEmailAcceptance', (req, res) => {
+    const OppID = req.body.OppID;
+    db.query("SELECT users.Name, users.Email, partner_have_opp.OppID  FROM users INNER JOIN partner_have_opp ON users.UserID = partner_have_opp.UserID WHERE OppID = ?;",
+        [OppID],
+        (err, result) => {
+            if (err) {
+                console.log("problem");
+            } else {
+                res.send(result);
+                console.log(result);
+            }
+        });
+});
+
+app.post('/userForEmailAcceptance', function (req, res) {
+    db.query("SELECT Name, ContactNumber FROM users WHERE UserID = ?;",
+        [req.session.user[0].UserID],
+        (err, result) => {
+            if (err) {
+                console.log("problem");
+            } else {
+                res.send(result);
+                console.log(result);
+            }
+        });
+});
+
 
 //Andrea
 
