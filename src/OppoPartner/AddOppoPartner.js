@@ -3,6 +3,7 @@ import { Form, Button } from "react-bootstrap";
 import PartnerNavBar from '../components/PartnerNavBar';
 import axios from 'axios';
 import validator from "validator";
+import Dropdown from "react-bootstrap/Dropdown";
 
 
 export default function AddOppoPartner() {
@@ -13,7 +14,7 @@ export default function AddOppoPartner() {
 
     const [description, setDescription] = useState('');
 
-    const [location, setLocation] = useState('');
+    const [location, setLocation] = useState('Please Select a Location');
 
     const [address, setAddress] = useState('');
 
@@ -50,6 +51,7 @@ export default function AddOppoPartner() {
         setPay(e.target.value);
     };
 
+
     const styleDiv = {
         display: "flex",
         alignItems: 'center',
@@ -76,7 +78,7 @@ export default function AddOppoPartner() {
     return (
         <div className="AddOppoPartner">
             <PartnerNavBar />
-            <h1 style={{ color: "yellow" }}>Add Opportunity</h1>
+            <h1 style={{ color: "green" }}>Submit Opportunity</h1>
             <div style={styleDiv}>
 
                     <Form.Group className="mb-2">
@@ -105,15 +107,15 @@ export default function AddOppoPartner() {
                     </Form.Group>
 
                     <Form.Group className="mb-3">
-                        <Form.Label>Location</Form.Label>
-                        <Form.Control
-                            style={{ border: error ? "2px solid red" : "", width: "400px" }}
-                            type="text"
-                            required
-                            input onChange={handleLocation}
-                            value={location}
-
-                        />
+                    <Form.Label>Location</Form.Label>
+                    <br/>
+                        <select value={location} onChange={handleLocation}>
+                            <option location="North">North</option>
+                            <option location="South">South</option>
+                            <option location="East">East</option>
+                            <option location="West">West</option>
+                            <option location="Central">Central</option>
+                        </select>   
 
                     </Form.Group>
 
