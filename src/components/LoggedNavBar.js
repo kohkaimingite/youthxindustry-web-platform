@@ -30,6 +30,7 @@ const LoggedNavBar = () => {
                 <a href="/Opportunities">Opportunities</a>
                 <a href="/Favourites">Favourites</a>
                 <a href="/Status">Status</a>
+                <a href="/AcceptJob" >Accept Offer</a>
                 <a href="/AddReview">Add Review</a>
                 <a href="/ViewCompanyProfile">Companies</a>
                 <a href="/Profile">{currentUserName}</a>
@@ -59,7 +60,9 @@ const brandName = {
 //           margin: "0  0 30px",
 const test = {
 
-    backgroundColor: '#FFD700'
+    backgroundColor: '#FFD700',
+    margin: 0,
+    height:'100px'
 }
 
 //position: "fixed"

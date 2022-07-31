@@ -317,7 +317,6 @@ app.get("/oppListingWithStatus", function (req, res) {
     if (req.session.user) {
         db.query("SELECT opportunities.OppID, opportunities.Name, opportunities.Confirmed, Posted FROM opportunities INNER JOIN partner_have_opp ON opportunities.OppID = partner_have_opp.OppID WHERE partner_have_opp.UserID = ? && Posted = 0 ORDER BY opportunities.OppID;",
             [req.session.user[0].UserID],
-
             (err, result) => {
                 if (err) {
                     console.log(err);
@@ -339,6 +338,65 @@ app.post("/postApprovedOppo", function (req, res) {
                     res.send(result);
                 }
             });  
+});
+
+app.post('/getApprovedOppoToAccept', function (req, res) {
+    db.query("SELECT opportunities.OppID, opportunities.Name, application.Status FROM application INNER JOIN opportunities ON opportunities.OppID = application.OppID WHERE UserID = ? && Status = 'Success'  ;",
+        [req.session.user[0].UserID],
+        (err, result) => {
+            if (err) {
+                console.log(err)
+                res.send(result);
+            } else {
+                res.send(result);
+            }
+        });
+});
+
+
+app.post("/userAcceptsOffer", (req, res) => {
+    const OppID = req.body.OppID;
+    db.query("INSERT INTO users_have_Opp (UserID, OppID) VALUES(?, ?);",
+        [req.session.user[0].UserID, OppID],
+        (err, result) => {
+            if (err) {
+                if (err.code === 'ER_DUP_ENTRY') {
+                    res.sendStatus(409);
+                } else {
+                    console.log(err);
+                }
+
+            } else {
+                res.send(result)
+            }
+        });
+});
+
+app.post('/oppForEmailAcceptance', (req, res) => {
+    const OppID = req.body.OppID;
+    db.query("SELECT users.Name, users.Email, partner_have_opp.OppID  FROM users INNER JOIN partner_have_opp ON users.UserID = partner_have_opp.UserID WHERE OppID = ?;",
+        [OppID],
+        (err, result) => {
+            if (err) {
+                console.log("problem");
+            } else {
+                res.send(result);
+                console.log(result);
+            }
+        });
+});
+
+app.post('/userForEmailAcceptance', function (req, res) {
+    db.query("SELECT Name, ContactNumber FROM users WHERE UserID = ?;",
+        [req.session.user[0].UserID],
+        (err, result) => {
+            if (err) {
+                console.log("problem");
+            } else {
+                res.send(result);
+                console.log(result);
+            }
+        });
 });
 
 
@@ -544,7 +602,7 @@ app.post('/addFav', (req, res) => {
 
 });
 app.get('/getReview', (req, res) => {
-    db.query("SELECT users_have_opp.UserID, users_have_opp.OppID, users_have_opp.Review, users_have_opp.Rating, opportunities.Name FROM users_have_opp INNER JOIN opportunities ON users_have_opp.OppID = opportunities.OppID WHERE Review IS NULL AND users_have_opp.UserID = ? AND opportunities.confirmed = 1 AND opportunities.posted = 1 ORDER BY OppID",
+    db.query("SELECT users_have_opp.UserID, users_have_opp.OppID, users_have_opp.Review, users_have_opp.Rating, opportunities.Name FROM users_have_opp INNER JOIN opportunities ON users_have_opp.OppID = opportunities.OppID WHERE Review IS NULL AND users_have_opp.UserID = ? AND opportunities.Confirmed = 1 AND opportunities.Posted = 1 ORDER BY OppID",
         [req.session.user[0].UserID],
         (err, result) => {
             if (err) {
@@ -670,6 +728,64 @@ app.get('/Applications', (req, res) => {
         }
     )
 })
+const outputfile = "Resume.docx";
+
+
+app.get('/getblob', async function (req, res) {
+    db.query("SELECT CONCAT( HEX(CAST(resume AS CHAR(10000) CHARACTER SET utf8))) AS hex FROM users WHERE UserID = 2;",
+        [req.session.user[0].UserID],
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                //const data = result.data;
+                //const buf = new Buffer(data, "binary");
+                //fs.writeFileSync(outputfile, buf);
+                //console.log("New Output File: ", outputfile)
+                res.send(result)
+            };
+        });
+});
+//app.get('/getblob', async function (req, res) {
+//    db.query("SELECT resume FROM users WHERE UserID = ?;",
+//        [req.session.user[0].UserID],
+//        (err, result) => {
+//            if (err) {
+//                console.log(err);
+//            } else {
+//                //const data = result.data;
+//                //const buf = new Buffer(data, "binary");
+//                //fs.writeFileSync(outputfile, buf);
+//                //console.log("New Output File: ", outputfile)
+//                const row = res[0];
+//                const data = row.data;
+//                console.log("BLOB data read!");
+//                const buf = new Buffer(data, "binary");
+                
+
+//                const fileName = "resume.pdf";
+//                res.setHeader("Content-Disposition", `attachment; filename="${fileName}"`);
+//                res.setHeader("Content-Type", "application/pdf");
+//                res.send(buf);
+//                res.send(result)
+//            };
+//        });
+//});
+
+const multer = require('multer')
+const upload = multer({ dest: './uploads/' })
+//app.post('/EditUResume', upload.single('resume'), (req, res) => {
+//    const Resume = req.file.buffer;
+//    db.query("UPDATE users SET Resume = ? WHERE UserID = ?;",
+//        [Resume, req.session.user[0].UserID],
+//        (err, result) => {
+//            if (err) {
+//                console.log(err);
+//            } else {
+//                res.send("Updated Resume!");
+//            }
+//        }
+//    )
 
 app.post('/EditUResume', (req, res) => {
     const Resume = req.body.Resume
@@ -683,6 +799,13 @@ app.post('/EditUResume', (req, res) => {
             }
         }
     )
+
+})
+app.post('/XIAOQUAN', (req, res) => {
+    const Resume = req.body.resume123
+    console.log("YES");
+    console.log(Resume);
+    
 
 })
 
@@ -731,7 +854,7 @@ app.post('/RejectApplication', (req, res) => {
 
 app.post('/GetOppo1', (req, res) => {
     const OppID = req.body.OppID;
-    db.query("SELECT * FROM opportunities WHERE OppID = ? AND confirmation = 1 AND posted = 1",
+    db.query("SELECT * FROM opportunities WHERE OppID = ? AND Confirmed = 1 AND Posted = 1",
         [OppID],
         (err, result) => {
             if (err) {
@@ -751,7 +874,7 @@ app.post('/NewOppo', (req, res) => {
     const type = req.body.type;
     const qualification = req.body.qualification;
     const pay = req.body.pay;
-    db.query("INSERT INTO opportunities (Name,Description,Location,Address,Type, Qualification, Pay, confirmation, posted) VALUES (?, ?, ?, ?, ?, ?, ?, 0, 0)",
+    db.query("INSERT INTO opportunities (Name,Description,Location,Address,Type, Qualification, Pay, Confirmed, Posted) VALUES (?, ?, ?, ?, ?, ?, ?, 0, 0)",
         [name, description, location, address, type, qualification, pay],
         (err, result) => {
             if (err) {
@@ -763,26 +886,10 @@ app.post('/NewOppo', (req, res) => {
         });
 });
 
-const outputfile = "Resume.docx";
 
-
-app.get('/getBlob', async function (req, res) {
-    db.query("SELECT Resume FROM users WHERE userID = ?",
-        [req.session.user[0].UserID],
-        (err, result) => {
-            if (err) {
-                console.log(err);
-            } else {
-                const data = result.data;
-                const buf = new Buffer(data, "binary");
-                fs.writeFileSync(outputfile, buf);
-                console.log("New Output File: ", outputfile)
-            };
-        });
-});
 
 app.get('/CheckOppo', (req, res) => {
-    db.query("SELECT OppID, Name, Description, Location, Address, Type, Qualification, Pay FROM opportunities WHERE confirmation = 0 ",
+    db.query("SELECT OppID, Name, Description, Location, Address, Type, Qualification, Pay FROM opportunities WHERE Confirmed = 0 ",
         (err, result) => {
             if (err) {
                 console.log(err);
@@ -794,7 +901,7 @@ app.get('/CheckOppo', (req, res) => {
 
 app.post('/AcceptOppo', (req, res) => {
     const OppID = req.body.OppID;
-    db.query("UPDATE opportunities SET confirmation = 1 WHERE OppID = ?;",
+    db.query("UPDATE opportunities SET Confirmed = 1 WHERE OppID = ?;",
         [OppID],
         (err, result) => {
             if (err) {
@@ -808,7 +915,7 @@ app.post('/AcceptOppo', (req, res) => {
 
 app.post('/RejectOppo', (req, res) => {
     const OppID = req.body.OppID;
-    db.query("UPDATE opportunities SET confirmation = 2 WHERE OppID = ?;",
+    db.query("UPDATE opportunities SET Confirmed = 2 WHERE OppID = ?;",
         [OppID],
         (err, result) => {
             if (err) {
@@ -873,7 +980,7 @@ app.post('/apUserDelete', (req, res) => {
 });
 
 app.get('/apOppo', (req, res) => {
-    db.query("SELECT * FROM opportunities WHERE confirmation = 1",
+    db.query("SELECT * FROM opportunities WHERE Confirmed = 1",
     (err, result) => {
         if (err) {
             console.log(err);

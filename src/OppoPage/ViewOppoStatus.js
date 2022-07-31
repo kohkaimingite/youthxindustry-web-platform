@@ -575,7 +575,7 @@ function ViewOppoStatus() {
             <LoggedNavBar />
 
             
-            <div className="main">
+            <div className="main" style={{ marginTop: '20px' }}>
                 <h1>Opportunities</h1>
                 
                 <div class="sidenav">

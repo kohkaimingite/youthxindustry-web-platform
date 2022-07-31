@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Axios from 'axios';
-import NavBar from '../components/NavBar';
-import { PieChart, Pie, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Label, Legend, Tooltip, Cell, } from 'recharts';
+import { PieChart, Pie, ResponsiveContainer, Label, Cell, } from 'recharts';
 import "./RatingStats.css";
 import { Card } from 'react-bootstrap'
 import PartnerNavBar from "../components/PartnerNavBar";
@@ -39,9 +38,9 @@ const RatingStats = () => {
 
     const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#FF66FF'];
 
-    let renderLabel = function (entry) {                                     //Label to display counts of rating on chart
+    /*let renderLabel = function (entry) {                                     //Label to display counts of rating on chart
         return entry.rating + " star: " + entry.count;
-    };
+    };*/
 
     let renderLabelPercent = function (entry) {                             //Label to display percentage of rating on chart
         return entry.rating + " star: " + entry.percentage.toFixed(2) + "%";
@@ -56,7 +55,7 @@ const RatingStats = () => {
             } else {
                 setSuccess(false);
             }
-            
+
         });
     }, []);
     useEffect(() => {
@@ -71,103 +70,81 @@ const RatingStats = () => {
 
         <div className="DisplayInfoOfCharts">
             <PartnerNavBar />
-             <>
+            <>
                 {!success ? (                            //If no rating were received, display page informing user that not enough data 
                     <section>
 
                         <h1>Not enough data to create statistics</h1>
-                        <p style={{color:"red"}}>*There are no ratings received for your opportunities</p>     
+                        <p style={{ color: "red" }}>*There are no ratings received for your opportunities</p>
                     </section>
                 ) : (
                     <section>
-            <h1 style={{ textAlign: 'left' }}>Company Statistics</h1>
-            <div style={{ display: 'flex' }}>
-                <Card style={{ width: '15%', paddingTop: '50px', paddingBottom: '50px', marginLeft: "50px", marginTop: "50px" }}>
-                    <Card.Body>
-                        <Card.Title>Total Feedbacks</Card.Title>
-                        <Card.Text>
-                            {showData.length}
-                        </Card.Text>
-                    </Card.Body>
-                </Card>
+                        <h1 style={{ textAlign: 'left' }}>Company Statistics</h1>
+                        <div style={{ display: 'flex' }}>
+                            <Card className="cardInfo">
+                                <Card.Body>
+                                    <Card.Title>Total Feedbacks</Card.Title>
+                                    <Card.Text>
+                                        {showData.length}
+                                    </Card.Text>
+                                </Card.Body>
+                            </Card>
 
-                <Card style={{ width: '15%', paddingTop: '50px', paddingBottom: '50px', marginLeft: "50px", marginTop: "50px" }}>
-                    <Card.Body>
-                        <Card.Title>Average Rating</Card.Title>
-                        <Card.Text>
-                            {avr.toFixed(2)}
-                        </Card.Text>
-                    </Card.Body>
-                </Card>
+                            <Card className="cardInfo">
+                                <Card.Body>
+                                    <Card.Title>Average Rating</Card.Title>
+                                    <Card.Text>
+                                        {avr.toFixed(2)}
+                                    </Card.Text>
+                                </Card.Body>
+                            </Card>
 
-                <Card style={{ width: '15%', paddingTop: '50px', paddingBottom: '50px', marginLeft: "50px", marginTop: "50px" }}>
-                    <Card.Body>
-                        <Card.Title>Users that has given rating</Card.Title>
-                        <Card.Text>
-                            <p style={{ color: 'limegreen' }}>
-                                {Math.round(oppWithRating)}%
-                            </p>
-                        </Card.Text>
-                    </Card.Body>
-                </Card>
+                            <Card className="cardInfo">
+                                <Card.Body>
+                                    <Card.Title>Users that has given rating</Card.Title>
+                                    <Card.Text style={{ color: 'limegreen' }}>
+                                        {Math.round(oppWithRating)}%
+                                    </Card.Text>
+                                </Card.Body>
+                            </Card>
 
-                <Card style={{ width: '15%', paddingTop: '50px', paddingBottom: '50px', marginLeft: "50px", marginTop: "50px" }}>
-                    <Card.Body>
-                        <Card.Title>Users that has not given rating</Card.Title>
-                        <Card.Text>
-                            <p style={{ color: 'red' }}>
-                                {Math.round(oppWithoutRating)}%
-                            </p>
-                        </Card.Text>
-                    </Card.Body>
-                </Card>
-            </div>
+                            <Card className="cardInfo">
+                                <Card.Body>
+                                    <Card.Title>Users that has not given rating</Card.Title>
+                                    <Card.Text style={{ color: 'red' }}>
+                                        {Math.round(oppWithoutRating)}%
+                                    </Card.Text>
+                                </Card.Body>
+                            </Card>
+                        </div>
 
 
 
 
-            <div className="Charts">
-                <div className="DonutChartShowRating">
-                    <h2>Percentage of rating:</h2>
-                    <ResponsiveContainer width={600} height={400}>
-                        <PieChart >
-                            <Pie label={renderLabelPercent} data={counts} dataKey="count" outerRadius={150} innerRadius={100}  >
-                                <Label
-                                    value="Average Rating" position="centerTop" className='label-top' fontSize='20px'
-                                />
-                                <Label
-                                    value={avr.toFixed(2)} position="centerBottom" className='label' fontSize='30px'
-                                />
-                                {
-                                    counts.map((entry, index) => <Cell fill={COLORS[index % COLORS.length]} />)
-                                }
+                        <div className="Charts">
+                            <div className="DonutChartShowRating">
+                                <h2>Percentage of rating:</h2>
+                                <ResponsiveContainer width={600} height={400}>
+                                    <PieChart >
+                                        <Pie label={renderLabelPercent} data={counts} dataKey="count" outerRadius={150} innerRadius={100}  >
+                                            <Label
+                                                value="Average Rating" position="centerTop" className='label-top' fontSize='20px'
+                                            />
+                                            <Label
+                                                value={avr.toFixed(2)} position="centerBottom" className='label' fontSize='30px'
+                                            />
+                                            {
+                                                counts.map((entry, index) => <Cell fill={COLORS[index % COLORS.length]} />)
+                                            }
 
-                            </Pie>
-                        </PieChart>
+                                        </Pie>
+                                    </PieChart>
 
-                    </ResponsiveContainer>
-                </div>
-
-                <div className="DonutChartShowRating2">
-                    <h2>Number of feedbacks:</h2>
-                    <ResponsiveContainer width={500} height={400}>
-                        <PieChart >
-                            <Pie label={renderLabel} data={counts} dataKey="count" outerRadius={150} innerRadius={100}  >
-                                <Label
-                                    value="Feedbacks" position="centerTop" className='label-top' fontSize='20px'
-                                />
-                                <Label
-                                    value={showData.length} position="centerBottom" className='label' fontSize='30px'
-                                />
-                                {
-                                    counts.map((entry, index) => <Cell fill={COLORS[index % COLORS.length]} />)
-                                }
-                            </Pie>
-                        </PieChart>
-
-                    </ResponsiveContainer>
-                </div>
+                                </ResponsiveContainer>
                             </div>
+
+
+                        </div>
                     </section>
                 )}
             </>
