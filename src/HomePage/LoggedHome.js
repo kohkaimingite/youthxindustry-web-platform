@@ -76,7 +76,7 @@ function Home() {
 
             <div className="App" >
 
-                <LoggedNavBar id='navbar'/>
+                <LoggedNavBar />
                 <div>
                 <Carousel >
                     <Carousel.Item>
@@ -133,13 +133,52 @@ function Home() {
 
                 <PartnerNavBar />
 
-                <OppoPageSet />
+                <div>
+                    <Carousel >
+                        <Carousel.Item>
+                            <img
+                                className="d-block w-100"
+                                src={pic1}
+                                alt="First slide"
+                                style={{ width: '100%', height: '750px' }}
+                            />
+                            <Carousel.Caption>
+                                <h3>Welcome onboard!</h3>
+                                <p>Thankyou or joining us on this journey!</p>
+                                
+                            </Carousel.Caption>
+                        </Carousel.Item>
+                        <Carousel.Item>
+                            <img
+                                className="d-block w-100"
+                                src={pic2}
+                                alt="Second slide"
+                                style={{ width: '100%', height: '750px' }}
 
-                <ContactPageSet />
+                            />
 
-                <LoginPageSet />
+                            <Carousel.Caption>
+                                <h3>Exposure on opportunities!</h3>
+                                <p>We provide a platform for youths to apply for you listings!</p>
+                                
+                            </Carousel.Caption>
+                        </Carousel.Item>
+                        <Carousel.Item>
+                            <img
+                                className="d-block w-100"
+                                src={pic3}
+                                alt="Third slide"
+                                style={{ width: '100%', height: '750px' }}
 
-                <RegisterSet />
+                            />
+
+                            <Carousel.Caption>
+                                <h3>Manage your listings!</h3>
+                                <p>Want to remove your listing? No problem!</p>
+                            </Carousel.Caption>
+                        </Carousel.Item>
+                    </Carousel>
+                </div>
 
             </div>
 
@@ -150,6 +189,50 @@ function Home() {
 
             <div className="App">
                 <AdminPanel />
+                <div>
+                    <Carousel >
+                        <Carousel.Item>
+                            <img
+                                className="d-block w-100"
+                                src={pic1}
+                                alt="First slide"
+                                style={{ width: '100%', height: '750px' }}
+                            />
+                            <Carousel.Caption>
+                                <h3>Explore opportunities!</h3>
+                                <p>We provde opportunities from various categories so youre sure to find the one the suits you!</p>
+                            </Carousel.Caption>
+                        </Carousel.Item>
+                        <Carousel.Item>
+                            <img
+                                className="d-block w-100"
+                                src={pic2}
+                                alt="Second slide"
+                                style={{ width: '100%', height: '750px' }}
+
+                            />
+
+                            <Carousel.Caption>
+                                <h3>Outsourcing for you internship!</h3>
+                                <p>Finding difficulty outsouring for your internship? Fret not! We offer a wide variety of opportunities from you to choose from!</p>
+                            </Carousel.Caption>
+                        </Carousel.Item>
+                        <Carousel.Item>
+                            <img
+                                className="d-block w-100"
+                                src={pic3}
+                                alt="Third slide"
+                                style={{ width: '100%', height: '750px' }}
+
+                            />
+
+                            <Carousel.Caption>
+                                <h3>Collaboration with partners</h3>
+                                <p>We work together with partners to provide you with all the opportunities you see</p>
+                            </Carousel.Caption>
+                        </Carousel.Item>
+                    </Carousel>
+                </div>
             </div>
 
 
