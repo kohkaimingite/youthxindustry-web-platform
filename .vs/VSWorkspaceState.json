@@ -1,13 +1,13 @@
 {
   "ExpandedNodes": [
     "",
-    "\\node-mysql",
     "\\src",
     "\\src\\CompanyProfile",
     "\\src\\components",
     "\\src\\HomePage",
     "\\src\\Manage",
     "\\src\\OppoPage",
+    "\\src\\Pictures",
     "\\src\\ReviewPage"
   ],
   "PreviewInSolutionExplorer": false

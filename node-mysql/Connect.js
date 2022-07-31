@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const app = express();
-
+const multer = require("multer");
 
 app.use(express.json());
 app.use(cors({
@@ -731,21 +731,21 @@ app.get('/Applications', (req, res) => {
 const outputfile = "Resume.docx";
 
 
-app.get('/getblob', async function (req, res) {
-    db.query("SELECT CONCAT( HEX(CAST(resume AS CHAR(10000) CHARACTER SET utf8))) AS hex FROM users WHERE UserID = 2;",
-        [req.session.user[0].UserID],
-        (err, result) => {
-            if (err) {
-                console.log(err);
-            } else {
-                //const data = result.data;
-                //const buf = new Buffer(data, "binary");
-                //fs.writeFileSync(outputfile, buf);
-                //console.log("New Output File: ", outputfile)
-                res.send(result)
-            };
-        });
-});
+//app.get('/getblob', async function (req, res) {
+//    db.query("SELECT CONCAT( HEX(CAST(resume AS CHAR(10000) CHARACTER SET utf8))) AS hex FROM users WHERE UserID = 2;",
+//        [req.session.user[0].UserID],
+//        (err, result) => {
+//            if (err) {
+//                console.log(err);
+//            } else {
+//                //const data = result.data;
+//                //const buf = new Buffer(data, "binary");
+//                //fs.writeFileSync(outputfile, buf);
+//                //console.log("New Output File: ", outputfile)
+//                res.send(result)
+//            };
+//        });
+//});
 //app.get('/getblob', async function (req, res) {
 //    db.query("SELECT resume FROM users WHERE UserID = ?;",
 //        [req.session.user[0].UserID],
@@ -772,10 +772,40 @@ app.get('/getblob', async function (req, res) {
 //        });
 //});
 
-const multer = require('multer')
-const upload = multer({ dest: './uploads/' })
-//app.post('/EditUResume', upload.single('resume'), (req, res) => {
-//    const Resume = req.file.buffer;
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
+app.post('/EditUResume', upload.single('resume'), (req, res) => {
+    const Resume = req.file.buffer;
+    db.query("UPDATE users SET Resume = ? WHERE UserID = ?;",
+        [Resume,req.session.user[0].UserID],
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send("Updated Resume!");
+            }
+        }
+    )
+})
+app.get('/getblob', async function (req, res) {
+    db.query("SELECT Resume FROM users WHERE UserID = ?;",
+        [req.session.user[0].UserID],
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                const buffer = result[0].Resume;
+                res.setHeader(
+                    "Content-Disposition",
+                    `attachment; filename=YourResume.docx`
+                );
+
+                res.send(buffer);
+            };
+        });
+});
+//app.post('/EditUResume', (req, res) => {
+//    const Resume = req.body.Resume
 //    db.query("UPDATE users SET Resume = ? WHERE UserID = ?;",
 //        [Resume, req.session.user[0].UserID],
 //        (err, result) => {
@@ -787,20 +817,7 @@ const upload = multer({ dest: './uploads/' })
 //        }
 //    )
 
-app.post('/EditUResume', (req, res) => {
-    const Resume = req.body.Resume
-    db.query("UPDATE users SET Resume = ? WHERE UserID = ?;",
-        [Resume, req.session.user[0].UserID],
-        (err, result) => {
-            if (err) {
-                console.log(err);
-            } else {
-                res.send("Updated Resume!");
-            }
-        }
-    )
-
-})
+//})
 app.post('/XIAOQUAN', (req, res) => {
     const Resume = req.body.resume123
     console.log("YES");

@@ -9,6 +9,7 @@ import Collapsible from '../components/Collapsible';
 import { Route, Link } from 'react-router-dom';
 import axios from 'axios';
 import hexToArrayBuffer from 'hex-to-array-buffer'
+import FormData from "form-data";
 const arrayBufferToHex = require('array-buffer-to-hex')
 
 
@@ -46,7 +47,7 @@ function EditUserResume() {
 
                         <br />
                     <label>Upload Your Resume: </label>
-                    <input name="resume123" type="file" id='Resume' placeholder="Upload file..." onChange={e => setResume(e.target.value)}></input><br />
+                    <input accept="application/pdf" name="resume123" type="file" id='Resume' placeholder="Upload file..." onChange={e => setResume(e.target.files[0])}></input><br />
                     <button onClick={submit}> Confirm </button>
                         <text align='left'>{Check}</text>
                     </form>
@@ -128,18 +129,19 @@ function EditUserResume() {
 
 
     function submit() {
-
-
-        const file = new File([Resume], "Resume")
-        const file123 = document.getElementById('fileItem').files[0];
         const formData = new FormData();
-        formData.append("resume", file123);
+        formData.append("resume", Resume);
+         axios.post("http://localhost:3001/EditUResume", formData).then(() => {
+                    console.log("Test");
+                    /*setCheck(response.data);*/
+                    window.location = "http://localhost:3000/Profile";
+                });
+        //const file = new File([Resume], "Resume")
+        //const file123 = document.getElementById('fileItem').files[0];
+        
+        //formData.append("resume", file123);
 
-        axios.post("http://localhost:3001/EditUResume", formData).then(() => {
-            console.log("Test");
-            /*setCheck(response.data);*/
-            window.location = "http://localhost:3000/Profile";
-        });
+       
 
     };
 

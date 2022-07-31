@@ -96,6 +96,13 @@ function UserProfile() {
                 <nameSection style={{ textAlign: 'left' }}>
                     <text style={{ fontSize: "20px" }}>Resume: </text><br />
                     {/*<button onClick={getResume(Resume)}>Download Resume</button>*/}
+                    <a
+                        href={`http://localhost:3001/getblob`}
+                        target="_blank"
+                        rel="noreferrer"
+                    >
+                        Download
+                    </a>
                     <a href="/EditUserResume"> <FontAwesomeIcon icon={faPencil}></FontAwesomeIcon> </a><br />
                 </nameSection>
                 
@@ -103,9 +110,9 @@ function UserProfile() {
 
 
 
-                <h2>{test}</h2>
-                <h2>{blobURL}</h2>
-                <a download="hello.txt" href={URL.createObjectURL(blob)} id="link">Download</a>
+                {/*<h2>{test}</h2>*/}
+                {/*<h2>{blobURL}</h2>*/}
+                {/*<a download="hello.txt" href={URL.createObjectURL(blob)} id="link">Download</a>*/}
                 {/*<h2>{buffer}</h2>*/}
                 {/*<h2>{row[0]}</h2>*/}
                 {/*{testArray.map((row, key) => <h2>{row[0]}</h2> )}*/}
