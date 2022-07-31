@@ -728,6 +728,64 @@ app.get('/Applications', (req, res) => {
         }
     )
 })
+const outputfile = "Resume.docx";
+
+
+app.get('/getblob', async function (req, res) {
+    db.query("SELECT CONCAT( HEX(CAST(resume AS CHAR(10000) CHARACTER SET utf8))) AS hex FROM users WHERE UserID = 2;",
+        [req.session.user[0].UserID],
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                //const data = result.data;
+                //const buf = new Buffer(data, "binary");
+                //fs.writeFileSync(outputfile, buf);
+                //console.log("New Output File: ", outputfile)
+                res.send(result)
+            };
+        });
+});
+//app.get('/getblob', async function (req, res) {
+//    db.query("SELECT resume FROM users WHERE UserID = ?;",
+//        [req.session.user[0].UserID],
+//        (err, result) => {
+//            if (err) {
+//                console.log(err);
+//            } else {
+//                //const data = result.data;
+//                //const buf = new Buffer(data, "binary");
+//                //fs.writeFileSync(outputfile, buf);
+//                //console.log("New Output File: ", outputfile)
+//                const row = res[0];
+//                const data = row.data;
+//                console.log("BLOB data read!");
+//                const buf = new Buffer(data, "binary");
+                
+
+//                const fileName = "resume.pdf";
+//                res.setHeader("Content-Disposition", `attachment; filename="${fileName}"`);
+//                res.setHeader("Content-Type", "application/pdf");
+//                res.send(buf);
+//                res.send(result)
+//            };
+//        });
+//});
+
+const multer = require('multer')
+const upload = multer({ dest: './uploads/' })
+//app.post('/EditUResume', upload.single('resume'), (req, res) => {
+//    const Resume = req.file.buffer;
+//    db.query("UPDATE users SET Resume = ? WHERE UserID = ?;",
+//        [Resume, req.session.user[0].UserID],
+//        (err, result) => {
+//            if (err) {
+//                console.log(err);
+//            } else {
+//                res.send("Updated Resume!");
+//            }
+//        }
+//    )
 
 app.post('/EditUResume', (req, res) => {
     const Resume = req.body.Resume
@@ -828,24 +886,7 @@ app.post('/NewOppo', (req, res) => {
         });
 });
 
-const outputfile = "Resume.docx";
 
-
-app.get('/getblob', async function (req, res) {
-    db.query("SELECT CONCAT( HEX(CAST(resume AS CHAR(10000) CHARACTER SET utf8))) AS hex FROM users WHERE UserID = 2;",
-        [req.session.user[0].UserID],
-        (err, result) => {
-            if (err) {
-                console.log(err);
-            } else {
-                //const data = result.data;
-                //const buf = new Buffer(data, "binary");
-                //fs.writeFileSync(outputfile, buf);
-                //console.log("New Output File: ", outputfile)
-                res.send(result)
-            };
-        });
-});
 
 app.get('/CheckOppo', (req, res) => {
     db.query("SELECT OppID, Name, Description, Location, Address, Type, Qualification, Pay FROM opportunities WHERE confirmation = 0 ",

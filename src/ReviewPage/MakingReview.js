@@ -109,7 +109,7 @@ function MakingReview() {
             <LoggedNavBar />
             
             
-            <div className="main">
+            <div className="main" style={{ marginTop: '20px' }}>
                 
                 <h2>Leave a review!</h2>
                 <div style={styles.stars}>

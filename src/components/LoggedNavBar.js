@@ -60,7 +60,9 @@ const brandName = {
 //           margin: "0  0 30px",
 const test = {
 
-    backgroundColor: '#FFD700'
+    backgroundColor: '#FFD700',
+    margin: 0,
+    height:'100px'
 }
 
 //position: "fixed"

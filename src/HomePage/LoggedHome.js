@@ -17,6 +17,11 @@ import Login from '../LoginPage/Login';
 import Register from '../Register/Register';
 import { BrowserRouter as Router, Routes } from 'react-router-dom';
 import PartnerNavBar from '../components/PartnerNavBar'
+import Carousel from 'react-bootstrap/Carousel';
+import pic1 from '../Pictures/find.jpg';
+import pic2 from '../Pictures/smile.jpg';
+import pic3 from '../Pictures/tgt.jpg';
+
 
 // Idea:
 //top will be buttons "About" - "opportunities(have sub)" - "contact us" - "login"
@@ -40,6 +45,8 @@ import PartnerNavBar from '../components/PartnerNavBar'
 //<h2 class = 'aboutmepic'>ABOUT US</h2>
 function Home() {
     const [user, setUser] = useState(0);
+    
+/*    let heigh1t = box.style.offsetHeight;*/
     const [loading, setLoading] = useState(true)
     useLayoutEffect(() => {
 
@@ -67,17 +74,53 @@ function Home() {
     if (user === 1) {
         return (
 
-            <div className="App">
+            <div className="App" >
 
-                <LoggedNavBar />
+                <LoggedNavBar id='navbar'/>
+                <div>
+                <Carousel>
+                    <Carousel.Item>
+                        <img
+                            className="d-block w-100"
+                            src={ pic1}
+                                alt="First slide"
+                                style={{ width: '100%', height: '750px' }}
+                        />
+                        <Carousel.Caption>
+                            <h3>Explore opportunities!</h3>
+                            <p>We provde opportunities from various categories so youre sure to find the one the suits you!</p>
+                        </Carousel.Caption>
+                    </Carousel.Item>
+                    <Carousel.Item>
+                        <img
+                            className="d-block w-100"
+                            src={pic2}
+                                alt="Second slide"
+                                style={{ width: '100%', height: '750px' }}
 
-                <OppoPageSet />
+                        />
 
-                <ContactPageSet />
+                        <Carousel.Caption>
+                            <h3>Outsourcing for you internship!</h3>
+                                <p>Finding difficulty outsouring for your internship? Fret not! We offer a wide variety of opportunities from you to choose from!</p>
+                        </Carousel.Caption>
+                    </Carousel.Item>
+                    <Carousel.Item>
+                        <img
+                            className="d-block w-100"
+                            src={pic3}
+                                alt="Third slide"
+                                style={{ width: '100%', height: '750px' }}
+                                
+                        />
 
-                <LoginPageSet />
-
-                <RegisterSet />
+                        <Carousel.Caption>
+                                <h3>Collaboration with partners</h3>
+                                <p>We work together with partners to provide you with all the opportunities you see</p>
+                        </Carousel.Caption>
+                    </Carousel.Item>
+                    </Carousel>
+                    </div>
 
             </div>
 

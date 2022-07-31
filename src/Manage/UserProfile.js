@@ -34,7 +34,7 @@ function UserProfile() {
     const blob = new Blob([buffer], { type: 'image/jpg' })
     //const blob = new Blob([buffer], { type: 'application/pdf' })
     const blobURL = URL.createObjectURL(blob)
-
+    //const fileName;
 
     useEffect(() => {
         axios.get("http://localhost:3001/profile").then((response) => {
@@ -49,8 +49,8 @@ function UserProfile() {
         axios.get("http://localhost:3001/getblob").then((response) => {
 
             console.log(response);
-            setTestArray(response.data);
-            setTest(response.data[0].hex);
+            //setTestArray(response.data);
+            //setTest(response.data[0].hex);
             //{ testArray.map((row, key) => setTest(row["hex"])) }
             //{ testArray.map((row, key) => setTest(row["hex"])) }
 

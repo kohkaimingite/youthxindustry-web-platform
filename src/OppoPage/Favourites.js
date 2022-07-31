@@ -578,7 +578,7 @@ function Favourites() {
             <LoggedNavBar />
 
 
-            <div className="main">
+            <div className="main" style={{marginTop:'20px'}}>
                 <h1 >Favourites</h1>
                 <div class="sidenav">
 

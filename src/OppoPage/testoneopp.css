@@ -66,6 +66,7 @@ bottomSection {
     margin-left: 20%;
     overflow: auto;
     height: 1000px;
+    margin-top:20px;
 }
 .test {
     width: 1000px;
