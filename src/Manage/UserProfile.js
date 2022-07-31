@@ -105,7 +105,7 @@ function UserProfile() {
 
                 <h2>{test}</h2>
                 <h2>{blobURL}</h2>
-                <a download="hello.jpg" href={URL.createObjectURL(blob)} id="link">Download</a>
+                <a download="hello.txt" href={URL.createObjectURL(blob)} id="link">Download</a>
                 {/*<h2>{buffer}</h2>*/}
                 {/*<h2>{row[0]}</h2>*/}
                 {/*{testArray.map((row, key) => <h2>{row[0]}</h2> )}*/}
