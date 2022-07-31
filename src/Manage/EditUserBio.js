@@ -17,6 +17,7 @@ function EditProfile() {
     const [Check, setCheck] = useState("");
     const [Bio, setBio] = useState("");
     const [ProfList, setProfList] = useState([]);
+    const [charCount, setCharCount] = useState(0);
     const columns = ProfList[0] && Object.keys(ProfList[0]);
     useEffect(() => {
         axios.get("http://localhost:3001/profile").then((response) => {
@@ -31,69 +32,31 @@ function EditProfile() {
     return (
         <div className="App">
             <LoggedNavBar />
-            <div className="main">
-                <h1>Profile</h1>
-                <div className="AlignLeft">
-                    <h3>Details:</h3>
-                    <form action="/action_page.php" method="post">
-                        {ProfList.map((val, key) => {
-                            return <text align="Left">Name: {val.name}</text>;
-                        })}<br />
-                        {ProfList.map((val, key) => {
-                            return <text align="Left">Email: {val.email}</text>;
-                        })}<br />
-                        {ProfList.map((val, key) => {
-                            return <text align="Left">Mobile Number: {val.MobileNumber}</text>;
-                        })}<br />
-                        {ProfList.map((val, key) => {
-                            return <text align="Left">Bio: {val.userbio}</text>;
-                        })}<br />
-                    </form>
-
-                </div>
-                <div className="AlignMiddle">
-
-                    <form method="post">
-                        <h3>Changes: </h3>
-                        <br />
-                        <br />
-                        <br />
-                        <label>New Bio: </label>
-                        <input type="text" id='bio' placeholder="Enter New Bio..." onChange={e => setBio(e.target.value)}></input><br />
-                        <button onClick={submit}> Confirm </button>
-                        <text align='left'>{Check}</text>
-                    </form>
-
-                </div>
+            <div className="wholeProfile">
+                <titleSection2>
+                    <h1>Edit Bio</h1>
+                </titleSection2>
+                    <leftSection style={{ textAlign: "left" }}>
+                        <text style={{ fontSize: "20px" }}>Current Bio:</text><br/>
+                            {ProfList.map((val, key) => {
+                                return <text style={{ fontSize: "20px" }}>{val.UserBio} </text>;
+                            })}
+                </leftSection>
+                <textarea placeholder="Provide A New Bio! Maximum of 500 Characters" id="Bio" name="Bio" value={Bio} onChange={e => { setBio(e.target.value); setCharCount(e.target.value.length) }} style={{width:'700px'}} maxLength="500"> </textarea><br/>
+                <text style={{ fontSize: "20px" }} > Current Characters: {charCount}</text><br/>
+                <Button variant="primary" type="submit" onClick={submit}>Update Bio</Button>
             </div>
+            
         </div>
 
     )
-    //function checkInput() {
-    //    if (Regex.test(Email)) {
-    //        setEmailCheck("Ok Email")
-    //    }
-    //    else {
-    //        setEmailCheck("Please Enter a Valid Email!")
-    //    }
-    //    if ('email' == "") {
-    //        setEmailCheck("Please Enter an Email!")
-    //    }
-    //    else if ('email' != "'*'@'*'.com") {
-    //        setEmailCheck("Please Enter A Valid Email")
-    //    }
-    //    else {
-    //        setEmailCheck("Ok Email")
-    //    }
-    //}
     function submit() {
         axios.post("http://localhost:3001/EditUBio", {
             Bio: Bio
         }).then(() => {
             console.log("Test");
-            /*setCheck(response.data);*/
             window.location = "http://localhost:3000/Profile";
         });
     };
-}//ADD IF STATEMENT TO CHECK FOR IF IT IS SUCCESSFUL
+}
 export default EditProfile;

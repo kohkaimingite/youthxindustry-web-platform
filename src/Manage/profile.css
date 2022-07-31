@@ -75,7 +75,21 @@ nameSection {
 
 
 
-
+leftSection {
+    text-align: center;
+    align-content: start;
+    float: left;
+    width: 100%;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 10px;
+    display: table;
+    border: 1px solid #d7e2e9;
+    border-radius: 8px 8px 8px 8px;
+    border-left: 5px solid #808080;
+    border-bottom: 5px solid #808080;
+    margin-bottom: 20px;
+}
 
 
 
@@ -95,5 +109,26 @@ nameSection {
     margin-right: 30%;
     margin-left: 30%;
     overflow: auto;
-    height: 3000px;
+    height: 2000px;
+}
+
+.leftSide {
+    width:auto;
+    margin-right:50%;
+    overflow: auto;
+    height:1000px;
+}
+
+titleSection2 {
+    align-content: start;
+    float: left;
+    width: 100%;
+    padding: 20px 180px 20px;
+    display: table;
+    border-radius: 20px 20px 0px 0px;
+    margin-bottom: 20px;
+    border: 2px solid #d7e2e9;
+    border-radius: 8px 8px 8px 8px;
+    border-left: 5px solid #808080;
+    border-bottom: 5px solid #808080;
 }

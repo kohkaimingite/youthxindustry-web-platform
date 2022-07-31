@@ -3,12 +3,8 @@
     "",
     "\\node-mysql",
     "\\src",
-    "\\src\\CompanyProfile",
-    "\\src\\components",
-    "\\src\\HomePage",
-    "\\src\\Manage",
-    "\\src\\OppoPage",
-    "\\src\\ReviewPage"
+    "\\src\\Manage"
   ],
+  "SelectedNode": "\\src\\Manage\\EditCompanyBio.js",
   "PreviewInSolutionExplorer": false
 }
