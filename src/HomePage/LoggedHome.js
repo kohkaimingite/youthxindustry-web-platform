@@ -144,7 +144,7 @@ function Home() {
                             />
                             <Carousel.Caption>
                                 <h3>Welcome onboard!</h3>
-                                <p>Thankyou or joining us on this journey!</p>
+                                <p>Thankyou for joining us on this journey!</p>
                                 
                             </Carousel.Caption>
                         </Carousel.Item>
@@ -159,7 +159,7 @@ function Home() {
 
                             <Carousel.Caption>
                                 <h3>Exposure on opportunities!</h3>
-                                <p>We provide a platform for youths to apply for you listings!</p>
+                                <p>We provide a platform for youths to apply for your listings!</p>
                                 
                             </Carousel.Caption>
                         </Carousel.Item>

@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import Axios from 'axios';
 import "./SearchCompanyProfile.css";
-import { faSearch, faX } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import NavBar from '../components/NavBar';
 import LoggedNavBar from '../components/LoggedNavBar';
+import { Container, Row, Col, Card } from 'react-bootstrap'
 
 function SearchCompanyProfile() {
 
     const [storeUser, setStoreUser] = useState([]);
+    const [storeCompanyOpp, setStoreCompanyOpp] = useState([]);
     const [filteredData, setFilteredData] = useState([]);
     const [wordEntered, setWordEntered] = useState("");
 
@@ -38,6 +37,25 @@ function SearchCompanyProfile() {
         });
     }, []);
 
+    useEffect(() => {
+        Axios.get("http://localhost:3001/findOppForRecommendCompany").then((response) => {
+            setStoreCompanyOpp(response.data);
+        });
+    }, []);
+
+    function shuffle(array) {
+        let currentIndex = array.length, randomIndex;
+        // While there remain elements to shuffle.
+        while (currentIndex != 0) {
+            // Pick a remaining element.
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex--;
+            // And swap it with the current element.
+            [array[currentIndex], array[randomIndex]] = [
+                array[randomIndex], array[currentIndex]];
+        }
+        return array;
+    }
 
     return (
         <div className="SearchCompanyProfileDiv" >
@@ -61,9 +79,33 @@ function SearchCompanyProfile() {
                         </div>
                     )}
                 </div>
+
             </div>
 
+            <h2 style={{ marginTop: '20px', textAlign: 'left', marginLeft: '120px', marginTop: '100px'}}>Companies that may interest you</h2>
+            <Container >
+                <Row>
+                    {shuffle(storeUser).slice(0, 8).map((opp, k) => (
 
+                        <Col key={k} xs={12} md={4} lg={3}  style={{ paddingTop: "50px"}}  className="popHoverCompany">
+                            <Card border="dark" className="CardForCompanyView">
+                                <Card.Body>
+                                    <p><a href={"/ViewCompanyProfile/" + opp.Name}>{opp.Name}</a></p>
+                                    <Fragment>
+                                        {storeCompanyOpp.filter(e2 => opp.UserID === e2.UserID).length > 0 ?
+                                            (
+                                                <Card.Text className="cardTextEffect"style={{ fontSize: '16px' }}>{storeCompanyOpp.filter(e2 => opp.UserID === e2.UserID).length} Opportunities</Card.Text>
+                                            ) : (
+                                                <Card.Text></Card.Text>
+                                            )}
+                                    </Fragment>
+
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                    ))}
+                </Row>
+            </Container>
         </div>
     );
 }

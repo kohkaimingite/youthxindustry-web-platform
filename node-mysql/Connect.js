@@ -378,7 +378,7 @@ app.post('/oppForEmailAcceptance', (req, res) => {
         [OppID],
         (err, result) => {
             if (err) {
-                console.log("problem");
+                console.log(err);
             } else {
                 res.send(result);
                 console.log(result);
@@ -391,7 +391,7 @@ app.post('/userForEmailAcceptance', function (req, res) {
         [req.session.user[0].UserID],
         (err, result) => {
             if (err) {
-                console.log("problem");
+                console.log(err);
             } else {
                 res.send(result);
                 console.log(result);
@@ -399,6 +399,17 @@ app.post('/userForEmailAcceptance', function (req, res) {
         });
 });
 
+app.get('/findOppForRecommendCompany', (req, res) => {
+    db.query("SELECT * FROM partner_have_opp;",
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send(result);
+                console.log(result);
+            }
+        });
+});
 
 //Andrea
 
