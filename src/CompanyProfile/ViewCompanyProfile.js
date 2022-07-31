@@ -70,7 +70,7 @@ function ViewCompanyProfile() {
 
         <div className="App">
             <LoggedNavBar />
-            <div className="CreateCompanyProfile">
+            <div className="CreateCompanyProfile" style={{ marginTop: '20px' }}>
                 {
                     storeUser.filter(company => company.Name === Name).map((company) => {
                         storeUserID = company.UserID;

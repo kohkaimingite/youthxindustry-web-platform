@@ -51,11 +51,18 @@
     width: 15rem;
     height: 16rem;
     padding-top: 50px;
+   
 }
 
     .CardForCompanyView a {
         text-decoration: none;
     }
+
+.popHoverCompany :hover {
+    transform: scale(1.1);
+}
+
+
 /*#clearBtn {
     cursor: pointer;
 }

@@ -399,10 +399,8 @@ app.post('/userForEmailAcceptance', function (req, res) {
         });
 });
 
-app.post('/findOppForRecommendCompany', (req, res) => {
-    const UserID = req.body.UserID;
-    db.query("SELECT COUNT(OppID) FROM partner_have_opp WHERE UserID = ?;",
-        [UserID],
+app.get('/findOppForRecommendCompany', (req, res) => {
+    db.query("SELECT * FROM partner_have_opp;",
         (err, result) => {
             if (err) {
                 console.log(err);
