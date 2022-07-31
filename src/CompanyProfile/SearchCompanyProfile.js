@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import "./SearchCompanyProfile.css";
-import { faSearch, faX } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import NavBar from '../components/NavBar';
 import LoggedNavBar from '../components/LoggedNavBar';
+import { Container, Row, Col, Card } from 'react-bootstrap'
 
 function SearchCompanyProfile() {
 
@@ -61,9 +59,25 @@ function SearchCompanyProfile() {
                         </div>
                     )}
                 </div>
+
             </div>
 
+            <p style={{ marginTop: '20px' }}>Company Recommendations:</p>
+            <Container>
 
+                <Row>
+                    {storeUser.slice(0, 4).map((opp, k) => (
+
+                        <Col key={k} xs={12} md={4} lg={3} style={{ paddingTop: "50px", }}>
+                            <Card border="dark" className="CardForCompanyView">
+                                <Card.Body>
+                                    <p><a href={"/ViewCompanyProfile/" + opp.Name}>{opp.Name}</a></p>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                    ))}
+                </Row>
+            </Container>
         </div>
     );
 }

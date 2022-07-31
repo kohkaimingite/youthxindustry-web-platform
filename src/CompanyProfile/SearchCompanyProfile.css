@@ -3,6 +3,7 @@
     align-items: center;
     flex-direction: column;
     margin-left: 750px;
+    margin-top: 20px;
 }
 
 
@@ -30,8 +31,9 @@
     }
 
     .dataResult a:hover {
-        color: blue;
+        color: orange;
         background-color: lightgrey !important;
+        animation: pop 0.3s linear 1;
     }
 
 .dataItem p {
@@ -39,8 +41,22 @@
     font-size: 16px
 }
 
+@keyframes pop {
+    50% {
+        transform: scale(1.1);
+    }
+}
 
+.CardForCompanyView {
+    width: 15rem;
+    height: 16rem;
+    padding-top: 50px;
+}
 
-#clearBtn {
+    .CardForCompanyView a {
+        text-decoration: none;
+    }
+/*#clearBtn {
     cursor: pointer;
 }
+*/
