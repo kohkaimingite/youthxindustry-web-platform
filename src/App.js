@@ -190,7 +190,6 @@ function App() {
                     <Route path='/Opportunities' element={<LoggedOppoPage />} />
                     <Route path='/Favourites' element={<Favourites />} />
                     <Route path='/AddReview' element={<MakingReview />} />
-                    <Route path='/ContactUs' element={<ContactPage />} />
                     <Route path='/AcceptJob' element={<AcceptJob />} />
                     <Route path='/EditUserResume' element={<EditUserResume />} />
                     <Route path='/RegisterUser' element={< RegisterUser />} />
