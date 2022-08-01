@@ -96,7 +96,7 @@ function ViewCompanyProfile() {
                                                 <p style={style2}>{company.UserBio}</p>
                                                 <h4 style={style1}>Contact Us</h4>
                                                 <p style={style2}>Email: {company.Email} </p>
-                                                <p style={style2}>Mobile Number: {company.MobileNumber}</p>
+                                                <p style={style2}>Number: {company.ContactNumber}</p>
 
                                             </div>
                                         )
