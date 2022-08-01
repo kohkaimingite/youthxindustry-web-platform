@@ -24,7 +24,7 @@ function ReviewNoSuccess() {
                 <h2>Your review has not been submitted successfully</h2>
                 <h2>due to some errors</h2>
                 <h2>Click here to redirect to main page</h2>
-                <Link to="/"><button >Home</button> </Link>
+                <Link to="/home"><button >Home</button> </Link>
             </div>
         </div>
     )
