@@ -113,7 +113,7 @@ export default function LogAppTable({ data }) {
 
                 }
                 <td><a
-                    href={`http://localhost:3001/getblob`}
+                    href={`http://localhost:3001/getblob/`+ row[columns[1]]}
                     target="_blank"
                     rel="noreferrer"
                 >

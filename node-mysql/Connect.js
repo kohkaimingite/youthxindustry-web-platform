@@ -776,10 +776,10 @@ app.get('/getblob', async function (req, res) {
         });
 });
 
-app.get('/getblob2', async function (req, res) {
-    const userID = req.body.userID;
+app.get('/getblob/:id', async function (req, res) {
+    const id = req.params.id;
     db.query("SELECT Resume FROM users WHERE UserID = ?;",
-        [userID],
+        [id],
         (err, result) => {
             if (err) {
                 console.log(err);
@@ -787,13 +787,12 @@ app.get('/getblob2', async function (req, res) {
                 const buffer = result[0].Resume;
                 res.setHeader(
                     "Content-Disposition",
-                    `attachment; filename=YourResume.pdf`
-                );
-
-                res.send(buffer);
+                    `attachment; filename = YourResume.pdf`
+                );                res.send(buffer);
             };
         });
 });
+
 
 app.post('/XIAOQUAN', (req, res) => {
     const Resume = req.body.resume123
