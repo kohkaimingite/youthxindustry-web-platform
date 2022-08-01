@@ -27,22 +27,9 @@ topSection::after {
     width:450px;
 }
 
-/*titleSection {
-    text-align: left;
-    align-content: start;
-    background-color: #e0dede;
-    float: left;
-    width: 450px;
-    padding: 20px 180px 20px;
-    margin-bottom:0px;*/
-    /* only for demonstration, should be removed */
-/*}*/
-
 
 titleSection {
     align-content: start;
-    /*background-color: #e0dede;*/
-    /*background-color: lightcyan;*/
     float: left;
     width: 100%;
     padding: 20px 180px 20px;
@@ -52,13 +39,11 @@ titleSection {
     border: 1px solid #d7e2e9;
     border-radius: 8px 8px 8px 8px;
     border-left: 5px solid #236F21;
-    /* only for demonstration, should be removed */
 }
 
 nameSection {
     text-align: center;
     align-content: start;
-    /*background-color: #e0dede;*/
 
     float: left;
     width: 100%;
@@ -69,8 +54,7 @@ nameSection {
     border: 1px solid #d7e2e9;
     border-radius: 8px 8px 8px 8px;
     border-left: 5px solid #236F21;
-    /*background-color:*/
-    /* only for demonstration, should be removed #58a9a7 */ margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 
 
@@ -79,7 +63,7 @@ leftSection {
     text-align: center;
     align-content: start;
     float: left;
-    width: 100%;
+    width: 60%;
     padding-top: 15px;
     padding-bottom: 15px;
     padding-left: 10px;
@@ -91,9 +75,27 @@ leftSection {
     margin-bottom: 20px;
 }
 
+leftSection2 {
+    text-align: center;
+    align-content: start;
+    float: left;
+    width: 60%;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 10px;
+    display: table;
+    border: 1px solid #d7e2e9;
+    border-radius: 8px 8px 8px 8px;
+    border-left: 5px solid #ff0000;
+    border-bottom: 5px solid #ff0000;
+    margin-bottom: 20px;
+}
 
-
-
+.AlignRight2 {
+    position: absolute;
+    right: 150px;
+    width: 500px;
+}
 
 
 
@@ -115,14 +117,15 @@ leftSection {
 .leftSide {
     width:auto;
     margin-right:50%;
+    margin-left:10%;
     overflow: auto;
-    height:1000px;
+    height:3000px;
 }
 
 titleSection2 {
     align-content: start;
     float: left;
-    width: 100%;
+    width: 60%;
     padding: 20px 180px 20px;
     display: table;
     border-radius: 20px 20px 0px 0px;
