@@ -1,5 +1,5 @@
 // JavaScript source code
-import PartnerNavBar from '../components/PartnerNavBar'
+import LoggedNavBar from '../components/LoggedNavBar'
 import { React, useState, useEffect } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Route, Link, useParams } from 'react-router-dom';
@@ -11,7 +11,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function SubmitApplication() {
     const [ProfList, setProfList] = useState([]);
-    const [desc, setdesc] = useState("");
     const [Chars, setChars] = useState(0);
     const [OppList, setOppList] = useState([]);
     const columns = ProfList[0] && Object.keys(ProfList[0]);
@@ -36,7 +35,7 @@ function SubmitApplication() {
     }, []);
     return (
         <div className="App">
-            <PartnerNavBar />
+            <LoggedNavBar />
             <div className="main">
                 <h1>Application</h1>
                 <div className="AlignLeft">
@@ -45,12 +44,11 @@ function SubmitApplication() {
                         <text>Full Name:</text><br />
                         <text>Email:</text><br />
                         <text>Mobile Number:</text><br />
-                        <text>Short Description: </text><br />
-                        <text>Resume: </text><br />
                     </form>
                 </div>
             
                 <div className="AlignMiddle">
+                    <h3>Please Check Your Information</h3>
                     <form action="/action_page.php" method="post">
                         {ProfList.map((val, key) => {
                             return <text align="Left">{val.Name}</text>;
@@ -60,13 +58,11 @@ function SubmitApplication() {
                         })}<br />
                         {ProfList.map((val, key) => {
                             return <text align="Left">{val.ContactNumber}</text>;
-                        })}<br />
+                        })}<br /><br />
                             
-                        <textarea placeholder="Briefly Describe Why You Want This Opportunity... (250 characters)" id="desc" name="desc" value={desc} onChange={e => { setdesc(e.target.value); setChars(e.target.value.length) }} maxLength="250"> </textarea>
-                        <h4>Characters typed: {Chars}</h4>
                         <button onClick={submit}> Confirm </button>
+                        <h3>Ensure that your have uploaded your Resume in your profile page</h3>
                     </form>
-                    <h2>{desc}</h2>
                 </div>
                 <div className="AlignRight">
                     <Row>
@@ -95,7 +91,6 @@ function SubmitApplication() {
 
     function submit() {
         axios.post("http://localhost:3001/SubmitApplication", {
-            desc: desc,
             OppID : id
         }).then(() => {
             console.log("test");
