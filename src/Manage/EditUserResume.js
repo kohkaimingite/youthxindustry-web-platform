@@ -73,61 +73,6 @@ function EditUserResume() {
         return response;
     }
 
-    //function submit() {
-       
-    //    //File theFile;   method="POST" action="/XIAOQUAN" reader.readAsText(documentBlob)
-    //    //theFile = new File(resume)
-    //    const file = new File([Resume], "Resume")
-
-
-    //    const file123 = document.getElementById('Resume').files[0];
-    //    const reader = new FileReader()
-    //    //reader.readAsBinaryString(file123)
-    //    //reader.readAsArrayBuffer(file123)
-    //    reader.readAsDataURL(file123)
-    //    reader.onloadend = () => {
-    //        const butt = reader.result
-    //        const string = arrayBufferToHex(reader.result)
-    //        const binaryString = reader.result // Binary string.
-    //        var hexa = parseInt(binaryString, 2).toString(16).toUpperCase();
-    //        var asshoe = "x'"+hexa+"'"
-    //        const lol = reader.readAsText(file123);
-    //        const documentBlob = new Blob([file123], { type: 'application/pdf' })
-
-    //        axios.post("http://localhost:3001/EditUResume", {
-    //            //Resume: string
-    //            Resume: butt
-    //        }).then(() => {
-    //            console.log("Test");
-    //            /*setCheck(response.data);*/
-    //            window.location = "http://localhost:3000/Profile";
-    //        });
-    //    }
-
-
-        
-    //    //reader.onload = function (e) {
-    //    //    const blob = new Blob([new Uint8Array(Resume)], { type: file.pdf });
-    //    //    console.log(blob instanceof Blob)
-            
-    //    //};
-
-    //    //const fileSelector = document.getElementById('file-selector');
-    //    //fileSelector.addEventListener('change', (event) => {
-    //    //    const fileList = event.target.files;
-    //    //    console.log(fileList);
-    //    //});
-        
-    //    //axios.post("http://localhost:3001/XIAOQUAN", {
-    //    //    Resume: file123.name
-    //    //}).then(() => {
-    //    //    console.log("Test");
-    //    //    /*setCheck(response.data);*/
-    //    //    /*window.location = "http://localhost:3000/Profile";*/
-    //    //});
-    //};
-
-
     function submit() {
         const formData = new FormData();
         formData.append("resume", Resume);
@@ -136,12 +81,6 @@ function EditUserResume() {
                     /*setCheck(response.data);*/
                     window.location = "http://localhost:3000/Profile";
                 });
-        //const file = new File([Resume], "Resume")
-        //const file123 = document.getElementById('fileItem').files[0];
-        
-        //formData.append("resume", file123);
-
-       
 
     };
 
