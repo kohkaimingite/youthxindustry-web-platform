@@ -26,15 +26,9 @@ function UserProfile() {
 
     };
 
-    //const buffer = new Uint8Array(test.match(/[\da-f]{2}/gi).map(function (h) {
-    //    return parseInt(h, 16)
-    //}))
     const buffer = hexToArrayBuffer(test)
-    //const blob = new buffer.Blob([buffer])
     const blob = new Blob([buffer], { type: 'image/jpg' })
-    //const blob = new Blob([buffer], { type: 'application/pdf' })
     const blobURL = URL.createObjectURL(blob)
-    //const fileName;
 
     useEffect(() => {
         axios.get("http://localhost:3001/profile").then((response) => {
@@ -49,11 +43,6 @@ function UserProfile() {
         axios.get("http://localhost:3001/getblob").then((response) => {
 
             console.log(response);
-            //setTestArray(response.data);
-            //setTest(response.data[0].hex);
-            //{ testArray.map((row, key) => setTest(row["hex"])) }
-            //{ testArray.map((row, key) => setTest(row["hex"])) }
-
         })
     }, []);
     new File([Resume], "resumes")
@@ -105,36 +94,11 @@ function UserProfile() {
                     </a>
                     <a href="/EditUserResume"> <FontAwesomeIcon icon={faPencil}></FontAwesomeIcon> </a><br />
                 </nameSection>
-                
-
-
-
-
-                {/*<h2>{test}</h2>*/}
-                {/*<h2>{blobURL}</h2>*/}
-                {/*<a download="hello.txt" href={URL.createObjectURL(blob)} id="link">Download</a>*/}
-                {/*<h2>{buffer}</h2>*/}
-                {/*<h2>{row[0]}</h2>*/}
-                {/*{testArray.map((row, key) => <h2>{row[0]}</h2> )}*/}
-                
-                <img scr={blobURL} alt="Girl in a jacket"  width="500" height="600"/>
-
-                
-                
                     
                 </div>
             
         </div>
     )
-
-    //function getResume(file) {
-    //    const bitmap = fs.readFileSync(file);
-    //    const buf = new Buffer(bitmap);
-    //    return buf;
-    //}
-
-    //SQL statement = "SELECT name, email, MobileNumber FROM users WHERE UserID = "id";
-    //SQL Update Statement ="UPDATE user SET name = newname, email = newEmail, MobileNumber = newNumber WHERE UserID = "id";
 
 }
 export default UserProfile;

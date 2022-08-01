@@ -728,7 +728,7 @@ app.get('/Company', (req, res) => {
 })
 
 app.get('/Applications', (req, res) => {
-    db.query("SELECT application.AppID, opportunities.OppID, opportunities.Name, users.ContactNumber, users.Email, application.Description, application.Status FROM application INNER JOIN opportunities ON application.OppID = opportunities.OppID INNER JOIN users ON application.UserID = users.UserID INNER JOIN partner_have_opp ON partner_have_opp.OppID = application.OppID WHERE partner_have_opp.UserID = ? AND application.status='Pending';",
+    db.query("SELECT application.AppID, users.UserID, opportunities.OppID, opportunities.Name, users.ContactNumber, users.Email, application.Status FROM application INNER JOIN opportunities ON application.OppID = opportunities.OppID INNER JOIN users ON application.UserID = users.UserID INNER JOIN partner_have_opp ON partner_have_opp.OppID = application.OppID WHERE partner_have_opp.UserID = ? AND application.status='Pending';",
         [req.session.user[0].UserID],
         (err, result) => {
             if (err) {
@@ -736,52 +736,11 @@ app.get('/Applications', (req, res) => {
             } else {
                 res.send(result);
             }
-        }
+        } 
     )
 })
 const outputfile = "Resume.docx";
 
-
-//app.get('/getblob', async function (req, res) {
-//    db.query("SELECT CONCAT( HEX(CAST(resume AS CHAR(10000) CHARACTER SET utf8))) AS hex FROM users WHERE UserID = 2;",
-//        [req.session.user[0].UserID],
-//        (err, result) => {
-//            if (err) {
-//                console.log(err);
-//            } else {
-//                //const data = result.data;
-//                //const buf = new Buffer(data, "binary");
-//                //fs.writeFileSync(outputfile, buf);
-//                //console.log("New Output File: ", outputfile)
-//                res.send(result)
-//            };
-//        });
-//});
-//app.get('/getblob', async function (req, res) {
-//    db.query("SELECT resume FROM users WHERE UserID = ?;",
-//        [req.session.user[0].UserID],
-//        (err, result) => {
-//            if (err) {
-//                console.log(err);
-//            } else {
-//                //const data = result.data;
-//                //const buf = new Buffer(data, "binary");
-//                //fs.writeFileSync(outputfile, buf);
-//                //console.log("New Output File: ", outputfile)
-//                const row = res[0];
-//                const data = row.data;
-//                console.log("BLOB data read!");
-//                const buf = new Buffer(data, "binary");
-                
-
-//                const fileName = "resume.pdf";
-//                res.setHeader("Content-Disposition", `attachment; filename="${fileName}"`);
-//                res.setHeader("Content-Type", "application/pdf");
-//                res.send(buf);
-//                res.send(result)
-//            };
-//        });
-//});
 
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
@@ -798,6 +757,7 @@ app.post('/EditUResume', upload.single('resume'), (req, res) => {
         }
     )
 })
+
 app.get('/getblob', async function (req, res) {
     db.query("SELECT Resume FROM users WHERE UserID = ?;",
         [req.session.user[0].UserID],
@@ -808,27 +768,33 @@ app.get('/getblob', async function (req, res) {
                 const buffer = result[0].Resume;
                 res.setHeader(
                     "Content-Disposition",
-                    `attachment; filename=YourResume.docx`
+                    `attachment; filename=YourResume.pdf`
                 );
 
                 res.send(buffer);
             };
         });
 });
-//app.post('/EditUResume', (req, res) => {
-//    const Resume = req.body.Resume
-//    db.query("UPDATE users SET Resume = ? WHERE UserID = ?;",
-//        [Resume, req.session.user[0].UserID],
-//        (err, result) => {
-//            if (err) {
-//                console.log(err);
-//            } else {
-//                res.send("Updated Resume!");
-//            }
-//        }
-//    )
 
-//})
+app.get('/getblob2', async function (req, res) {
+    const userID = req.body.userID;
+    db.query("SELECT Resume FROM users WHERE UserID = ?;",
+        [userID],
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                const buffer = result[0].Resume;
+                res.setHeader(
+                    "Content-Disposition",
+                    `attachment; filename=YourResume.pdf`
+                );
+
+                res.send(buffer);
+            };
+        });
+});
+
 app.post('/XIAOQUAN', (req, res) => {
     const Resume = req.body.resume123
     console.log("YES");
@@ -840,8 +806,8 @@ app.post('/XIAOQUAN', (req, res) => {
 app.post('/SubmitApplication', (req, res) => {
     const desc = req.body.desc
     const OppID = req.body.OppID
-    db.query("INSERT INTO application (UserID, OppID, Description, Status) VALUES (?, ?, ?, 'Pending')",
-        [req.session.user[0].UserID, OppID, desc],
+    db.query("INSERT INTO application (UserID, OppID,  Status) VALUES (?, ?, 'Pending')",
+        [req.session.user[0].UserID, OppID],
         (err, result) => {
             if (err) {
                 console.log(err);
@@ -954,6 +920,8 @@ app.post('/RejectOppo', (req, res) => {
 
         });
 });
+
+app.post('/Retrieve')
 
 
 //Zhi Wei
