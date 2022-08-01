@@ -12,7 +12,7 @@ function NotAllowed() {
             <h2>Log in to access this page</h2>
             
             <h2>Click here to redirect to main page</h2>
-            <Link to="/"><button >Home</button> </Link>
+            <Link to="/home"><button >Home</button> </Link>
 
         </div>
 

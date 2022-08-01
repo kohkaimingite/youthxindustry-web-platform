@@ -15,7 +15,7 @@ function NotAllowed() {
             <h1>You are not allowed on this page!!</h1>
             
             <h2>Click here to redirect to main page</h2>
-            <Link to="/"><button >Home</button> </Link>
+            <Link to="/home"><button >Home</button> </Link>
 
         </div>
 
