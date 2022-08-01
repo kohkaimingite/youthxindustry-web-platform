@@ -179,20 +179,12 @@ function App() {
             
             <Routes>
                 <Route path='/' element={<Login />} />
-
                 <Route path='/NotAllowed' element={<NotAllowed />} />
                 <Route path='/NoAccess' element={<NotAllowedLog />} />
-                
-                
-                
                 <Route path='/Register' element={<Register />} />
-
-
-                <Route path='/Profile' element={<ProfilePage />} />
-                <Route path='/EditCompanyNumber' element={<EditCompanyNumber />} />
                 <Route path='/RegisterPartner' element={< RegisterPartner />} />
                 <Route path='/RegisterUser' element={< RegisterUser />} />
-                <Route path='/EditCompanyBio' element={<EditCompanyBio />} />
+
 
                 <Route element={<ProtectedRouteLog user={user} />}>
                     <Route path='/Opportunities' element={<LoggedOppoPage />} />
