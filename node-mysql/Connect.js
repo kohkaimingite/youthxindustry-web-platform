@@ -808,7 +808,7 @@ app.get('/getblob', async function (req, res) {
                 const buffer = result[0].Resume;
                 res.setHeader(
                     "Content-Disposition",
-                    `attachment; filename=YourResume.docx`
+                    `attachment; filename=YourResume.pdf`
                 );
 
                 res.send(buffer);
