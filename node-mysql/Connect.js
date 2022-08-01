@@ -902,7 +902,7 @@ app.post('/NewOppo', (req, res) => {
     const type = req.body.type;
     const qualification = req.body.qualification;
     const pay = req.body.pay;
-    db.query("INSERT INTO opportunities (Name,Description,Location,Address,Type, Qualification, Pay, Confirmed, Posted) VALUES (?, ?, ?, ?, ?, ?, ?, 0, 0); SET @id = LAST_INSERT_ID(); INSERT INTO partner_have_opp (UserID, OppID) VALUES (?, @id);"",
+    db.query("INSERT INTO opportunities (Name,Description,Location,Address,Type, Qualification, Pay, Confirmed, Posted) VALUES (?, ?, ?, ?, ?, ?, ?, 0, 0); SET @id = LAST_INSERT_ID(); INSERT INTO partner_have_opp (UserID, OppID) VALUES (?, @id);",
     [name, description, location, address, type, qualification, pay, req.session.user[0].UserID],
         (err, result) => {
             if (err) {
