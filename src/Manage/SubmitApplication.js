@@ -44,11 +44,11 @@ function SubmitApplication() {
                         <text>Full Name:</text><br />
                         <text>Email:</text><br />
                         <text>Mobile Number:</text><br />
-                        <text>Resume: </text><br />
                     </form>
                 </div>
             
                 <div className="AlignMiddle">
+                    <h3>Please Check Your Information</h3>
                     <form action="/action_page.php" method="post">
                         {ProfList.map((val, key) => {
                             return <text align="Left">{val.Name}</text>;
@@ -58,11 +58,11 @@ function SubmitApplication() {
                         })}<br />
                         {ProfList.map((val, key) => {
                             return <text align="Left">{val.ContactNumber}</text>;
-                        })}<br />
+                        })}<br /><br />
                             
                         <button onClick={submit}> Confirm </button>
+                        <h3>Ensure that your have uploaded your Resume in your profile page</h3>
                     </form>
-                    <h2>{desc}</h2>
                 </div>
                 <div className="AlignRight">
                     <Row>
