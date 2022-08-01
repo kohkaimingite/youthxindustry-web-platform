@@ -1,21 +1,14 @@
 // JavaScript source code
 import LoggedNavBar from '../components/LoggedNavBar'
 import { React, useState, useEffect } from "react";
-import TextField from "@mui/material/TextField";
-import List from "../Some test data/List";
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Collapsible from '../components/Collapsible';
-import { Route, Link } from 'react-router-dom';
 import axios from 'axios';
 
 
 
 function EditProfile() {
-    /*const Regex = new RegExp('*@*.com');*/
-    const [Check, setCheck] = useState("");
     const [Number, setNumber] = useState("");
-    const [NumberCheck, setNumberCheck] = useState("");
     const [ProfList, setProfList] = useState([]);
     const columns = ProfList[0] && Object.keys(ProfList[0]);
     useEffect(() => {
@@ -23,7 +16,6 @@ function EditProfile() {
 
             console.log(response);
             setProfList(response.data);
-
         });
     });
 
@@ -31,68 +23,37 @@ function EditProfile() {
     return (
         <div className="App">
             <LoggedNavBar />
-            <div className="main">
-                <h1>Profile</h1>
-                <div className="AlignLeft">
-                    <h3>Details:</h3>
-                    <form action="/action_page.php" method="post">
-                        {ProfList.map((val, key) => {
-                            return <text align="Left">Name: {val.name}</text>;
-                        })}<br />
-                        {ProfList.map((val, key) => {
-                            return <text align="Left">Email: {val.email}</text>;
-                        })}<br />
-                        {ProfList.map((val, key) => {
-                            return <text align="Left">Mobile Number: {val.MobileNumber}</text>;
-                        })}<br />
-                        {ProfList.map((val, key) => {
-                            return <text align="Left">Bio: {val.userbio}</text>;
-                        })}<br />
-                    </form>
-
-                </div>
-                <div className="AlignMiddle">
-
-                    <form method="post">
-                        <h3>Changes: </h3>
-                        <br />
-                        <label>New Mobile Number:</label>
-                        <input type="text" id='number' placeholder="Enter A Mobile Number..." onChange={e => setNumber(e.target.value)}></input><text color='#FF0000'>{NumberCheck}</text><br />
-
-                        <button onClick={submit}> Confirm </button>
-                        <text align='left'>{Check}</text>
-                    </form>
-
-                </div>
+            <div className="wholeProfile">
+                <titleSection2>
+                    <h1>Edit Contacts Number</h1>
+                </titleSection2>
+                <leftSection style={{ textAlign: "left" }}>
+                    <text style={{ fontSize: "20px" }}>Current Number:</text><br />
+                    {ProfList.map((val, key) => {
+                        return <text style={{ fontSize: "20px" }}>{val.ContactNumber} </text>;
+                    })}
+                </leftSection>
+                <input type='Number' id='Number' name='Number' pattern="(6|8|9)\d{7}" required onChange={e => { setNumber(e.target.value); }} style={{ width: '200px' }}></input><br />
+                <Button onClick={submit}>Update Contact Number</Button><br />
             </div>
+
+
         </div>
 
     )
-    //function checkInput() {
-    //    if (Regex.test(Email)) {
-    //        setEmailCheck("Ok Email")
-    //    }
-    //    else {
-    //        setEmailCheck("Please Enter a Valid Email!")
-    //    }
-        //    if ('email' == "") {
-        //        setEmailCheck("Please Enter an Email!")
-        //    }
-        //    else if ('email' != "'*'@'*'.com") {
-        //        setEmailCheck("Please Enter A Valid Email")
-        //    }
-        //    else {
-        //        setEmailCheck("Ok Email")
-        //    }
-        //}
     function submit() {
-        axios.post("http://localhost:3001/EditUNumber", {
-            Number: parseInt(Number),
-        }).then(() => {
-            console.log("Test");
-            /*setCheck(response.data);*/
-            window.location = "http://localhost:3000/Profile";
-        });
+        if (/^(6|8|9)\d{7}$/.test(Number) && Number.length == 8) {
+            axios.post("http://localhost:3001/EditUNumber", {
+                Number: parseInt(Number),
+            }).then(() => {
+                console.log("Test");
+                /*setCheck(response.data);*/
+                window.location = "http://localhost:3000/Profile";
+                alert("Contact Number Successsfully Updated")
+            });
+        } else {
+            alert("Please enter a Valid Contact Number")
+        }
     };
-}//ADD IF STATEMENT TO CHECK FOR IF IT IS SUCCESSFUL
+}
 export default EditProfile;

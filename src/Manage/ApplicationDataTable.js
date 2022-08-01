@@ -34,7 +34,7 @@ export default function LogAppTable({ data }) {
                 OppID: parseInt(emailInfo.OppID),
             }).then((response) => {
                 emailInfo.Company = response.data[0].Name;
-              
+
                 emailjs.send('service_x7yymg6', 'template_6artrdu', emailInfo, 'IsHv-S74WPDFFkoTT')
                     .then((result) => {
                         console.log(result.text);
@@ -59,9 +59,9 @@ export default function LogAppTable({ data }) {
                 alert("Accepted!");
                 { EmailConfirmation(appID) }
                 console.log(emailInfo);
-                
+
             });
-           
+
         } else {
             alert("Application not Accepted")
         }
@@ -82,16 +82,25 @@ export default function LogAppTable({ data }) {
         }
     }
 
+    function Resume(userID) {
+        axios.post("http://localhost:3001/getblob2", {
+            userID: userID.then((response) => {
+                console.log(response);
+                return response.data;
+            })
+        })
+    }
     return (
         <table class="AppTable1">
             <tr>
                 <th>Application ID</th>
+                <th>UserID</th>
                 <th>Opportunity ID</th>
                 <th>Name</th>
                 <th>Contact Number</th>
                 <th>Email</th>
-                <th>Description</th>
                 <th>Status</th>
+                <th>Resume</th>
                 <th>Accept</th>
                 <th>Reject</th>
 
@@ -103,11 +112,17 @@ export default function LogAppTable({ data }) {
                     columns.map(column => <td style={{ textAlign: 'center' }}>{row[column]}</td>)
 
                 }
+                <td><a
+                    href={`http://localhost:3001/getblob/`+ row[columns[1]]}
+                    target="_blank"
+                    rel="noreferrer"
+                >
+                    Resume
+                </a></td>
                 <td><FontAwesomeIcon icon={faCheck} onClick={() => Accept(row[columns[0]])}> </FontAwesomeIcon></td>
                 <td><FontAwesomeIcon icon={faX} onClick={() => Reject(row[columns[0]])}> </FontAwesomeIcon></td>
 
             </tr>)}
         </table>
     )
-
 }

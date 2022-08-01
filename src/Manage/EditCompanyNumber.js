@@ -12,7 +12,8 @@ import axios from 'axios';
 function EditCompany() {
     const [Number, setNumber] = useState(0);
     const [CompList, setCompList] = useState([]);
-    const [Check, setCheck] = ("");
+
+    const [Check, setCheck] = ("(6|8|9)\d{7}");
     const columns = CompList[0] && Object.keys(CompList[0]);
 
     useEffect(() => {
@@ -37,20 +38,25 @@ function EditCompany() {
                         return <text style={{ fontSize: "20px" }}>{val.ContactNumber} </text>;
                     })}
                 </leftSection>
-                <input type='Number' id='Number' name='Number' onChange={e => { setNumber(e.target.value);}} style={{ width: '200px' }}></input><br />
-                <Button variant="primary" type="submit" onClick={submit}>Update Contact Number</Button><br />
+                <input type='Number' id='Number' name='Number' pattern="(6|8|9)\d{7}" required onChange={e => { setNumber(e.target.value);}} style={{ width: '200px' }}></input><br />
+                <Button onClick={submit}>Update Contact Number</Button><br />
             </div>
 
         </div>
     )
     function submit() {
-        axios.post("http://localhost:3001/EditCNumber", {
-            Number: parseInt(Number),
-        }).then(() => {
-            console.log("Test");
-            /*setCheck(response.data);*/
-            window.location = "http://localhost:3000/Company";
-        });
+        if (/^(6|8|9)\d{7}$/.test(Number) && Number.length == 8) {
+            axios.post("http://localhost:3001/EditCNumber", {
+                Number: parseInt(Number),
+            }).then(() => {
+                console.log("Test");
+                /*setCheck(response.data);*/
+                window.location = "http://localhost:3000/Company";
+                alert("Contact Number Successsfully Updated")
+            });
+        } else {
+            alert("Please enter a Valid Contact Number")
+        }
 
     };
 
