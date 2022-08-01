@@ -6,7 +6,15 @@ function NotAllowed() {
 
         <div className="App">
 
-            <NavBar />
+            <header class='header' style={test}>
+                <h1 style={brandName}>CYC</h1>
+                <div class="containerNavBar borderYtoX">
+                    
+
+
+                </div>
+
+            </header>
 
             <h1>You are not allowed on this page!!</h1>
             <h2>Log in to access this page</h2>
@@ -19,5 +27,19 @@ function NotAllowed() {
 
     );
 }
+const brandName = {
+    color: "white",
 
+}
+//position: "fixed",
+//    width: "100%",
+//       top: 0,
+//           margin: "0  0 30px",
+const test = {
+
+    backgroundColor: '#FFD700',
+    position: "sticky",
+    top: 0,
+    zIndex: 9999
+}
 export default NotAllowed;
