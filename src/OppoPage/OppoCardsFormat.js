@@ -174,7 +174,7 @@ export default function OppoCardsFormat({ data }) {
                             <div class="content">
                                 <h6 style={{ textAlign: 'left' }}>Job ID : {row["OppID"]}  <FontAwesomeIcon icon={faHeart} size="lg" color={colourFav(row[columns[0]]) ? colors.red : colors.grey} onClick={() => addFav(testing(row[columns[0]]), row[columns[0]])}>{row[columns[0]]} {test}</FontAwesomeIcon></h6>
                                 <h6 class="sideCard" style={{ textAlign: 'right' }}>${row["Pay"]}<br /> <FontAwesomeIcon icon={faGraduationCap} ></FontAwesomeIcon> {row["Qualification"]}</h6>
-                                <a href={"/Oppo/" + row["OppID"]}><h4 class="job-title" style={{ textAlign: 'left' }}>{row["Name"]}</h4></a>
+                                <a href={"/Oppo/" + row["OppID"]} target="_blank"><h4 class="job-title" style={{ textAlign: 'left' }} >{row["Name"]}</h4></a>
 
                                 <h5 style={{ textAlign: 'left' }}>
                                     <FontAwesomeIcon icon={faLocationDot} >

@@ -199,7 +199,7 @@ function App() {
                     <Route path='/Status' element={<ViewOppoStatus />} />
                     <Route path='/SubmitApplication' element={<SubmitApplication />} />
                     <Route exact path='/SubmitApplication/:id' element={<SubmitApplication />} />
-                    
+                    <Route path='/Profile' element={<ProfilePage />} />
 
                     <Route path='/ViewCompanyProfile' element={<SearchCompanyProfile />} />
                     <Route exact path='/ViewCompanyProfile/:Name' element={<ViewCompanyProfile />} />
@@ -218,7 +218,7 @@ function App() {
                 <Route path='/RatingStats' element={<RatingStats />} />
                 <Route path='/AddOppoPartnerApproved' element={<AddOppoPartnerApproved />} />
                 <Route path='/Company' element={<CompanyPage />} />
-                <Route path='/Profile' element={<ProfilePage />} />
+                
                 <Route path='/EditCompanyNumber' element={<EditCompanyNumber />} />
                 <Route path='/MyApplications' element={< MyApplication />} />
                 <Route path='/EditCompanyBio' element={<EditCompanyBio />} />
