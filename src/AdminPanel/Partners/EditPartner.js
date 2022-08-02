@@ -97,7 +97,7 @@ const EditPartner = () => {
             isNaN(formValues.contactNumber) ||
             !pnumRegex.test(formValues.contactNumber)
         ) {
-            console.log("POST error");
+            console.log("ELSE error");
         }
         else if (check === true) {
             {
@@ -124,7 +124,7 @@ const EditPartner = () => {
             setIsSubmit(false);
         }
         else {
-            console.log("ELSE error");
+            console.log("POST error");
         }
 
     }
@@ -139,10 +139,6 @@ const EditPartner = () => {
     return (
         <div className="App">
             <AdminNavBar />
-            {Object.keys(formErrors).length === 0 && isSubmit ? (<div className="ui-message-success">Signed in successfully</div>
-            ) : (
-                <pre>{JSON.stringify(formValues, undefined, 2)}</pre>
-            )}
             <form
                 onSubmit={submitFormData}
                 style={{

@@ -104,7 +104,7 @@ const EditOppo = () => {
             !qRegex.test(formValues.qualification) ||
             formValues.qualification.length > 80
         ) {
-            console.log("POST error");
+            console.log("ELSE error");
         }
         else if (check === true) {
             {
@@ -132,7 +132,7 @@ const EditOppo = () => {
             setIsSubmit(false);
         }
         else {
-            console.log("ELSE error");
+            console.log("POST error");
         }
 
     };
@@ -147,10 +147,6 @@ const EditOppo = () => {
     return (
         <div className="App">
             <AdminNavBar />
-            {Object.keys(formErrors).length === 0 && isSubmit ? (<div className="ui-message-success">Signed in successfully</div>
-            ) : (
-                <pre>{JSON.stringify(formValues, undefined, 2)}</pre>
-            )}
             <form
             onSubmit={submitFormData}
             style={{
