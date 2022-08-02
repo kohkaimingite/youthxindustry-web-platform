@@ -61,10 +61,12 @@ function SubmitApplication() {
                 <leftSection2>
                     <text style={{ fontSize: "20px" }}>Please upload your resume at your profile if you have yet to do so</text>
                 </leftSection2>
+                
                 <leftSection2>
                     <h3>Please ensure that all Information is accurate before submitting</h3>
+                    <button type="primary" onClick={submit}>Submit Application</button>
                 </leftSection2>
-                <button type="primary" onClick={submit}>Submit Application</button>
+                
             </div>
 
 
