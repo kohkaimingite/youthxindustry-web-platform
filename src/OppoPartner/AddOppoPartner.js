@@ -105,7 +105,7 @@ export default function AddOppoPartner() {
                     </Form.Group>
 
                     <Form.Group className="mb-3">
-                    <Form.Label>Location</Form.Label>
+                    <Form.Label>Region</Form.Label>
                     <br/>
                         <select value={location} onChange={handleLocation}>
                             <option location="North">North</option>

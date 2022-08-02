@@ -50,7 +50,7 @@ export default function LogAppTable({ data }) {
                     <th> Job Code </th>
                     <th> Job Name </th>
                     <th> Description </th>
-                    <th> Area </th>
+                    <th> Region </th>
                     <th> Address </th>
                     <th> Category(-ies) </th>
                     <th> Qualification </th>

@@ -45,7 +45,7 @@ const EditOppo = () => {
             errors.description = "Description cannot exceed 500 characters";
         }
         if (!values.location) {
-            errors.location = "Area is required";
+            errors.location = "Region is required";
         }
         if (!values.address) {
             errors.address = "Address is required";
@@ -167,9 +167,9 @@ const EditOppo = () => {
                 <input type="text" className="adminInput" name="description" placeholder="Description ..." value={formValues.description} onChange={handleChange}></input>
                 <p className="adminErrorMsg">{formErrors.description}</p>
 
-                <label>Area</label>
+                <label>Region</label>
                 <select type="text" className="adminInput" name="location" value={formValues.location} onChange={handleChange}>
-                    <option value="" disabled selected>Area ...</option>
+                    <option value="" disabled selected>Region ...</option>
                     <option value="Central">Central</option>
                     <option value="North">North</option>
                     <option value="South">South</option>

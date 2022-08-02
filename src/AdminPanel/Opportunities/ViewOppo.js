@@ -93,7 +93,7 @@ const ViewOppo = () => {
                         <th style={{textAlign: "center"}} onClick={()=>sortNum("OppID")}> Job Code </th>
                         <th style={{textAlign: "center"}} onClick={()=>sortWord("Name")}> Job Name </th>
                         <th style={{textAlign: "center"}} onClick={()=>sortWord("Description")}> Description </th>
-                        <th style={{textAlign: "center"}} onClick={()=>sortWord("Location")}> Area </th>
+                        <th style={{textAlign: "center"}} onClick={()=>sortWord("Location")}> Region </th>
                         <th style={{textAlign: "center"}} onClick={()=>sortWord("Address")}> Address </th>
                         <th style={{textAlign: "center"}} onClick={()=>sortWord("Type")}> Category(-ies) </th>
                         <th style={{textAlign: "center"}} onClick={()=>sortWord("Qualification")}> Qualification </th>

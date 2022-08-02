@@ -144,7 +144,7 @@ export default function OppoPartner() {
                                 <th style={{ textAlign: "left" }}>Job Code</th>
                                 <th style={{ textAlign: "left" }}>Job Name</th>
                                 <th style={{ textAlign: "left" }}>Description</th>
-                                <th style={{ textAlign: "left" }}>Location</th>
+                                <th style={{ textAlign: "left" }}>Region</th>
                                 <th style={{ textAlign: "left" }}>Address</th>
                                 <th style={{ textAlign: "left" }}>Job Categories</th>
                                 <th style={{ textAlign: "left" }}>Qualification</th>
